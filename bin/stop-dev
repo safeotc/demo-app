@@ -1,5 +1,6 @@
 #!/bin/bash
 
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-cd $SCRIPT_DIR
+APP_DIR=$( realpath ${SCRIPT_DIR}/.. )
+cd $APP_DIR
 docker-compose down

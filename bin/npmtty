@@ -1,5 +1,5 @@
 #!/bin/bash
 
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-APP_DIR=$( realpath ${SCRIPT_DIR}/../app )
+APP_DIR=$( realpath ${SCRIPT_DIR}/.. )
 docker run --rm -it -v ${APP_DIR}:/app -w /app -u `id -u`:`id -g` node:16.10.0-alpine3.14 npm "$@"
