@@ -1,0 +1,32 @@
+{
+    "overrides": [
+        {
+            "files": "*.tsx",
+            "options": {
+                "printWidth": 120,
+                "tabWidth": 4,
+                "useTabs": false,
+                "singleQuote": true,
+                "bracketSpacing": true,
+                "arrowParens": "always",
+                "endOfLine": "lf",
+                "semi": true,
+                "trailingComma": "es5"
+            }
+        },
+        {
+            "files": "*.ts",
+            "options": {
+                "printWidth": 120,
+                "tabWidth": 4,
+                "useTabs": false,
+                "singleQuote": true,
+                "bracketSpacing": true,
+                "arrowParens": "always",
+                "endOfLine": "lf",
+                "semi": true,
+                "trailingComma": "es5"
+            }
+        }
+    ]
+}
