@@ -1,7 +1,8 @@
-import '../styles/main.scss';
+import React from 'react';
 import type { AppProps } from 'next/app';
+import '../styles/main.scss';
 
-function SafeOTCApp({ Component, pageProps }: AppProps) {
+const SafeOTCApp: React.FC<AppProps> = ({ Component, pageProps }) => {
     return <Component {...pageProps} />;
-}
+};
 export default SafeOTCApp;

@@ -1,16 +1,28 @@
-///* ========================================================================
-//   #GLOBAL
-//   ======================================================================== */
-
-// The global settings file contains any project-wide variables; things that
-// need to be made available to the entire codebase.
-
-// Standardise some UI treatments.
-
 $global-radius: 3px !default;
 $global-transition: all 300ms ease-in-out !default;
 
+$color-primary: #008be1;
+$color-secondary: #00e0b2;
+
 $font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
   Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-$font-color: #333;
-$font-color-dark: #fff;
+$font-size: clamp(
+  #{($inuit-global-font-size / 16px) * 0.75em},
+  2.5vw,
+  #{($inuit-global-font-size / 16px) * 1em}
+);
+
+$container-lr-padding: $inuit-global-spacing-unit;
+$container-max-width: map-get($mq-breakpoints, xxl);
+
+$light-theme: (
+  font-color: #333,
+  color-primary: white,
+  color-secondary: grey,
+);
+
+$dark-theme: (
+  font-color: #fff,
+  color-primary: grey,
+  color-secondary: black,
+);

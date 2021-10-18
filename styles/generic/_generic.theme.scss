@@ -1,7 +1,7 @@
 :root {
-  --font-color: #{$font-color};
+  @include theme-vars($light-theme);
 }
 
 .g-theme-dark {
-  --font-color: #{$font-color-dark};
+  @include theme-vars($dark-theme);
 }

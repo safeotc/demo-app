@@ -1,0 +1,5 @@
+@mixin theme-vars($theme-map) {
+  --font-color: #{map-get($theme-map, font-color)};
+  --primary-color: #{map-get($theme-map, color-primary)};
+  --secondary-color: #{map-get($theme-map, color-secondary)};
+}

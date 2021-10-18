@@ -73,3 +73,18 @@ $inuit-global-line-height: $inuit-global-spacing-unit !default;
     @error "`#{$_inuit-spacing-unit}` needs to be a number.";
   }
 }
+
+// Be aware that enabling offsets produces a large chunk of classes which might
+// bloat your CSS, depending of the amount of breakpoints you defined.
+// Only set this to `true` if you are absolutely sure about what you are doing.
+// push pull offset classes generation
+
+$inuit-offsets: false;
+
+$mq-breakpoints: (
+  sm: 40em,
+  m: 48em,
+  l: 64em,
+  xl: 80em,
+  xxl: 96em,
+);

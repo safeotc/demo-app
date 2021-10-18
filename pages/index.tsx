@@ -1,7 +1,11 @@
+import React from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Index.module.scss';
+import Header from '../sections/header';
+import Main from '../sections/main';
+import Footer from '../sections/footer';
+import Layout from '../sections/layout';
+import Nav from '../sections/nav';
 
 const Home: NextPage = () => {
     return (
@@ -10,11 +14,11 @@ const Home: NextPage = () => {
                 <title>SafeOTC demo</title>
             </Head>
 
-            <header>Here comes the header</header>
-
-            <main>Here comes trading content</main>
-
-            <footer>Here comes info about our shiiiiiiet</footer>
+            <Layout>
+                <Nav></Nav>
+                <Main />
+                <Footer />
+            </Layout>
         </>
     );
 };
