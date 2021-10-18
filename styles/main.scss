@@ -23,8 +23,6 @@
 @import "elements/elements.tables";
 
 // OBJECTS
-//
-// Uncomment and add to this section as necessary.
 // @import "objects/objects.wrapper";
 // @import "objects/objects.layout";
 // @import "objects/objects.media";
@@ -40,9 +38,8 @@
 @import "objects/objects.container";
 
 // COMPONENTS
-//
-// Build and include your project’s UI components here.
 // @import "components/example.components.buttons";
+@import "components/components.background";
 
 // UTILITIES
 @import "utilities/utilities.clearfix";

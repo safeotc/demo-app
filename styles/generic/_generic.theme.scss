@@ -2,6 +2,12 @@
   @include theme-vars($light-theme);
 }
 
-.g-theme-dark {
+.g-theme {
+  @include theme-transition(color);
+}
+
+.g-theme--dark {
   @include theme-vars($dark-theme);
+  // some properties need to be overriden since they're originaly set on html element
+  color: var(--font-color);
 }

@@ -16,13 +16,13 @@ $container-lr-padding: $inuit-global-spacing-unit;
 $container-max-width: map-get($mq-breakpoints, xxl);
 
 $light-theme: (
-  font-color: #333,
-  color-primary: white,
-  color-secondary: grey,
+  font-color: #333333,
+  color-primary: #ffffff,
+  color-secondary: #f5f5f5,
 );
 
 $dark-theme: (
-  font-color: #fff,
+  font-color: #ffffff,
   color-primary: grey,
   color-secondary: black,
 );

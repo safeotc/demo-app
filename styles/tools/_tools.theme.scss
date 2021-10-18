@@ -1,5 +1,21 @@
 @mixin theme-vars($theme-map) {
   --font-color: #{map-get($theme-map, font-color)};
-  --primary-color: #{map-get($theme-map, color-primary)};
-  --secondary-color: #{map-get($theme-map, color-secondary)};
+  --color-primary: #{map-get($theme-map, color-primary)};
+  --color-secondary: #{map-get($theme-map, color-secondary)};
+}
+
+@function get-theme-transition($properties) {
+  $transition-property: "";
+  @each $property in $properties {
+    $transition-property: $transition-property +
+      if(str-length($transition-property) > 0, ", ", "") +
+      #{$property
+      100ms
+      linear};
+  }
+  @return unquote($transition-property);
+}
+
+@mixin theme-transition($properties) {
+  transition: get-theme-transition($properties);
 }
