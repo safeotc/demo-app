@@ -12,7 +12,7 @@ const Home: NextPage = () => {
     return (
         <>
             <Head>
-                <title>SafeOTC demo</title>
+                <title>SafeOTC - first decentralized multi-chain OTC platform</title>
             </Head>
 
             <Theme>
