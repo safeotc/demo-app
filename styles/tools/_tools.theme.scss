@@ -2,6 +2,11 @@
   --font-color: #{map-get($theme-map, font-color)};
   --color-primary: #{map-get($theme-map, color-primary)};
   --color-secondary: #{map-get($theme-map, color-secondary)};
+  --color-content-container-shadow: #{map-get(
+      $theme-map,
+      color-content-container-shadow
+    )};
+  --background-overlay: #{map-get($theme-map, background-overlay)};
 }
 
 @function get-theme-transition($properties) {

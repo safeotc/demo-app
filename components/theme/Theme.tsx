@@ -1,6 +1,8 @@
 import React from 'react';
 import useTheme, { ThemeToggler } from './useTheme';
 import cn from 'classnames';
+import { isDevEnv } from '../../helpers/env';
+import ToggleThemeDebugButton from './ToggleThemeDebugButton';
 
 export const ThemeContext = React.createContext<ThemeToggler>(() => {});
 
@@ -15,6 +17,7 @@ const Theme: React.FC = ({ children }) => {
 
     return (
         <ThemeContext.Provider value={toggleTheme}>
+            {isDevEnv() && <ToggleThemeDebugButton />}
             <div className={themeClasses}>{children}</div>
         </ThemeContext.Provider>
     );

@@ -1,12 +1,14 @@
 import React from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Main from '../sections/main';
-import Footer from '../sections/footer';
-import Nav from '../sections/nav';
-import Theme from '../components/theme';
-import Background from '../components/background';
-import Header from '../sections/header';
+import Main from '../sections/Main';
+import Footer from '../sections/Footer';
+import Nav from '../sections/Nav';
+import Theme from '../components/theme/Theme';
+import Background from '../components/Background';
+import Header from '../sections/Header';
+import ContentWrapper from '../components/ContentWrapper';
+import Logo from '../components/Logo';
 
 const Home: NextPage = () => {
     return (
@@ -16,12 +18,22 @@ const Home: NextPage = () => {
             </Head>
 
             <Theme>
-                <Background>
-                    <Nav />
-                    <Header />
-                    <Main />
-                    <Footer />
-                </Background>
+                <Background />
+                <ContentWrapper
+                    sideContent={
+                        <>
+                            <Logo />
+                            <Nav />
+                        </>
+                    }
+                    mainContent={
+                        <>
+                            <Header />
+                            <Main />
+                            <Footer />
+                        </>
+                    }
+                ></ContentWrapper>
             </Theme>
         </>
     );
