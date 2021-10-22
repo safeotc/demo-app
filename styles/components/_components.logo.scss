@@ -1,0 +1,25 @@
+.c-logo {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.c-logo__image {
+  width: 2em;
+  height: 2em;
+  position: relative;
+}
+
+.c-logo__title {
+  display: none;
+  font-family: conthraxsemibold, sans-serif;
+  color: var(--font-color);
+  @include theme-transition(color);
+
+  @include mq($from: l) {
+    display: block;
+    margin-top: 0.5em;
+  }
+}

@@ -3,12 +3,13 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Main from '../sections/Main';
 import Footer from '../sections/Footer';
-import Nav from '../sections/Nav';
+import Nav from '../components/side/Nav';
 import Theme from '../components/theme/Theme';
 import Background from '../components/Background';
 import Header from '../sections/Header';
 import ContentWrapper from '../components/ContentWrapper';
-import Logo from '../components/Logo';
+import Logo from '../components/side/Logo';
+import Side from '../sections/Side';
 
 const Home: NextPage = () => {
     return (
@@ -20,12 +21,7 @@ const Home: NextPage = () => {
             <Theme>
                 <Background />
                 <ContentWrapper
-                    sideContent={
-                        <>
-                            <Logo />
-                            <Nav />
-                        </>
-                    }
+                    sideContent={<Side />}
                     mainContent={
                         <>
                             <Header />
