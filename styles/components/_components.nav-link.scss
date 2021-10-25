@@ -1,0 +1,22 @@
+.c-nav-link {
+  display: block;
+  padding: 0.5em 1em;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--nav-link-color);
+  @include theme-transition(color background-color);
+
+  &--active {
+    color: var(--nav-link-color-active);
+    background: var(--color-secondary);
+  }
+}
+
+.c-nav-link__text {
+  display: none;
+
+  @include mq($from: l) {
+    margin-left: 1em;
+    display: inline;
+  }
+}

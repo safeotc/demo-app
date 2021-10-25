@@ -1,15 +1,32 @@
 import React from 'react';
+import NavLink from './NavLink';
+import NavItem from './NavItem';
 
 const Nav: React.FC = () => {
     return (
-        <nav style={{ marginTop: '1em' }}>
-            <ul>
-                <li>Link 1</li>
-                <li>Link 2</li>
-                <li>Link 3</li>
-                <li>Link 4</li>
-                <li>Link 5</li>
-                <li>Link 6</li>
+        <nav className="u-margin-top-large">
+            <ul className="c-navigation">
+                <NavItem>
+                    <NavLink href="/" icon="home">
+                        Home
+                    </NavLink>
+                </NavItem>
+
+                <NavItem>
+                    <NavLink href="/" icon="bank">
+                        Trade
+                    </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink href="/" icon="clock" active={true}>
+                        Expired
+                    </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink href="/" icon="calendar">
+                        Upcoming
+                    </NavLink>
+                </NavItem>
             </ul>
         </nav>
     );

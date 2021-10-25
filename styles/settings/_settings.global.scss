@@ -18,7 +18,7 @@ $container-max-width: map-get($mq-breakpoints, xxl);
 $light-theme: (
   font-color: #333333,
   color-primary: #ffffff,
-  color-secondary: #f5f5f5,
+  color-secondary: #f9f9f9,
   color-content-container-shadow: transparentize(#808080, 0.5),
   background-overlay:
     linear-gradient(
@@ -26,6 +26,8 @@ $light-theme: (
       #{transparentize($color-brand-primary, 0)} 10%,
       #{transparentize($color-brand-secondary, 0)} 90%
     ),
+  nav-link-color: #9f9f9f,
+  nav-link-color-active: darken(#9f9f9f, 20%),
 );
 
 $dark-theme: (
@@ -39,4 +41,6 @@ $dark-theme: (
       #{transparentize($color-brand-primary, 0.4)} 10%,
       #{transparentize($color-brand-secondary, 0.4)} 90%
     ),
+  nav-link-color: darken(#9f9f9f, 20%),
+  nav-link-color-active: #9f9f9f,
 );

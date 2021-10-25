@@ -7,6 +7,8 @@
       color-content-container-shadow
     )};
   --background-overlay: #{map-get($theme-map, background-overlay)};
+  --nav-link-color: #{map-get($theme-map, nav-link-color)};
+  --nav-link-color-active: #{map-get($theme-map, nav-link-color-active)};
 }
 
 @function get-theme-transition($properties) {

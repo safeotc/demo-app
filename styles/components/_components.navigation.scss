@@ -1,0 +1,12 @@
+.c-navigation {
+  list-style: none;
+  margin: 4em 1em 0;
+}
+
+.c-navigation__item {
+  margin-bottom: 0.5em;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
