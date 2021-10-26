@@ -7,25 +7,17 @@ const Nav: React.FC = () => {
         <nav className="u-margin-top-large">
             <ul className="c-navigation">
                 <NavItem>
-                    <NavLink href="/" icon="home">
-                        Home
-                    </NavLink>
+                    <NavLink href="/" icon="home" title="Home" />
                 </NavItem>
 
                 <NavItem>
-                    <NavLink href="/" icon="bank">
-                        Trade
-                    </NavLink>
+                    <NavLink href="/" icon="bank" title="Trade" />
                 </NavItem>
                 <NavItem>
-                    <NavLink href="/" icon="clock" active={true}>
-                        Expired
-                    </NavLink>
+                    <NavLink href="/" icon="clock" active={true} title="Expired" />
                 </NavItem>
                 <NavItem>
-                    <NavLink href="/" icon="calendar">
-                        Upcoming
-                    </NavLink>
+                    <NavLink href="/" icon="calendar" title="Upcoming" />
                 </NavItem>
             </ul>
         </nav>

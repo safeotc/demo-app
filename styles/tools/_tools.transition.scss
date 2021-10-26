@@ -1,0 +1,15 @@
+@function get-short-transition($properties) {
+  $transition-property: "";
+  @each $property in $properties {
+    $transition-property: $transition-property +
+      if(str-length($transition-property) > 0, ", ", "") +
+      #{$property
+      100ms
+      linear};
+  }
+  @return unquote($transition-property);
+}
+
+@mixin short-transition($properties) {
+  transition: get-short-transition($properties);
+}

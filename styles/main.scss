@@ -9,7 +9,9 @@
 @import "tools/tools.font-size";
 @import "tools/tools.clearfix";
 @import "tools/tools.hidden";
+@import "tools/tools.transition";
 @import "tools/tools.theme";
+@import "tools/tools.focus";
 @import "node_modules/sass-mq/mq";
 
 // GENERIC
@@ -40,6 +42,8 @@
 @import "objects/objects.content-wrapper";
 @import "objects/objects.container";
 @import "objects/objects.side";
+@import "objects/objects.main";
+@import "objects/objects.footer";
 @import "objects/objects.list-bare";
 
 // COMPONENTS
@@ -57,3 +61,4 @@
 @import "utilities/utilities.responsive-spacings";
 @import "utilities/utilities.print";
 @import "utilities/utilities.hide";
+@import "utilities/utilities.text";

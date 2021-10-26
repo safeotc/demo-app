@@ -1,0 +1,8 @@
+@mixin focus-outline() {
+  outline: 0px solid $color-brand-primary;
+  outline-offset: 3px;
+
+  &:focus {
+    outline-width: 2px;
+  }
+}

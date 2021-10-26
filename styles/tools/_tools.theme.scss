@@ -10,19 +10,3 @@
   --nav-link-color: #{map-get($theme-map, nav-link-color)};
   --nav-link-color-active: #{map-get($theme-map, nav-link-color-active)};
 }
-
-@function get-theme-transition($properties) {
-  $transition-property: "";
-  @each $property in $properties {
-    $transition-property: $transition-property +
-      if(str-length($transition-property) > 0, ", ", "") +
-      #{$property
-      100ms
-      linear};
-  }
-  @return unquote($transition-property);
-}
-
-@mixin theme-transition($properties) {
-  transition: get-theme-transition($properties);
-}

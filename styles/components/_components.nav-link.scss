@@ -4,11 +4,16 @@
   font-weight: 700;
   text-decoration: none;
   color: var(--nav-link-color);
-  @include theme-transition(color background-color);
+  @include focus-outline();
+  @include short-transition(color background-color outline);
+
+  &:hover {
+    color: $color-brand-primary;
+  }
 
   &--active {
-    color: var(--nav-link-color-active);
-    background: var(--color-secondary);
+    color: $color-brand-primary;
+    background: transparentize($color-brand-primary, 0.9);
   }
 }
 

@@ -1,10 +1,15 @@
 import React from 'react';
+import Footer from './main/Footer';
+import Header from './main/Header';
+import MainContent from './main/Main';
 
 const Main: React.FC = () => {
     return (
-        <main className="o-box">
-            <div>This is main content</div>
-        </main>
+        <div className="o-main">
+            <Header />
+            <MainContent />
+            <Footer />
+        </div>
     );
 };
 
