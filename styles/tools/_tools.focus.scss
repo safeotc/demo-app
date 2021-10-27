@@ -2,7 +2,7 @@
   outline: 0px solid $color-brand-primary;
   outline-offset: 3px;
 
-  &:focus {
+  .is-tabbing &:focus {
     outline-width: 2px;
   }
 }
