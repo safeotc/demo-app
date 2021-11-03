@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
         <footer className="o-footer o-box">
             <div className="o-footer__grid">
                 <div className="o-footer__copyright">
-                    <div className="c-footer-logo u-margin-bottom-tiny">
+                    <div className="c-footer-logo u-margin-bottom-small">
                         <div className="c-footer-logo__image">
                             <Image src={logoImage} alt="SafeOTC" layout="fill" />
                         </div>
@@ -17,14 +17,14 @@ const Footer: React.FC = () => {
                 </div>
                 <div className="o-footer__links">
                     <div className="o-footer__column">
-                        <h6 className="u-margin-bottom-tiny">Social</h6>
+                        <h6 className="u-margin-bottom-small">Social</h6>
                         <ul className="o-list-bare u-margin-bottom-none">
-                            <li>
+                            <li className="u-margin-bottom-tiny">
                                 <a className="c-link" rel="noreferrer" target="_blank" href="https://t.me/SafeOTC">
                                     Telegram
                                 </a>
                             </li>
-                            <li>
+                            <li className="u-margin-bottom-tiny">
                                 <a className="c-link" rel="noreferrer" target="_blank" href="https://t.me/SafeOTC_ANN">
                                     Telegram ANN
                                 </a>
@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
                         </ul>
                     </div>
                     <div className="o-footer__column">
-                        <h6 className="u-margin-bottom-tiny">Help</h6>
+                        <h6 className="u-margin-bottom-small">Help</h6>
                         <ul className="o-list-bare u-margin-bottom-none">
                             <li>
                                 <a className="c-link" href="mailto:support@safeotc.io">
