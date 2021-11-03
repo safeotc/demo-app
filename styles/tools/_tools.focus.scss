@@ -1,6 +1,6 @@
 @mixin focus-outline() {
-  outline: 0px solid $color-brand-primary;
-  outline-offset: 3px;
+  outline: 0px solid $color-focus;
+  outline-offset: 1px;
 
   .is-tabbing &:focus {
     outline-width: 2px;

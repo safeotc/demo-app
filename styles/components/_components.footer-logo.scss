@@ -1,0 +1,16 @@
+.c-footer-logo {
+  display: flex;
+  align-items: center;
+}
+
+.c-footer-logo__image {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.5em;
+}
+
+.c-footer-logo__title {
+  font-size: 0.75em;
+  font-family: conthraxsemibold, sans-serif;
+}

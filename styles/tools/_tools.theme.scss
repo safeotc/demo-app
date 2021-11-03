@@ -2,11 +2,10 @@
   --font-color: #{map-get($theme-map, font-color)};
   --color-primary: #{map-get($theme-map, color-primary)};
   --color-secondary: #{map-get($theme-map, color-secondary)};
+  --color-tertiary: #{map-get($theme-map, color-tertiary)};
   --color-content-container-shadow: #{map-get(
       $theme-map,
       color-content-container-shadow
     )};
   --background-overlay: #{map-get($theme-map, background-overlay)};
-  --nav-link-color: #{map-get($theme-map, nav-link-color)};
-  --nav-link-color-active: #{map-get($theme-map, nav-link-color-active)};
 }

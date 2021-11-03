@@ -3,6 +3,7 @@ $global-transition: all 300ms ease-in-out !default;
 
 $color-brand-primary: #008be1;
 $color-brand-secondary: #00e0b2;
+$color-focus: $color-brand-primary;
 
 $font-family: Quicksand, sans-serif; /*-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
   Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;*/
@@ -19,6 +20,7 @@ $light-theme: (
   font-color: #333333,
   color-primary: #ffffff,
   color-secondary: #f9f9f9,
+  color-tertiary: #9f9f9f,
   color-content-container-shadow: transparentize(#808080, 0.5),
   background-overlay:
     linear-gradient(
@@ -26,14 +28,13 @@ $light-theme: (
       #{transparentize($color-brand-primary, 0)} 10%,
       #{transparentize($color-brand-secondary, 0)} 90%
     ),
-  nav-link-color: #9f9f9f,
-  nav-link-color-active: darken(#9f9f9f, 20%),
 );
 
 $dark-theme: (
-  font-color: #ffffff,
+  font-color: darken(#ffffff, 20%),
   color-primary: #1c2639,
   color-secondary: #0c182c,
+  color-tertiary: darken(#9f9f9f, 20%),
   color-content-container-shadow: transparentize(#ffffff, 0.9),
   background-overlay:
     linear-gradient(
@@ -41,6 +42,4 @@ $dark-theme: (
       #{transparentize($color-brand-primary, 0.4)} 10%,
       #{transparentize($color-brand-secondary, 0.4)} 90%
     ),
-  nav-link-color: darken(#9f9f9f, 20%),
-  nav-link-color-active: #9f9f9f,
 );

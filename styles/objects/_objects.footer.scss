@@ -1,3 +1,31 @@
 .o-footer {
   margin-top: auto;
 }
+
+.o-footer__grid {
+  display: flex;
+  flex-direction: column;
+
+  @include mq($from: l) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.o-footer__links {
+  display: flex;
+  flex-direction: column;
+
+  @include mq($from: l) {
+    flex-direction: row;
+  }
+}
+
+.o-footer__column {
+  margin-top: 2em;
+
+  @include mq($from: l) {
+    margin-top: 0;
+    margin-left: 2em;
+  }
+}

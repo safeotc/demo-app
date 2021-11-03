@@ -3,7 +3,7 @@
   padding: 0.5em 1em;
   font-weight: 700;
   text-decoration: none;
-  color: var(--nav-link-color);
+  color: var(--color-tertiary);
   @include focus-outline();
   @include short-transition(color background-color outline);
 

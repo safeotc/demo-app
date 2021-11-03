@@ -1,5 +1,6 @@
 .o-box {
   padding: 1em;
+  background: var(--color-primary);
 
   @include mq($from: l) {
     padding: 2em;

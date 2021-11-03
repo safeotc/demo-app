@@ -88,3 +88,16 @@ $mq-breakpoints: (
   xl: 80em,
   xxl: 96em,
 );
+
+$inuit-spacing-properties: (
+  "margin": "margin",
+);
+
+$inuit-spacing-sizes: (
+  null: 1em,
+  "-tiny": 0.25em,
+  "-small": 0.5em,
+  "-large": 2em,
+  "-huge": 4em,
+  "-none": 0,
+);

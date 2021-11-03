@@ -1,0 +1,6 @@
+.c-link {
+  color: $color-brand-primary;
+  text-decoration: none;
+  @include focus-outline();
+  @include short-transition(color outline);
+}
