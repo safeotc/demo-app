@@ -1,17 +1,18 @@
 .c-button {
+  @include short-shadow();
   @include border-radius();
   @include focus-outline();
   @include short-transition(color border-color background-color outline);
   color: var(--color-tertiary);
   background: transparent;
-  padding: 0.9375em 1.25em;
+  padding: 0.75em 1.5em;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 0.8em;
   border: 2px solid var(--color-tertiary);
   cursor: pointer;
   display: block;
   width: 100%;
+  position: relative;
 
   @include mq($from: m) {
     width: auto;
@@ -26,17 +27,22 @@
       margin-left: 0.5em;
     }
   }
-}
 
-.c-button--disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+  &:active {
+    top: 1px;
+    box-shadow: none;
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .c-button--primary {
   border: none;
-  padding-top: calc(0.9375em + 2px);
-  padding-bottom: calc(0.9375em + 2px);
+  padding-top: calc(0.75em + 2px);
+  padding-bottom: calc(0.75em + 2px);
   background: var(--button-background);
   color: $color-primary-light;
 
@@ -47,7 +53,6 @@
 }
 
 .c-button--secondary {
-  position: relative;
   z-index: 0;
 
   & .c-button__content {
@@ -102,6 +107,12 @@
       background-color: var(--color-secondary);
     }
   }
+}
+
+.c-button__content {
+  font-size: 0.8em;
+  display: inline-flex;
+  align-items: center;
 }
 
 .c-button__text {

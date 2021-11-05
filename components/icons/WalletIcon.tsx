@@ -3,14 +3,15 @@ import React from 'react';
 const WalletIcon = () => {
     return (
         <svg
+            style={{ position: 'relative', top: '-3px' }}
             className="c-button__wallet-icon"
             clipRule="evenodd"
             fillRule="evenodd"
             strokeLinejoin="round"
             strokeMiterlimit="2"
             viewBox="0 0 32 32"
-            width="20"
-            height="20"
+            width="16"
+            height="16"
             xmlns="http://www.w3.org/2000/svg"
         >
             <g transform="translate(0 -84)">
