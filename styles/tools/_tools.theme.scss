@@ -7,5 +7,7 @@
       $theme-map,
       color-content-container-shadow
     )};
-  --background-overlay: #{map-get($theme-map, background-overlay)};
+  --background-color: #{map-get($theme-map, background-color)};
+  --button-background: #{map-get($theme-map, button-background)};
+  --button-hover-background: #{map-get($theme-map, button-hover-background)};
 }

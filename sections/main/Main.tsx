@@ -1,9 +1,15 @@
 import React from 'react';
+import PrimaryButton from '../../components/forms/PrimaryButton';
+import SecondaryButton from '../../components/forms/SecondaryButton';
+import FlatIcon from '../../components/icons/FlatIcon';
 
 const Main: React.FC = () => {
     return (
         <main className="o-box u-margin-bottom-large">
-            <h1>Trades</h1>
+            <PrimaryButton icon={<FlatIcon icon="search" />}>Click me!</PrimaryButton>
+            <SecondaryButton icon={<FlatIcon icon="calendar" />}>Click me! Click me!</SecondaryButton>
+
+            <h1 className="u-margin-top">Trades</h1>
             <ul>
                 <li>Item</li>
                 <li>Item</li>

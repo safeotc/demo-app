@@ -12,6 +12,7 @@
 @import "tools/tools.transition";
 @import "tools/tools.theme";
 @import "tools/tools.focus";
+@import "tools/tools.border";
 @import "node_modules/sass-mq/mq";
 
 // GENERIC
@@ -49,13 +50,13 @@
 
 // COMPONENTS
 // @import "components/example.components.buttons";
-@import "components/components.background";
 @import "components/components.logo";
 @import "components/components.navigation";
 @import "components/components.nav-link";
 @import "components/components.input";
 @import "components/components.footer-logo";
 @import "components/components.link";
+@import "components/components.button";
 
 // UTILITIES
 @import "utilities/utilities.clearfix";

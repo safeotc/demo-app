@@ -25,5 +25,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(({ leftIcon, rightI
         </div>
     );
 });
+Input.displayName = 'Input';
 
 export default Input;

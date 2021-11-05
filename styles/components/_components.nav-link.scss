@@ -4,6 +4,7 @@
   font-weight: 700;
   text-decoration: none;
   color: var(--color-tertiary);
+  @include border-radius();
   @include focus-outline();
   @include short-transition(color background-color outline);
 

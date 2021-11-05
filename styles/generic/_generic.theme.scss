@@ -1,13 +1,7 @@
-:root {
-  @include theme-vars($light-theme);
-}
-
 .g-theme {
-  @include short-transition(color);
+  @include theme-vars($light-theme);
 }
 
 .g-theme--dark {
   @include theme-vars($dark-theme);
-  // some properties need to be overriden since they're originaly set on html element
-  color: var(--font-color);
 }

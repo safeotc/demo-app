@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchInput from '../../components/header/SearchInput';
+import WalletInfo from '../../components/header/WalletInfo';
 
 const Header: React.FC = () => {
     return (
@@ -7,7 +8,9 @@ const Header: React.FC = () => {
             <div className="o-header__left u-2/3 u-1/2@l u-2/5@xxl">
                 <SearchInput placeholder="Search through offers" />
             </div>
-            <div className="o-header__right">TODO</div>
+            <div className="o-header__right">
+                <WalletInfo />
+            </div>
         </header>
     );
 };

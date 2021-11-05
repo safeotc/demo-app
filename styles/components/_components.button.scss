@@ -1,0 +1,123 @@
+.c-button {
+  @include border-radius();
+  @include focus-outline();
+  @include short-transition(color border-color background-color outline);
+  color: var(--color-tertiary);
+  background: transparent;
+  padding: 0.9375em 1.25em;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.8em;
+  border: 2px solid var(--color-tertiary);
+  cursor: pointer;
+  display: block;
+  width: 100%;
+
+  @include mq($from: m) {
+    width: auto;
+    display: inline-block;
+  }
+
+  & + & {
+    margin-top: 0.5em;
+
+    @include mq($from: m) {
+      margin-top: 0;
+      margin-left: 0.5em;
+    }
+  }
+}
+
+.c-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.c-button--primary {
+  border: none;
+  padding-top: calc(0.9375em + 2px);
+  padding-bottom: calc(0.9375em + 2px);
+  background: var(--button-background);
+  color: $color-primary-light;
+
+  &:not([disabled]):hover {
+    color: $color-primary-light;
+    background: var(--button-hover-background);
+  }
+}
+
+.c-button--secondary {
+  position: relative;
+  z-index: 0;
+
+  & .c-button__content {
+    background: var(--button-background);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: -2px;
+    border-radius: inherit;
+    background: var(--button-background);
+  }
+
+  &:after {
+    @include short-transition(background-color);
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: -2px;
+    border-radius: inherit;
+    background: var(--color-primary);
+    background-clip: padding-box;
+    border: 2px solid transparent;
+    z-index: -1;
+  }
+
+  &:not([disabled]):hover {
+    &:before {
+      background: var(--button-hover-background);
+    }
+
+    & .c-button__content {
+      background-image: var(--button-hover-background);
+    }
+  }
+}
+
+.c-button--alt-background {
+  &.c-button--secondary {
+    &:after {
+      background-color: var(--color-secondary);
+    }
+  }
+}
+
+.c-button__text {
+  .c-button__icon + & {
+    margin-left: 0.75em;
+  }
+}
+
+.c-button__wallet-icon {
+  vertical-align: text-bottom;
+  fill: var(--color-tertiary);
+  stroke: var(--color-tertiary);
+  @include short-transition(fill stroke);
+
+  .c-button--primary & {
+    fill: $color-primary-light;
+    stroke: $color-primary-light;
+  }
+}

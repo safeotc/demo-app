@@ -3,4 +3,8 @@
   text-decoration: none;
   @include focus-outline();
   @include short-transition(color outline);
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

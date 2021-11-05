@@ -12,7 +12,8 @@
   padding: 1rem;
   font-size: 0.8em;
   outline: none;
-  @include short-transition(box-shadow);
+  @include short-transition(background-color box-shadow);
+  @include border-radius();
 
   &::placeholder {
     color: var(--color-tertiary);

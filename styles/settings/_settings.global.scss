@@ -1,9 +1,20 @@
-$global-radius: 3px !default;
-$global-transition: all 300ms ease-in-out !default;
+$border-radius-content-wrapper: 20px;
+$border-radius: 6px;
 
 $color-brand-primary: #008be1;
 $color-brand-secondary: #00e0b2;
 $color-focus: $color-brand-primary;
+$color-primary-light: #ffffff;
+$color-background-light: linear-gradient(
+  30deg,
+  $color-brand-primary 10%,
+  $color-brand-secondary 90%
+);
+$color-background-dark: linear-gradient(
+  30deg,
+  darken($color-brand-primary, 10%) 10%,
+  darken($color-brand-secondary, 10%) 90%
+);
 
 $font-family: Quicksand, sans-serif; /*-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
   Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;*/
@@ -18,16 +29,13 @@ $container-max-width: map-get($mq-breakpoints, xxl);
 
 $light-theme: (
   font-color: #333333,
-  color-primary: #ffffff,
+  color-primary: $color-primary-light,
   color-secondary: #f9f9f9,
   color-tertiary: #9f9f9f,
   color-content-container-shadow: transparentize(#808080, 0.5),
-  background-overlay:
-    linear-gradient(
-      30deg,
-      #{transparentize($color-brand-primary, 0)} 10%,
-      #{transparentize($color-brand-secondary, 0)} 90%
-    ),
+  background-color: $color-background-light,
+  button-background: $color-background-light,
+  button-hover-background: $color-background-dark,
 );
 
 $dark-theme: (
@@ -36,10 +44,7 @@ $dark-theme: (
   color-secondary: #0c182c,
   color-tertiary: darken(#9f9f9f, 20%),
   color-content-container-shadow: transparentize(#ffffff, 0.9),
-  background-overlay:
-    linear-gradient(
-      30deg,
-      #{transparentize($color-brand-primary, 0.4)} 10%,
-      #{transparentize($color-brand-secondary, 0.4)} 90%
-    ),
+  background-color: $color-background-dark,
+  button-background: $color-background-dark,
+  button-hover-background: $color-background-light,
 );

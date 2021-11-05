@@ -4,7 +4,7 @@ import NavItem from './NavItem';
 
 const Nav: React.FC = () => {
     return (
-        <nav className="u-margin-top-large">
+        <nav>
             <ul className="c-navigation">
                 <NavItem>
                     <NavLink href="/" icon="home" title="Home" />

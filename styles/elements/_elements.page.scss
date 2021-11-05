@@ -16,9 +16,14 @@
 
 html {
   font-family: $font-family;
-  color: var(--font-color);
   font-size: $font-size; /* [1] */
   line-height: $inuit-global-line-height / $inuit-global-font-size; /* [1] */
   overflow-y: scroll; /* [2] */
   min-height: 100%; /* [3] */
+}
+
+body {
+  color: var(--font-color);
+  background: var(--background-color);
+  @include short-transition(color);
 }

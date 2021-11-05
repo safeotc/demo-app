@@ -16,7 +16,6 @@ const toggleAltThemeInLocalStorage = () => {
 
 interface ThemeData {
     isThemeInitialized: boolean;
-    theme: Theme;
     toggleTheme: ThemeToggler;
 }
 
@@ -24,33 +23,45 @@ const useTheme = (): ThemeData => {
     const [isThemeInitialized, setIsThemeInitialized] = useState(false);
     const [theme, setTheme] = useState<Theme>('light');
 
+    const updateTheme = useCallback(
+        (newTheme: Theme) => {
+            if (!!document && !!document.body) {
+                document.body.classList.add('g-theme');
+                document.body.classList.remove('g-theme--dark');
+                newTheme === 'dark' && document.body.classList.add('g-theme--dark');
+            }
+            setTheme(newTheme);
+        },
+        [setTheme]
+    );
+
     useEffect(() => {
         const darkModeMatcher = window.matchMedia('(prefers-color-scheme: dark)');
 
         const isAltThemeActive = isAltThemeOn() ? true : false;
         const isOsDarkModeOn = darkModeMatcher.matches;
         const theme = (!isOsDarkModeOn && isAltThemeActive) || (isOsDarkModeOn && !isAltThemeActive) ? 'dark' : 'light';
-        setTheme(theme);
+        updateTheme(theme);
         setIsThemeInitialized(true);
 
         darkModeMatcher.addEventListener('change', toggleAltThemeInLocalStorage);
         return () => {
             darkModeMatcher.removeEventListener('change', toggleAltThemeInLocalStorage);
         };
-    }, [setTheme, setIsThemeInitialized]);
+    }, [updateTheme, setIsThemeInitialized]);
 
     const toggleTheme = useCallback(() => {
         toggleAltThemeInLocalStorage();
-        setTheme((t) => (t === 'light' ? 'dark' : 'light'));
-    }, [setTheme]);
+        const newTheme = theme === 'light' ? 'dark' : 'light';
+        updateTheme(newTheme);
+    }, [theme, updateTheme]);
 
     const themeData: ThemeData = useMemo(
         () => ({
             isThemeInitialized,
-            theme,
             toggleTheme,
         }),
-        [isThemeInitialized, theme, toggleTheme]
+        [isThemeInitialized, toggleTheme]
     );
 
     return themeData;
