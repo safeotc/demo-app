@@ -5,6 +5,11 @@ $color-brand-primary: #008be1;
 $color-brand-secondary: #00e0b2;
 $color-focus: $color-brand-primary;
 $color-primary-light: #ffffff;
+$color-primary-dark: #1c2639;
+$color-secondary-light: #f9f9f9;
+$color-secondary-dark: #0c182c;
+$color-tertiary-light: #9f9f9f;
+$color-tertiary-dark: darken($color-tertiary-light, 20%);
 $color-background-light: linear-gradient(
   30deg,
   $color-brand-primary 10%,
@@ -16,6 +21,8 @@ $color-background-dark: linear-gradient(
   darken($color-brand-secondary, 10%) 90%
 );
 
+$font-color-light: #333333;
+$font-color-dark: darken(#ffffff, 20%);
 $font-family: Quicksand, sans-serif; /*-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
   Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;*/
 $font-size: clamp(
@@ -28,21 +35,25 @@ $container-lr-padding: $inuit-global-spacing-unit;
 $container-max-width: map-get($mq-breakpoints, xxl);
 
 $light-theme: (
-  font-color: #333333,
+  font-color: $font-color-light,
   color-primary: $color-primary-light,
-  color-secondary: #f9f9f9,
-  color-tertiary: #9f9f9f,
+  color-secondary: $color-secondary-light,
+  color-tertiary: $color-tertiary-light,
   background-color: $color-background-light,
-  button-background: $color-background-light,
-  button-hover-background: $color-background-dark,
+  button-colored: $color-background-light,
+  button-colored-hover: $color-background-dark,
+  button-neutral: $color-tertiary-light,
+  button-neutral-hover: $color-tertiary-dark,
 );
 
 $dark-theme: (
-  font-color: darken(#ffffff, 20%),
-  color-primary: #1c2639,
-  color-secondary: #0c182c,
-  color-tertiary: darken(#9f9f9f, 20%),
+  font-color: $font-color-dark,
+  color-primary: $color-primary-dark,
+  color-secondary: $color-secondary-dark,
+  color-tertiary: $color-tertiary-dark,
   background-color: $color-background-dark,
-  button-background: $color-background-dark,
-  button-hover-background: $color-background-light,
+  button-colored: $color-background-dark,
+  button-colored-hover: $color-background-light,
+  button-neutral: $color-tertiary-dark,
+  button-neutral-hover: $color-tertiary-light,
 );

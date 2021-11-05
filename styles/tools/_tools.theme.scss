@@ -4,6 +4,8 @@
   --color-secondary: #{map-get($theme-map, color-secondary)};
   --color-tertiary: #{map-get($theme-map, color-tertiary)};
   --background-color: #{map-get($theme-map, background-color)};
-  --button-background: #{map-get($theme-map, button-background)};
-  --button-hover-background: #{map-get($theme-map, button-hover-background)};
+  --button-colored: #{map-get($theme-map, button-colored)};
+  --button-colored-hover: #{map-get($theme-map, button-colored-hover)};
+  --button-neutral: #{map-get($theme-map, button-neutral)};
+  --button-neutral-hover: #{map-get($theme-map, button-neutral-hover)};
 }
