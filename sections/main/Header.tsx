@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchInput from '../../components/header/SearchInput';
+import SearchInput from '../../components/header/search/SearchInput';
 import WalletInfo from '../../components/header/WalletInfo';
 
 const Header: React.FC = () => {
