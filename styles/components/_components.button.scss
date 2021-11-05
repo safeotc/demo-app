@@ -10,13 +10,22 @@
   font-weight: bold;
   border: 2px solid var(--button-neutral);
   cursor: pointer;
+  position: relative;
   display: block;
   width: 100%;
-  position: relative;
 
   @include mq($from: m) {
     width: auto;
     display: inline-block;
+  }
+
+  & + & {
+    margin-top: 0.5em;
+
+    @include mq($from: m) {
+      margin-top: 0;
+      margin-left: 0.5em;
+    }
   }
 
   &:not([disabled]):hover {
@@ -32,15 +41,6 @@
   &[disabled] {
     opacity: 0.5;
     cursor: not-allowed;
-  }
-
-  & + & {
-    margin-top: 0.5em;
-
-    @include mq($from: m) {
-      margin-top: 0;
-      margin-left: 0.5em;
-    }
   }
 }
 
@@ -104,6 +104,24 @@
       background-image: var(--button-colored-hover);
     }
   }
+}
+
+.c-button--inline {
+  display: inline-block;
+  width: auto;
+
+  .c-button + & {
+    margin-top: 0;
+  }
+
+  & + & {
+    margin-left: 0.5em;
+  }
+}
+
+.c-button--icon-only {
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 .c-button--alt-background {

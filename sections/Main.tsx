@@ -3,11 +3,11 @@ import Footer from './main/Footer';
 import Header from './main/Header';
 import MainContent from './main/Main';
 
-const Main: React.FC = () => {
+const Main: React.FC = ({ children }) => {
     return (
         <div className="o-main">
             <Header />
-            <MainContent />
+            <MainContent>{children}</MainContent>
             <Footer />
         </div>
     );

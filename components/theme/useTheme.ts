@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 const LOCAL_STORAGE_THEME_KEY = 'theme';
 const LOCAL_STORAGE_THEME_VALUE_ALT = 'theme_alt';
 
-type Theme = 'light' | 'dark';
+export type Theme = 'light' | 'dark';
 export type ThemeToggler = () => void;
 
 const isAltThemeOn = () => localStorage.getItem(LOCAL_STORAGE_THEME_KEY) === LOCAL_STORAGE_THEME_VALUE_ALT;
@@ -17,6 +17,7 @@ const toggleAltThemeInLocalStorage = () => {
 interface ThemeData {
     isThemeInitialized: boolean;
     toggleTheme: ThemeToggler;
+    theme: Theme;
 }
 
 const useTheme = (): ThemeData => {
@@ -59,9 +60,10 @@ const useTheme = (): ThemeData => {
     const themeData: ThemeData = useMemo(
         () => ({
             isThemeInitialized,
+            theme,
             toggleTheme,
         }),
-        [isThemeInitialized, toggleTheme]
+        [isThemeInitialized, theme, toggleTheme]
     );
 
     return themeData;

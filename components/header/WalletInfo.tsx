@@ -3,7 +3,11 @@ import PrimaryButton from '../forms/PrimaryButton';
 import WalletIcon from '../icons/WalletIcon';
 
 const WalletInfo: React.FC = () => {
-    return <PrimaryButton icon={<WalletIcon />}>Connect</PrimaryButton>;
+    return (
+        <PrimaryButton inlineOnMobile={true} icon={<WalletIcon />}>
+            Connect
+        </PrimaryButton>
+    );
 };
 
 export default WalletInfo;
