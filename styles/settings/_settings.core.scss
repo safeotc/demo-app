@@ -81,6 +81,7 @@ $inuit-global-line-height: $inuit-global-spacing-unit !default;
 
 $inuit-offsets: false;
 
+$mq-base-breakpoint-name: base;
 $mq-breakpoints: (
   s: 40em,
   m: 48em,

@@ -8,9 +8,8 @@
  */
 
 .u-hidden-visually {
-  @include inuit-hidden-visually();
+  @include hidden-visually();
 }
-
 
 /**
  * Hide visually and from screen readers.

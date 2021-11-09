@@ -12,8 +12,11 @@ const ToggleThemeButton: React.FC = () => {
             className="u-margin-left-small"
             inlineOnMobile={true}
             icon={<FlatIcon icon={themeIcon} />}
+            iconOnly={true}
             onClick={toggleTheme}
-        />
+        >
+            Toggle theme
+        </Button>
     );
 };
 

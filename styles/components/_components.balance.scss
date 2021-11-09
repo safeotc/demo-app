@@ -48,11 +48,11 @@
   cursor: pointer;
   position: relative;
   @include focus-outline();
-  @include minimal-shadow();
+  //@include minimal-shadow();
   @include short-transition(color background-color);
 
   &:active {
     top: 1px;
-    box-shadow: none;
+    //box-shadow: none;
   }
 }

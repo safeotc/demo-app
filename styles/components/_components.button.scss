@@ -1,5 +1,5 @@
 .c-button {
-  @include short-shadow();
+  //@include short-shadow();
   @include border-radius();
   @include focus-outline();
   @include short-transition(color border-color background-color outline);
@@ -35,7 +35,7 @@
 
   &:active {
     top: 1px;
-    box-shadow: none;
+    //box-shadow: none;
   }
 
   &[disabled] {
@@ -125,9 +125,13 @@
   }
 }
 
-.c-button--icon-only {
+@include screen-rule("c-button--icon-only", "-") {
   padding-left: $button-icon-only-lr-padding;
   padding-right: $button-icon-only-lr-padding;
+
+  & .c-button__text {
+    @include hidden-visually();
+  }
 }
 
 .c-button__content {

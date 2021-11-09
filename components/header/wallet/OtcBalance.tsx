@@ -20,7 +20,7 @@ const OtcBalance: React.FC<OtcBalanceProps> = ({ address, balance }) => {
     };
 
     return (
-        <div className="c-balance">
+        <div className="c-balance u-margin-left-small">
             <span className="c-balance__otc-balance u-margin-right">{balance} OTC</span>
             <button className="c-balance__address" onClick={copyAddressToClipBoardAndDisplayAlert}>
                 {addressDisplay}

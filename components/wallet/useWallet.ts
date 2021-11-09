@@ -1,24 +1,15 @@
 import { useCallback } from 'react';
-import EthereumIcon from '../icons/networks/EthereumIcon';
-import BinanceSmartChainIcon from '../icons/networks/BinanceSmartChainIcon';
-import PolygonIcon from '../icons/networks/PolygonIcon';
 import useStateWithUpdate from '../../common/hooks/useStateWithUpdate';
 
-export type Network = 'Ethereum' | 'Binance Smart Chain' | 'Polygon';
-
-export const NETWORKS: { icon: JSX.Element; name: Network }[] = [
-    { icon: <EthereumIcon />, name: 'Ethereum' },
-    { icon: <BinanceSmartChainIcon />, name: 'Binance Smart Chain' },
-    { icon: <PolygonIcon />, name: 'Polygon' },
-];
+export type NetworkId = 'Ethereum' | 'Binance Smart Chain' | 'Polygon';
 
 export interface UseWalletData {
     isConnected: boolean;
-    network: Network;
+    network: NetworkId;
     address: string;
     otcBalance: string;
     connect: () => void;
-    switchNetworks: (network: Network) => void;
+    switchNetworks: (network: NetworkId) => void;
 }
 
 const useWallet = (): UseWalletData => {
@@ -37,7 +28,7 @@ const useWallet = (): UseWalletData => {
     }, [address, updateWalletData]);
 
     const switchNetworks = useCallback(
-        (network: Network) => {
+        (network: NetworkId) => {
             updateWalletData({ network });
         },
         [updateWalletData]

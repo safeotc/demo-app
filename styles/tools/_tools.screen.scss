@@ -1,0 +1,41 @@
+@mixin screen-rule($classname, $divider) {
+  @if (type-of($classname) != string) {
+    @error "`#{$classname}` needs to be a string.";
+  }
+
+  @if (type-of($divider) != string) {
+    @error "`#{$divider}` needs to be a string.";
+  }
+
+  .#{$classname} {
+    @content;
+  }
+
+  $bp-names: map-keys($mq-breakpoints);
+  $bp-length: length($bp-names);
+  @for $i from 0 to $bp-length {
+    @if $i == 0 {
+      @include mq($until: nth($bp-names, 1)) {
+        .#{$classname}#{$divider}#{$mq-base-breakpoint-name} {
+          @content;
+        }
+      }
+    } @else {
+      $bp-name: nth($bp-names, $i);
+      @if $i == $bp-length {
+        @include mq($from: $bp-name) {
+          .#{$classname}#{$divider}#{$bp-name} {
+            @content;
+          }
+        }
+      } @else {
+        $next-bp-name: nth($bp-names, $i + 1);
+        @include mq($from: $bp-name, $until: $next-bp-name) {
+          .#{$classname}#{$divider}#{$bp-name} {
+            @content;
+          }
+        }
+      }
+    }
+  }
+}
