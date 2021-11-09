@@ -1,0 +1,58 @@
+.c-balance {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  @include border-radius();
+  z-index: 0;
+  padding: calc(#{$button-tb-padding} + 2px) calc(#{$button-lr-padding} + 2px);
+  line-height: 1;
+
+  &:before,
+  &:after {
+    border-radius: inherit;
+    position: absolute;
+    content: "";
+    z-index: -1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  &:before {
+    background: var(--button-colored);
+  }
+
+  &:after {
+    @include short-transition(background-color);
+    background: var(--color-secondary);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+}
+
+.c-balance__otc-balance {
+  font-weight: bold;
+  background: var(--button-colored);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.c-balance__address {
+  font-size: 0.75em;
+  background: var(--color-tertiary);
+  color: var(--color-secondary);
+  padding: 0.25em;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  @include focus-outline();
+  @include minimal-shadow();
+  @include short-transition(color background-color);
+
+  &:active {
+    top: 1px;
+    box-shadow: none;
+  }
+}

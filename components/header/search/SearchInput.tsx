@@ -34,7 +34,6 @@ const SearchInput: React.FC<InputProps> = (props) => {
             placeholder="Search through offers"
             leftIcon={<FlatIcon icon="search" />}
             rightIcon={clearTextIcon}
-            className="u-margin-right-tiny"
             ref={inputRef}
         />
     );

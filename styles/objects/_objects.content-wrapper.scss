@@ -1,12 +1,17 @@
 .o-content-wrapper {
   display: flex;
   justify-content: center;
-  @include mq($from: s) {
-    margin: 2.5em 5em;
+
+  @include mq($from: m) {
+    margin: 2.5em;
   }
 
   @include mq($from: l) {
-    margin: 5 10em;
+    margin: 2.5em 5em;
+  }
+
+  @include mq($from: xl) {
+    margin: 2.5em 10em;
   }
 }
 
@@ -21,7 +26,7 @@
   align-items: stretch;
   max-width: 1800px;
 
-  @include mq($from: s) {
+  @include mq($from: m) {
     min-height: 0;
     border-radius: $border-radius-content-wrapper;
   }
@@ -31,7 +36,7 @@
   @include short-transition(background-color);
   background: var(--color-primary);
 
-  @include mq($from: s) {
+  @include mq($from: m) {
     border-top-left-radius: $border-radius-content-wrapper;
     border-bottom-left-radius: $border-radius-content-wrapper;
   }
@@ -42,7 +47,7 @@
   background: var(--color-secondary);
   flex-grow: 1;
 
-  @include mq($from: s) {
+  @include mq($from: m) {
     border-top-right-radius: $border-radius-content-wrapper;
     border-bottom-right-radius: $border-radius-content-wrapper;
   }

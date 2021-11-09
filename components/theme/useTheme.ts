@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const LOCAL_STORAGE_THEME_KEY = 'theme';
 const LOCAL_STORAGE_THEME_VALUE_ALT = 'theme_alt';
@@ -14,13 +14,7 @@ const toggleAltThemeInLocalStorage = () => {
     !isAltThemeActive && localStorage.setItem(LOCAL_STORAGE_THEME_KEY, LOCAL_STORAGE_THEME_VALUE_ALT);
 };
 
-interface ThemeData {
-    isThemeInitialized: boolean;
-    toggleTheme: ThemeToggler;
-    theme: Theme;
-}
-
-const useTheme = (): ThemeData => {
+const useTheme = () => {
     const [isThemeInitialized, setIsThemeInitialized] = useState(false);
     const [theme, setTheme] = useState<Theme>('light');
 
@@ -57,16 +51,7 @@ const useTheme = (): ThemeData => {
         updateTheme(newTheme);
     }, [theme, updateTheme]);
 
-    const themeData: ThemeData = useMemo(
-        () => ({
-            isThemeInitialized,
-            theme,
-            toggleTheme,
-        }),
-        [isThemeInitialized, theme, toggleTheme]
-    );
-
-    return themeData;
+    return { isThemeInitialized, theme, toggleTheme };
 };
 
 export default useTheme;

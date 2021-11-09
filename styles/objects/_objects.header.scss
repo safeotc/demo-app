@@ -1,12 +1,33 @@
 .o-header {
   display: flex;
+  align-items: center;
 }
 
-.o-header__left {
+.o-header__search {
   max-width: 40em;
 }
 
-.o-header__right {
-  margin-left: auto;
-  white-space: nowrap;
+.o-header__wallet-theme {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 1em 2em;
+  display: flex;
+  justify-content: flex-end;
+  background: var(--color-secondary);
+  border-top: 1px solid var(--color-primary);
+  @include short-transition(background-color border-color);
+
+  @include mq($from: m) {
+    margin-left: auto;
+    white-space: nowrap;
+    align-items: stretch;
+    position: static;
+    bottom: initial;
+    left: initial;
+    background: none;
+    border-top: none;
+    padding: 0;
+  }
 }
