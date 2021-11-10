@@ -1,17 +1,19 @@
 import React, { ButtonHTMLAttributes } from 'react';
 import cn from 'classnames';
-import { ScreenSize } from '../../common/types';
-import { getResponsiveClassnames } from '../../common/helpers';
+import { ScreenSize } from '../../../common/types';
+import { getResponsiveClassnames } from '../../../common/helpers';
+import ButtonText from './ButtonText';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     icon?: JSX.Element;
     iconOnly?: boolean;
     iconOnlyOn?: ScreenSize[];
     inlineOnMobile?: boolean;
+    addChildrenWithoutWrapping?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ children, icon, iconOnly, iconOnlyOn, inlineOnMobile, ...props }, ref) => {
+    ({ children, icon, iconOnly, iconOnlyOn, inlineOnMobile, addChildrenWithoutWrapping, ...props }, ref) => {
         const propsClasses = props?.className || '';
         const buttonClasses = cn(
             'c-button',
@@ -27,7 +29,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             <button {...props} className={buttonClasses} ref={ref}>
                 <span className="c-button__content">
                     {!!icon && <span className="c-button__icon">{icon}</span>}
-                    {!!children && <span className="c-button__text">{children}</span>}
+                    {!!children && (!!addChildrenWithoutWrapping ? children : <ButtonText>{children}</ButtonText>)}
                 </span>
             </button>
         );

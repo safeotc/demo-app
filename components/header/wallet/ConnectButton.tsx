@@ -1,5 +1,5 @@
 import React from 'react';
-import PrimaryButton from '../../forms/PrimaryButton';
+import PrimaryButton from '../../forms/buttons/PrimaryButton';
 import WalletIcon from '../../icons/WalletIcon';
 
 interface ConnectButtonProps {

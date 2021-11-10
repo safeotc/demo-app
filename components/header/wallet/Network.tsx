@@ -1,5 +1,6 @@
 import React from 'react';
-import Button from '../../forms/Button';
+import Button from '../../forms/buttons/Button';
+import ButtonText from '../../forms/buttons/ButtonText';
 import FlatIcon from '../../icons/FlatIcon';
 import BinanceSmartChainIcon from '../../icons/networks/BinanceSmartChainIcon';
 import EthereumIcon from '../../icons/networks/EthereumIcon';
@@ -27,8 +28,14 @@ const Network: React.FC<NetworkProps> = ({ network }) => {
         name: 'Select network',
     };
     return (
-        <Button iconOnlyOn={['base', 'm']} icon={icon} className="u-margin-left-small" inlineOnMobile={true}>
-            {name}
+        <Button
+            iconOnlyOn={['base', 'm']}
+            icon={icon}
+            className="u-margin-left-small"
+            inlineOnMobile={true}
+            addChildrenWithoutWrapping={true}
+        >
+            <ButtonText>{name}</ButtonText> <FlatIcon icon="caret-down" />
         </Button>
     );
 };

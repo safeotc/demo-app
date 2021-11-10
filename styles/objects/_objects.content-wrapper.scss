@@ -46,9 +46,11 @@
   @include short-transition(background-color);
   background: var(--color-secondary);
   flex-grow: 1;
+  padding-bottom: 4.5rem;
 
   @include mq($from: m) {
     border-top-right-radius: $border-radius-content-wrapper;
     border-bottom-right-radius: $border-radius-content-wrapper;
+    padding-bottom: initial;
   }
 }

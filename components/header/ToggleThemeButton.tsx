@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import Button from '../forms/Button';
+import Button from '../forms/buttons/Button';
 import FlatIcon from '../icons/FlatIcon';
 import { ThemeContext } from '../theme/ThemeProvider';
 

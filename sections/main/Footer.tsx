@@ -4,7 +4,7 @@ import logoImage from '../../public/images/logo.png';
 
 const Footer: React.FC = () => {
     return (
-        <footer className="o-footer o-box">
+        <footer className="o-footer">
             <div className="o-footer__grid">
                 <div className="o-footer__copyright">
                     <div className="c-footer-logo u-margin-bottom-small">
