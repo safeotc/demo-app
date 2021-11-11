@@ -1,4 +1,4 @@
-import { SCREEN_SIZES } from '../constants';
+import { SCREEN_SIZES } from '../constants/screen';
 import { ScreenSize } from '../types';
 import cn from 'classnames';
 

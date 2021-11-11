@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { WalletContext } from '../../wallet/WalletProvider';
 import ConnectButton from './ConnectButton';
-import Network from './Network';
+import Network from './network/Network';
 import OtcBalance from './OtcBalance';
 
 const WalletInfo: React.FC = () => {
