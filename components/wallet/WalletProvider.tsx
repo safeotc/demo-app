@@ -9,7 +9,7 @@ const defaultWalletContext: WalletData = {
     address: '',
     otcBalance: '0.000',
     connect: () => {},
-    switchNetworks: (network) => {},
+    switchNetworks: () => {},
 };
 
 export const WalletContext = React.createContext<WalletData>(defaultWalletContext);

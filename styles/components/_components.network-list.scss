@@ -1,0 +1,40 @@
+.c-network-list {
+  @include border-radius();
+  @include short-shadow();
+  border: 2px solid var(--color-secondary);
+  background: var(--color-primary);
+  list-style: none;
+  margin: 0;
+}
+
+.c-network-list__item {
+  display: flex;
+  margin-bottom: 1px;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  @include short-transition(background-color outline);
+  @include focus-outline();
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    background: var(--color-secondary);
+  }
+
+  & > * {
+    // name
+    &:first-child {
+      margin-right: 1em;
+      white-space: nowrap;
+    }
+
+    // icon
+    &:last-child {
+      margin-left: auto;
+    }
+  }
+}

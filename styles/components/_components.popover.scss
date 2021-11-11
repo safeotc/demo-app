@@ -1,0 +1,60 @@
+.c-popover {
+  position: relative;
+}
+
+.c-popover__content {
+  position: absolute;
+  display: none;
+
+  &--enter,
+  &--enter-active,
+  &--enter-done,
+  &--exit,
+  &-exit-active {
+    display: block;
+  }
+
+  &--enter {
+    @include short-transition(opacity);
+    opacity: 0;
+  }
+
+  &--enter-active,
+  &--exit {
+    opacity: 1;
+  }
+
+  &--exit-active {
+    opacity: 0;
+  }
+}
+
+@mixin c-popover__content--bottom-right() {
+  top: calc(100% + 0.5em);
+  bottom: auto;
+  left: auto;
+  right: 0;
+}
+
+@mixin c-popover__content--top-right {
+  top: auto;
+  bottom: calc(100% + 0.5em);
+  left: auto;
+  right: 0;
+}
+
+.c-popover__content--bottom-right {
+  @include c-popover__content--bottom-right();
+}
+
+.c-popover__content--top-right {
+  @include c-popover__content--top-right();
+}
+
+@include screen-rule("c-popover__content--bottom-right", "-", false) {
+  @include c-popover__content--bottom-right();
+}
+
+@include screen-rule("c-popover__content--top-right", "-", false) {
+  @include c-popover__content--top-right();
+}

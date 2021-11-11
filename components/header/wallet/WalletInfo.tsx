@@ -5,11 +5,11 @@ import Network from './Network';
 import OtcBalance from './OtcBalance';
 
 const WalletInfo: React.FC = () => {
-    const { isConnected, otcBalance, address, network, connect } = useContext(WalletContext);
+    const { isConnected, otcBalance, address, network, connect, switchNetworks } = useContext(WalletContext);
     return isConnected ? (
         <>
             <OtcBalance address={address} balance={otcBalance} />
-            <Network network={network} />
+            <Network network={network} switchNetwork={switchNetworks} />
         </>
     ) : (
         <ConnectButton connect={connect} />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { preventDefaultOnEnterOrSpace, wasEnterOrSpacePressed } from '../../../common/helpers';
 
 const useSearchInput = () => {
     const [value, setValue] = useState('');
@@ -12,12 +13,6 @@ const useSearchInput = () => {
         setValue('');
         inputRef.current?.focus();
     };
-
-    const wasEnterOrSpacePressed = (e: React.KeyboardEvent<HTMLElement>) =>
-        ['enter', ' '].includes(e.key.toLowerCase());
-
-    const preventDefaultOnEnterOrSpace = (e: React.KeyboardEvent<HTMLElement>) =>
-        wasEnterOrSpacePressed(e) && e.preventDefault();
 
     const clearSearchAndFocusInputOnEnterOrSpace = (e: React.KeyboardEvent<HTMLElement>) =>
         wasEnterOrSpacePressed(e) && clearSearchAndFocusInput();

@@ -1,22 +1,28 @@
-@mixin screen-rule($classname, $divider) {
+@mixin screen-rule($classname, $bp-divider, $generate-base-classname: true) {
   @if (type-of($classname) != string) {
     @error "`#{$classname}` needs to be a string.";
   }
 
-  @if (type-of($divider) != string) {
-    @error "`#{$divider}` needs to be a string.";
+  @if (type-of($bp-divider) != string) {
+    @error "`#{$bp-divider}` needs to be a string.";
   }
 
-  .#{$classname} {
-    @content;
+  @if (type-of($generate-base-classname) != bool) {
+    @error "`#{$generate-base-classname}` needs to be a boolean.";
+  }
+
+  @if ($generate-base-classname == true) {
+    .#{$classname} {
+      @content;
+    }
   }
 
   $bp-names: map-keys($mq-breakpoints);
   $bp-length: length($bp-names);
   @for $i from 0 to $bp-length {
-    @if $i == 0 {
+    @if ($i == 0) {
       @include mq($until: nth($bp-names, 1)) {
-        .#{$classname}#{$divider}#{$mq-base-breakpoint-name} {
+        .#{$classname}#{$bp-divider}#{$mq-base-breakpoint-name} {
           @content;
         }
       }
@@ -24,14 +30,14 @@
       $bp-name: nth($bp-names, $i);
       @if $i == $bp-length {
         @include mq($from: $bp-name) {
-          .#{$classname}#{$divider}#{$bp-name} {
+          .#{$classname}#{$bp-divider}#{$bp-name} {
             @content;
           }
         }
       } @else {
         $next-bp-name: nth($bp-names, $i + 1);
         @include mq($from: $bp-name, $until: $next-bp-name) {
-          .#{$classname}#{$divider}#{$bp-name} {
+          .#{$classname}#{$bp-divider}#{$bp-name} {
             @content;
           }
         }
