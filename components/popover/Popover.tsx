@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import cn from 'classnames';
 import { ScreenSize } from '../../common/types';
-import { getResponsiveClassnames } from '../../common/helpers';
+import { getResponsiveClassnames } from '../../common/helpers/classnames';
 
 type PopoverPosition = 'topRight' | 'bottomRight';
 

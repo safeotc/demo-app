@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { preventDefaultOnEnterOrSpace, wasEnterOrSpacePressed } from '../../../common/helpers';
+import { preventDefaultOnEnterOrSpace, wasEnterOrSpacePressed } from '../../../common/helpers/keyboard';
 import Button from '../../forms/buttons/Button';
 import ButtonText from '../../forms/buttons/ButtonText';
 import DropdownDownArrowIcon from '../../icons/DropdownDownArrowIcon';

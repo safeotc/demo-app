@@ -18,7 +18,7 @@ const useWallet = (): UseWalletData => {
     >({
         network: 'Ethereum',
         address: '',
-        otcBalance: '7.243',
+        otcBalance: '32711.243',
     });
     const { address, network, otcBalance } = walletData;
     const isConnected = !!address;

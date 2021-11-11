@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { preventDefaultOnEnterOrSpace, wasEnterOrSpacePressed } from '../../../common/helpers';
+import { preventDefaultOnEnterOrSpace, wasEnterOrSpacePressed } from '../../../common/helpers/keyboard';
 
 const useSearchInput = () => {
     const [value, setValue] = useState('');
