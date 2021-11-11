@@ -3,13 +3,15 @@ import { CSSTransition } from 'react-transition-group';
 import cn from 'classnames';
 import { ScreenSize } from '../../common/types';
 import { getResponsiveClassnames } from '../../common/helpers/classnames';
+import usePopover from './usePopover';
 
-type PopoverPosition = 'topRight' | 'bottomRight';
+export type PopoverPosition = 'topRight' | 'bottomRight';
+export type PopoverPositionOn = [ScreenSize, PopoverPosition];
 
 interface PopoverProps {
     popover: JSX.Element;
     position?: PopoverPosition;
-    positionOn?: [ScreenSize, PopoverPosition][];
+    positionOn?: PopoverPositionOn[];
     isOpened: boolean;
     onCloseRequest: () => void;
     onEnterStart?: () => void;
@@ -30,46 +32,7 @@ const Popover: React.FC<PopoverProps> = ({
     onExitDone,
     children,
 }) => {
-    const popoverContentRef = React.createRef<HTMLDivElement>();
-
-    useEffect(() => {
-        if (!isOpened || !popoverContentRef.current) {
-            return;
-        }
-
-        const currentPopoverContentRef = popoverContentRef.current;
-        let clickHappenedInsidePopoverContent = true;
-
-        const popoverContentOnClickCaptureListener = () => {
-            clickHappenedInsidePopoverContent = true;
-        };
-
-        const documentOnClickBubbleListener = () => {
-            const shouldRequestPopoverClose = !clickHappenedInsidePopoverContent;
-            clickHappenedInsidePopoverContent = false;
-            shouldRequestPopoverClose && onCloseRequest();
-        };
-
-        currentPopoverContentRef.addEventListener('click', popoverContentOnClickCaptureListener, true);
-        document.addEventListener('click', documentOnClickBubbleListener, false);
-
-        const documentEscKeyUpBubbleListener = (e: KeyboardEvent) => {
-            e.key.toLowerCase() === 'escape' && onCloseRequest();
-        };
-
-        document.addEventListener('keyup', documentEscKeyUpBubbleListener, false);
-
-        return () => {
-            currentPopoverContentRef.removeEventListener('click', popoverContentOnClickCaptureListener, true);
-            document.removeEventListener('click', documentOnClickBubbleListener, false);
-            document.removeEventListener('keyup', documentEscKeyUpBubbleListener, false);
-        };
-
-        // dodaj loop ko se focus zgubi, da gre spet na prvi element, ki je focusable
-    }, [popoverContentRef, isOpened, onCloseRequest]);
-
-    const getScreenSizesForPositionOn = (position: PopoverPosition) =>
-        positionOn?.filter((pO) => pO[1] === position)?.map((pO) => pO[0]) || [];
+    const { popoverContentRef, getScreenSizesForPositionOn } = usePopover(isOpened, onCloseRequest, positionOn);
 
     const popoverContentClasses = cn(
         'c-popover__content',
