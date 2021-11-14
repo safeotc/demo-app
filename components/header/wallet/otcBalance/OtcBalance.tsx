@@ -1,4 +1,5 @@
 import React from 'react';
+import useOtcBalance from './useOtcBalance';
 
 interface OtcBalanceProps {
     address: string;
@@ -6,18 +7,7 @@ interface OtcBalanceProps {
 }
 
 const OtcBalance: React.FC<OtcBalanceProps> = ({ address, balance }) => {
-    const addressDisplay =
-        address.length > 8 ? `${address.substr(0, 5)}...${address.substr(address.length - 3)}` : address;
-
-    const copyAddressToClipBoardAndDisplayAlert = () => {
-        if (!navigator) {
-            alert('Copy to clipboard failed.');
-            return;
-        }
-
-        navigator.clipboard.writeText(address);
-        alert('Address was copied to clipboard.');
-    };
+    const { addressDisplay, copyAddressToClipBoardAndDisplayAlert } = useOtcBalance(address);
 
     return (
         <div className="c-balance u-margin-left-small">

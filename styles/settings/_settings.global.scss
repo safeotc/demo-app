@@ -20,6 +20,10 @@ $color-background-dark: linear-gradient(
   darken($color-brand-primary, 10%),
   darken($color-brand-secondary, 10%)
 );
+$color-success: #2caa8b;
+$color-warning: #ffe696;
+$color-info: #78b4ff;
+$color-danger: #db4f5c;
 
 $font-color-light: #333333;
 $font-color-dark: darken(#ffffff, 20%);

@@ -27,5 +27,6 @@
   @include mq($from: l) {
     margin-top: 0;
     margin-left: 2em;
+    text-align: right;
   }
 }

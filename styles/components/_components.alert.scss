@@ -1,0 +1,58 @@
+.c-alert {
+  padding: 1em;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  @include border-radius();
+  @include short-shadow();
+}
+
+.c-alert--success {
+  background: $color-success;
+  border-color: darken($color-success, 20%);
+  color: $color-primary-light;
+}
+
+.c-alert--warning {
+  background: $color-warning;
+  border-color: darken($color-warning, 50%);
+  color: darken($color-warning, 50%);
+}
+
+.c-alert--info {
+  background: $color-info;
+  border-color: darken($color-info, 30%);
+  color: darken($color-info, 30%);
+}
+
+.c-alert--danger {
+  background: $color-danger;
+  border-color: darken($color-danger, 40%);
+  color: $color-primary-light;
+}
+
+.c-alert__icon {
+  font-size: 1.5em;
+  & > i {
+    display: flex;
+  }
+}
+
+.c-alert__content {
+  flex-grow: 1;
+  margin-left: 1em;
+}
+
+.c-alert__close {
+  color: inherit;
+  font-size: 0.8em;
+  display: flex;
+  float: right;
+  margin-left: 0.25em;
+  margin-bottom: 0.25em;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  @include focus-outline();
+}

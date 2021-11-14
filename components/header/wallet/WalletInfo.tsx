@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { WalletContext } from '../../wallet/WalletProvider';
 import ConnectButton from './ConnectButton';
 import Network from './network/Network';
-import OtcBalance from './OtcBalance';
+import OtcBalance from './otcBalance/OtcBalance';
 
 const WalletInfo: React.FC = () => {
     const { isConnected, otcBalance, address, network, connect, switchNetworks } = useContext(WalletContext);
