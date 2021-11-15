@@ -4,7 +4,8 @@
   position: relative;
   @include border-radius();
   z-index: 0;
-  padding: calc(#{$button-tb-padding} + 2px) calc(#{$button-lr-padding} + 2px);
+  padding: calc(#{$button-tb-padding} + #{$button-border-width})
+    calc(#{$button-lr-padding} + #{$button-border-width});
   line-height: 1;
 
   &:before,
@@ -26,33 +27,29 @@
   &:after {
     @include short-transition(background-color);
     background: var(--color-secondary);
-    border: 2px solid transparent;
+    border: #{$button-border-width} solid transparent;
     background-clip: padding-box;
   }
 }
 
-.c-balance__otc-balance {
-  font-weight: bold;
-  background: var(--button-colored);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+.c-balance__content {
+  line-height: 1;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  @include brand-gradient-text();
+}
+
+.c-balance__divider {
+  margin: 0 0.5em;
 }
 
 .c-balance__address {
-  font-size: 0.75em;
-  background: var(--color-primary);
-  color: var(--font-color);
-  padding: 0.2em;
-  border-radius: 2px;
-  border: none;
   cursor: pointer;
-  position: relative;
+  border: none;
+  padding: 0;
+  font-weight: bold;
   @include focus-outline();
-  //@include minimal-shadow();
   @include short-transition(color background-color);
-
-  &:active {
-    top: 1px;
-    //box-shadow: none;
-  }
+  background: transparent;
 }

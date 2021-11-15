@@ -1,0 +1,16 @@
+@mixin brand-gradient-text($with-hover: false) {
+  @if (type-of($with-hover) != bool) {
+    @error "`#{$with-hover}` needs to be a boolean.";
+  }
+
+  background: var(--button-colored);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @if ($with-hover) {
+    &:hover {
+      background: var(--button-colored-hover);
+      background-clip: text;
+    }
+  }
+}

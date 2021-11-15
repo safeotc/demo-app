@@ -41,6 +41,7 @@ $container-max-width: map-get($mq-breakpoints, xxl);
 $button-tb-padding: 0.5em;
 $button-lr-padding: 1em;
 $button-icon-only-lr-padding: 0.75em;
+$button-border-width: 2px;
 
 $light-theme: (
   font-color: $font-color-light,

@@ -1,7 +1,8 @@
 .c-network-list {
   @include border-radius();
   @include short-shadow();
-  border: 2px solid var(--color-secondary);
+  overflow: hidden;
+  border: 0px solid var(--color-secondary);
   background: var(--color-primary);
   list-style: none;
   margin: 0;
