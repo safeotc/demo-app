@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface ContentWrapperProps {
+interface AppLayoutProps {
     sideContent: JSX.Element;
     mainContent: JSX.Element;
 }
 
-const ContentWrapper: React.FC<ContentWrapperProps> = ({ sideContent, mainContent }) => {
+const AppLayout: React.FC<AppLayoutProps> = ({ sideContent, mainContent }) => {
     return (
         <div className="o-content-wrapper">
             <div className="o-content-wrapper__container">
@@ -16,4 +16,4 @@ const ContentWrapper: React.FC<ContentWrapperProps> = ({ sideContent, mainConten
     );
 };
 
-export default ContentWrapper;
+export default AppLayout;
