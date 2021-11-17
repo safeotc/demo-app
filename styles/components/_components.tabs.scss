@@ -1,0 +1,51 @@
+.c-tabs {
+  display: flex;
+  list-style: none;
+  margin: 0;
+}
+
+.c-tabs__item {
+  padding-bottom: 0.5em;
+  position: relative;
+  margin-right: 2em;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:after {
+    display: block;
+    opacity: 0;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--background-color);
+    @include short-transition(opacity);
+  }
+
+  &--active {
+    &:after {
+      opacity: 1;
+    }
+  }
+}
+
+.c-tabs__link {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--color-tertiary);
+  @include short-transition(color outline);
+  @include focus-outline();
+
+  &:hover {
+    color: $color-brand-primary;
+  }
+
+  .c-tabs__item--active & {
+    @include brand-gradient-text();
+  }
+}
