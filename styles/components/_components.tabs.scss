@@ -26,11 +26,11 @@
     background: var(--background-color);
     @include short-transition(opacity);
   }
+}
 
-  &--active {
-    &:after {
-      opacity: 1;
-    }
+.c-tabs__item--active {
+  &:after {
+    opacity: 1;
   }
 }
 

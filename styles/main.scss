@@ -40,7 +40,6 @@
 // @import "objects/objects.block";
 // @import "objects/objects.ratio";
 // @import "objects/objects.crop";
-// @import "objects/objects.table";
 // @import "objects/objects.pack";
 @import "objects/objects.box";
 @import "objects/objects.content-wrapper";
@@ -51,6 +50,7 @@
 @import "objects/objects.footer";
 @import "objects/objects.content";
 @import "objects/objects.list-bare";
+@import "objects/objects.table";
 
 // COMPONENTS
 // @import "components/example.components.buttons";
@@ -68,6 +68,7 @@
 @import "components/components.alert";
 @import "components/components.coming-soon";
 @import "components/components.tabs";
+@import "components/components.order-icon";
 
 // UTILITIES
 @import "utilities/utilities.clearfix";

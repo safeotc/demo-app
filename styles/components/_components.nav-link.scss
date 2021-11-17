@@ -11,11 +11,11 @@
   &:hover {
     color: $color-brand-primary;
   }
+}
 
-  &--active {
-    color: $color-brand-primary;
-    background: transparentize($color-brand-primary, 0.9);
-  }
+.c-nav-link--active {
+  color: $color-brand-primary;
+  background: transparentize($color-brand-primary, 0.9);
 }
 
 .c-nav-link__text {

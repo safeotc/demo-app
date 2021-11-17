@@ -22,14 +22,14 @@
   &:focus {
     box-shadow: 0px 0px 0px 2px $color-focus inset;
   }
+}
 
-  &--with-left-icon {
-    padding-left: 3rem;
-  }
+.c-input__field--with-left-icon {
+  padding-left: 3rem;
+}
 
-  &--with-right-icon {
-    padding-right: 3rem;
-  }
+.c-input__field--with-right-icon {
+  padding-right: 3rem;
 }
 
 .c-input__left-icon,

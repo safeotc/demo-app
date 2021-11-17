@@ -91,6 +91,7 @@ $mq-breakpoints: (
 );
 
 $inuit-spacing-properties: (
+  "padding": "padding",
   "margin": "margin",
 );
 
@@ -99,6 +100,7 @@ $inuit-spacing-sizes: (
   "-tiny": 0.25em,
   "-small": 0.5em,
   "-large": 2em,
+  "-larger": 3em,
   "-huge": 4em,
   "-none": 0,
 );

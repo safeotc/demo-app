@@ -1,0 +1,16 @@
+.c-order-icon {
+  display: inline-flex;
+  padding: 0.75rem;
+  border: 2px solid transparent;
+  border-radius: 50%;
+}
+
+.c-order-icon--buy {
+  background: transparentize($color-success, 0.8);
+  color: $color-success;
+}
+
+.c-order-icon--sell {
+  background: transparentize($color-danger, 0.8);
+  color: $color-danger;
+}
