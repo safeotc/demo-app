@@ -29,7 +29,7 @@ const Open: NextPage & PageLayout = () => {
             proceed && updateOrdersState({ fetchState: 'finished', orders });
         })();
 
-        () => {
+        return () => {
             proceed = false;
         };
     }, [updateOrdersState]);
