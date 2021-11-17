@@ -40,8 +40,21 @@
   @include brand-gradient-text();
 }
 
+.c-balance__otc-balance {
+  display: none;
+
+  @include mq($from: s) {
+    display: block;
+  }
+}
+
 .c-balance__divider {
+  display: none;
   margin: 0 0.5em;
+
+  @include mq($from: s) {
+    display: block;
+  }
 }
 
 .c-balance__address {

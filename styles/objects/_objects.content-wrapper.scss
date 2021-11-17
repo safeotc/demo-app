@@ -45,6 +45,7 @@
   background: var(--color-secondary);
   flex-grow: 1;
   padding-bottom: 4.5rem;
+  overflow-x: hidden; // this is important for creating horizontal scrolls inside this container
 
   @include mq($from: m) {
     border-top-right-radius: $border-radius-content-wrapper;
