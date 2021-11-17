@@ -48,7 +48,7 @@ const Open: NextPage & PageLayout = () => {
                         <table className="o-table o-table--small u-text-white-space-nowrap u-margin-bottom-none">
                             <thead>
                                 <tr>
-                                    <th className="u-text-center">Type</th>
+                                    <th className="u-text-center u-width-min-possible">Type</th>
                                     <th className="u-text-left">Asset</th>
                                     <th className="u-text-right">Price</th>
                                     <th className="u-text-right">Quantity</th>
