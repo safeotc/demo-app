@@ -1,31 +1,25 @@
-import { useRouter } from 'next/dist/client/router';
-import { useCallback } from 'react';
+import {
+    ROUTE_HOME,
+    ROUTE_MARKETS,
+    ROUTE_ORDERS,
+    ROUTE_ORDERS_ACTIVE,
+    ROUTE_ORDERS_COMPLETED,
+    ROUTE_ORDERS_OPEN,
+    ROUTE_VOTING,
+} from '../../../common/constants/routes';
+import useRouteActiveItem, { ItemRouteMapper } from '../../../common/hooks/useRouteActiveItem';
 
 type MenuItem = 'orders' | 'markets' | 'voting';
-type MatchingRoute = string | string[];
 
-const MENU_ITEM_ROUTES_MAPPER: [MenuItem, MatchingRoute][] = [
-    ['orders', ['/', '/orders', '/orders/open', '/orders/active', '/orders/complete']],
-    ['markets', '/markets'],
-    ['voting', '/voting'],
+const menuItemRoutesMapper: ItemRouteMapper<MenuItem> = [
+    ['orders', [ROUTE_HOME, ROUTE_ORDERS, ROUTE_ORDERS_OPEN, ROUTE_ORDERS_ACTIVE, ROUTE_ORDERS_COMPLETED]],
+    ['markets', ROUTE_MARKETS],
+    ['voting', ROUTE_VOTING],
 ];
 
 const useNav = () => {
-    const { route } = useRouter();
-
-    const isMenuItemActive = useCallback(
-        (menuItem: MenuItem) => {
-            const mapEntry = MENU_ITEM_ROUTES_MAPPER.find((mE) => mE[0] === menuItem);
-            if (!mapEntry) {
-                return false;
-            }
-            const matchingRoutes = !Array.isArray(mapEntry[1]) ? [mapEntry[1]] : mapEntry[1];
-            return !!matchingRoutes.find((mR) => mR === route);
-        },
-        [route]
-    );
-
-    return { isMenuItemActive };
+    const { isItemActive } = useRouteActiveItem(menuItemRoutesMapper);
+    return { isItemActive };
 };
 
 export default useNav;

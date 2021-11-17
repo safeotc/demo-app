@@ -4,7 +4,7 @@ import '../styles/main.scss';
 import useIsTabbingBodyClass from '../common/hooks/useIsTabbingBodyClass';
 import AppLayout from '../layouts/AppLayout';
 import Side from '../sections/app/Side';
-import Main from '../sections/app/Main';
+import Content from '../sections/app/Content';
 import Providers from '../components/Providers';
 import { NextComponentType, NextPageContext } from 'next';
 import PageWithLayout from '../layouts/PageLayout';
@@ -31,9 +31,9 @@ const SafeOTCApp: React.FC<AppWithLayoutProps> = (props) => {
                 <AppLayout
                     sideContent={<Side />}
                     mainContent={
-                        <Main>
+                        <Content>
                             <PageWithLayout {...props} />
-                        </Main>
+                        </Content>
                     }
                 />
             </Providers>

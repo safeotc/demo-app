@@ -1,7 +1,4 @@
 .o-content-wrapper {
-  display: flex;
-  justify-content: center;
-
   @include mq($from: m) {
     margin: 2.5em;
   }
@@ -25,9 +22,10 @@
   display: flex;
   align-items: stretch;
   max-width: 1800px;
+  margin: 0 auto;
 
   @include mq($from: m) {
-    min-height: 0;
+    min-height: auto;
     border-radius: $border-radius-content-wrapper;
   }
 }
