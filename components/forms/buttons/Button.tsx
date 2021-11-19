@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes } from 'react';
 import cn from 'classnames';
-import { ScreenSize } from '../../../common/types';
+import { ScreenSize } from '../../../common/types/screen';
 import ButtonText from './ButtonText';
 import { getResponsiveClassnames } from '../../../common/helpers/classnames';
 

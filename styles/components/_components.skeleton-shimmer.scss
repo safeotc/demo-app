@@ -1,0 +1,49 @@
+.c-skeleton-shimmer {
+  display: inline-block;
+  position: relative;
+  background: var(--color-secondary);
+  height: 2em;
+  overflow: hidden;
+  @include short-transition(background-color);
+
+  &:before {
+    position: absolute;
+    display: block;
+    content: "";
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      95deg,
+      transparent 5%,
+      var(--color-primary) 25%,
+      transparent 45%
+    );
+    background-repeat: no-repeat;
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 3000ms ease-out infinite;
+  }
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 100% 0%;
+  }
+
+  40% {
+    background-position: 100% 0%;
+  }
+
+  60% {
+    background-position: -100% 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.c-skeleton-shimmer--circle {
+  border-radius: 50%;
+}

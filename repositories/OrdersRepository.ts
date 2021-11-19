@@ -10,7 +10,7 @@ interface IOrdersRepository {
 
 class OrdersRepository implements IOrdersRepository {
     async getOpenOrders() {
-        await delay(1000);
+        await delay(2000);
         const openOrders: Order[] = [
             {
                 id: uuidV4(),

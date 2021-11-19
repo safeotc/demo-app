@@ -7,22 +7,23 @@ import SellIcon from '../../components/icons/orders/SellIcon';
 import Order from '../../models/Order';
 import useStateWithUpdate from '../../common/hooks/useStateWithUpdate';
 import ordersRepository from '../../repositories/OrdersRepository';
+import SkeletonScreen from '../../components/loading/SkeletonScreen';
+import Table from '../../components/tables/Table';
+import OrdersSkeleton from '../../components/orders/OrdersSkeleton';
 
-type OrdersFetchState = 'uninitialized' | 'loading' | 'finished';
+type OrdersFetchState = 'loading' | 'finished';
 
 interface OrdersState {
     fetchState: OrdersFetchState;
     orders: Order[];
 }
 
-const initialOrdersState: OrdersState = { fetchState: 'uninitialized', orders: [] };
+const initialOrdersState: OrdersState = { fetchState: 'loading', orders: [] };
 
 const Open: NextPage & PageLayout = () => {
     const [{ fetchState, orders }, , updateOrdersState] = useStateWithUpdate<OrdersState>(initialOrdersState);
 
     useEffect(() => {
-        updateOrdersState({ fetchState: 'loading' });
-
         let proceed = true;
         (async () => {
             const orders = await ordersRepository.getOpenOrders();
@@ -34,55 +35,64 @@ const Open: NextPage & PageLayout = () => {
         };
     }, [updateOrdersState]);
 
-    switch (fetchState) {
-        case 'uninitialized':
-            return null;
+    const isLoading = fetchState !== 'finished';
 
-        case 'loading':
-            return <>Loading</>;
-
-        case 'finished':
-            return (
-                <div className="o-box">
-                    <div className="u-overflow-x-auto">
-                        <table className="o-table o-table--small u-text-white-space-nowrap u-margin-bottom-none">
-                            <thead>
-                                <tr>
-                                    <th className="u-text-center u-width-min-possible">Type</th>
-                                    <th className="u-text-left">Asset</th>
-                                    <th className="u-text-right">Price</th>
-                                    <th className="u-text-right">Quantity</th>
-                                    <th className="u-text-right">Total</th>
-                                    <th className="u-text-right">Security deposit</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                {orders.map((o) => (
-                                    <tr key={o.id}>
-                                        <td className="u-text-center">
-                                            {o.type === 'buy' && <BuyIcon />}
-                                            {o.type === 'sell' && <SellIcon />}
-                                        </td>
-                                        <td className="u-text-left">{o.asset}</td>
-                                        <td className="u-text-right">
-                                            {o.price} {o.currency}
-                                        </td>
-                                        <td className="u-text-right">{o.quantity}</td>
-                                        <td className="u-text-right">
-                                            {o.price * o.quantity} {o.currency}
-                                        </td>
-                                        <td className="u-text-right">
-                                            {o.securityDeposit} {o.currency}
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            );
-    }
+    return (
+        <div className="o-box">
+            <div className="u-overflow-x-auto">
+                <SkeletonScreen show={isLoading} skeleton={<OrdersSkeleton />}>
+                    <Table
+                        size="small"
+                        singleLineItems={true}
+                        headerProps={[
+                            { textAlign: 'center', useMinPossibleWidth: true, content: 'Type' },
+                            { textAlign: 'left', content: 'Asset' },
+                            { textAlign: 'right', content: 'Price' },
+                            { textAlign: 'right', content: 'Quantity' },
+                            { textAlign: 'right', content: 'Total' },
+                            { textAlign: 'right', content: 'Security deposit' },
+                        ]}
+                        data={orders}
+                        rowMapper={(order) => ({
+                            key: order.id,
+                            rowProps: [
+                                {
+                                    textAlign: 'center',
+                                    content: (
+                                        <>
+                                            {order.type === 'buy' && <BuyIcon />}
+                                            {order.type === 'sell' && <SellIcon />}
+                                        </>
+                                    ),
+                                },
+                                {
+                                    textAlign: 'left',
+                                    boldText: true,
+                                    content: order.asset,
+                                },
+                                {
+                                    textAlign: 'right',
+                                    content: `${order.price} ${order.currency}`,
+                                },
+                                {
+                                    textAlign: 'right',
+                                    content: order.quantity,
+                                },
+                                {
+                                    textAlign: 'right',
+                                    content: `${order.price * order.quantity} ${order.currency}`,
+                                },
+                                {
+                                    textAlign: 'right',
+                                    content: `${order.securityDeposit} ${order.currency}`,
+                                },
+                            ],
+                        })}
+                    />
+                </SkeletonScreen>
+            </div>
+        </div>
+    );
 };
 
 Open.Layout = OrdersLayout;

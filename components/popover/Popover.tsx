@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import cn from 'classnames';
-import { ScreenSize } from '../../common/types';
+import { ScreenSize } from '../../common/types/screen';
 import { getResponsiveClassnames } from '../../common/helpers/classnames';
 import usePopover from './usePopover';
 

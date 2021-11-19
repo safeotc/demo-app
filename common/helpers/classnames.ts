@@ -1,5 +1,5 @@
 import { SCREEN_SIZES } from '../constants/screen';
-import { ScreenSize } from '../types';
+import { ScreenSize } from '../types/screen';
 import cn from 'classnames';
 
 export const getResponsiveClassnames = (baseClassname: string, divider: string, screenSizes?: ScreenSize[]) => {
