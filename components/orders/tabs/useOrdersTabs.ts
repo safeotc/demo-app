@@ -15,9 +15,9 @@ const orderTabRoutesMapper: ItemRouteMapper<OrderTab> = [
     ['completed', ROUTE_ORDERS_COMPLETED],
 ];
 
-const useTabs = () => {
+const useOrdersTabs = () => {
     const { isItemActive } = useRouteActiveItem(orderTabRoutesMapper);
     return { isItemActive };
 };
 
-export default useTabs;
+export default useOrdersTabs;

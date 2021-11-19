@@ -1,10 +1,10 @@
 import React from 'react';
-import OrderTabs from '../../components/orders/tabs/Tabs';
+import OrdersTabs from '../../components/orders/tabs/OrdersTabs';
 
 const Tabs: React.FC = () => {
     return (
         <div className="u-overflow-x-auto u-margin-bottom-large">
-            <OrderTabs />
+            <OrdersTabs />
         </div>
     );
 };

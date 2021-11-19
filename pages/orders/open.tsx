@@ -7,9 +7,9 @@ import SellIcon from '../../components/icons/orders/SellIcon';
 import Order from '../../models/Order';
 import useStateWithUpdate from '../../common/hooks/useStateWithUpdate';
 import ordersRepository from '../../repositories/OrdersRepository';
-import SkeletonScreen from '../../components/loading/SkeletonScreen';
+import SkeletonScreenLoader from '../../components/loading/SkeletonScreenLoader';
 import Table from '../../components/tables/Table';
-import OrdersSkeleton from '../../components/orders/OrdersSkeleton';
+import OpenOrdersSkeletonScreen from '../../components/orders/open/SkeletonScreen';
 
 type OrdersFetchState = 'loading' | 'finished';
 
@@ -40,7 +40,7 @@ const Open: NextPage & PageLayout = () => {
     return (
         <div className="o-box">
             <div className="u-overflow-x-auto">
-                <SkeletonScreen show={isLoading} skeleton={<OrdersSkeleton />}>
+                <SkeletonScreenLoader show={isLoading} skeleton={<OpenOrdersSkeletonScreen />}>
                     <Table
                         size="small"
                         singleLineItems={true}
@@ -89,7 +89,7 @@ const Open: NextPage & PageLayout = () => {
                             ],
                         })}
                     />
-                </SkeletonScreen>
+                </SkeletonScreenLoader>
             </div>
         </div>
     );
