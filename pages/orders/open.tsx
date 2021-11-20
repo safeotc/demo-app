@@ -8,7 +8,7 @@ import Order from '../../models/Order';
 import useStateWithUpdate from '../../common/hooks/useStateWithUpdate';
 import ordersRepository from '../../repositories/OrdersRepository';
 import SkeletonScreenLoader from '../../components/loading/SkeletonScreenLoader';
-import Table from '../../components/tables/Table';
+import Table from '../../components/table/Table';
 import OpenOrdersSkeletonScreen from '../../components/orders/open/SkeletonScreen';
 
 type OrdersFetchState = 'loading' | 'finished';

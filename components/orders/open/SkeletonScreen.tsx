@@ -1,6 +1,6 @@
 import React from 'react';
 import SkeletonShimmer from '../../loading/SkeletonShimmer';
-import Table from '../../tables/Table';
+import Table from '../../table/Table';
 
 const OrdersSkeleton: React.FC = () => {
     return (
