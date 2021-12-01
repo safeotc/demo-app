@@ -1,12 +1,13 @@
 .c-alerts {
   position: fixed;
   left: 100%;
-  bottom: 6.5em;
-  padding: 0em 2em;
+  bottom: 6rem;
+  padding: 0em 2rem;
   list-style: none;
   margin: 0;
   width: 35rem;
   max-width: 100%;
+  z-index: $z-index-alerts;
 
   @include mq($from: m) {
     bottom: 2.5em;

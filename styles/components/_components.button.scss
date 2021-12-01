@@ -128,6 +128,7 @@
 @include screen-rule("c-button--icon-only", "-") {
   padding-left: $button-icon-only-lr-padding;
   padding-right: $button-icon-only-lr-padding;
+  //border-radius: 50%;
 
   & .c-button__text {
     @include hidden-visually();

@@ -3,7 +3,7 @@ import OrdersTabs from '../../components/orders/tabs/OrdersTabs';
 
 const Tabs: React.FC = () => {
     return (
-        <div className="u-overflow-x-auto u-margin-bottom-large">
+        <div className="u-overflow-x-auto">
             <OrdersTabs />
         </div>
     );

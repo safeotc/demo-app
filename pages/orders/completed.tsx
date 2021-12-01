@@ -2,9 +2,10 @@ import React from 'react';
 import type { NextPage } from 'next';
 import { PageLayout } from '../_app';
 import OrdersLayout from '../../layouts/OrdersLayout';
+import ComingSoon from '../../components/ComingSoon';
 
 const Completed: NextPage & PageLayout = () => {
-    return <div className="o-box">TODO: Completed orders</div>;
+    return <ComingSoon />;
 };
 
 Completed.Layout = OrdersLayout;

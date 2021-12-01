@@ -9,7 +9,7 @@
 
 .o-header__wallet-theme {
   position: fixed;
-  z-index: 1;
+  z-index: $z-index-header-wallet-theme;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -21,11 +21,10 @@
   @include short-transition(background-color border-color);
 
   @include mq($from: m) {
-    z-index: auto;
     margin-left: auto;
     white-space: nowrap;
     align-items: stretch;
-    position: static;
+    position: relative;
     bottom: initial;
     left: initial;
     background: none;

@@ -6,7 +6,7 @@ $color-brand-secondary: #00e0b2;
 $color-focus: $color-brand-primary;
 $color-primary-light: #ffffff;
 $color-primary-dark: #1c2639;
-$color-secondary-light: #f9f9f9;
+$color-secondary-light: #f5f5f5;
 $color-secondary-dark: #0c182c;
 $color-tertiary-light: #9f9f9f;
 $color-tertiary-dark: darken($color-tertiary-light, 20%);
@@ -42,6 +42,10 @@ $button-tb-padding: 0.5em;
 $button-lr-padding: 1em;
 $button-icon-only-lr-padding: 0.75em;
 $button-border-width: 2px;
+
+$z-index-create-new-order: 1;
+$z-index-header-wallet-theme: 2;
+$z-index-alerts: 3;
 
 $light-theme: (
   font-color: $font-color-light,

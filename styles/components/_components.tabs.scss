@@ -2,10 +2,11 @@
   display: flex;
   list-style: none;
   margin: 0;
+  padding-top: 2px;
 }
 
 .c-tabs__item {
-  padding-bottom: 0.5em;
+  padding: 0 0.25em 0.5em;
   position: relative;
   margin-right: 2em;
 

@@ -1,0 +1,30 @@
+.c-orders-toolbar {
+  @include mq($from: m) {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.c-orders-toolbar__create-new-wrapper {
+  position: fixed;
+  z-index: $z-index-create-new-order;
+  bottom: 6rem;
+  right: 2rem;
+
+  @include mq($from: m) {
+    position: static;
+    bottom: auto;
+    right: auto;
+  }
+}
+
+.c-orders-toolbar__create-new-button {
+  font-size: 1.5em;
+  @include short-shadow();
+
+  @include mq($from: m) {
+    font-size: 1em;
+    box-shadow: none;
+  }
+}

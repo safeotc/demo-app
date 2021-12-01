@@ -1,10 +1,15 @@
 import React from 'react';
+import CreateNew from '../components/orders/CreateNew';
 import Tabs from '../sections/orders/Tabs';
 
 const OrdersLayout: React.FC = ({ children }) => {
     return (
         <>
-            <Tabs />
+            <div className="c-orders-toolbar u-margin-bottom-large">
+                <Tabs />
+                <CreateNew />
+            </div>
+
             {children}
         </>
     );
