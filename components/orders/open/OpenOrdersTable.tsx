@@ -1,8 +1,14 @@
 import React from 'react';
-import SkeletonShimmer from '../../loading/SkeletonShimmer';
+import Order from '../../../models/Order';
+import BuyIcon from '../../icons/orders/BuyIcon';
+import SellIcon from '../../icons/orders/SellIcon';
 import Table from '../../table/Table';
 
-const OrdersSkeleton: React.FC = () => {
+interface OpenOrdersTableProps {
+    orders: Order[];
+}
+
+const OpenOrdersTable: React.FC<OpenOrdersTableProps> = ({ orders }) => {
     return (
         <Table
             size="small"
@@ -15,33 +21,39 @@ const OrdersSkeleton: React.FC = () => {
                 { textAlign: 'right', content: 'Total' },
                 { textAlign: 'right', content: 'Security deposit' },
             ]}
-            data={Array.from(Array(10).keys())}
-            rowMapper={(orderKey) => ({
-                key: orderKey,
+            data={orders}
+            rowMapper={(order) => ({
+                key: order.id,
                 rowProps: [
                     {
                         textAlign: 'center',
-                        content: <SkeletonShimmer shape="circle" style={{ width: '2.75em', height: '2.75em' }} />,
+                        content: (
+                            <>
+                                {order.type === 'buy' && <BuyIcon />}
+                                {order.type === 'sell' && <SellIcon />}
+                            </>
+                        ),
                     },
                     {
                         textAlign: 'left',
-                        content: <SkeletonShimmer style={{ width: '10em', height: '1.5em' }} />,
+                        boldText: true,
+                        content: order.asset,
                     },
                     {
                         textAlign: 'right',
-                        content: <SkeletonShimmer style={{ width: '4em', height: '1.5em' }} />,
+                        content: `${order.price} ${order.currency}`,
                     },
                     {
                         textAlign: 'right',
-                        content: <SkeletonShimmer style={{ width: '5em', height: '1.5em' }} />,
+                        content: order.quantity,
                     },
                     {
                         textAlign: 'right',
-                        content: <SkeletonShimmer style={{ width: '8em', height: '1.5em' }} />,
+                        content: `${order.price * order.quantity} ${order.currency}`,
                     },
                     {
                         textAlign: 'right',
-                        content: <SkeletonShimmer style={{ width: '7em', height: '1.5em' }} />,
+                        content: `${order.securityDeposit} ${order.currency}`,
                     },
                 ],
             })}
@@ -49,4 +61,4 @@ const OrdersSkeleton: React.FC = () => {
     );
 };
 
-export default OrdersSkeleton;
+export default OpenOrdersTable;

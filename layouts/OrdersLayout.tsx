@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateNew from '../components/orders/CreateNew';
+import CreateNew from '../sections/orders/CreateNew';
 import Tabs from '../sections/orders/Tabs';
 
 const OrdersLayout: React.FC = ({ children }) => {
