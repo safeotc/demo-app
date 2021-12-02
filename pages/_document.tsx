@@ -1,4 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { MODALS_ELEMENT_ID, ALERTS_ELEMENT_ID } from '../common/constants/dom';
+import Portals from '../sections/document/Portals';
 
 class SafeOTCDocument extends Document {
     render() {
@@ -17,6 +19,7 @@ class SafeOTCDocument extends Document {
                 </Head>
                 <body>
                     <Main />
+                    <Portals />
                     <NextScript />
                 </body>
             </Html>

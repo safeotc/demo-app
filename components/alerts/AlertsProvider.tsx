@@ -1,4 +1,6 @@
 import React from 'react';
+import { ALERTS_ELEMENT_ID } from '../../common/constants/dom';
+import Portal from '../Portal';
 import Alerts from './Alerts';
 import useAlerts, { UseAlertsData } from './useAlerts';
 
@@ -16,7 +18,9 @@ const AlertsProvider: React.FC = ({ children }) => {
     return (
         <AlertsContext.Provider value={alertsContext}>
             {children}
-            <Alerts items={alerts} />
+            <Portal elementId={ALERTS_ELEMENT_ID}>
+                <Alerts items={alerts} />
+            </Portal>
         </AlertsContext.Provider>
     );
 };
