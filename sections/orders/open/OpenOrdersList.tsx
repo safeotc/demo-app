@@ -3,7 +3,6 @@ import SkeletonScreenLoader from '../../../components/loading/SkeletonScreenLoad
 import OpenOrdersSkeletonScreen from '../../../components/orders/open/OpenOrdersSkeletonScreen';
 import useOpenOrdersList from './useOpenOrdersList';
 import OpenOrdersTable from '../../../components/orders/open/OpenOrdersTable';
-import Modal from '../../../components/modal/Modal';
 
 const OpenOrdersList: React.FC = () => {
     const { isLoading, orders } = useOpenOrdersList();
@@ -17,8 +16,6 @@ const OpenOrdersList: React.FC = () => {
                     </SkeletonScreenLoader>
                 </div>
             </div>
-
-            <Modal />
         </>
     );
 };

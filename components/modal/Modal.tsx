@@ -1,13 +1,17 @@
 import React from 'react';
-import { MODAL_ELEMENT_ID } from '../../common/constants/dom';
+import { MODALS_ELEMENT_ID } from '../../common/constants/dom';
 import Portal from '../Portal';
 
-const Modal: React.FC = () => {
+interface ModalProps {
+    open: boolean;
+    onCloseRequest: () => void;
+}
+
+const Modal: React.FC<ModalProps> = ({ open, onCloseRequest, children }) => {
     return (
-        <Portal elementId={MODAL_ELEMENT_ID}>
+        <Portal elementId={MODALS_ELEMENT_ID}>
             <div className="c-modal">
-                <div className="c-modal__backdrop">test</div>
-                <div className="c-modal__container">test</div>
+                <div className="c-modal__container">{children}</div>
             </div>
         </Portal>
     );
