@@ -1,6 +1,6 @@
 import { useCallback, useContext, useMemo, useState } from 'react';
 import { NETWORKS } from '../../../../common/constants/networks';
-import { wasEnterOrSpacePressed } from '../../../../common/helpers/keyboard';
+import { wasEnterOrSpace } from '../../../../common/helpers/keyboard';
 import { AlertsContext } from '../../../alerts/AlertsProvider';
 import { NetworkId } from '../../../wallet/useWallet';
 
@@ -21,7 +21,7 @@ const useNetwork = (currentNetwork: NetworkId, switchNetwork: (network: NetworkI
     );
     const switchNetworkAndClosePopoverOnEnterOrSpace = useCallback(
         (e: React.KeyboardEvent<HTMLElement>, network: NetworkId) => {
-            wasEnterOrSpacePressed(e) && switchNetworkAndClosePopover(network);
+            wasEnterOrSpace(e) && switchNetworkAndClosePopover(network);
         },
         [switchNetworkAndClosePopover]
     );

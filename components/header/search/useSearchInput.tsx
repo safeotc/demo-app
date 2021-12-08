@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useState } from 'react';
-import { preventDefaultOnEnterOrSpace, wasEnterOrSpacePressed } from '../../../common/helpers/keyboard';
+import { preventDefaultOnEnterOrSpace, wasEnterOrSpace } from '../../../common/helpers/keyboard';
 
 const useSearchInput = () => {
     const [value, setValue] = useState('');
     const shouldDisplayCloseIcon = !!value;
-    const inputRef = React.createRef<HTMLInputElement>();
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const updateValue = (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
 
@@ -15,7 +15,7 @@ const useSearchInput = () => {
     };
 
     const clearSearchAndFocusInputOnEnterOrSpace = (e: React.KeyboardEvent<HTMLElement>) =>
-        wasEnterOrSpacePressed(e) && clearSearchAndFocusInput();
+        wasEnterOrSpace(e) && clearSearchAndFocusInput();
 
     return {
         value,

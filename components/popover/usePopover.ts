@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { PopoverPosition, PopoverPositionOn } from './Popover';
 
 const usePopover = (isOpened: boolean, onCloseRequest: () => void, positionOn?: PopoverPositionOn[]) => {
-    const popoverContentRef = React.createRef<HTMLDivElement>();
+    const popoverContentRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (!isOpened || !popoverContentRef.current) {
