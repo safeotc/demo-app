@@ -1,7 +1,6 @@
 import { useRef } from 'react';
-import { wasEscape } from '../../../common/helpers/keyboard';
 
-const useModalWrapper = (isOpened: boolean, onCloseRequest: () => void) => {
+const useModalWrapper = (onCloseRequest: () => void) => {
     const wrapperRef = useRef<HTMLDivElement>(null);
 
     let activeMouseElement: EventTarget | null;
@@ -16,14 +15,10 @@ const useModalWrapper = (isOpened: boolean, onCloseRequest: () => void) => {
         mouseDownIsWrapper && mouseUpIsWrapper && onCloseRequest();
     };
 
-    const closeOnEscapeKeyIfOpened = (e: React.KeyboardEvent<HTMLDivElement>) =>
-        isOpened && wasEscape(e) && onCloseRequest();
-
     return {
         wrapperRef,
         storeActiveMouseElement,
         closeModalIfMouseDownMouseClickElementsMatch,
-        closeOnEscapeKeyIfOpened,
     };
 };
 

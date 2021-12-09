@@ -9,12 +9,8 @@ interface ModalWrapperProps extends ModalProps {
 }
 
 const ModalWrapper: React.FC<ModalWrapperProps> = ({ children, isOpened, onCloseRequest, onEnter, onExited }) => {
-    const {
-        wrapperRef,
-        storeActiveMouseElement,
-        closeModalIfMouseDownMouseClickElementsMatch,
-        closeOnEscapeKeyIfOpened,
-    } = useModalWrapper(isOpened, onCloseRequest);
+    const { wrapperRef, storeActiveMouseElement, closeModalIfMouseDownMouseClickElementsMatch } =
+        useModalWrapper(onCloseRequest);
 
     return (
         <CSSTransition
@@ -35,7 +31,6 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({ children, isOpened, onClose
                 ref={wrapperRef}
                 onMouseDown={storeActiveMouseElement}
                 onClick={closeModalIfMouseDownMouseClickElementsMatch}
-                onKeyUp={closeOnEscapeKeyIfOpened}
             >
                 {children}
             </div>
