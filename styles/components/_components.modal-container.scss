@@ -1,8 +1,6 @@
 .c-modal-container {
   position: relative;
   margin: auto;
-  padding: 3em;
-  max-width: 50em;
   background: var(--color-primary);
   outline: none;
   @include border-radius();
@@ -20,6 +18,10 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.c-modal-container__content {
+  padding: 3em;
 }
 
 .c-modal-container__close {

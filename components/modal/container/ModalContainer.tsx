@@ -13,7 +13,6 @@ const ModalContainer: React.FC<ModalContainerProps> = ({ children, isOpened, onC
         <CSSTransition
             nodeRef={containerRef}
             in={isOpened}
-            tabIndex={0}
             mountOnEnter={true}
             unmountOnExit={true}
             timeout={{ enter: 300, exit: 0 }}
@@ -25,7 +24,7 @@ const ModalContainer: React.FC<ModalContainerProps> = ({ children, isOpened, onC
             <div className="c-modal-container" ref={containerRef}>
                 <span tabIndex={0} onFocus={focusLastFocusable} />
 
-                <div ref={focusRef}>
+                <div className="c-modal-container__content" ref={focusRef}>
                     <button className="c-modal-container__close" onClick={onCloseRequest}>
                         <FlatIcon icon="cross" className="c-modal-container__close-icon" />
                     </button>
