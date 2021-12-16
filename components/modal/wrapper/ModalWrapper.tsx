@@ -3,7 +3,7 @@ import { ModalProps } from '../Modal';
 import { CSSTransition } from 'react-transition-group';
 import useModalWrapper from './useModalWrapper';
 
-interface ModalWrapperProps extends ModalProps {
+interface ModalWrapperProps extends Pick<ModalProps, 'isOpened' | 'onCloseRequest'> {
     onEnter: () => void;
     onExited: () => void;
 }

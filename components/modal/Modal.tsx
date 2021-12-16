@@ -5,12 +5,16 @@ import ModalContainer from './container/ModalContainer';
 import ModalWrapper from './wrapper/ModalWrapper';
 import useModal from './useModal';
 
+type ModalSize = 's' | 'm' | 'l' | 'xl';
+
 export interface ModalProps {
     isOpened: boolean;
     onCloseRequest: () => void;
+    size: ModalSize;
+    contentProps?: React.HTMLAttributes<HTMLDivElement>;
 }
 
-const Modal: React.FC<ModalProps> = ({ children, isOpened, onCloseRequest }) => {
+const Modal: React.FC<ModalProps> = ({ children, isOpened, size, contentProps, onCloseRequest }) => {
     const { onWrapperEnter, onWrapperExited, isContainerOpened } = useModal(isOpened);
 
     return (
@@ -21,7 +25,12 @@ const Modal: React.FC<ModalProps> = ({ children, isOpened, onCloseRequest }) => 
                 onEnter={onWrapperEnter}
                 onExited={onWrapperExited}
             >
-                <ModalContainer isOpened={isContainerOpened} onCloseRequest={onCloseRequest}>
+                <ModalContainer
+                    isOpened={isContainerOpened}
+                    onCloseRequest={onCloseRequest}
+                    size={size}
+                    contentProps={contentProps}
+                >
                     {children}
                 </ModalContainer>
             </ModalWrapper>

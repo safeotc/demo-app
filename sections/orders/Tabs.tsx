@@ -2,11 +2,7 @@ import React from 'react';
 import OrdersTabs from '../../components/orders/tabs/OrdersTabs';
 
 const Tabs: React.FC = () => {
-    return (
-        <div className="u-overflow-x-auto">
-            <OrdersTabs />
-        </div>
-    );
+    return <OrdersTabs />;
 };
 
 export default Tabs;
