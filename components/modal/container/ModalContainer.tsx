@@ -7,14 +7,17 @@ import cn from 'classnames';
 
 interface ModalContainerProps extends ModalProps {}
 
-const ModalContainer: React.FC<ModalContainerProps> = ({ children, isOpened, contentProps, size, onCloseRequest }) => {
-    const { containerRef, focusRef, focusFirstFocusable, focusLastFocusable } = useModalContainer(isOpened);
+const ModalContainer: React.FC<ModalContainerProps> = ({ children, isOpened, boxProps, size, onCloseRequest }) => {
+    const { containerRef, focusRef, focusFirstFocusable, focusLastFocusable, renderChildren } = useModalContainer(
+        isOpened,
+        children
+    );
 
-    const containerContentClasses = cn('c-modal-container__content', contentProps?.className || '', {
-        'c-modal-container__content--s': size === 's',
-        'c-modal-container__content--m': size === 'm',
-        'c-modal-container__content--l': size === 'l',
-        'c-modal-container__content--xl': size === 'xl',
+    const containerBoxClasses = cn('c-modal-container__box', boxProps?.className || '', {
+        'c-modal-container__box--s': size === 's',
+        'c-modal-container__box--m': size === 'm',
+        'c-modal-container__box--l': size === 'l',
+        'c-modal-container__box--xl': size === 'xl',
     });
 
     return (
@@ -32,12 +35,12 @@ const ModalContainer: React.FC<ModalContainerProps> = ({ children, isOpened, con
             <div className="c-modal-container" ref={containerRef}>
                 <span tabIndex={0} onFocus={focusLastFocusable} />
 
-                <div {...contentProps} className={containerContentClasses} ref={focusRef}>
+                <div {...boxProps} className={containerBoxClasses} ref={focusRef}>
                     <button className="c-modal-container__close" onClick={onCloseRequest}>
                         <FlatIcon icon="cross" className="c-modal-container__close-icon" />
                     </button>
 
-                    {children}
+                    {renderChildren()}
                 </div>
 
                 <span tabIndex={0} onFocus={focusFirstFocusable} />

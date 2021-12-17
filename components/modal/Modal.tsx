@@ -6,15 +6,17 @@ import ModalWrapper from './wrapper/ModalWrapper';
 import useModal from './useModal';
 
 type ModalSize = 's' | 'm' | 'l' | 'xl';
+export type ModalChildren = React.ReactNode | ((updateFocusables: () => void) => React.ReactNode);
 
 export interface ModalProps {
     isOpened: boolean;
     onCloseRequest: () => void;
     size: ModalSize;
-    contentProps?: React.HTMLAttributes<HTMLDivElement>;
+    boxProps?: React.HTMLAttributes<HTMLDivElement>;
+    children: ModalChildren;
 }
 
-const Modal: React.FC<ModalProps> = ({ children, isOpened, size, contentProps, onCloseRequest }) => {
+const Modal: React.FC<ModalProps> = ({ children, isOpened, size, boxProps, onCloseRequest }) => {
     const { onWrapperEnter, onWrapperExited, isContainerOpened } = useModal(isOpened);
 
     return (
@@ -29,7 +31,7 @@ const Modal: React.FC<ModalProps> = ({ children, isOpened, size, contentProps, o
                     isOpened={isContainerOpened}
                     onCloseRequest={onCloseRequest}
                     size={size}
-                    contentProps={contentProps}
+                    boxProps={boxProps}
                 >
                     {children}
                 </ModalContainer>

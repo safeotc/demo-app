@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal, { ModalProps } from '../../modal/Modal';
+import TabContent from '../../tabs/TabContent';
 import TabItem from '../../tabs/TabItem';
 import Tabs from '../../tabs/Tabs';
 import BuyTab from './BuyTab';
@@ -12,27 +13,36 @@ const CreateNewOrderModal: React.FC<CreateNewOrderModalProps> = (props) => {
     const { isTabActive, changeTab } = useCreateNewOrderModal();
 
     return (
-        <Modal {...props} size="m" contentProps={{ className: 'c-modal-container__content--create-new-order' }}>
-            <div className="u-margin-bottom-large">
-                <Tabs align="center">
-                    <TabItem isActive={isTabActive('buy')}>
-                        <button className="c-tabs__link" onClick={changeTab('buy')}>
-                            Buy
-                        </button>
-                    </TabItem>
+        <Modal {...props} size="m" boxProps={{ className: 'c-modal-container__box--create-new-order' }}>
+            {(updateFocusables) => (
+                <>
+                    <div className="u-margin-bottom-large">
+                        <Tabs align="center">
+                            <TabItem isActive={isTabActive('buy')}>
+                                <button className="c-tabs__link" onClick={changeTab('buy')}>
+                                    Buy
+                                </button>
+                            </TabItem>
 
-                    <TabItem isActive={isTabActive('sell')}>
-                        <button className="c-tabs__link" onClick={changeTab('sell')}>
-                            Sell
-                        </button>
-                    </TabItem>
-                </Tabs>
-            </div>
+                            <TabItem isActive={isTabActive('sell')}>
+                                <button className="c-tabs__link" onClick={changeTab('sell')}>
+                                    Sell
+                                </button>
+                            </TabItem>
+                        </Tabs>
+                    </div>
 
-            <div style={{ maxWidth: '400px', margin: '0 auto' }}>
-                {isTabActive('buy') && <BuyTab />}
-                {isTabActive('sell') && <SellTab />}
-            </div>
+                    <div className="c-modal-container__form c-modal-container__form--create-new-order">
+                        <TabContent isOpened={isTabActive('buy')} onOpen={updateFocusables}>
+                            <BuyTab />
+                        </TabContent>
+
+                        <TabContent isOpened={isTabActive('sell')} onOpen={updateFocusables}>
+                            <SellTab />
+                        </TabContent>
+                    </div>
+                </>
+            )}
         </Modal>
     );
 };
