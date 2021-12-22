@@ -1,7 +1,7 @@
 import React from 'react';
-import PrimaryButton from '../../forms/buttons/PrimaryButton';
-import SecondaryButton from '../../forms/buttons/SecondaryButton';
-import Input from '../../forms/Input';
+import PrimaryButton from '../../../forms/buttons/PrimaryButton';
+import SecondaryButton from '../../../forms/buttons/SecondaryButton';
+import Input from '../../../forms/Input';
 
 const BuyTab: React.FC = () => {
     return (
