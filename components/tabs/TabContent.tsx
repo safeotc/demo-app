@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface TabContentProps {
     isOpened: boolean;
@@ -7,13 +7,25 @@ interface TabContentProps {
 }
 
 const TabContent: React.FC<TabContentProps> = ({ isOpened, children, onOpen, onClose }) => {
-    useEffect(() => {
-        isOpened && !!onOpen && onOpen();
+    const [previousIsOpened, setPreviousIsOpened] = useState(!isOpened);
 
-        return () => {
-            !!onClose && onClose();
-        };
-    }, [isOpened, onOpen, onClose]);
+    // handle open
+    useEffect(() => {
+        if (!isOpened || previousIsOpened) {
+            return;
+        }
+        !!onOpen && onOpen();
+        setPreviousIsOpened(true);
+    }, [isOpened, previousIsOpened, onOpen, setPreviousIsOpened]);
+
+    // handle close
+    useEffect(() => {
+        if (isOpened || !previousIsOpened) {
+            return;
+        }
+        !!onClose && onClose();
+        setPreviousIsOpened(false);
+    }, [isOpened, previousIsOpened, onClose, setPreviousIsOpened]);
 
     return isOpened ? <>{children}</> : null;
 };

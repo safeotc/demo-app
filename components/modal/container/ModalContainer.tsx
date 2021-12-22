@@ -7,10 +7,18 @@ import cn from 'classnames';
 
 interface ModalContainerProps extends ModalProps {}
 
-const ModalContainer: React.FC<ModalContainerProps> = ({ children, isOpened, boxProps, size, onCloseRequest }) => {
+const ModalContainer: React.FC<ModalContainerProps> = ({
+    children,
+    isOpened,
+    boxProps,
+    size,
+    skipSettingFocusables,
+    onCloseRequest,
+}) => {
     const { containerRef, focusRef, focusFirstFocusable, focusLastFocusable, renderChildren } = useModalContainer(
         isOpened,
-        children
+        children,
+        skipSettingFocusables
     );
 
     const containerBoxClasses = cn('c-modal-container__box', boxProps?.className || '', {

@@ -14,9 +14,10 @@ export interface ModalProps {
     size: ModalSize;
     boxProps?: React.HTMLAttributes<HTMLDivElement>;
     children: ModalChildren;
+    skipSettingFocusables?: boolean;
 }
 
-const Modal: React.FC<ModalProps> = ({ children, isOpened, size, boxProps, onCloseRequest }) => {
+const Modal: React.FC<ModalProps> = ({ children, isOpened, size, boxProps, skipSettingFocusables, onCloseRequest }) => {
     const { onWrapperEnter, onWrapperExited, isContainerOpened } = useModal(isOpened);
 
     return (
@@ -32,6 +33,7 @@ const Modal: React.FC<ModalProps> = ({ children, isOpened, size, boxProps, onClo
                     onCloseRequest={onCloseRequest}
                     size={size}
                     boxProps={boxProps}
+                    skipSettingFocusables={skipSettingFocusables}
                 >
                     {children}
                 </ModalContainer>

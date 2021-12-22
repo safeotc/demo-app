@@ -13,7 +13,12 @@ const CreateNewOrderModal: React.FC<CreateNewOrderModalProps> = (props) => {
     const { isTabActive, changeTab } = useCreateNewOrderModal();
 
     return (
-        <Modal {...props} size="m" boxProps={{ className: 'c-modal-container__box--create-new-order' }}>
+        <Modal
+            {...props}
+            skipSettingFocusables={true}
+            size="m"
+            boxProps={{ className: 'c-modal-container__box--create-new-order' }}
+        >
             {(updateFocusables) => (
                 <>
                     <div className="u-margin-bottom-large">
