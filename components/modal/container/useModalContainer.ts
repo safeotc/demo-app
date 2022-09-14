@@ -24,7 +24,6 @@ const useModalContainer = (isOpened: boolean, children: ModalChildren, skipSetti
 
         firstFocusableRef.current = focusable[0];
         lastFocusableRef.current = focusable[focusable.length - 1];
-        console.log('setting focus');
     }, [focusRef, firstFocusableRef, lastFocusableRef]);
 
     const focusFirstFocusable = useCallback(() => firstFocusableRef.current?.focus(), [firstFocusableRef]);

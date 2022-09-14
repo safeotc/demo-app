@@ -1,0 +1,79 @@
+.c-select {
+  .c-select__control {
+    padding: 1rem;
+    border: none;
+    box-shadow: 0px 0px 0px 1px var(--color-tertiary) inset;
+    @include short-transition(background-color box-shadow);
+    @include border-radius();
+    min-height: auto;
+    background: var(--color-primary);
+  }
+
+  .c-select__control--is-focused {
+    border: none;
+    box-shadow: 0px 0px 0px 2px $color-focus inset;
+  }
+
+  .c-select__placeholder {
+    color: var(--color-tertiary);
+    line-height: 1;
+  }
+
+  .c-select__value-container {
+    padding: 0;
+    font-size: $input-font-size;
+    line-height: $input-line-height;
+  }
+
+  .c-select__single-value {
+    color: var(--font-color);
+  }
+
+  .c-select__indicator-separator {
+    margin: 0 1rem;
+    color: var(--color-tertiary);
+  }
+
+  .c-select__indicator {
+    padding: 0;
+
+    svg {
+      height: $input-font-size;
+      width: $input-font-size;
+    }
+  }
+
+  .c-select__input-container {
+    margin: 0;
+    padding: 0;
+  }
+
+  .c-select__menu {
+    animation: menu-open 100ms linear;
+    margin: 0.5rem 0;
+    @include border-radius();
+    @include short-shadow();
+  }
+
+  .c-select__menu-list {
+    padding: 0;
+
+    &:first-child {
+      @include top-border-radius();
+    }
+
+    &:last-child {
+      @include bottom-border-radius();
+    }
+  }
+}
+
+@keyframes menu-open {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

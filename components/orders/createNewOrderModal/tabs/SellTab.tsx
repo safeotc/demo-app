@@ -1,7 +1,8 @@
 import React from 'react';
+import ComingSoon from '../../../ComingSoon';
 
 const SellTab: React.FC = () => {
-    return <div>Sell</div>;
+    return <ComingSoon />;
 };
 
 export default SellTab;
