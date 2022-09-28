@@ -25,6 +25,10 @@ $color-warning: #ffe696;
 $color-info: #78b4ff;
 $color-danger: #db4f5c;
 
+$select-option-highlighted-font-color: $color-primary-light;
+$select-option-focused-background-color: transparentize($color-focus, 0.3);
+$select-option-selected-background-color: transparentize($color-focus, 0.8);
+
 $font-color-light: #333333;
 $font-color-dark: darken(#ffffff, 20%);
 $font-family: Quicksand, sans-serif; /*-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,

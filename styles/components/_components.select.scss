@@ -31,11 +31,12 @@
 
   .c-select__indicator-separator {
     margin: 0 1rem;
-    color: var(--color-tertiary);
+    background-color: var(--color-tertiary);
   }
 
   .c-select__indicator {
     padding: 0;
+    color: var(--color-tertiary);
 
     svg {
       height: $input-font-size;
@@ -49,8 +50,10 @@
   }
 
   .c-select__menu {
+    background: var(--color-primary);
     animation: menu-open 100ms linear;
     margin: 0.5rem 0;
+    border: 1px solid var(--color-tertiary);
     @include border-radius();
     @include short-shadow();
   }
@@ -65,6 +68,25 @@
     &:last-child {
       @include bottom-border-radius();
     }
+  }
+
+  .c-select__option {
+    color: var(--font-color);
+    transition: none;
+
+    &:active {
+      background-color: $select-option-focused-background-color;
+      color: $select-option-highlighted-font-color;
+    }
+  }
+
+  .c-select__option--is-selected {
+    background-color: $select-option-selected-background-color;
+  }
+
+  .c-select__option--is-focused {
+    background-color: $select-option-focused-background-color;
+    color: $select-option-highlighted-font-color;
   }
 }
 

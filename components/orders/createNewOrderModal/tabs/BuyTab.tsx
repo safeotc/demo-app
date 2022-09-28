@@ -8,7 +8,15 @@ const BuyTab: React.FC = () => {
     return (
         <div>
             <div className="u-margin-bottom">
-                <Select placeholder="Select an asset" />
+                <Select
+                    placeholder="Select an asset"
+                    options={[
+                        { value: 'ARBI', label: 'Arbitrum', icon: <i>arbi</i> },
+                        { value: 'OP', label: 'Optimism', icon: <i>op</i> },
+                        { value: 'ZkS', label: 'ZkSync', icon: <i>zks</i> },
+                    ]}
+                    onChange={(newValue) => console.log(newValue)}
+                />
             </div>
 
             <div className="u-margin-bottom">
