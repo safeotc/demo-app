@@ -20,15 +20,15 @@ const BuyTab: React.FC = () => {
             </div>
 
             <div className="u-margin-bottom">
-                <Input placeholder="Amount" type="number" />
+                <Input min={0} placeholder="Amount" type="number" />
             </div>
 
             <div className="u-margin-bottom">
-                <Input placeholder="Price" type="number" />
+                <Input min={0} placeholder="Price" type="number" />
             </div>
 
             <div className="u-margin-bottom">
-                <Input placeholder="Unlock" type="number" />
+                <Input min={0} placeholder="Unlock" type="number" />
             </div>
 
             <div className="u-margin-bottom">
@@ -36,7 +36,7 @@ const BuyTab: React.FC = () => {
             </div>
 
             <div className="u-margin-bottom-large">
-                <Input placeholder="Deposit" type="number" />
+                <Input min={0} placeholder="Deposit" type="number" />
             </div>
 
             <div className="u-text-center">
