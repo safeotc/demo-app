@@ -20,12 +20,16 @@ const Select: React.FC<SelectProps> = ({ placeholder, options, onChange }) => {
             id="create-new-order-modal"
             placeholder={placeholder}
             options={options}
-            formatOptionLabel={({ label, icon }) => (
-                <>
-                    {!!icon && icon}
-                    {label}
-                </>
-            )}
+            formatOptionLabel={({ label, icon }) =>
+                !!icon ? (
+                    <div className="o-align o-align--vertical-center">
+                        {icon}
+                        <span className="u-margin-left-small">{label}</span>
+                    </div>
+                ) : (
+                    label
+                )
+            }
             isSearchable={false}
             className="c-select"
             classNamePrefix="c-select"
@@ -36,7 +40,7 @@ const Select: React.FC<SelectProps> = ({ placeholder, options, onChange }) => {
                 const clonedMenuEl = menuEl?.cloneNode(true);
                 containerEl?.appendChild(clonedMenuEl!);
             }}
-        */
+            */
         />
     );
 };

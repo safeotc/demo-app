@@ -1,4 +1,5 @@
 import React from 'react';
+import { CURRENCIES } from '../../../../common/constants/currencies';
 import PrimaryButton from '../../../forms/buttons/PrimaryButton';
 import SecondaryButton from '../../../forms/buttons/SecondaryButton';
 import Input from '../../../forms/Input';
@@ -10,11 +11,7 @@ const BuyTab: React.FC = () => {
             <div className="u-margin-bottom">
                 <Select
                     placeholder="Select an asset"
-                    options={[
-                        { value: 'ARBI', label: 'Arbitrum', icon: <i>arbi</i> },
-                        { value: 'OP', label: 'Optimism', icon: <i>op</i> },
-                        { value: 'ZkS', label: 'ZkSync', icon: <i>zks</i> },
-                    ]}
+                    options={CURRENCIES.map((c) => ({ value: c.symbol, label: c.name, icon: c.icon }))}
                     onChange={(newValue) => console.log(newValue)}
                 />
             </div>
