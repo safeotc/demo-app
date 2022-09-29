@@ -8,12 +8,13 @@ interface SelectOption {
 }
 
 interface SelectProps {
+    disabled?: boolean;
     placeholder?: string;
     options: SelectOption[];
     onChange: (newValue: SingleValue<SelectOption>) => void;
 }
 
-const Select: React.FC<SelectProps> = ({ placeholder, options, onChange }) => {
+const Select: React.FC<SelectProps> = ({ disabled, placeholder, options, onChange }) => {
     return (
         <ReactSelect
             onChange={onChange}
@@ -33,6 +34,7 @@ const Select: React.FC<SelectProps> = ({ placeholder, options, onChange }) => {
             isSearchable={false}
             className="c-select"
             classNamePrefix="c-select"
+            isDisabled={disabled}
             /*
             onMenuClose={() => {
                 const menuEl = document.querySelector('#create-new-order-modal .c-select__menu');
