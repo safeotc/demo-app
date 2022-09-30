@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactSelect, { SingleValue } from 'react-select';
+import Label, { LabelContent } from './Label';
 
 interface SelectOption {
     value: string;
@@ -8,34 +9,37 @@ interface SelectOption {
 }
 
 interface SelectProps {
+    label?: LabelContent;
     disabled?: boolean;
     placeholder?: string;
     options: SelectOption[];
     onChange: (newValue: SingleValue<SelectOption>) => void;
 }
 
-const Select: React.FC<SelectProps> = ({ disabled, placeholder, options, onChange }) => {
+const Select: React.FC<SelectProps> = ({ label, disabled, placeholder, options, onChange }) => {
     return (
-        <ReactSelect
-            onChange={onChange}
-            id="create-new-order-modal"
-            placeholder={placeholder}
-            options={options}
-            formatOptionLabel={({ label, icon }) =>
-                !!icon ? (
-                    <div className="o-align o-align--vertical-center">
-                        {icon}
-                        <span className="u-margin-left-small">{label}</span>
-                    </div>
-                ) : (
-                    label
-                )
-            }
-            isSearchable={false}
-            className="c-select"
-            classNamePrefix="c-select"
-            isDisabled={disabled}
-            /*
+        <>
+            {!!label && <Label content={label} />}
+            <ReactSelect
+                onChange={onChange}
+                id="create-new-order-modal"
+                placeholder={placeholder}
+                options={options}
+                formatOptionLabel={({ label, icon }) =>
+                    !!icon ? (
+                        <div className="o-align o-align--vertical-center">
+                            {icon}
+                            <span className="u-margin-left-small">{label}</span>
+                        </div>
+                    ) : (
+                        label
+                    )
+                }
+                isSearchable={false}
+                className="c-select"
+                classNamePrefix="c-select"
+                isDisabled={disabled}
+                /*
             onMenuClose={() => {
                 const menuEl = document.querySelector('#create-new-order-modal .c-select__menu');
                 const containerEl = menuEl?.parentElement;
@@ -43,7 +47,8 @@ const Select: React.FC<SelectProps> = ({ disabled, placeholder, options, onChang
                 containerEl?.appendChild(clonedMenuEl!);
             }}
             */
-        />
+            />
+        </>
     );
 };
 

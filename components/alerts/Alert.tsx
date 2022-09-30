@@ -11,7 +11,7 @@ export interface AlertProps {
     id: string;
     type: AlertType;
     content: AlertContent;
-    onClose: AlertOnClose;
+    onClose?: AlertOnClose;
     icon?: JSX.Element;
     disposeTimeout?: number;
     hideCloseButton?: boolean;

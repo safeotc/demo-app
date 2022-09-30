@@ -41,7 +41,10 @@
 
 .c-alert__content {
   flex-grow: 1;
-  margin-left: 1em;
+
+  .c-alert__icon + & {
+    margin-left: 1em;
+  }
 }
 
 .c-alert__close {
