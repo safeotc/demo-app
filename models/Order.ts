@@ -1,4 +1,4 @@
-type OrderType = 'buy' | 'sell';
+export type OrderType = 'buy' | 'sell';
 type OrderStatus = 'open' | 'active' | 'completed';
 
 interface Order {
