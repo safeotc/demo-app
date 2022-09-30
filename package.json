@@ -9,25 +9,26 @@
     "lint": "next lint",
     "prettier-format": "prettier --config .prettierrc '**/*.ts' '**/*.tsx' --write"
   },
-  "dependencies": {
-    "next": "11.1.2",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-select": "^5.2.1",
-    "react-transition-group": "^4.4.2",
-    "uuid": "^8.3.2"
-  },
   "devDependencies": {
-    "@types/react": "17.0.27",
-    "@types/react-dom": "^17.0.11",
-    "@types/react-transition-group": "^4.4.4",
-    "@types/uuid": "^8.3.1",
-    "classnames": "^2.3.1",
-    "eslint": "7.32.0",
-    "eslint-config-next": "11.1.2",
+    "@types/node": "^18.7.23",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "@types/react-transition-group": "^4.4.5",
+    "@types/uuid": "^8.3.4",
+    "eslint": "^8.24.0",
+    "eslint-config-next": "^12.3.1",
     "inuitcss": "^6.0.0",
-    "prettier": "^2.4.1",
-    "sass": "~1.32.6",
-    "typescript": "4.4.3"
+    "prettier": "^2.7.1",
+    "sass": "^1.55.0",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "classnames": "^2.3.2",
+    "next": "^12.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-select": "^5.4.0",
+    "react-transition-group": "^4.4.5",
+    "uuid": "^9.0.0"
   }
 }
