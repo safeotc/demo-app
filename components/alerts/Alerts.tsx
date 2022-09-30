@@ -7,6 +7,10 @@ interface AlertsProps {
 }
 
 const Alerts: React.FC<AlertsProps> = ({ items }) => {
+    const nodeRefs = items.reduce<{ [key: string]: React.Ref<HTMLLIElement> }>(
+        (refs, item) => ({ ...refs, [item.id]: React.createRef<HTMLLIElement>() }),
+        {}
+    );
     return (
         <TransitionGroup className="c-alerts" component="ul">
             {items.map((alertProps) => (
@@ -19,8 +23,9 @@ const Alerts: React.FC<AlertsProps> = ({ items }) => {
                         exitActive: 'c-alert__item--exit-active',
                     }}
                     timeout={{ enter: 100, exit: 0 }}
+                    nodeRef={nodeRefs[alertProps.id]}
                 >
-                    <li className="c-alerts__item">
+                    <li className="c-alerts__item" ref={nodeRefs[alertProps.id]}>
                         <Alert {...alertProps} />
                     </li>
                 </CSSTransition>
