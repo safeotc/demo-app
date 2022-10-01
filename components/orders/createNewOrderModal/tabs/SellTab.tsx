@@ -1,6 +1,6 @@
 import Alert from '../../../alerts/Alert';
 import FlatIcon from '../../../icons/FlatIcon';
-import CreateOrderForm from './CreateOrderForm';
+import CreateNewOrderForm from './CreateNewOrderForm';
 
 const SellTab = () => {
     return (
@@ -14,7 +14,7 @@ const SellTab = () => {
                     id="info-alert"
                 />
             </div>
-            <CreateOrderForm type="sell" />
+            <CreateNewOrderForm type="sell" />
         </>
     );
 };

@@ -22,7 +22,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
         return (
             <>
-                {!!label && <Label content={label} />}
+                {!!label && <Label htmlFor={props.id} content={label} />}
                 <div {...wrapperProps} className={wrapperClasses}>
                     {!!leftIcon && <div className="c-input__left-icon">{leftIcon}</div>}
                     <input {...props} className={inputClasses} ref={ref} />

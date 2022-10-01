@@ -16,10 +16,10 @@ const CreateNewOrderModal = (props: CreateNewOrderModalProps) => {
             {...props}
             skipSettingFocusables={true}
             size="m"
-            boxProps={{ className: 'c-modal-container__box--create-new-order' }}
+            boxProps={{ className: 'c-modal-create-new-order__background' }}
         >
             {(updateFocusables) => (
-                <>
+                <div className="c-modal-create-new-order__foreground">
                     <div className="u-margin-bottom-large">
                         <Tabs align="center">
                             <TabItem isActive={isTabActive('buy')}>
@@ -36,7 +36,7 @@ const CreateNewOrderModal = (props: CreateNewOrderModalProps) => {
                         </Tabs>
                     </div>
 
-                    <div className="c-modal-container__form c-modal-container__form--create-new-order">
+                    <div className="c-modal-container__form c-modal-create-new-order__form">
                         <TabContent isOpened={isTabActive('buy')} onOpen={updateFocusables}>
                             <BuyTab />
                         </TabContent>
@@ -45,7 +45,7 @@ const CreateNewOrderModal = (props: CreateNewOrderModalProps) => {
                             <SellTab />
                         </TabContent>
                     </div>
-                </>
+                </div>
             )}
         </Modal>
     );

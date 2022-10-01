@@ -1,27 +1,48 @@
 import ReactSelect, { SingleValue } from 'react-select';
-import Label, { LabelContent } from './Label';
+import Label, { LabelContent } from '../Label';
+import useSelect from './useSelect';
 
-interface SelectOption {
+export interface SelectOption {
     value: string;
     label: string;
     icon?: JSX.Element;
 }
 
-interface SelectProps {
+export type ToFormValue<FormValue> = (value: SingleValue<SelectOption>) => FormValue;
+export type FromFormValue<FormValue> = (value: FormValue) => SelectOption | null;
+
+interface SelectProps<FormValue> {
+    id?: string;
+    name: string;
     label?: LabelContent;
     disabled?: boolean;
     placeholder?: string;
     options: SelectOption[];
-    onChange: (newValue: SingleValue<SelectOption>) => void;
+    toFormValue: ToFormValue<FormValue>;
+    fromFormValue: FromFormValue<FormValue>;
 }
 
-const Select = ({ label, disabled, placeholder, options, onChange }: SelectProps) => {
+const Select = <FormValue extends unknown>({
+    id,
+    name,
+    label,
+    disabled,
+    placeholder,
+    options,
+    toFormValue,
+    fromFormValue,
+}: SelectProps<FormValue>) => {
+    const { value, onChange, onBlur } = useSelect(name, toFormValue, fromFormValue);
+
     return (
         <>
-            {!!label && <Label content={label} />}
+            {!!label && <Label htmlFor={id} content={label} />}
             <ReactSelect
+                value={value}
                 onChange={onChange}
-                id="create-new-order-modal"
+                onBlur={onBlur}
+                name={name}
+                inputId={id}
                 placeholder={placeholder}
                 options={options}
                 formatOptionLabel={({ label, icon }) =>
@@ -38,14 +59,6 @@ const Select = ({ label, disabled, placeholder, options, onChange }: SelectProps
                 className="c-select"
                 classNamePrefix="c-select"
                 isDisabled={disabled}
-                /*
-            onMenuClose={() => {
-                const menuEl = document.querySelector('#create-new-order-modal .c-select__menu');
-                const containerEl = menuEl?.parentElement;
-                const clonedMenuEl = menuEl?.cloneNode(true);
-                containerEl?.appendChild(clonedMenuEl!);
-            }}
-            */
             />
         </>
     );

@@ -1,6 +1,6 @@
 import Alert from '../../../alerts/Alert';
 import FlatIcon from '../../../icons/FlatIcon';
-import CreateOrderForm from './CreateOrderForm';
+import CreateNewOrderForm from './CreateNewOrderForm';
 
 const BuyTab = () => {
     return (
@@ -15,7 +15,7 @@ const BuyTab = () => {
                 />
             </div>
 
-            <CreateOrderForm type="buy" />
+            <CreateNewOrderForm type="buy" />
         </>
     );
 };

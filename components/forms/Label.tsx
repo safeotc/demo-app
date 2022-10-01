@@ -1,9 +1,9 @@
-import { InputHTMLAttributes } from 'react';
+import { LabelHTMLAttributes } from 'react';
 import cn from 'classnames';
 
 export type LabelContent = string | JSX.Element;
 
-export interface LabelProps extends InputHTMLAttributes<HTMLLabelElement> {
+export interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
     content: LabelContent;
 }
 
