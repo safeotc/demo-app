@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "safeotc-demo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,25 +10,25 @@
     "prettier-format": "prettier --config .prettierrc '**/*.ts' '**/*.tsx' --write"
   },
   "devDependencies": {
-    "@types/node": "^18.7.23",
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.6",
-    "@types/react-transition-group": "^4.4.5",
-    "@types/uuid": "^8.3.4",
-    "eslint": "^8.24.0",
-    "eslint-config-next": "^12.3.1",
-    "inuitcss": "^6.0.0",
-    "prettier": "^2.7.1",
-    "sass": "^1.55.0",
-    "typescript": "^4.8.4"
+    "@types/node": "18.7.23",
+    "@types/react": "18.0.21",
+    "@types/react-dom": "18.0.6",
+    "@types/react-transition-group": "4.4.5",
+    "@types/uuid": "8.3.4",
+    "eslint": "8.24.0",
+    "eslint-config-next": "12.3.1",
+    "inuitcss": "6.0.0",
+    "prettier": "2.7.1",
+    "sass": "1.55.0",
+    "typescript": "4.8.4"
   },
   "dependencies": {
-    "classnames": "^2.3.2",
-    "next": "^12.3.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-select": "^5.4.0",
-    "react-transition-group": "^4.4.5",
-    "uuid": "^9.0.0"
+    "classnames": "2.3.2",
+    "next": "12.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-select": "5.4.0",
+    "react-transition-group": "4.4.5",
+    "uuid": "9.0.0"
   }
 }
