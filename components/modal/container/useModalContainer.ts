@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { ModalChildren } from '../Modal';
 
-const useModalContainer = (isOpened: boolean, children: ModalChildren, skipSettingFocusables?: boolean) => {
-    const containerRef = useRef<HTMLDivElement>(null);
+const useModalContainer = (children: ModalChildren, skipSettingFocusables?: boolean) => {
     const focusRef = useRef<HTMLDivElement>(null);
     const firstFocusableRef = useRef<HTMLElement | null>(null);
     const lastFocusableRef = useRef<HTMLElement | null>(null);
@@ -33,10 +32,6 @@ const useModalContainer = (isOpened: boolean, children: ModalChildren, skipSetti
     const renderChildren = () => (children instanceof Function ? children(updateFocusables) : children);
 
     useEffect(() => {
-        if (!isOpened) {
-            return;
-        }
-
         !skipSettingFocusables && updateFocusables();
 
         const activeElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -45,9 +40,9 @@ const useModalContainer = (isOpened: boolean, children: ModalChildren, skipSetti
         return () => {
             !!activeElement && activeElement.focus();
         };
-    }, [isOpened, updateFocusables, firstFocusableRef, skipSettingFocusables]);
+    }, [updateFocusables, firstFocusableRef, skipSettingFocusables]);
 
-    return { containerRef, focusRef, focusFirstFocusable, focusLastFocusable, renderChildren };
+    return { focusRef, focusFirstFocusable, focusLastFocusable, renderChildren };
 };
 
 export default useModalContainer;

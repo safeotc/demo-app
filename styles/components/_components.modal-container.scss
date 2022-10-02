@@ -3,18 +3,18 @@
   display: flex;
   justify-content: center;
   max-width: 100%;
+  animation: modal-container-enter 100ms ease-in 200ms both;
 
-  &--enter {
-    opacity: 0;
-    transform: translateY(-2em);
-    @include short-transition(opacity transform);
-    transition-delay: 200ms;
-    transition-timing-function: ease-in;
-  }
+  @keyframes modal-container-enter {
+    from {
+      opacity: 0;
+      transform: translateY(-2em);
+    }
 
-  &--enter-active {
-    opacity: 1;
-    transform: translateY(0);
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 

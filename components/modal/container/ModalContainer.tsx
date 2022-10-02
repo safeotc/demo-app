@@ -1,21 +1,12 @@
-import { CSSTransition } from 'react-transition-group';
 import FlatIcon from '../../icons/FlatIcon';
 import { ModalProps } from '../Modal';
 import useModalContainer from './useModalContainer';
 import cn from 'classnames';
 
-interface ModalContainerProps extends ModalProps {}
+interface ModalContainerProps extends Omit<ModalProps, 'isOpened'> {}
 
-const ModalContainer = ({
-    children,
-    isOpened,
-    boxProps,
-    size,
-    skipSettingFocusables,
-    onCloseRequest,
-}: ModalContainerProps) => {
-    const { containerRef, focusRef, focusFirstFocusable, focusLastFocusable, renderChildren } = useModalContainer(
-        isOpened,
+const ModalContainer = ({ children, boxProps, size, skipSettingFocusables, onCloseRequest }: ModalContainerProps) => {
+    const { focusRef, focusFirstFocusable, focusLastFocusable, renderChildren } = useModalContainer(
         children,
         skipSettingFocusables
     );
@@ -28,31 +19,19 @@ const ModalContainer = ({
     });
 
     return (
-        <CSSTransition
-            nodeRef={containerRef}
-            in={isOpened}
-            mountOnEnter={true}
-            unmountOnExit={true}
-            timeout={{ enter: 300, exit: 0 }}
-            classNames={{
-                enter: 'c-modal-container--enter',
-                enterActive: 'c-modal-container--enter-active',
-            }}
-        >
-            <div className="c-modal-container" ref={containerRef}>
-                <span tabIndex={0} onFocus={focusLastFocusable} />
+        <div className="c-modal-container">
+            <span tabIndex={0} onFocus={focusLastFocusable} />
 
-                <div {...boxProps} className={containerBoxClasses} ref={focusRef}>
-                    <button className="c-modal-container__close" onClick={onCloseRequest}>
-                        <FlatIcon icon="cross" className="c-modal-container__close-icon" />
-                    </button>
+            <div {...boxProps} className={containerBoxClasses} ref={focusRef}>
+                <button className="c-modal-container__close" onClick={onCloseRequest}>
+                    <FlatIcon icon="cross" className="c-modal-container__close-icon" />
+                </button>
 
-                    {renderChildren()}
-                </div>
-
-                <span tabIndex={0} onFocus={focusFirstFocusable} />
+                {renderChildren()}
             </div>
-        </CSSTransition>
+
+            <span tabIndex={0} onFocus={focusFirstFocusable} />
+        </div>
     );
 };
 

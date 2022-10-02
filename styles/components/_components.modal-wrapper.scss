@@ -6,9 +6,19 @@
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  background: rgba(0, 0, 0, 0.5);
   padding: 1.875em;
   display: flex;
+  animation: modal-wrapper-enter 100ms linear both;
+
+  @keyframes modal-wrapper-enter {
+    from {
+      background: transparent;
+    }
+
+    to {
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
 
   @include mq($from: m) {
     padding: 3em;
@@ -16,14 +26,5 @@
 
   @include mq($from: xl) {
     padding: 5em;
-  }
-
-  &--enter {
-    @include short-transition(background-color);
-    background: transparent;
-  }
-
-  &--enter-active {
-    background: rgba(0, 0, 0, 0.5);
   }
 }
