@@ -3,7 +3,11 @@ import AlertsProvider from './alerts/AlertsProvider';
 import ThemeProvider from './theme/ThemeProvider';
 import WalletProvider from './wallet/WalletProvider';
 
-const Providers: React.FC = ({ children }) => {
+interface ProvidersProps {
+    children: React.ReactNode;
+}
+
+const Providers = ({ children }: ProvidersProps) => {
     return (
         <ThemeProvider>
             <AlertsProvider>

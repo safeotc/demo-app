@@ -1,9 +1,8 @@
-import React from 'react';
 import CreateNewOrderButton from '../../../components/orders/createNewOrderButton/CreateNewOrderButton';
 import CreateNewOrderModal from '../../../components/orders/createNewOrderModal/CreateNewOrderModal';
 import useCreateNew from './useCreateNew';
 
-const CreateNew: React.FC = () => {
+const CreateNew = () => {
     const { openModal, closeModal, isModalOpened } = useCreateNew();
 
     return (

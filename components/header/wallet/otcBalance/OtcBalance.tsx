@@ -1,4 +1,3 @@
-import React from 'react';
 import useOtcBalance from './useOtcBalance';
 
 interface OtcBalanceProps {
@@ -6,7 +5,7 @@ interface OtcBalanceProps {
     balance: string;
 }
 
-const OtcBalance: React.FC<OtcBalanceProps> = ({ address, balance }) => {
+const OtcBalance = ({ address, balance }: OtcBalanceProps) => {
     const { addressDisplay, copyAddressToClipBoardAndDisplayAlert } = useOtcBalance(address);
 
     return (

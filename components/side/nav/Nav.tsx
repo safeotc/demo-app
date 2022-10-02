@@ -1,10 +1,9 @@
-import React from 'react';
 import NavLink from '../NavLink';
 import NavItem from '../NavItem';
 import useNav from './useNav';
 import { ROUTE_OTC_MARKETS, ROUTE_NFT_MARKETS, ROUTE_ORDERS, ROUTE_VOTING } from '../../../common/constants/routes';
 
-const Nav: React.FC = () => {
+const Nav = () => {
     const { isItemActive } = useNav();
 
     return (

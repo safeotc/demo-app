@@ -1,9 +1,8 @@
-import React from 'react';
 import Alert from '../../../alerts/Alert';
 import FlatIcon from '../../../icons/FlatIcon';
 import CreateOrderForm from './CreateOrderForm';
 
-const SellTab: React.FC = () => {
+const SellTab = () => {
     return (
         <>
             <div className="u-margin-bottom">

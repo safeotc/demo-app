@@ -1,10 +1,9 @@
-import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import logoImage from '../../public/images/logo.png';
 import { ROUTE_HOME } from '../../common/constants/routes';
 
-const Logo: React.FC = () => {
+const Logo = () => {
     return (
         <div className="u-text-center">
             <Link href={ROUTE_HOME}>

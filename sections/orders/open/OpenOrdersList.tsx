@@ -1,10 +1,9 @@
-import React from 'react';
 import SkeletonScreenLoader from '../../../components/loading/SkeletonScreenLoader';
 import OpenOrdersSkeletonScreen from '../../../components/orders/open/OpenOrdersSkeletonScreen';
 import useOpenOrdersList from './useOpenOrdersList';
 import OpenOrdersTable from '../../../components/orders/open/OpenOrdersTable';
 
-const OpenOrdersList: React.FC = () => {
+const OpenOrdersList = () => {
     const { isLoading, orders } = useOpenOrdersList();
 
     return (

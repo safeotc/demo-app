@@ -1,11 +1,9 @@
-import React from 'react';
-
 interface AppLayoutProps {
     sideContent: JSX.Element;
     mainContent: JSX.Element;
 }
 
-const AppLayout: React.FC<AppLayoutProps> = ({ sideContent, mainContent }) => {
+const AppLayout = ({ sideContent, mainContent }: AppLayoutProps) => {
     return (
         <div className="o-content-wrapper">
             <div className="o-content-wrapper__container">

@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import Button from '../forms/buttons/Button';
 import FlatIcon from '../icons/FlatIcon';
 import { ThemeContext } from '../theme/ThemeProvider';
 
-const ToggleThemeButton: React.FC = () => {
+const ToggleThemeButton = () => {
     const { theme, toggleTheme } = useContext(ThemeContext);
     const themeIcon = theme === 'light' ? 'moon' : 'sun';
 

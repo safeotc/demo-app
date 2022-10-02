@@ -9,7 +9,7 @@ interface CreateOrderFormProps {
     type: OrderType;
 }
 
-const CreateOrderForm: React.FC<CreateOrderFormProps> = ({ type }) => {
+const CreateOrderForm = ({ type }: CreateOrderFormProps) => {
     return (
         <form>
             <div className="u-margin-bottom">

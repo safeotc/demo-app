@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Main: React.FC = ({ children }) => {
+interface MainProps {
+    children: React.ReactNode;
+}
+
+const Main = ({ children }: MainProps) => {
     return <main className="o-main u-margin-bottom-large">{children}</main>;
 };
 

@@ -1,6 +1,10 @@
 import React from 'react';
 
-const NavItem: React.FC = ({ children }) => {
+interface NavItemProps {
+    children: React.ReactNode;
+}
+
+const NavItem = ({ children }: NavItemProps) => {
     return <li className="c-navigation__item">{children}</li>;
 };
 

@@ -1,6 +1,10 @@
 import React from 'react';
 import useTheme, { Theme, ThemeToggler } from './useTheme';
 
+interface ThemeProviderProps {
+    children: React.ReactNode;
+}
+
 interface ThemeData {
     theme: Theme;
     toggleTheme: ThemeToggler;
@@ -12,7 +16,7 @@ const defaultThemeContext: ThemeData = {
 };
 export const ThemeContext = React.createContext<ThemeData>(defaultThemeContext);
 
-const ThemeProvider: React.FC = ({ children }) => {
+const ThemeProvider = ({ children }: ThemeProviderProps) => {
     const { isThemeInitialized, theme, toggleTheme } = useTheme();
 
     if (!isThemeInitialized) {

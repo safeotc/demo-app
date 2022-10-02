@@ -1,13 +1,12 @@
 import React from 'react';
-import type { NextPage } from 'next';
-import { PageLayout } from '../_app';
 import OrdersLayout from '../../layouts/OrdersLayout';
 import ComingSoon from '../../components/ComingSoon';
+import { NextPageWithLayout } from '../_app';
 
-const Completed: NextPage & PageLayout = () => {
+const Completed: NextPageWithLayout = () => {
     return <ComingSoon />;
 };
 
-Completed.Layout = OrdersLayout;
+Completed.getLayout = OrdersLayout;
 
 export default Completed;

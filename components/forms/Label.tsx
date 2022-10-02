@@ -7,7 +7,7 @@ export interface LabelProps extends InputHTMLAttributes<HTMLLabelElement> {
     content: LabelContent;
 }
 
-const Label: React.FC<LabelProps> = ({ content, ...props }) => {
+const Label = ({ content, ...props }: LabelProps) => {
     const { className, ...labelProps } = props;
     const labelClasses = cn(className, 'c-label');
     return (

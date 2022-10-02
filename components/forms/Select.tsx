@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactSelect, { SingleValue } from 'react-select';
 import Label, { LabelContent } from './Label';
 
@@ -16,7 +15,7 @@ interface SelectProps {
     onChange: (newValue: SingleValue<SelectOption>) => void;
 }
 
-const Select: React.FC<SelectProps> = ({ label, disabled, placeholder, options, onChange }) => {
+const Select = ({ label, disabled, placeholder, options, onChange }: SelectProps) => {
     return (
         <>
             {!!label && <Label content={label} />}

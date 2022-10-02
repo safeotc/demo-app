@@ -1,4 +1,3 @@
-import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import FlatIcon from '../../icons/FlatIcon';
 import { ModalProps } from '../Modal';
@@ -7,14 +6,14 @@ import cn from 'classnames';
 
 interface ModalContainerProps extends ModalProps {}
 
-const ModalContainer: React.FC<ModalContainerProps> = ({
+const ModalContainer = ({
     children,
     isOpened,
     boxProps,
     size,
     skipSettingFocusables,
     onCloseRequest,
-}) => {
+}: ModalContainerProps) => {
     const { containerRef, focusRef, focusFirstFocusable, focusLastFocusable, renderChildren } = useModalContainer(
         isOpened,
         children,

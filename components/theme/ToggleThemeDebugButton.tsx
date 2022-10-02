@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { ThemeContext } from './ThemeProvider';
 
-const ToggleThemeDebugButton: React.FC = () => {
+const ToggleThemeDebugButton = () => {
     const { toggleTheme } = useContext(ThemeContext);
 
     return (

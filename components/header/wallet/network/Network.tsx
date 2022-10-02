@@ -1,4 +1,3 @@
-import React from 'react';
 import { NETWORKS } from '../../../../common/constants/networks';
 import { preventDefaultOnEnterOrSpace } from '../../../../common/helpers/keyboard';
 import Button from '../../../forms/buttons/Button';
@@ -14,7 +13,7 @@ interface NetworkProps {
     switchNetwork: (network: NetworkId) => void;
 }
 
-const Network: React.FC<NetworkProps> = ({ network, switchNetwork }) => {
+const Network = ({ network, switchNetwork }: NetworkProps) => {
     const {
         isNetworkPopoverOpened,
         closeNetworkPopover,

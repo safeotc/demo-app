@@ -1,4 +1,3 @@
-import React from 'react';
 import cn from 'classnames';
 import { TextAlign } from '../../common/types/text';
 
@@ -8,7 +7,7 @@ export interface TdProps {
     content: JSX.Element | string | number;
 }
 
-const Td: React.FC<TdProps> = ({ textAlign, boldText, content }) => {
+const Td = ({ textAlign, boldText, content }: TdProps) => {
     const tdClasses = cn({
         'u-text-left': textAlign === 'left',
         'u-text-center': textAlign === 'center',

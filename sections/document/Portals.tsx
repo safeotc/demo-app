@@ -1,7 +1,6 @@
-import React from 'react';
 import { ALERTS_ELEMENT_ID, MODALS_ELEMENT_ID } from '../../common/constants/dom';
 
-const Portals: React.FC = () => {
+const Portals = () => {
     return (
         <>
             <div id={MODALS_ELEMENT_ID} />

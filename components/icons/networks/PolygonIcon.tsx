@@ -1,6 +1,4 @@
-import React from 'react';
-
-const PolygonIcon: React.FC = () => {
+const PolygonIcon = () => {
     return (
         <svg
             style={{ verticalAlign: 'text-top', width: '1.1em', height: '1.1em' }}

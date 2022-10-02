@@ -1,4 +1,3 @@
-import React from 'react';
 import cn from 'classnames';
 import { TextAlign } from '../../common/types/text';
 
@@ -8,7 +7,7 @@ export interface ThProps {
     content: JSX.Element | string;
 }
 
-const Th: React.FC<ThProps> = ({ textAlign, useMinPossibleWidth, content }) => {
+const Th = ({ textAlign, useMinPossibleWidth, content }: ThProps) => {
     const thClasses = cn({
         'u-text-left': textAlign === 'left',
         'u-text-center': textAlign === 'center',

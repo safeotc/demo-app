@@ -1,4 +1,3 @@
-import React from 'react';
 import Modal, { ModalProps } from '../../modal/Modal';
 import TabContent from '../../tabs/content/TabContent';
 import TabItem from '../../tabs/TabItem';
@@ -9,7 +8,7 @@ import useCreateNewOrderModal from './useCreateNewOrderModal';
 
 interface CreateNewOrderModalProps extends Pick<ModalProps, 'isOpened' | 'onCloseRequest'> {}
 
-const CreateNewOrderModal: React.FC<CreateNewOrderModalProps> = (props) => {
+const CreateNewOrderModal = (props: CreateNewOrderModalProps) => {
     const { isTabActive, changeTab } = useCreateNewOrderModal();
 
     return (

@@ -1,6 +1,10 @@
 import React from 'react';
 import useWallet, { UseWalletData } from './useWallet';
 
+interface WalletProviderProps {
+    children: React.ReactNode;
+}
+
 interface WalletData extends UseWalletData {}
 
 const defaultWalletContext: WalletData = {
@@ -14,7 +18,7 @@ const defaultWalletContext: WalletData = {
 
 export const WalletContext = React.createContext<WalletData>(defaultWalletContext);
 
-const WalletProvider: React.FC = ({ children }) => {
+const WalletProvider = ({ children }: WalletProviderProps) => {
     const walletContext = useWallet();
 
     return <WalletContext.Provider value={walletContext}>{children}</WalletContext.Provider>;

@@ -1,4 +1,3 @@
-import React from 'react';
 import Order from '../../../models/Order';
 import BuyIcon from '../../icons/orders/BuyIcon';
 import SellIcon from '../../icons/orders/SellIcon';
@@ -8,7 +7,7 @@ interface OpenOrdersTableProps {
     orders: Order[];
 }
 
-const OpenOrdersTable: React.FC<OpenOrdersTableProps> = ({ orders }) => {
+const OpenOrdersTable = ({ orders }: OpenOrdersTableProps) => {
     return (
         <Table
             size="small"

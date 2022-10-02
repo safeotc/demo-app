@@ -1,6 +1,6 @@
 import CurrencyIcon from './CurrencyIcon';
 
-const FantomIcon: React.FC = () => {
+const FantomIcon = () => {
     return <CurrencyIcon name="Fantom" img="fantom.png" />;
 };
 

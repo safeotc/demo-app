@@ -1,8 +1,7 @@
-import React from 'react';
 import SkeletonShimmer from '../../loading/SkeletonShimmer';
 import Table from '../../table/Table';
 
-const OpenOrdersSkeletonScreen: React.FC = () => {
+const OpenOrdersSkeletonScreen = () => {
     return (
         <Table
             size="small"

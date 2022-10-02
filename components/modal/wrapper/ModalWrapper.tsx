@@ -6,9 +6,10 @@ import useModalWrapper from './useModalWrapper';
 interface ModalWrapperProps extends Pick<ModalProps, 'isOpened' | 'onCloseRequest'> {
     onEnter: () => void;
     onExited: () => void;
+    children: React.ReactNode;
 }
 
-const ModalWrapper: React.FC<ModalWrapperProps> = ({ children, isOpened, onCloseRequest, onEnter, onExited }) => {
+const ModalWrapper = ({ children, isOpened, onCloseRequest, onEnter, onExited }: ModalWrapperProps) => {
     const { wrapperRef, storeActiveMouseElement, closeModalIfMouseDownMouseClickElementsMatch } =
         useModalWrapper(onCloseRequest);
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import cn from 'classnames';
 import FlatIcon from '../icons/FlatIcon';
 import useAlert from './useAlert';
@@ -17,7 +16,7 @@ export interface AlertProps {
     hideCloseButton?: boolean;
 }
 
-const Alert: React.FC<AlertProps> = ({ id, type, content, onClose, icon, disposeTimeout, hideCloseButton }) => {
+const Alert = ({ id, type, content, onClose, icon, disposeTimeout, hideCloseButton }: AlertProps) => {
     const { closeAlert } = useAlert(id, onClose, disposeTimeout);
 
     const alertClasses = cn('c-alert', `c-alert--${type}`);

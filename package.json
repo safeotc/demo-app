@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "watch-errors": "tsc --noEmit --incremental --watch",
+    "watch-errors": "tsc --noUnusedLocals --noEmit --incremental --watch",
     "format-code": "prettier --config .prettierrc '**/*.ts' '**/*.tsx' --write"
   },
   "devDependencies": {

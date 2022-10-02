@@ -3,9 +3,10 @@ import React from 'react';
 interface SkeletonScreenLoaderProps {
     skeleton: JSX.Element;
     show: boolean;
+    children: React.ReactNode;
 }
 
-const SkeletonScreenLoader: React.FC<SkeletonScreenLoaderProps> = ({ skeleton, show, children }) => {
+const SkeletonScreenLoader = ({ skeleton, show, children }: SkeletonScreenLoaderProps) => {
     return <>{show ? skeleton : children}</>;
 };
 

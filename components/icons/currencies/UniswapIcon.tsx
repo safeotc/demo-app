@@ -1,6 +1,6 @@
 import CurrencyIcon from './CurrencyIcon';
 
-const UniswapIcon: React.FC = () => {
+const UniswapIcon = () => {
     return <CurrencyIcon name="Uniswap" img="uniswap.png" />;
 };
 

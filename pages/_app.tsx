@@ -6,20 +6,25 @@ import AppLayout from '../layouts/AppLayout';
 import Side from '../sections/app/Side';
 import Content from '../sections/app/Content';
 import Providers from '../components/Providers';
-import { NextComponentType, NextPageContext } from 'next';
-import PageWithLayout from '../layouts/PageLayout';
+import { NextPage } from 'next';
 import Head from 'next/head';
 
-export interface PageLayout {
-    Layout?: React.ComponentType;
-}
+export type LayoutGetter = (page: React.ReactElement) => React.ReactNode;
 
-export interface AppWithLayoutProps extends AppProps {
-    Component: NextComponentType<NextPageContext, any, {}> & PageLayout;
-}
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+    getLayout?: LayoutGetter;
+};
 
-const SafeOTCApp: React.FC<AppWithLayoutProps> = (props) => {
+type AppPropsWithLayout = AppProps & {
+    Component: NextPageWithLayout;
+};
+
+const getEmptyLayout: LayoutGetter = (page) => page;
+
+const SafeOTCApp = ({ Component, pageProps }: AppPropsWithLayout) => {
     useIsTabbingBodyClass();
+
+    const getLayout = Component.getLayout ?? getEmptyLayout;
 
     return (
         <>
@@ -30,11 +35,7 @@ const SafeOTCApp: React.FC<AppWithLayoutProps> = (props) => {
             <Providers>
                 <AppLayout
                     sideContent={<Side />}
-                    mainContent={
-                        <Content>
-                            <PageWithLayout {...props} />
-                        </Content>
-                    }
+                    mainContent={<Content>{getLayout(<Component {...pageProps} />)}</Content>}
                 />
             </Providers>
         </>

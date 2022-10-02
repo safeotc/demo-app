@@ -4,6 +4,10 @@ import Portal from '../Portal';
 import Alerts from './Alerts';
 import useAlerts, { UseAlertsData } from './useAlerts';
 
+interface AlertsProviderProps {
+    children: React.ReactNode;
+}
+
 type AlertsData = Omit<UseAlertsData, 'alerts'>;
 
 const defaultAlertsContext = {
@@ -12,7 +16,7 @@ const defaultAlertsContext = {
 };
 export const AlertsContext = React.createContext<AlertsData>(defaultAlertsContext);
 
-const AlertsProvider: React.FC = ({ children }) => {
+const AlertsProvider = ({ children }: AlertsProviderProps) => {
     const { alerts, ...alertsContext } = useAlerts();
 
     return (

@@ -1,6 +1,6 @@
 import CurrencyIcon from './CurrencyIcon';
 
-const AvalancheIcon: React.FC = () => {
+const AvalancheIcon = () => {
     return <CurrencyIcon name="Avalanche" img="avalanche.png" />;
 };
 

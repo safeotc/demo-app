@@ -1,11 +1,10 @@
 import Link from 'next/link';
-import React from 'react';
 import { ROUTE_ORDERS_ACTIVE, ROUTE_ORDERS_COMPLETED, ROUTE_ORDERS_OPEN } from '../../../common/constants/routes';
 import TabItem from '../../tabs/TabItem';
 import Tabs from '../../tabs/Tabs';
 import useOrdersTabs from './useOrdersTabs';
 
-const OrdersTabs: React.FC = () => {
+const OrdersTabs = () => {
     const { isItemActive } = useOrdersTabs();
 
     return (

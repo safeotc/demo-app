@@ -6,7 +6,7 @@ interface AlertsProps {
     items: AlertProps[];
 }
 
-const Alerts: React.FC<AlertsProps> = ({ items }) => {
+const Alerts = ({ items }: AlertsProps) => {
     const nodeRefs = items.reduce<{ [key: string]: React.Ref<HTMLLIElement> }>(
         (refs, item) => ({ ...refs, [item.id]: React.createRef<HTMLLIElement>() }),
         {}

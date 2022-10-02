@@ -1,8 +1,7 @@
-import React from 'react';
 import Image from 'next/image';
 import logoImage from '../../../public/images/logo.png';
 
-const Footer: React.FC = () => {
+const Footer = () => {
     return (
         <footer className="o-footer">
             <div className="o-footer__grid">

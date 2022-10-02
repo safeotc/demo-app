@@ -17,7 +17,7 @@ export interface ModalProps {
     skipSettingFocusables?: boolean;
 }
 
-const Modal: React.FC<ModalProps> = ({ children, isOpened, size, boxProps, skipSettingFocusables, onCloseRequest }) => {
+const Modal = ({ children, isOpened, size, boxProps, skipSettingFocusables, onCloseRequest }: ModalProps) => {
     const { onWrapperEnter, onWrapperExited, isContainerOpened } = useModal(isOpened);
 
     return (

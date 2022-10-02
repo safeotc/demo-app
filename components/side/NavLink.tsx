@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 import FlatIcon from '../icons/FlatIcon';
 import cn from 'classnames';
@@ -10,7 +9,7 @@ interface NavLinkProps {
     active?: boolean;
 }
 
-const NavLink: React.FC<NavLinkProps> = ({ href, icon, active, title }) => {
+const NavLink = ({ href, icon, active, title }: NavLinkProps) => {
     const navLinkClasses = cn('c-nav-link', { 'c-nav-link--active': !!active });
 
     return (

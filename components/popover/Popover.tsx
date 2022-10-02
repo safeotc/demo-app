@@ -18,9 +18,10 @@ interface PopoverProps {
     onEnterDone?: () => void;
     onExitStart?: () => void;
     onExitDone?: () => void;
+    children: React.ReactNode;
 }
 
-const Popover: React.FC<PopoverProps> = ({
+const Popover = ({
     popover,
     position,
     positionOn,
@@ -31,7 +32,7 @@ const Popover: React.FC<PopoverProps> = ({
     onExitStart,
     onExitDone,
     children,
-}) => {
+}: PopoverProps) => {
     const { popoverContentRef, getScreenSizesForPositionOn } = usePopover(isOpened, onCloseRequest, positionOn);
 
     const popoverContentClasses = cn(

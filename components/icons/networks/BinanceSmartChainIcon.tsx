@@ -1,6 +1,4 @@
-import React from 'react';
-
-const BinanceSmartChainIcon: React.FC = () => {
+const BinanceSmartChainIcon = () => {
     return (
         <svg
             style={{ verticalAlign: 'text-top', width: '1.1em', height: '1.1em' }}

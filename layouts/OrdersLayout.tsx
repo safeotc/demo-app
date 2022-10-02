@@ -1,8 +1,9 @@
 import React from 'react';
+import { LayoutGetter } from '../pages/_app';
 import CreateNew from '../sections/orders/createNew/CreateNew';
 import Tabs from '../sections/orders/Tabs';
 
-const OrdersLayout: React.FC = ({ children }) => {
+const OrdersLayout: LayoutGetter = (page) => {
     return (
         <>
             <div className="c-orders-toolbar u-margin-bottom-large">
@@ -10,7 +11,7 @@ const OrdersLayout: React.FC = ({ children }) => {
                 <CreateNew />
             </div>
 
-            {children}
+            {page}
         </>
     );
 };

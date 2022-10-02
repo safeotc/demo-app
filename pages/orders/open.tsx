@@ -1,13 +1,12 @@
 import React from 'react';
-import type { NextPage } from 'next';
-import { PageLayout } from '../_app';
 import OrdersLayout from '../../layouts/OrdersLayout';
 import OpenOrdersList from '../../sections/orders/open/OpenOrdersList';
+import { NextPageWithLayout } from '../_app';
 
-const Open: NextPage & PageLayout = () => {
+const Open: NextPageWithLayout = () => {
     return <OpenOrdersList />;
 };
 
-Open.Layout = OrdersLayout;
+Open.getLayout = OrdersLayout;
 
 export default Open;

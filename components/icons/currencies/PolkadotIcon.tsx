@@ -1,6 +1,6 @@
 import CurrencyIcon from './CurrencyIcon';
 
-const PolkadotIcon: React.FC = () => {
+const PolkadotIcon = () => {
     return <CurrencyIcon name="Polkadot" img="polkadot.png" />;
 };
 

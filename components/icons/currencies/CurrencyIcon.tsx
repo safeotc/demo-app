@@ -5,7 +5,7 @@ interface CurrencyIconProps {
     img: string;
 }
 
-const CurrencyIcon: React.FC<CurrencyIconProps> = ({ name, img }) => {
+const CurrencyIcon = ({ name, img }: CurrencyIconProps) => {
     return (
         <span className="c-currency-icon">
             <Image alt="currency icon image" title={name} src={`/images/currencies/${img}`} layout="fill" />

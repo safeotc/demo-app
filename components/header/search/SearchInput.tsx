@@ -1,9 +1,8 @@
-import React from 'react';
 import Input, { InputProps } from '../../forms/Input';
 import FlatIcon from '../../icons/FlatIcon';
 import useSearchInput from './useSearchInput';
 
-const SearchInput: React.FC<InputProps> = (props) => {
+const SearchInput = (props: InputProps) => {
     const {
         value,
         updateValue,
