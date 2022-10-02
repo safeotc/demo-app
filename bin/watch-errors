@@ -1,7 +1,4 @@
 #!/bin/bash
 
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-APP_DIR=$( realpath ${SCRIPT_DIR}/.. )
-cd $APP_DIR
-docker compose up -d
-bin/watch-errors
+${SCRIPT_DIR}/npm run watch-errors
