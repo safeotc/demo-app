@@ -2,8 +2,8 @@ import Modal, { ModalProps } from '../../modal/Modal';
 import TabContent from '../../tabs/content/TabContent';
 import TabItem from '../../tabs/TabItem';
 import Tabs from '../../tabs/Tabs';
-import BuyTab from './tabs/BuyTab';
-import SellTab from './tabs/SellTab';
+import BuyTab from './BuyTab';
+import SellTab from './SellTab';
 import useCreateNewOrderModal from './useCreateNewOrderModal';
 
 interface CreateNewOrderModalProps extends Pick<ModalProps, 'isOpened' | 'onCloseRequest'> {}

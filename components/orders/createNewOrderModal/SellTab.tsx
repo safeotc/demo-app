@@ -1,5 +1,5 @@
-import Alert from '../../../alerts/Alert';
-import FlatIcon from '../../../icons/FlatIcon';
+import Alert from '../../alerts/Alert';
+import FlatIcon from '../../icons/FlatIcon';
 import CreateNewOrderForm from './CreateNewOrderForm';
 
 const SellTab = () => {

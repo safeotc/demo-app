@@ -1,10 +1,10 @@
-import { CURRENCIES } from '../../../../common/constants/currencies';
-import { OrderType } from '../../../../models/Order';
-import PrimaryButton from '../../../forms/buttons/PrimaryButton';
-import SecondaryButton from '../../../forms/buttons/SecondaryButton';
-import Form from '../../../forms/Form';
-import FormSelect from '../../../forms/formSelect/FormSelect';
-import FormInput from '../../../forms/formInput/FormInput';
+import { CURRENCIES } from '../../../common/constants/currencies';
+import { OrderType } from '../../../models/Order';
+import PrimaryButton from '../../forms/buttons/PrimaryButton';
+import SecondaryButton from '../../forms/buttons/SecondaryButton';
+import Form from '../../forms/Form';
+import FormSelect from '../../forms/formSelect/FormSelect';
+import FormInput from '../../forms/formInput/FormInput';
 import * as Yup from 'yup';
 
 const FIELD_COF_TOKEN = 'cof-token';
