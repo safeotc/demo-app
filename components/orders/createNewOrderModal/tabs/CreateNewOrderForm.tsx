@@ -4,7 +4,7 @@ import PrimaryButton from '../../../forms/buttons/PrimaryButton';
 import SecondaryButton from '../../../forms/buttons/SecondaryButton';
 import Form from '../../../forms/Form';
 import Input from '../../../forms/Input';
-import Select from '../../../forms/select/Select';
+import FormSelect from '../../../forms/formSelect/FormSelect';
 
 const FIELD_COF_TOKEN = 'cof-token';
 const FIELD_COF_TOKEN_CONTRACT = 'cof-token-contract';
@@ -41,7 +41,7 @@ const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
     return (
         <Form initialValues={initialValues} onSubmit={(values) => console.log('submitting', values)}>
             <div className="u-margin-bottom">
-                <Select<SelectTokenValue>
+                <FormSelect<SelectTokenValue>
                     name={FIELD_COF_TOKEN}
                     id={FIELD_COF_TOKEN}
                     label="Token"

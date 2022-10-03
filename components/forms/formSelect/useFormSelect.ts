@@ -1,6 +1,7 @@
 import { useField } from 'formik';
 import { SingleValue } from 'react-select';
-import { FromFormValue, SelectOption, ToFormValue } from './Select';
+import { SelectOption } from '../Select';
+import { FromFormValue, ToFormValue } from './FormSelect';
 
 type OnFormValueChange = (newValue: SingleValue<SelectOption>) => void;
 

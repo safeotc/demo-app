@@ -1,6 +1,6 @@
+import Label, { LabelContent } from './Label';
 import ReactSelect, { SingleValue } from 'react-select';
-import Label, { LabelContent } from '../Label';
-import useSelect from './useSelect';
+import { FocusEventHandler } from 'react';
 
 export interface SelectOption {
     value: string;
@@ -8,32 +8,19 @@ export interface SelectOption {
     icon?: JSX.Element;
 }
 
-export type ToFormValue<FormValue> = (value: SingleValue<SelectOption>) => FormValue;
-export type FromFormValue<FormValue> = (value: FormValue) => SelectOption | null;
-
-interface SelectProps<FormValue> {
+export interface SelectProps {
+    name?: string;
     id?: string;
-    name: string;
     label?: LabelContent;
     disabled?: boolean;
     placeholder?: string;
     options: SelectOption[];
-    toFormValue: ToFormValue<FormValue>;
-    fromFormValue: FromFormValue<FormValue>;
+    value?: SelectOption | null;
+    onChange?: (newValue: SingleValue<SelectOption>) => void;
+    onBlur?: FocusEventHandler<HTMLInputElement>;
 }
 
-const Select = <FormValue extends unknown>({
-    id,
-    name,
-    label,
-    disabled,
-    placeholder,
-    options,
-    toFormValue,
-    fromFormValue,
-}: SelectProps<FormValue>) => {
-    const { value, onChange, onBlur } = useSelect(name, toFormValue, fromFormValue);
-
+const Select = ({ name, label, id, value, placeholder, options, disabled, onChange, onBlur }: SelectProps) => {
     return (
         <>
             {!!label && <Label htmlFor={id} content={label} />}
