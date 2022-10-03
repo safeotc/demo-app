@@ -1,9 +1,8 @@
 import { useField } from 'formik';
-import { SingleValue } from 'react-select';
-import { SelectOption } from '../Select';
+import { NullableSelectValue } from '../Select';
 import { FromSelectFormValue, ToSelectFormValue } from './FormSelect';
 
-type OnSelectValueChange = (newValue: SingleValue<SelectOption>) => void;
+type OnSelectValueChange = (newValue: NullableSelectValue) => void;
 
 const useFormSelect = <FormValue>(
     name: string,
@@ -12,15 +11,14 @@ const useFormSelect = <FormValue>(
 ) => {
     const [field, meta, helpers] = useField<FormValue>(name);
     const { value: fieldValue, onBlur } = field;
-    const { error } = meta;
+    const { error, touched } = meta;
     const { setValue } = helpers;
-
-    console.log('error', error);
 
     const value = fromFormValue(fieldValue);
     const onChange: OnSelectValueChange = (newValue) => setValue(toFormValue(newValue));
+    const errorMessage = !!error && touched ? error : undefined;
 
-    return { value, onChange, onBlur };
+    return { value, errorMessage, touched, onChange, onBlur };
 };
 
 export default useFormSelect;

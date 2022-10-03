@@ -1,9 +1,8 @@
-import { SingleValue } from 'react-select';
-import Select, { SelectOption, SelectProps } from '../Select';
+import Select, { SelectProps, NullableSelectValue } from '../Select';
 import useFormSelect from './useFormSelect';
 
-export type ToSelectFormValue<FormValue> = (value: SingleValue<SelectOption>) => FormValue;
-export type FromSelectFormValue<FormValue> = (value: FormValue) => SelectOption | null;
+export type ToSelectFormValue<FormValue> = (value: NullableSelectValue) => FormValue;
+export type FromSelectFormValue<FormValue> = (value: FormValue) => NullableSelectValue;
 
 interface FormSelectProps<FormValue> extends Omit<SelectProps, 'name' | 'value' | 'onChange' | 'onBlur'> {
     name: string;
@@ -13,9 +12,9 @@ interface FormSelectProps<FormValue> extends Omit<SelectProps, 'name' | 'value' 
 
 const FormSelect = <FormValue extends unknown>(props: FormSelectProps<FormValue>) => {
     const { name, toFormValue, fromFormValue } = props;
-    const { value, onChange, onBlur } = useFormSelect(name, toFormValue, fromFormValue);
+    const { value, onChange, onBlur, errorMessage } = useFormSelect(name, toFormValue, fromFormValue);
 
-    return <Select {...props} value={value} onChange={onChange} onBlur={onBlur} />;
+    return <Select {...props} value={value} onChange={onChange} onBlur={onBlur} errorMessage={errorMessage} />;
 };
 
 export default FormSelect;

@@ -1,9 +1,14 @@
 import Label, { LabelContent } from './Label';
-import ReactSelect, { SingleValue } from 'react-select';
+import ReactSelect from 'react-select';
 import { FocusEventHandler } from 'react';
+import ErrorMessage from './ErrorMessage';
+import cn from 'classnames';
+
+export type SelectValue = string;
+export type NullableSelectValue = SelectValue | null;
 
 export interface SelectOption {
-    value: string;
+    value: SelectValue;
     label: string;
     icon?: JSX.Element;
 }
@@ -15,18 +20,35 @@ export interface SelectProps {
     disabled?: boolean;
     placeholder?: string;
     options: SelectOption[];
-    value?: SelectOption | null;
-    onChange?: (newValue: SingleValue<SelectOption>) => void;
+    value?: NullableSelectValue;
+    onChange?: (newValue: NullableSelectValue) => void;
     onBlur?: FocusEventHandler<HTMLInputElement>;
+    errorMessage?: string;
 }
 
-const Select = ({ name, label, id, value, placeholder, options, disabled, onChange, onBlur }: SelectProps) => {
+const Select = ({
+    name,
+    label,
+    id,
+    value,
+    placeholder,
+    options,
+    disabled,
+    onChange,
+    onBlur,
+    errorMessage,
+}: SelectProps) => {
+    const selectClasses = cn({
+        'c-select': true,
+        'c-select--danger': !!errorMessage,
+    });
+
     return (
         <>
-            {!!label && <Label htmlFor={id} content={label} />}
+            {!!label && <Label danger={!!errorMessage} htmlFor={id} content={label} />}
             <ReactSelect
-                value={value}
-                onChange={onChange}
+                value={value !== undefined ? options.find((o) => o.value === value) || null : undefined}
+                onChange={!!onChange ? (newOption) => onChange(!!newOption ? newOption.value : newOption) : undefined}
                 onBlur={onBlur}
                 name={name}
                 inputId={id}
@@ -43,10 +65,11 @@ const Select = ({ name, label, id, value, placeholder, options, disabled, onChan
                     )
                 }
                 isSearchable={false}
-                className="c-select"
+                className={selectClasses}
                 classNamePrefix="c-select"
                 isDisabled={disabled}
             />
+            {!!errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         </>
     );
 };

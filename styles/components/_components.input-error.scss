@@ -1,0 +1,15 @@
+.c-input-error {
+  font-size: 0.85em;
+  color: $color-danger;
+  animation: input-error-enter 100ms ease-in 0ms both;
+
+  @keyframes input-error-enter {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}

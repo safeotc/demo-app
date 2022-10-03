@@ -27,6 +27,14 @@
   }
 }
 
+/*
+focus definition couple of lines above should take
+precedance because of greater specificity
+*/
+.c-input__field--danger {
+  box-shadow: 0px 0px 0px 2px $color-danger inset;
+}
+
 .c-input__field--with-left-icon {
   padding-left: 3rem;
 }

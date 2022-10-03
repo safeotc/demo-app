@@ -6,6 +6,7 @@ import Form from '../../../forms/Form';
 import Input from '../../../forms/Input';
 import FormSelect from '../../../forms/formSelect/FormSelect';
 import FormInput from '../../../forms/formInput/FormInput';
+import * as Yup from 'yup';
 
 const FIELD_COF_TOKEN = 'cof-token';
 const FIELD_COF_TOKEN_CONTRACT = 'cof-token-contract';
@@ -17,10 +18,10 @@ const FIELD_COF_SECURITY_DEPOSIT = 'cof-security-deposit';
 interface CreateOrderFormFields {
     [FIELD_COF_TOKEN]: string;
     [FIELD_COF_TOKEN_CONTRACT]: string;
-    [FIELD_COF_QUANTITY]: number | '';
-    [FIELD_COF_PRICE]: number | '';
-    [FIELD_COF_UNLOCK]: number | '';
-    [FIELD_COF_SECURITY_DEPOSIT]: number | '';
+    [FIELD_COF_QUANTITY]: string;
+    [FIELD_COF_PRICE]: string;
+    [FIELD_COF_UNLOCK]: string;
+    [FIELD_COF_SECURITY_DEPOSIT]: string;
 }
 
 type TokenValue = CreateOrderFormFields[typeof FIELD_COF_TOKEN];
@@ -36,23 +37,27 @@ interface CreateOrderFormProps {
     type: OrderType;
 }
 
-const convertToNumberOrEmptyString = (value: string) => {
-    const valueAsNumber = Number(value);
-    return !isNaN(valueAsNumber) ? valueAsNumber : '';
+const initialValues: CreateOrderFormFields = {
+    [FIELD_COF_TOKEN]: '',
+    [FIELD_COF_TOKEN_CONTRACT]: '',
+    [FIELD_COF_QUANTITY]: '',
+    [FIELD_COF_PRICE]: '',
+    [FIELD_COF_UNLOCK]: '',
+    [FIELD_COF_SECURITY_DEPOSIT]: '',
 };
 
-const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
-    const initialValues: CreateOrderFormFields = {
-        [FIELD_COF_TOKEN]: '',
-        [FIELD_COF_TOKEN_CONTRACT]: '',
-        [FIELD_COF_QUANTITY]: '',
-        [FIELD_COF_PRICE]: '',
-        [FIELD_COF_UNLOCK]: '',
-        [FIELD_COF_SECURITY_DEPOSIT]: '',
-    };
+const validationSchema = Yup.object().shape({
+    [FIELD_COF_TOKEN]: Yup.string().required('Please select a token to trade.'),
+    [FIELD_COF_TOKEN_CONTRACT]: Yup.string().required('Token contract address is required.'),
+});
 
+const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
     return (
-        <Form initialValues={initialValues} onSubmit={(values) => console.log('submitting', values)}>
+        <Form
+            initialValues={initialValues}
+            onSubmit={(values) => console.log('submitting', values)}
+            validationSchema={validationSchema}
+        >
             <div className="u-margin-bottom">
                 <FormSelect<TokenValue>
                     name={FIELD_COF_TOKEN}
@@ -60,11 +65,8 @@ const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
                     label="Token"
                     placeholder="Select a token"
                     options={CURRENCIES.map((c) => ({ value: c.symbol, label: c.name, icon: c.icon }))}
-                    toFormValue={(value) => (!!value ? value.value : initialValues[FIELD_COF_TOKEN])}
-                    fromFormValue={(value) => {
-                        const c = CURRENCIES.find((c) => c.symbol === value);
-                        return !!c ? { value: c.symbol, label: c.name, icon: c.icon } : null;
-                    }}
+                    toFormValue={(value) => value || ''}
+                    fromFormValue={(value) => (!!value ? value : '')}
                 />
             </div>
 
@@ -85,10 +87,11 @@ const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
                     name={FIELD_COF_QUANTITY}
                     label="Quantity"
                     min={0}
+                    step="any"
                     placeholder="Quantity"
                     type="number"
-                    toFormValue={convertToNumberOrEmptyString}
-                    fromFormValue={(value) => value.toString()}
+                    toFormValue={(value) => value}
+                    fromFormValue={(value) => value}
                 />
             </div>
 

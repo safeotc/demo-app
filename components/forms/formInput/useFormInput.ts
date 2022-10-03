@@ -9,14 +9,16 @@ const useFormInput = <FormValue>(
     toFormValue: ToInputFormValue<FormValue>,
     fromFormValue: FromInputFormValue<FormValue>
 ) => {
-    const [field, , helpers] = useField(name);
+    const [field, meta, helpers] = useField(name);
     const { value: fieldValue, onBlur } = field;
+    const { error, touched } = meta;
     const { setValue } = helpers;
 
     const value = fromFormValue(fieldValue);
     const onChange: OnInputValueChange = (e) => setValue(toFormValue(e.target.value));
+    const errorMessage = !!error && touched ? error : undefined;
 
-    return { value, onChange, onBlur };
+    return { value, onChange, onBlur, errorMessage };
 };
 
 export default useFormInput;

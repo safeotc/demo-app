@@ -5,12 +5,18 @@ interface FormProps<InitialValues> {
     children: React.ReactNode;
     initialValues: InitialValues;
     onSubmit: (values: InitialValues) => void;
+    validationSchema: object;
 }
 
-const Form = <InitialValues extends FormikValues>({ children, initialValues, onSubmit }: FormProps<InitialValues>) => {
+const Form = <InitialValues extends FormikValues>({
+    children,
+    initialValues,
+    onSubmit,
+    validationSchema,
+}: FormProps<InitialValues>) => {
     return (
-        <Formik initialValues={initialValues} onSubmit={onSubmit}>
-            <FormikForm>{children}</FormikForm>
+        <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+            <FormikForm autoComplete="off">{children}</FormikForm>
         </Formik>
     );
 };
