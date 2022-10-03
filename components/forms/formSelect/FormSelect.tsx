@@ -2,13 +2,13 @@ import { SingleValue } from 'react-select';
 import Select, { SelectOption, SelectProps } from '../Select';
 import useFormSelect from './useFormSelect';
 
-export type ToFormValue<FormValue> = (value: SingleValue<SelectOption>) => FormValue;
-export type FromFormValue<FormValue> = (value: FormValue) => SelectOption | null;
+export type ToSelectFormValue<FormValue> = (value: SingleValue<SelectOption>) => FormValue;
+export type FromSelectFormValue<FormValue> = (value: FormValue) => SelectOption | null;
 
 interface FormSelectProps<FormValue> extends Omit<SelectProps, 'name' | 'value' | 'onChange' | 'onBlur'> {
     name: string;
-    toFormValue: ToFormValue<FormValue>;
-    fromFormValue: FromFormValue<FormValue>;
+    toFormValue: ToSelectFormValue<FormValue>;
+    fromFormValue: FromSelectFormValue<FormValue>;
 }
 
 const FormSelect = <FormValue extends unknown>(props: FormSelectProps<FormValue>) => {

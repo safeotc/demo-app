@@ -1,23 +1,26 @@
 import { useField } from 'formik';
 import { SingleValue } from 'react-select';
 import { SelectOption } from '../Select';
-import { FromFormValue, ToFormValue } from './FormSelect';
+import { FromSelectFormValue, ToSelectFormValue } from './FormSelect';
 
-type OnFormValueChange = (newValue: SingleValue<SelectOption>) => void;
+type OnSelectValueChange = (newValue: SingleValue<SelectOption>) => void;
 
-const useSelect = <FormValue>(
+const useFormSelect = <FormValue>(
     name: string,
-    toFormValue: ToFormValue<FormValue>,
-    fromFormValue: FromFormValue<FormValue>
+    toFormValue: ToSelectFormValue<FormValue>,
+    fromFormValue: FromSelectFormValue<FormValue>
 ) => {
-    const [field, , helpers] = useField<FormValue>(name);
+    const [field, meta, helpers] = useField<FormValue>(name);
     const { value: fieldValue, onBlur } = field;
+    const { error } = meta;
     const { setValue } = helpers;
 
+    console.log('error', error);
+
     const value = fromFormValue(fieldValue);
-    const onChange: OnFormValueChange = (newValue) => setValue(toFormValue(newValue));
+    const onChange: OnSelectValueChange = (newValue) => setValue(toFormValue(newValue));
 
     return { value, onChange, onBlur };
 };
 
-export default useSelect;
+export default useFormSelect;

@@ -5,6 +5,7 @@ import SecondaryButton from '../../../forms/buttons/SecondaryButton';
 import Form from '../../../forms/Form';
 import Input from '../../../forms/Input';
 import FormSelect from '../../../forms/formSelect/FormSelect';
+import FormInput from '../../../forms/formInput/FormInput';
 
 const FIELD_COF_TOKEN = 'cof-token';
 const FIELD_COF_TOKEN_CONTRACT = 'cof-token-contract';
@@ -22,11 +23,23 @@ interface CreateOrderFormFields {
     [FIELD_COF_SECURITY_DEPOSIT]: number | '';
 }
 
-type SelectTokenValue = CreateOrderFormFields[typeof FIELD_COF_TOKEN];
+type TokenValue = CreateOrderFormFields[typeof FIELD_COF_TOKEN];
+type TokenContractValue = CreateOrderFormFields[typeof FIELD_COF_TOKEN_CONTRACT];
+type QuantityValue = CreateOrderFormFields[typeof FIELD_COF_QUANTITY];
+/*
+type PriceValue = CreateOrderFormFields[typeof FIELD_COF_PRICE];
+type UnlockValue = CreateOrderFormFields[typeof FIELD_COF_UNLOCK];
+type SecurityDepositValue = CreateOrderFormFields[typeof FIELD_COF_SECURITY_DEPOSIT];
+*/
 
 interface CreateOrderFormProps {
     type: OrderType;
 }
+
+const convertToNumberOrEmptyString = (value: string) => {
+    const valueAsNumber = Number(value);
+    return !isNaN(valueAsNumber) ? valueAsNumber : '';
+};
 
 const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
     const initialValues: CreateOrderFormFields = {
@@ -41,7 +54,7 @@ const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
     return (
         <Form initialValues={initialValues} onSubmit={(values) => console.log('submitting', values)}>
             <div className="u-margin-bottom">
-                <FormSelect<SelectTokenValue>
+                <FormSelect<TokenValue>
                     name={FIELD_COF_TOKEN}
                     id={FIELD_COF_TOKEN}
                     label="Token"
@@ -56,22 +69,26 @@ const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
             </div>
 
             <div className="u-margin-bottom">
-                <Input
+                <FormInput<TokenContractValue>
                     label="Token contract"
                     id={FIELD_COF_TOKEN_CONTRACT}
                     name={FIELD_COF_TOKEN_CONTRACT}
                     placeholder="0x..."
+                    toFormValue={(value) => value}
+                    fromFormValue={(value) => value}
                 />
             </div>
 
             <div className="u-margin-bottom">
-                <Input
+                <FormInput<QuantityValue>
                     id={FIELD_COF_QUANTITY}
                     name={FIELD_COF_QUANTITY}
                     label="Quantity"
                     min={0}
                     placeholder="Quantity"
                     type="number"
+                    toFormValue={convertToNumberOrEmptyString}
+                    fromFormValue={(value) => value.toString()}
                 />
             </div>
 
