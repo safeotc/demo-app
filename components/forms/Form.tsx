@@ -16,7 +16,9 @@ const Form = <InitialValues extends FormikValues>({
 }: FormProps<InitialValues>) => {
     return (
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-            <FormikForm autoComplete="off">{children}</FormikForm>
+            <FormikForm autoComplete="off" noValidate={true}>
+                {children}
+            </FormikForm>
         </Formik>
     );
 };

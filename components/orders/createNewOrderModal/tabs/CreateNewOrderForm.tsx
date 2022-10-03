@@ -3,7 +3,6 @@ import { OrderType } from '../../../../models/Order';
 import PrimaryButton from '../../../forms/buttons/PrimaryButton';
 import SecondaryButton from '../../../forms/buttons/SecondaryButton';
 import Form from '../../../forms/Form';
-import Input from '../../../forms/Input';
 import FormSelect from '../../../forms/formSelect/FormSelect';
 import FormInput from '../../../forms/formInput/FormInput';
 import * as Yup from 'yup';
@@ -27,11 +26,9 @@ interface CreateOrderFormFields {
 type TokenValue = CreateOrderFormFields[typeof FIELD_COF_TOKEN];
 type TokenContractValue = CreateOrderFormFields[typeof FIELD_COF_TOKEN_CONTRACT];
 type QuantityValue = CreateOrderFormFields[typeof FIELD_COF_QUANTITY];
-/*
 type PriceValue = CreateOrderFormFields[typeof FIELD_COF_PRICE];
 type UnlockValue = CreateOrderFormFields[typeof FIELD_COF_UNLOCK];
 type SecurityDepositValue = CreateOrderFormFields[typeof FIELD_COF_SECURITY_DEPOSIT];
-*/
 
 interface CreateOrderFormProps {
     type: OrderType;
@@ -47,8 +44,14 @@ const initialValues: CreateOrderFormFields = {
 };
 
 const validationSchema = Yup.object().shape({
-    [FIELD_COF_TOKEN]: Yup.string().required('Please select a token to trade.'),
+    [FIELD_COF_TOKEN]: Yup.string().required('Token is required.'),
     [FIELD_COF_TOKEN_CONTRACT]: Yup.string().required('Token contract address is required.'),
+    [FIELD_COF_QUANTITY]: Yup.string().required('Token quantity is required.'),
+    [FIELD_COF_PRICE]: Yup.string().required('Token price is required.'),
+    [FIELD_COF_UNLOCK]: Yup.string().required('Token unlock amount is required.'),
+    [FIELD_COF_SECURITY_DEPOSIT]: Yup.number()
+        .required('Security deposit amount is required.')
+        .min(0, 'Number should be greater than 0.'),
 });
 
 const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
@@ -96,15 +99,46 @@ const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
             </div>
 
             <div className="u-margin-bottom">
-                <Input label="Price (USD)" min={0} placeholder="Price" type="number" />
+                <FormInput<PriceValue>
+                    id={FIELD_COF_PRICE}
+                    name={FIELD_COF_PRICE}
+                    label="Price (USD)"
+                    min={0}
+                    step="any"
+                    placeholder="Price"
+                    type="number"
+                    toFormValue={(value) => value}
+                    fromFormValue={(value) => value}
+                />
             </div>
 
             <div className="u-margin-bottom">
-                <Input label="Unlock (%)" min={0} max={100} placeholder="Unlock" type="number" />
+                <FormInput<UnlockValue>
+                    id={FIELD_COF_UNLOCK}
+                    name={FIELD_COF_UNLOCK}
+                    label="Unlock (%)"
+                    min={0}
+                    max={100}
+                    step="any"
+                    placeholder="Unlock"
+                    type="number"
+                    toFormValue={(value) => value}
+                    fromFormValue={(value) => value}
+                />
             </div>
 
             <div className="u-margin-bottom-large">
-                <Input label="Security deposit (USD)" min={0} placeholder="Security deposit" type="number" />
+                <FormInput<SecurityDepositValue>
+                    id={FIELD_COF_SECURITY_DEPOSIT}
+                    name={FIELD_COF_SECURITY_DEPOSIT}
+                    label="Security deposit (USD)"
+                    min={0}
+                    step="any"
+                    placeholder="Security deposit"
+                    type="number"
+                    toFormValue={(value) => value}
+                    fromFormValue={(value) => value}
+                />
             </div>
 
             <div className="u-text-center">
