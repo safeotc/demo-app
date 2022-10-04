@@ -10,10 +10,11 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     iconOnlyOn?: ScreenSize[];
     inlineOnMobile?: boolean;
     addChildrenWithoutWrapping?: boolean;
+    loading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ children, icon, iconOnly, iconOnlyOn, inlineOnMobile, addChildrenWithoutWrapping, ...props }, ref) => {
+    ({ children, icon, iconOnly, iconOnlyOn, inlineOnMobile, addChildrenWithoutWrapping, loading, ...props }, ref) => {
         const propsClasses = props?.className || '';
         const buttonClasses = cn(
             'c-button',

@@ -2,7 +2,9 @@
   //@include short-shadow();
   @include border-radius();
   @include focus-outline();
-  @include short-transition(color border-color background-color outline);
+  @include short-transition(
+    color border-color background-color outline opacity
+  );
   color: var(--button-neutral);
   background: transparent;
   padding: $button-tb-padding $button-lr-padding;

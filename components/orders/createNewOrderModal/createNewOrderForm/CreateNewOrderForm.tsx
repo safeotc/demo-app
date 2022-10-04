@@ -1,6 +1,4 @@
 import { OrderType } from '../../../../models/Order';
-import PrimaryButton from '../../../forms/buttons/PrimaryButton';
-import SecondaryButton from '../../../forms/buttons/SecondaryButton';
 import Form from '../../../forms/Form';
 import FormSelect from '../../../forms/formSelect/FormSelect';
 import FormInput from '../../../forms/formInput/FormInput';
@@ -18,6 +16,8 @@ import useCreateNewOrderForm, {
     TokenValue,
     UnlockValue,
 } from './useCreateNewOrderForm';
+import FormSubmitButton from '../../../forms/buttons/FormSubmitButton';
+import FormResetButton from '../../../forms/buttons/FormResetButton';
 
 interface CreateOrderFormProps {
     type: OrderType;
@@ -105,8 +105,8 @@ const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
             </div>
 
             <div className="u-text-center">
-                <PrimaryButton type="submit">Create buy order</PrimaryButton>
-                <SecondaryButton type="reset">Clear fields</SecondaryButton>
+                <FormSubmitButton>Create buy order</FormSubmitButton>
+                <FormResetButton>Clear fields</FormResetButton>
             </div>
         </Form>
     );
