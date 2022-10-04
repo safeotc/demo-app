@@ -3,6 +3,7 @@ import cn from 'classnames';
 import { ScreenSize } from '../../../common/types/screen';
 import ButtonText from './ButtonText';
 import { getResponsiveClassnames } from '../../../common/helpers/classnames';
+import FlatIcon from '../../icons/FlatIcon';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     icon?: JSX.Element;
@@ -25,13 +26,23 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 'c-button--icon-only': !!iconOnly,
             }
         );
+        const buttonContentClasses = cn({
+            'c-button__content': true,
+            'c-button__content--loading': !!loading,
+        });
 
         return (
             <button {...props} className={buttonClasses} ref={ref}>
-                <span className="c-button__content">
+                <span className={buttonContentClasses}>
                     {!!icon && <span className="c-button__icon">{icon}</span>}
                     {!!children && (!!addChildrenWithoutWrapping ? children : <ButtonText>{children}</ButtonText>)}
                 </span>
+
+                {!!loading && (
+                    <span className="c-button__loading">
+                        <FlatIcon icon="spinner" />
+                    </span>
+                )}
             </button>
         );
     }

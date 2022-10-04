@@ -92,7 +92,7 @@ const createOnSubmit =
     async (values, { setSubmitting }) => {
         console.log('submitting');
 
-        await delay(2000);
+        await delay(4000);
         setSubmitting(false);
 
         console.log('done', type, values);

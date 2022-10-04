@@ -105,7 +105,7 @@ const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
             </div>
 
             <div className="u-text-center">
-                <FormSubmitButton>Create buy order</FormSubmitButton>
+                <FormSubmitButton>Create {type} order</FormSubmitButton>
                 <FormResetButton>Clear fields</FormResetButton>
             </div>
         </Form>
