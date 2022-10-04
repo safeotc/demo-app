@@ -12,9 +12,18 @@ interface FormSelectProps<FormValue> extends Omit<SelectProps, 'name' | 'value' 
 
 const FormSelect = <FormValue extends unknown>(props: FormSelectProps<FormValue>) => {
     const { name, toFormValue, fromFormValue } = props;
-    const { value, onChange, onBlur, errorMessage } = useFormSelect(name, toFormValue, fromFormValue);
+    const { value, onChange, onBlur, errorMessage, isSubmitting } = useFormSelect(name, toFormValue, fromFormValue);
 
-    return <Select {...props} value={value} onChange={onChange} onBlur={onBlur} errorMessage={errorMessage} />;
+    return (
+        <Select
+            {...props}
+            value={value}
+            disabled={isSubmitting}
+            onChange={onChange}
+            onBlur={onBlur}
+            errorMessage={errorMessage}
+        />
+    );
 };
 
 export default FormSelect;

@@ -12,7 +12,7 @@ interface FormInputProps<FormValue> extends InputProps {
 
 const FormInput = <FormValue extends unknown = string>(props: FormInputProps<FormValue>) => {
     const { name, toFormValue, fromFormValue, ...inputProps } = props;
-    const { value, onChange, onBlur, errorMessage } = useFormInput(name, toFormValue, fromFormValue);
+    const { value, onChange, onBlur, errorMessage, isSubmitting } = useFormInput(name, toFormValue, fromFormValue);
 
     return (
         <Input
@@ -21,6 +21,7 @@ const FormInput = <FormValue extends unknown = string>(props: FormInputProps<For
             value={value}
             onChange={onChange}
             onBlur={onBlur}
+            disabled={isSubmitting}
             errorMessage={errorMessage}
         />
     );

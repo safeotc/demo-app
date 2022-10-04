@@ -1,4 +1,4 @@
-import { useField } from 'formik';
+import { useField, useFormikContext } from 'formik';
 import { NullableSelectValue } from '../Select';
 import { FromSelectFormValue, ToSelectFormValue } from './FormSelect';
 
@@ -9,6 +9,7 @@ const useFormSelect = <FormValue>(
     toFormValue: ToSelectFormValue<FormValue>,
     fromFormValue: FromSelectFormValue<FormValue>
 ) => {
+    const { isSubmitting } = useFormikContext();
     const [field, meta, helpers] = useField<FormValue>(name);
     const { value: fieldValue, onBlur } = field;
     const { error, touched } = meta;
@@ -18,7 +19,7 @@ const useFormSelect = <FormValue>(
     const onChange: OnSelectValueChange = (newValue) => setValue(toFormValue(newValue));
     const errorMessage = !!error && touched ? error : undefined;
 
-    return { value, errorMessage, touched, onChange, onBlur };
+    return { value, errorMessage, touched, onChange, onBlur, isSubmitting };
 };
 
 export default useFormSelect;
