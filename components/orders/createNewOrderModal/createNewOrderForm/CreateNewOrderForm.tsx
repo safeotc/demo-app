@@ -1,66 +1,34 @@
-import { CURRENCIES } from '../../../common/constants/currencies';
-import { OrderType } from '../../../models/Order';
-import PrimaryButton from '../../forms/buttons/PrimaryButton';
-import SecondaryButton from '../../forms/buttons/SecondaryButton';
-import Form from '../../forms/Form';
-import FormSelect from '../../forms/formSelect/FormSelect';
-import FormInput from '../../forms/formInput/FormInput';
-import * as Yup from 'yup';
-
-const FIELD_COF_TOKEN = 'cof-token';
-const FIELD_COF_TOKEN_CONTRACT = 'cof-token-contract';
-const FIELD_COF_QUANTITY = 'cof-quantity';
-const FIELD_COF_PRICE = 'cof-price';
-const FIELD_COF_UNLOCK = 'cof-unlock';
-const FIELD_COF_SECURITY_DEPOSIT = 'cof-security-deposit';
-
-interface CreateOrderFormFields {
-    [FIELD_COF_TOKEN]: string;
-    [FIELD_COF_TOKEN_CONTRACT]: string;
-    [FIELD_COF_QUANTITY]: string;
-    [FIELD_COF_PRICE]: string;
-    [FIELD_COF_UNLOCK]: string;
-    [FIELD_COF_SECURITY_DEPOSIT]: string;
-}
-
-type TokenValue = CreateOrderFormFields[typeof FIELD_COF_TOKEN];
-type TokenContractValue = CreateOrderFormFields[typeof FIELD_COF_TOKEN_CONTRACT];
-type QuantityValue = CreateOrderFormFields[typeof FIELD_COF_QUANTITY];
-type PriceValue = CreateOrderFormFields[typeof FIELD_COF_PRICE];
-type UnlockValue = CreateOrderFormFields[typeof FIELD_COF_UNLOCK];
-type SecurityDepositValue = CreateOrderFormFields[typeof FIELD_COF_SECURITY_DEPOSIT];
+import { CURRENCIES } from '../../../../common/constants/currencies';
+import { OrderType } from '../../../../models/Order';
+import PrimaryButton from '../../../forms/buttons/PrimaryButton';
+import SecondaryButton from '../../../forms/buttons/SecondaryButton';
+import Form from '../../../forms/Form';
+import FormSelect from '../../../forms/formSelect/FormSelect';
+import FormInput from '../../../forms/formInput/FormInput';
+import useCreateNewOrderForm, {
+    FIELD_COF_PRICE,
+    FIELD_COF_QUANTITY,
+    FIELD_COF_SECURITY_DEPOSIT,
+    FIELD_COF_TOKEN,
+    FIELD_COF_TOKEN_CONTRACT,
+    FIELD_COF_UNLOCK,
+    PriceValue,
+    QuantityValue,
+    SecurityDepositValue,
+    TokenContractValue,
+    TokenValue,
+    UnlockValue,
+} from './useCreateNewOrderForm';
 
 interface CreateOrderFormProps {
     type: OrderType;
 }
 
-const initialValues: CreateOrderFormFields = {
-    [FIELD_COF_TOKEN]: '',
-    [FIELD_COF_TOKEN_CONTRACT]: '',
-    [FIELD_COF_QUANTITY]: '',
-    [FIELD_COF_PRICE]: '',
-    [FIELD_COF_UNLOCK]: '',
-    [FIELD_COF_SECURITY_DEPOSIT]: '',
-};
-
-const validationSchema = Yup.object().shape({
-    [FIELD_COF_TOKEN]: Yup.string().required('Token is required.'),
-    [FIELD_COF_TOKEN_CONTRACT]: Yup.string().required('Token contract address is required.'),
-    [FIELD_COF_QUANTITY]: Yup.string().required('Token quantity is required.'),
-    [FIELD_COF_PRICE]: Yup.string().required('Token price is required.'),
-    [FIELD_COF_UNLOCK]: Yup.string().required('Token unlock amount is required.'),
-    [FIELD_COF_SECURITY_DEPOSIT]: Yup.number()
-        .required('Security deposit amount is required.')
-        .min(0, 'Number should be greater than 0.'),
-});
-
 const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
+    const { initialValues, validationSchema, numberInputTransformer, onSubmit } = useCreateNewOrderForm(type);
+
     return (
-        <Form
-            initialValues={initialValues}
-            onSubmit={(values) => console.log('submitting', values)}
-            validationSchema={validationSchema}
-        >
+        <Form initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
             <div className="u-margin-bottom">
                 <FormSelect<TokenValue>
                     name={FIELD_COF_TOKEN}
@@ -93,8 +61,7 @@ const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
                     step="any"
                     placeholder="Quantity"
                     type="number"
-                    toFormValue={(value) => value}
-                    fromFormValue={(value) => value}
+                    {...numberInputTransformer}
                 />
             </div>
 
@@ -107,8 +74,7 @@ const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
                     step="any"
                     placeholder="Price"
                     type="number"
-                    toFormValue={(value) => value}
-                    fromFormValue={(value) => value}
+                    {...numberInputTransformer}
                 />
             </div>
 
@@ -122,8 +88,7 @@ const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
                     step="any"
                     placeholder="Unlock"
                     type="number"
-                    toFormValue={(value) => value}
-                    fromFormValue={(value) => value}
+                    {...numberInputTransformer}
                 />
             </div>
 
@@ -136,8 +101,7 @@ const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
                     step="any"
                     placeholder="Security deposit"
                     type="number"
-                    toFormValue={(value) => value}
-                    fromFormValue={(value) => value}
+                    {...numberInputTransformer}
                 />
             </div>
 

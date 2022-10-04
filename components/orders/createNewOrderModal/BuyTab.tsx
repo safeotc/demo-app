@@ -1,6 +1,6 @@
 import Alert from '../../alerts/Alert';
 import FlatIcon from '../../icons/FlatIcon';
-import CreateNewOrderForm from './CreateNewOrderForm';
+import CreateNewOrderForm from './createNewOrderForm/CreateNewOrderForm';
 
 const BuyTab = () => {
     return (

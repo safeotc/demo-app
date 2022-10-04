@@ -1,10 +1,12 @@
 import React from 'react';
-import { Formik, Form as FormikForm, FormikValues } from 'formik';
+import { Formik, Form as FormikForm, FormikValues, FormikHelpers } from 'formik';
+
+export type OnSubmit<Values> = (values: Values, formikHelpers: FormikHelpers<Values>) => void | Promise<any>;
 
 interface FormProps<InitialValues> {
     children: React.ReactNode;
     initialValues: InitialValues;
-    onSubmit: (values: InitialValues) => void;
+    onSubmit: OnSubmit<InitialValues>;
     validationSchema: object;
 }
 
