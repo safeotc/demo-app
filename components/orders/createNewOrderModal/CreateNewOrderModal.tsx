@@ -9,7 +9,8 @@ import useCreateNewOrderModal from './useCreateNewOrderModal';
 interface CreateNewOrderModalProps extends Pick<ModalProps, 'isOpened' | 'onCloseRequest'> {}
 
 const CreateNewOrderModal = (props: CreateNewOrderModalProps) => {
-    const { isTabActive, changeTab } = useCreateNewOrderModal();
+    const { onCloseRequest } = props;
+    const { isTabActive, changeTab, showResultAndCloseModalOnSuccess } = useCreateNewOrderModal(onCloseRequest);
 
     return (
         <Modal
@@ -38,11 +39,11 @@ const CreateNewOrderModal = (props: CreateNewOrderModalProps) => {
 
                     <div className="c-modal-container__form c-modal-create-new-order__form">
                         <TabContent isOpened={isTabActive('buy')} onOpen={updateFocusables}>
-                            <BuyTab />
+                            <BuyTab onProcessed={showResultAndCloseModalOnSuccess} />
                         </TabContent>
 
                         <TabContent isOpened={isTabActive('sell')} onOpen={updateFocusables}>
-                            <SellTab />
+                            <SellTab onProcessed={showResultAndCloseModalOnSuccess} />
                         </TabContent>
                     </div>
                 </div>

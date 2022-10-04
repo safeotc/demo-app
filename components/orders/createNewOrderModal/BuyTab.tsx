@@ -1,8 +1,12 @@
 import Alert from '../../alerts/Alert';
 import FlatIcon from '../../icons/FlatIcon';
-import CreateNewOrderForm from './createNewOrderForm/CreateNewOrderForm';
+import CreateNewOrderForm, { OnProcessed } from './createNewOrderForm/CreateNewOrderForm';
 
-const BuyTab = () => {
+interface BuyTabProps {
+    onProcessed: OnProcessed;
+}
+
+const BuyTab = ({ onProcessed }: BuyTabProps) => {
     return (
         <>
             <div className="u-margin-bottom">
@@ -15,7 +19,7 @@ const BuyTab = () => {
                 />
             </div>
 
-            <CreateNewOrderForm type="buy" />
+            <CreateNewOrderForm type="buy" onProcessed={onProcessed} />
         </>
     );
 };

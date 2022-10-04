@@ -19,12 +19,18 @@ import useCreateNewOrderForm, {
 import FormSubmitButton from '../../../forms/buttons/FormSubmitButton';
 import FormResetButton from '../../../forms/buttons/FormResetButton';
 
+export type OnProcessed = (success: boolean) => void;
+
 interface CreateOrderFormProps {
     type: OrderType;
+    onProcessed: OnProcessed;
 }
 
-const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
-    const { initialValues, validationSchema, numberInputTransformer, options, onSubmit } = useCreateNewOrderForm(type);
+const CreateNewOrderForm = ({ type, onProcessed }: CreateOrderFormProps) => {
+    const { initialValues, validationSchema, numberInputTransformer, options, onSubmit } = useCreateNewOrderForm(
+        type,
+        onProcessed
+    );
 
     return (
         <Form initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>

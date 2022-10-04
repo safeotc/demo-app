@@ -1,8 +1,12 @@
 import Alert from '../../alerts/Alert';
 import FlatIcon from '../../icons/FlatIcon';
-import CreateNewOrderForm from './createNewOrderForm/CreateNewOrderForm';
+import CreateNewOrderForm, { OnProcessed } from './createNewOrderForm/CreateNewOrderForm';
 
-const SellTab = () => {
+interface SellTabProps {
+    onProcessed: OnProcessed;
+}
+
+const SellTab = ({ onProcessed }: SellTabProps) => {
     return (
         <>
             <div className="u-margin-bottom">
@@ -14,7 +18,7 @@ const SellTab = () => {
                     id="info-alert"
                 />
             </div>
-            <CreateNewOrderForm type="sell" />
+            <CreateNewOrderForm type="sell" onProcessed={onProcessed} />
         </>
     );
 };

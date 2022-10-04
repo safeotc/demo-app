@@ -3,6 +3,7 @@ import { CURRENCIES } from '../../../../common/constants/currencies';
 import { delay } from '../../../../common/helpers/promises';
 import { OrderType } from '../../../../models/Order';
 import { OnSubmit } from '../../../forms/Form';
+import { OnProcessed } from './CreateNewOrderForm';
 
 type InvalidNumber = undefined;
 type EmptyNumber = null;
@@ -87,21 +88,18 @@ const numberInputTransformer = {
     fromFormValue: (value: NumberInput): string => value?.toString() || '',
 };
 
-const createOnSubmit =
-    (type: OrderType): OnSubmit<CreateOrderFormFields> =>
-    async (values, { setSubmitting }) => {
+const options = CURRENCIES.map((c) => ({ value: c.symbol, label: c.name, icon: c.icon }));
+
+const useCreateNewOrderForm = (type: OrderType, onProcessed: OnProcessed) => {
+    const onSubmit: OnSubmit<CreateOrderFormFields> = async (values, { setSubmitting }) => {
         console.log('submitting');
 
         await delay(4000);
         setSubmitting(false);
+        onProcessed(true);
 
         console.log('done', type, values);
     };
-
-const options = CURRENCIES.map((c) => ({ value: c.symbol, label: c.name, icon: c.icon }));
-
-const useCreateNewOrderForm = (type: OrderType) => {
-    const onSubmit = createOnSubmit(type);
 
     return {
         initialValues,
