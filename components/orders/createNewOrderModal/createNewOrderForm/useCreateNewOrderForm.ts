@@ -98,6 +98,8 @@ const createOnSubmit =
         console.log('done', type, values);
     };
 
+const options = CURRENCIES.map((c) => ({ value: c.symbol, label: c.name, icon: c.icon }));
+
 const useCreateNewOrderForm = (type: OrderType) => {
     const onSubmit = createOnSubmit(type);
 
@@ -105,6 +107,7 @@ const useCreateNewOrderForm = (type: OrderType) => {
         initialValues,
         validationSchema,
         numberInputTransformer,
+        options,
         onSubmit,
     };
 };

@@ -1,4 +1,3 @@
-import { CURRENCIES } from '../../../../common/constants/currencies';
 import { OrderType } from '../../../../models/Order';
 import PrimaryButton from '../../../forms/buttons/PrimaryButton';
 import SecondaryButton from '../../../forms/buttons/SecondaryButton';
@@ -25,7 +24,7 @@ interface CreateOrderFormProps {
 }
 
 const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
-    const { initialValues, validationSchema, numberInputTransformer, onSubmit } = useCreateNewOrderForm(type);
+    const { initialValues, validationSchema, numberInputTransformer, options, onSubmit } = useCreateNewOrderForm(type);
 
     return (
         <Form initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
@@ -35,7 +34,7 @@ const CreateNewOrderForm = ({ type }: CreateOrderFormProps) => {
                     id={FIELD_COF_TOKEN}
                     label="Token"
                     placeholder="Select a token"
-                    options={CURRENCIES.map((c) => ({ value: c.symbol, label: c.name, icon: c.icon }))}
+                    options={options}
                     toFormValue={(value) => value || ''}
                     fromFormValue={(value) => (!!value ? value : '')}
                 />
