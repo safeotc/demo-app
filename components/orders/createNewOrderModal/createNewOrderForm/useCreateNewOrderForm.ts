@@ -7,6 +7,7 @@ import { v4 as uuidV4 } from 'uuid';
 import OrdersRepository from '../../../../repositories/OrdersRepository';
 import { useContext } from 'react';
 import { WalletContext } from '../../../wallet/WalletProvider';
+import { getSecurityDeposit } from '../securityDepositField/useSecurityDepositField';
 
 type InvalidNumber = undefined;
 type EmptyNumber = null;
@@ -18,35 +19,23 @@ const NUMBER = {
 };
 
 export const FIELD_COF_TOKEN = 'cof-token';
-export const FIELD_COF_TOKEN_CONTRACT = 'cof-token-contract';
 export const FIELD_COF_QUANTITY = 'cof-quantity';
 export const FIELD_COF_PRICE = 'cof-price';
-export const FIELD_COF_UNLOCK = 'cof-unlock';
-export const FIELD_COF_SECURITY_DEPOSIT = 'cof-security-deposit';
 
 interface CreateOrderFormFields {
     [FIELD_COF_TOKEN]: string;
-    [FIELD_COF_TOKEN_CONTRACT]: string;
     [FIELD_COF_QUANTITY]: NumberInput;
     [FIELD_COF_PRICE]: NumberInput;
-    [FIELD_COF_UNLOCK]: NumberInput;
-    [FIELD_COF_SECURITY_DEPOSIT]: NumberInput;
 }
 
 export type TokenValue = CreateOrderFormFields[typeof FIELD_COF_TOKEN];
-export type TokenContractValue = CreateOrderFormFields[typeof FIELD_COF_TOKEN_CONTRACT];
 export type QuantityValue = CreateOrderFormFields[typeof FIELD_COF_QUANTITY];
 export type PriceValue = CreateOrderFormFields[typeof FIELD_COF_PRICE];
-export type UnlockValue = CreateOrderFormFields[typeof FIELD_COF_UNLOCK];
-export type SecurityDepositValue = CreateOrderFormFields[typeof FIELD_COF_SECURITY_DEPOSIT];
 
 const initialValues: CreateOrderFormFields = {
     [FIELD_COF_TOKEN]: '',
-    [FIELD_COF_TOKEN_CONTRACT]: '',
     [FIELD_COF_QUANTITY]: null,
     [FIELD_COF_PRICE]: null,
-    [FIELD_COF_UNLOCK]: null,
-    [FIELD_COF_SECURITY_DEPOSIT]: null,
 };
 
 const validationSchema = Yup.object().shape({
@@ -57,9 +46,6 @@ const validationSchema = Yup.object().shape({
             CURRENCIES.map((c) => c.symbol),
             'Select a valid option.'
         ),
-    [FIELD_COF_TOKEN_CONTRACT]: Yup.string()
-        .required('Token contract address is required.')
-        .matches(/^0x[a-fA-F0-9]{40}$/g, 'Enter a valid contract address.'),
     [FIELD_COF_QUANTITY]: Yup.number()
         .transform((val, _) => (isNaN(val) ? undefined : val))
         .required('Token quantity is required.')
@@ -67,15 +53,6 @@ const validationSchema = Yup.object().shape({
     [FIELD_COF_PRICE]: Yup.number()
         .transform((val, _) => (isNaN(val) ? undefined : val))
         .required('Token price is required.')
-        .moreThan(0, 'Number should be greater than 0.'),
-    [FIELD_COF_UNLOCK]: Yup.number()
-        .transform((val, _) => (isNaN(val) ? undefined : val))
-        .required('Token unlock amount is required.')
-        .moreThan(0, 'Number should be greater than 0.')
-        .max(100, 'Number should not be bigger than 100.'),
-    [FIELD_COF_SECURITY_DEPOSIT]: Yup.number()
-        .transform((val, _) => (isNaN(val) ? undefined : val))
-        .required('Security deposit amount is required.')
         .moreThan(0, 'Number should be greater than 0.'),
 });
 
@@ -97,6 +74,10 @@ const useCreateNewOrderForm = (type: OrderType, onProcessed: OnProcessed) => {
     const { address: makerWalletAddress } = useContext(WalletContext);
 
     const onSubmit: OnSubmit<CreateOrderFormFields> = async (values, { setSubmitting }) => {
+        const price = values[FIELD_COF_PRICE] as number;
+        const quantity = values[FIELD_COF_QUANTITY] as number;
+        const securityDeposit = getSecurityDeposit(type, price, quantity);
+
         const order: Order = {
             asset: values[FIELD_COF_TOKEN],
             buyer: type === 'buy' ? makerWalletAddress : null,
@@ -104,15 +85,14 @@ const useCreateNewOrderForm = (type: OrderType, onProcessed: OnProcessed) => {
             type,
             currency: 'USDT',
             id: uuidV4(),
-            price: values[FIELD_COF_PRICE] as number,
-            quantity: values[FIELD_COF_QUANTITY] as number,
-            securityDeposit: values[FIELD_COF_SECURITY_DEPOSIT] as number,
+            price,
+            quantity,
+            securityDeposit,
             status: 'open',
         };
+
         await OrdersRepository.addOrder(order);
-
         setSubmitting(false);
-
         onProcessed(true);
     };
 

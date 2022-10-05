@@ -5,19 +5,14 @@ import FormInput from '../../../forms/formInput/FormInput';
 import useCreateNewOrderForm, {
     FIELD_COF_PRICE,
     FIELD_COF_QUANTITY,
-    FIELD_COF_SECURITY_DEPOSIT,
     FIELD_COF_TOKEN,
-    FIELD_COF_TOKEN_CONTRACT,
-    FIELD_COF_UNLOCK,
     PriceValue,
     QuantityValue,
-    SecurityDepositValue,
-    TokenContractValue,
     TokenValue,
-    UnlockValue,
 } from './useCreateNewOrderForm';
 import FormSubmitButton from '../../../forms/buttons/FormSubmitButton';
 import FormResetButton from '../../../forms/buttons/FormResetButton';
+import SecurityDepositField from '../securityDepositField/SecurityDepositField';
 
 export type OnProcessed = (success: boolean) => void;
 
@@ -43,17 +38,6 @@ const CreateNewOrderForm = ({ type, onProcessed }: CreateOrderFormProps) => {
                     options={options}
                     toFormValue={(value) => value || ''}
                     fromFormValue={(value) => (!!value ? value : '')}
-                />
-            </div>
-
-            <div className="u-margin-bottom">
-                <FormInput<TokenContractValue>
-                    label="Token contract"
-                    id={FIELD_COF_TOKEN_CONTRACT}
-                    name={FIELD_COF_TOKEN_CONTRACT}
-                    placeholder="0x..."
-                    toFormValue={(value) => value}
-                    fromFormValue={(value) => value}
                 />
             </div>
 
@@ -84,31 +68,10 @@ const CreateNewOrderForm = ({ type, onProcessed }: CreateOrderFormProps) => {
             </div>
 
             <div className="u-margin-bottom">
-                <FormInput<UnlockValue>
-                    id={FIELD_COF_UNLOCK}
-                    name={FIELD_COF_UNLOCK}
-                    label="Unlock (%)"
-                    min={0}
-                    max={100}
-                    step="any"
-                    placeholder="Unlock"
-                    type="number"
-                    {...numberInputTransformer}
-                />
+                <SecurityDepositField type={type} />
             </div>
 
-            <div className="u-margin-bottom-large">
-                <FormInput<SecurityDepositValue>
-                    id={FIELD_COF_SECURITY_DEPOSIT}
-                    name={FIELD_COF_SECURITY_DEPOSIT}
-                    label="Security deposit (USD)"
-                    min={0}
-                    step="any"
-                    placeholder="Security deposit"
-                    type="number"
-                    {...numberInputTransformer}
-                />
-            </div>
+            <div className="u-margin-bottom-large"></div>
 
             <div className="u-text-center">
                 <FormSubmitButton>Create {type} order</FormSubmitButton>
@@ -117,5 +80,4 @@ const CreateNewOrderForm = ({ type, onProcessed }: CreateOrderFormProps) => {
         </Form>
     );
 };
-
 export default CreateNewOrderForm;
