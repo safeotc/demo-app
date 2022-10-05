@@ -1,9 +1,12 @@
 import * as Yup from 'yup';
 import { CURRENCIES } from '../../../../common/constants/currencies';
-import { delay } from '../../../../common/helpers/promises';
-import { OrderType } from '../../../../models/Order';
+import Order, { OrderType } from '../../../../models/Order';
 import { OnSubmit } from '../../../forms/Form';
 import { OnProcessed } from './CreateNewOrderForm';
+import { v4 as uuidV4 } from 'uuid';
+import OrdersRepository from '../../../../repositories/OrdersRepository';
+import { useContext } from 'react';
+import { WalletContext } from '../../../wallet/WalletProvider';
 
 type InvalidNumber = undefined;
 type EmptyNumber = null;
@@ -91,14 +94,26 @@ const numberInputTransformer = {
 const options = CURRENCIES.map((c) => ({ value: c.symbol, label: c.name, icon: c.icon }));
 
 const useCreateNewOrderForm = (type: OrderType, onProcessed: OnProcessed) => {
+    const { address: makerWalletAddress } = useContext(WalletContext);
+
     const onSubmit: OnSubmit<CreateOrderFormFields> = async (values, { setSubmitting }) => {
-        console.log('submitting');
+        const order: Order = {
+            asset: values[FIELD_COF_TOKEN],
+            buyer: type === 'buy' ? makerWalletAddress : null,
+            seller: type === 'sell' ? makerWalletAddress : null,
+            type,
+            currency: 'USDT',
+            id: uuidV4(),
+            price: values[FIELD_COF_PRICE] as number,
+            quantity: values[FIELD_COF_QUANTITY] as number,
+            securityDeposit: values[FIELD_COF_SECURITY_DEPOSIT] as number,
+            status: 'open',
+        };
+        await OrdersRepository.addOrder(order);
 
-        await delay(4000);
         setSubmitting(false);
-        onProcessed(true);
 
-        console.log('done', type, values);
+        onProcessed(true);
     };
 
     return {

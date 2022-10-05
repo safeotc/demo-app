@@ -12,7 +12,6 @@ interface Order {
     buyer: string | null;
     seller: string | null;
     status: OrderStatus;
-    //createdOn: number;
 }
 
 export default Order;

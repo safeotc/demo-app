@@ -2,18 +2,49 @@ import { delay } from '../common/helpers/promises';
 import Order from '../models/Order';
 import { v4 as uuidV4 } from 'uuid';
 
+export type OrdersUpdatedCallback = (orders: Order[]) => void;
+
 interface IOrdersRepository {
+    addOrder: (order: Order) => Promise<void>;
     getOpenOrders: () => Promise<Order[]>;
     getActiveOrders: () => Promise<Order[]>;
     getCompletedOrders: () => Promise<Order[]>;
     getOrdersBy: (address: string) => Promise<Order[]>;
+    subscribeToOrdersUpdate: (callback: (orders: Order[]) => void) => string;
+    unsubscribeFromOrdersUpdate: (subscriptionId: string) => void;
 }
 
 class OrdersRepository implements IOrdersRepository {
     orders: Order[];
+    subscriptions: [OrdersUpdatedCallback, string][];
 
     constructor() {
         this.orders = this.getInitialOrdersList();
+        this.subscriptions = [];
+    }
+
+    async addOrder(order: Order) {
+        await delay(2000);
+        this.orders.unshift(order);
+        this.triggerSubscriptions();
+    }
+
+    triggerSubscriptions() {
+        this.subscriptions.forEach((s) => s[0](this.orders));
+    }
+
+    subscribeToOrdersUpdate(callback: OrdersUpdatedCallback) {
+        const subscriptionId = uuidV4();
+        this.subscriptions.push([callback, subscriptionId]);
+        return subscriptionId;
+    }
+
+    unsubscribeFromOrdersUpdate(subscriptionId: string) {
+        const subscriptionIdx = this.subscriptions.findIndex((s) => s[1] === subscriptionId);
+        if (subscriptionIdx < 0) {
+            return;
+        }
+        this.subscriptions.splice(subscriptionIdx, 1);
     }
 
     getInitialOrdersList() {
@@ -26,7 +57,7 @@ class OrdersRepository implements IOrdersRepository {
                 price: 66.32,
                 quantity: 1000,
                 securityDeposit: 20000,
-                buyer: null,
+                buyer: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 seller: null,
                 status: 'open',
             },
@@ -39,7 +70,7 @@ class OrdersRepository implements IOrdersRepository {
                 quantity: 500,
                 securityDeposit: 340,
                 buyer: null,
-                seller: null,
+                seller: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 status: 'open',
             },
             {
@@ -50,7 +81,7 @@ class OrdersRepository implements IOrdersRepository {
                 price: 123.2344,
                 quantity: 300,
                 securityDeposit: 2500,
-                buyer: null,
+                buyer: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 seller: null,
                 status: 'open',
             },
@@ -62,7 +93,7 @@ class OrdersRepository implements IOrdersRepository {
                 price: 66.32,
                 quantity: 1000,
                 securityDeposit: 20000,
-                buyer: null,
+                buyer: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 seller: null,
                 status: 'open',
             },
@@ -75,7 +106,7 @@ class OrdersRepository implements IOrdersRepository {
                 quantity: 500,
                 securityDeposit: 340,
                 buyer: null,
-                seller: null,
+                seller: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 status: 'open',
             },
             {
@@ -86,7 +117,7 @@ class OrdersRepository implements IOrdersRepository {
                 price: 123.2344,
                 quantity: 300,
                 securityDeposit: 2500,
-                buyer: null,
+                buyer: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 seller: null,
                 status: 'open',
             },
@@ -98,7 +129,7 @@ class OrdersRepository implements IOrdersRepository {
                 price: 66.32,
                 quantity: 1000,
                 securityDeposit: 20000,
-                buyer: null,
+                buyer: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 seller: null,
                 status: 'open',
             },
@@ -111,7 +142,7 @@ class OrdersRepository implements IOrdersRepository {
                 quantity: 500,
                 securityDeposit: 340,
                 buyer: null,
-                seller: null,
+                seller: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 status: 'open',
             },
             {
@@ -122,7 +153,7 @@ class OrdersRepository implements IOrdersRepository {
                 price: 123.2344,
                 quantity: 300,
                 securityDeposit: 2500,
-                buyer: null,
+                buyer: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 seller: null,
                 status: 'open',
             },
@@ -134,7 +165,7 @@ class OrdersRepository implements IOrdersRepository {
                 price: 66.32,
                 quantity: 1000,
                 securityDeposit: 20000,
-                buyer: null,
+                buyer: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 seller: null,
                 status: 'open',
             },
@@ -147,7 +178,7 @@ class OrdersRepository implements IOrdersRepository {
                 quantity: 500,
                 securityDeposit: 340,
                 buyer: null,
-                seller: null,
+                seller: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 status: 'open',
             },
             {
@@ -158,7 +189,7 @@ class OrdersRepository implements IOrdersRepository {
                 price: 123.2344,
                 quantity: 300,
                 securityDeposit: 2500,
-                buyer: null,
+                buyer: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 seller: null,
                 status: 'open',
             },

@@ -8,6 +8,14 @@ interface OpenOrdersTableProps {
 }
 
 const OpenOrdersTable = ({ orders }: OpenOrdersTableProps) => {
+    const getMaker = (order: Order) => {
+        let maker = (order.type === 'buy' ? order.buyer : order.seller) || '';
+        if (maker.length > 8) {
+            maker = `${maker.substring(0, 6)}...${maker.substring(maker.length - 4, maker.length)}`;
+        }
+        return maker;
+    };
+
     return (
         <Table
             size="small"
@@ -19,6 +27,7 @@ const OpenOrdersTable = ({ orders }: OpenOrdersTableProps) => {
                 { textAlign: 'right', content: 'Quantity' },
                 { textAlign: 'right', content: 'Total' },
                 { textAlign: 'right', content: 'Security deposit' },
+                { textAlign: 'center', useMinPossibleWidth: true, content: 'Maker' },
             ]}
             data={orders}
             rowMapper={(order) => ({
@@ -53,6 +62,14 @@ const OpenOrdersTable = ({ orders }: OpenOrdersTableProps) => {
                     {
                         textAlign: 'right',
                         content: `${order.securityDeposit} ${order.currency}`,
+                    },
+                    {
+                        textAlign: 'center',
+                        content: (
+                            <a href="#" className="c-link">
+                                {getMaker(order)}
+                            </a>
+                        ),
                     },
                 ],
             })}
