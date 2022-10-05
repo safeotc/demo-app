@@ -1,7 +1,7 @@
 import React, { TableHTMLAttributes } from 'react';
 import cn from 'classnames';
 import Th, { ThProps } from './Th';
-import Td, { TdProps } from './Td';
+import TBody, { RowMapper } from './TBody';
 
 type TableSize = 'small';
 
@@ -10,7 +10,8 @@ interface TableProps<TRowData> extends TableHTMLAttributes<HTMLTableElement> {
     singleLineItems?: boolean;
     headerProps: ThProps[];
     data: TRowData[];
-    rowMapper: (row: TRowData) => { key: React.Key; rowProps: TdProps[] };
+    rowMapper: RowMapper<TRowData>;
+    highlightNewItems?: boolean;
 }
 
 const Table = <TRowData extends {}>({
@@ -19,6 +20,7 @@ const Table = <TRowData extends {}>({
     rowMapper,
     size,
     singleLineItems,
+    highlightNewItems,
     ...props
 }: TableProps<TRowData>) => {
     const propsClasses = props?.className || '';
@@ -37,18 +39,7 @@ const Table = <TRowData extends {}>({
                 </tr>
             </thead>
 
-            <tbody>
-                {data.map((rowData) => {
-                    const { key, rowProps } = rowMapper(rowData);
-                    return (
-                        <tr key={key}>
-                            {rowProps.map((rProps, i) => (
-                                <Td key={i} {...rProps} />
-                            ))}
-                        </tr>
-                    );
-                })}
-            </tbody>
+            <TBody data={data} rowMapper={rowMapper} useAnimations={highlightNewItems} />
         </table>
     );
 };

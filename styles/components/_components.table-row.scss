@@ -1,0 +1,21 @@
+.c-table-row {
+  @include border-radius();
+}
+
+.c-table-row--animated {
+  animation: table-row-highlight 2000ms both ease-in-out;
+
+  @keyframes table-row-highlight {
+    25% {
+      box-shadow: 0px 0px 0px 2px $color-brand-primary inset;
+    }
+
+    50% {
+      box-shadow: 0px 0px 0px 0px $color-brand-primary inset;
+    }
+
+    75% {
+      box-shadow: 0px 0px 0px 2px $color-brand-primary inset;
+    }
+  }
+}

@@ -18,10 +18,7 @@ const useOpenOrdersList = () => {
 
     // this effect triggers on mount/unmount
     useEffect(() => {
-        const onOrdersUpdated: OrdersUpdatedCallback = (orders) => {
-            console.log('new orders!', orders);
-            updateOrdersState({ orders });
-        };
+        const onOrdersUpdated: OrdersUpdatedCallback = (orders) => updateOrdersState({ orders });
         const subscriptionId = ordersRepository.subscribeToOrdersUpdate(onOrdersUpdated);
         return () => {
             ordersRepository.unsubscribeFromOrdersUpdate(subscriptionId);

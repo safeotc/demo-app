@@ -18,6 +18,7 @@ const OpenOrdersTable = ({ orders }: OpenOrdersTableProps) => {
 
     return (
         <Table
+            highlightNewItems={true}
             size="small"
             singleLineItems={true}
             headerProps={[
