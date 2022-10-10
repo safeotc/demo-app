@@ -1,5 +1,6 @@
 .c-label {
   font-weight: bold;
+  display: inline;
   @include short-transition(color);
 }
 
