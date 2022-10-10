@@ -16,16 +16,12 @@ const useOpenOrdersList = () => {
     const [{ fetchState, orders }, , updateOrdersState] = useStateWithUpdate<OrdersState>(initialOrdersState);
     const isLoading = fetchState !== 'finished';
 
-    // this effect triggers on mount/unmount
     useEffect(() => {
+        // subscribe to new orders
         const onOrdersUpdated: OrdersUpdatedCallback = (orders) => updateOrdersState({ orders });
         const subscriptionId = ordersRepository.subscribeToOrdersUpdate(onOrdersUpdated);
-        return () => {
-            ordersRepository.unsubscribeFromOrdersUpdate(subscriptionId);
-        };
-    }, [updateOrdersState]);
 
-    useEffect(() => {
+        // initial orders retrieval
         let proceed = true;
         (async () => {
             const orders = await ordersRepository.getOpenOrders();
@@ -34,6 +30,7 @@ const useOpenOrdersList = () => {
 
         return () => {
             proceed = false;
+            ordersRepository.unsubscribeFromOrdersUpdate(subscriptionId);
         };
     }, [updateOrdersState]);
 
