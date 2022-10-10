@@ -12,7 +12,6 @@ const SecurityDepositField = ({ type }: SecurityDepositFieldProps) => {
         <Input
             value={value}
             readOnly={true}
-            disabled={true}
             id="cof-security-deposit"
             label="Security deposit (USD)"
             placeholder="Security deposit"

@@ -1,23 +1,37 @@
 import React from 'react';
-import { Formik, Form as FormikForm, FormikValues, FormikHelpers } from 'formik';
+import { Formik, Form as FormikForm } from 'formik';
+import { validateHelper } from '../../common/helpers/forms';
 
-export type OnSubmit<Values> = (values: Values, formikHelpers: FormikHelpers<Values>) => void | Promise<any>;
+export type FormErrors<FormValues> = {
+    [K in keyof FormValues]?: string;
+};
 
-interface FormProps<InitialValues> {
-    children: React.ReactNode;
-    initialValues: InitialValues;
-    onSubmit: OnSubmit<InitialValues>;
-    validationSchema: object;
+interface FormHelpers {
+    setSubmitting: (isSubmitting: boolean) => void;
 }
 
-const Form = <InitialValues extends FormikValues>({
-    children,
-    initialValues,
-    onSubmit,
-    validationSchema,
-}: FormProps<InitialValues>) => {
+export interface OnSubmit<FormValues extends {}> {
+    (values: FormValues, formHelpers: FormHelpers): void | Promise<any>;
+}
+
+export type ValidationRules<FormValues extends {}> = {
+    [K in keyof FormValues]?: ((values: FormValues[K]) => string | void)[];
+};
+
+interface FormProps<FormValues extends {}> {
+    children: React.ReactNode;
+    initialValues: FormValues;
+    onSubmit: OnSubmit<FormValues>;
+    validationRules?: ValidationRules<FormValues>;
+}
+
+const Form = <FormValues extends {}>({ children, initialValues, onSubmit, validationRules }: FormProps<FormValues>) => {
     return (
-        <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+        <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validate={!!validationRules ? (values) => validateHelper(values, validationRules) : undefined}
+        >
             <FormikForm autoComplete="off" noValidate={true}>
                 {children}
             </FormikForm>
