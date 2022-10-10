@@ -1,7 +1,7 @@
 import {
     ROUTE_HOME,
-    ROUTE_OTC_MARKETS,
-    ROUTE_NFT_MARKETS,
+    ROUTE_MARKETS,
+    ROUTE_NFTS,
     ROUTE_ORDERS,
     ROUTE_ORDERS_ACTIVE,
     ROUTE_ORDERS_COMPLETED,
@@ -10,12 +10,12 @@ import {
 } from '../../../common/constants/routes';
 import useRouteActiveItem, { ItemRouteMapper } from '../../../common/hooks/useRouteActiveItem';
 
-type MenuItem = 'orders' | 'otcMarkets' | 'nftMarkets' | 'voting';
+type MenuItem = 'orders' | 'markets' | 'nfts' | 'voting';
 
 const menuItemRoutesMapper: ItemRouteMapper<MenuItem> = [
     ['orders', [ROUTE_HOME, ROUTE_ORDERS, ROUTE_ORDERS_OPEN, ROUTE_ORDERS_ACTIVE, ROUTE_ORDERS_COMPLETED]],
-    ['otcMarkets', ROUTE_OTC_MARKETS],
-    ['nftMarkets', ROUTE_NFT_MARKETS],
+    ['markets', ROUTE_MARKETS],
+    ['nfts', ROUTE_NFTS],
     ['voting', ROUTE_VOTING],
 ];
 

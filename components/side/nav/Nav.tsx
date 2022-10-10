@@ -1,7 +1,7 @@
 import NavLink from '../NavLink';
 import NavItem from '../NavItem';
 import useNav from './useNav';
-import { ROUTE_OTC_MARKETS, ROUTE_NFT_MARKETS, ROUTE_ORDERS, ROUTE_VOTING } from '../../../common/constants/routes';
+import { ROUTE_MARKETS, ROUTE_NFTS, ROUTE_ORDERS, ROUTE_VOTING } from '../../../common/constants/routes';
 
 const Nav = () => {
     const { isItemActive } = useNav();
@@ -13,20 +13,10 @@ const Nav = () => {
                     <NavLink href={ROUTE_ORDERS} icon="list" title="Orders" active={isItemActive('orders')} />
                 </NavItem>
                 <NavItem>
-                    <NavLink
-                        href={ROUTE_OTC_MARKETS}
-                        icon="shop"
-                        title="OTC Markets"
-                        active={isItemActive('otcMarkets')}
-                    />
+                    <NavLink href={ROUTE_MARKETS} icon="shop" title="Markets" active={isItemActive('markets')} />
                 </NavItem>
                 <NavItem>
-                    <NavLink
-                        href={ROUTE_NFT_MARKETS}
-                        icon="layout-fluid"
-                        title="NFT Markets"
-                        active={isItemActive('nftMarkets')}
-                    />
+                    <NavLink href={ROUTE_NFTS} icon="layout-fluid" title="NFTs" active={isItemActive('nfts')} />
                 </NavItem>
                 <NavItem>
                     <NavLink href={ROUTE_VOTING} icon="comment-check" title="Voting" active={isItemActive('voting')} />

@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import ComingSoon from '../components/ComingSoon';
 
-const OtcMarkets: NextPage = () => <ComingSoon />;
+const Nfts: NextPage = () => <ComingSoon />;
 
-export default OtcMarkets;
+export default Nfts;
