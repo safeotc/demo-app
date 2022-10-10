@@ -8,13 +8,14 @@ const useFormSelect = (name: string) => {
     const [field, meta, helpers] = useField<string>(name);
     const { value: fieldValue, onBlur } = field;
     const { error, touched } = meta;
-    const { setValue } = helpers;
+    const { setValue, setError } = helpers;
 
     const value = fieldValue || null;
+    const onFocus = () => setError(undefined);
     const onChange: OnSelectValueChange = (newValue) => setValue(newValue || '');
     const errorMessage = !!error && touched ? error : undefined;
 
-    return { value, errorMessage, touched, onChange, onBlur, isSubmitting };
+    return { value, errorMessage, touched, onFocus, onChange, onBlur, isSubmitting };
 };
 
 export default useFormSelect;

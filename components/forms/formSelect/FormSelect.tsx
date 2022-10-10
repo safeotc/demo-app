@@ -7,7 +7,7 @@ interface FormSelectProps extends Omit<SelectProps, 'name' | 'value' | 'onChange
 
 const FormSelect = (props: FormSelectProps) => {
     const { name } = props;
-    const { value, onChange, onBlur, errorMessage, isSubmitting } = useFormSelect(name);
+    const { value, onFocus, onChange, onBlur, errorMessage, isSubmitting } = useFormSelect(name);
 
     return (
         <Select
@@ -15,6 +15,7 @@ const FormSelect = (props: FormSelectProps) => {
             value={value}
             disabled={isSubmitting}
             onChange={onChange}
+            onFocus={onFocus}
             onBlur={onBlur}
             errorMessage={errorMessage}
         />

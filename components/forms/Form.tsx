@@ -28,6 +28,8 @@ interface FormProps<FormValues extends {}> {
 const Form = <FormValues extends {}>({ children, initialValues, onSubmit, validationRules }: FormProps<FormValues>) => {
     return (
         <Formik
+            validateOnChange={false}
+            validateOnBlur={false}
             initialValues={initialValues}
             onSubmit={onSubmit}
             validate={!!validationRules ? (values) => validateHelper(values, validationRules) : undefined}

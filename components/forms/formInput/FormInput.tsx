@@ -7,13 +7,14 @@ interface FormInputProps extends InputProps {
 
 const FormInput = (props: FormInputProps) => {
     const { name, ...inputProps } = props;
-    const { value, onChange, onBlur, errorMessage, isSubmitting } = useFormInput(name);
+    const { value, onChange, onFocus, onBlur, errorMessage, isSubmitting } = useFormInput(name);
 
     return (
         <Input
             {...inputProps}
             name={name}
             value={value}
+            onFocus={onFocus}
             onChange={onChange}
             onBlur={onBlur}
             disabled={isSubmitting}

@@ -23,6 +23,7 @@ export interface SelectProps {
     value?: NullableSelectValue;
     onChange?: (newValue: NullableSelectValue) => void;
     onBlur?: FocusEventHandler<HTMLInputElement>;
+    onFocus?: () => void;
     errorMessage?: string;
 }
 
@@ -35,6 +36,7 @@ const Select = ({
     options,
     disabled,
     onChange,
+    onFocus,
     onBlur,
     errorMessage,
 }: SelectProps) => {
@@ -50,6 +52,7 @@ const Select = ({
                 value={value !== undefined ? options.find((o) => o.value === value) || null : undefined}
                 onChange={!!onChange ? (newOption) => onChange(!!newOption ? newOption.value : newOption) : undefined}
                 onBlur={onBlur}
+                onFocus={onFocus}
                 name={name}
                 inputId={id}
                 placeholder={placeholder}

@@ -8,12 +8,13 @@ const useFormInput = (name: string) => {
     const [field, meta, helpers] = useField<string>(name);
     const { value, onBlur } = field;
     const { error, touched } = meta;
-    const { setValue } = helpers;
+    const { setValue, setError } = helpers;
 
+    const onFocus = () => setError(undefined);
     const onChange: OnInputValueChange = (e) => setValue(e.target.value);
     const errorMessage = !!error && touched ? error : undefined;
 
-    return { value, onChange, onBlur, errorMessage, isSubmitting };
+    return { value, onFocus, onChange, onBlur, errorMessage, isSubmitting };
 };
 
 export default useFormInput;
