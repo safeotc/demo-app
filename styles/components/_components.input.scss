@@ -72,3 +72,10 @@ precedance because of greater specificity
   font-size: 0.75em;
   cursor: pointer;
 }
+
+.c-input__info {
+  margin-left: $inuit-global-spacing-unit-small;
+  display: inline-flex;
+  transform: translateY(2px);
+  color: $color-brand-secondary;
+}

@@ -20,6 +20,7 @@ const SecondaryButton = React.forwardRef<HTMLButtonElement, SecondaryButtonProps
         );
     }
 );
+
 SecondaryButton.displayName = 'SecondaryButton';
 
 export default SecondaryButton;

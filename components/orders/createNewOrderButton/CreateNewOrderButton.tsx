@@ -22,6 +22,7 @@ const CreateNewOrderButton = React.forwardRef<HTMLButtonElement, ButtonProps>(({
         </PrimaryButton>
     );
 });
+
 CreateNewOrderButton.displayName = 'CreateNewOrderButton';
 
 export default CreateNewOrderButton;

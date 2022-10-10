@@ -13,6 +13,7 @@ const PrimaryButton = React.forwardRef<HTMLButtonElement, ButtonProps>(({ childr
         </Button>
     );
 });
+
 PrimaryButton.displayName = 'PrimaryButton';
 
 export default PrimaryButton;

@@ -3,6 +3,7 @@ import ReactSelect from 'react-select';
 import { FocusEventHandler } from 'react';
 import ErrorMessage from './ErrorMessage';
 import cn from 'classnames';
+import InputTooltip from './inputTooltip/InputTooltip';
 
 export type SelectValue = string;
 export type NullableSelectValue = SelectValue | null;
@@ -25,6 +26,7 @@ export interface SelectProps {
     onBlur?: FocusEventHandler<HTMLInputElement>;
     onFocus?: () => void;
     errorMessage?: string;
+    info?: JSX.Element | string;
 }
 
 const Select = ({
@@ -39,6 +41,7 @@ const Select = ({
     onFocus,
     onBlur,
     errorMessage,
+    info,
 }: SelectProps) => {
     const selectClasses = cn({
         'c-select': true,
@@ -48,6 +51,9 @@ const Select = ({
     return (
         <>
             {!!label && <Label danger={!!errorMessage} htmlFor={id} content={label} />}
+
+            {!!info && <InputTooltip content={info} />}
+
             <ReactSelect
                 value={value !== undefined ? options.find((o) => o.value === value) || null : undefined}
                 onChange={!!onChange ? (newOption) => onChange(!!newOption ? newOption.value : newOption) : undefined}

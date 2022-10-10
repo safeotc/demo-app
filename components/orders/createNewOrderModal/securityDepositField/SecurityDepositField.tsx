@@ -4,9 +4,10 @@ import useSecurityDepositField from './useSecurityDepositField';
 
 interface SecurityDepositFieldProps {
     type: OrderType;
+    info: string;
 }
 
-const SecurityDepositField = ({ type }: SecurityDepositFieldProps) => {
+const SecurityDepositField = ({ type, info }: SecurityDepositFieldProps) => {
     const value = useSecurityDepositField(type);
     return (
         <Input
@@ -16,6 +17,7 @@ const SecurityDepositField = ({ type }: SecurityDepositFieldProps) => {
             id="cof-security-deposit"
             label="Security deposit (USD)"
             placeholder="Security deposit"
+            info={info}
         />
     );
 };

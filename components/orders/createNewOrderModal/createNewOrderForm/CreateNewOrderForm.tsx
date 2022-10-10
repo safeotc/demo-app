@@ -12,9 +12,10 @@ export type OnProcessed = (success: boolean) => void;
 interface CreateOrderFormProps {
     type: OrderType;
     onProcessed: OnProcessed;
+    securityDepositInfo: string;
 }
 
-const CreateNewOrderForm = ({ type, onProcessed }: CreateOrderFormProps) => {
+const CreateNewOrderForm = ({ type, securityDepositInfo, onProcessed }: CreateOrderFormProps) => {
     const { initialValues, validationRules, options, onSubmit } = useCreateNewOrderForm(type, onProcessed);
 
     return (
@@ -54,7 +55,7 @@ const CreateNewOrderForm = ({ type, onProcessed }: CreateOrderFormProps) => {
             </div>
 
             <div className="u-margin-bottom">
-                <SecurityDepositField type={type} />
+                <SecurityDepositField type={type} info={securityDepositInfo} />
             </div>
 
             <div className="u-margin-bottom-large"></div>
