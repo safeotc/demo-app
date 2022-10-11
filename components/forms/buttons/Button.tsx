@@ -5,6 +5,8 @@ import ButtonText from './ButtonText';
 import { getResponsiveClassnames } from '../../../common/helpers/classnames';
 import FlatIcon from '../../icons/FlatIcon';
 
+type ButtonSize = 's';
+
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     icon?: JSX.Element;
     iconOnly?: boolean;
@@ -12,10 +14,14 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     inlineOnMobile?: boolean;
     addChildrenWithoutWrapping?: boolean;
     loading?: boolean;
+    size?: ButtonSize;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ children, icon, iconOnly, iconOnlyOn, inlineOnMobile, addChildrenWithoutWrapping, loading, ...props }, ref) => {
+    (
+        { children, size, icon, iconOnly, iconOnlyOn, inlineOnMobile, addChildrenWithoutWrapping, loading, ...props },
+        ref
+    ) => {
         const propsClasses = props?.className || '';
         const buttonClasses = cn(
             'c-button',
@@ -24,6 +30,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             {
                 'c-button--inline': !!inlineOnMobile,
                 'c-button--icon-only': !!iconOnly,
+                'c-button--small': size === 's',
             }
         );
         const buttonContentClasses = cn({

@@ -1,0 +1,16 @@
+.c-demo-settings {
+  position: fixed;
+  z-index: $z-index-demo-settings;
+  bottom: $inuit-global-spacing-unit;
+  left: $inuit-global-spacing-unit;
+  opacity: 0.6;
+  @include short-transition(opacity);
+
+  button {
+    @include minimal-shadow();
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}

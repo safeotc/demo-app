@@ -46,6 +46,10 @@
   }
 }
 
+.c-button--small {
+  font-size: 0.75em;
+}
+
 .c-button--primary {
   border: none;
   padding-top: calc(#{$button-tb-padding} + 2px);

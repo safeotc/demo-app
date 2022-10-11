@@ -9,6 +9,7 @@ interface SecurityDepositFieldProps {
 
 const SecurityDepositField = ({ type, info }: SecurityDepositFieldProps) => {
     const value = useSecurityDepositField(type);
+
     return (
         <Input
             value={value}
@@ -17,7 +18,13 @@ const SecurityDepositField = ({ type, info }: SecurityDepositFieldProps) => {
             id="cof-security-deposit"
             label="Security deposit (USD)"
             placeholder="Security deposit"
-            info={info}
+            info={
+                <div style={{ maxWidth: '330px' }}>
+                    {info}
+                    <br />
+                    This field will autocomplete once the valid values for quantity and price fields have been inputed.
+                </div>
+            }
         />
     );
 };

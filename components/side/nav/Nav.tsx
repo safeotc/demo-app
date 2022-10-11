@@ -2,6 +2,7 @@ import NavLink from '../NavLink';
 import NavItem from '../NavItem';
 import useNav from './useNav';
 import { ROUTE_MARKETS, ROUTE_NFTS, ROUTE_ORDERS, ROUTE_VOTING } from '../../../common/constants/routes';
+import DemoSettings from '../../nav/DemoSettings';
 
 const Nav = () => {
     const { isItemActive } = useNav();
@@ -20,6 +21,9 @@ const Nav = () => {
                 </NavItem>
                 <NavItem>
                     <NavLink href={ROUTE_VOTING} icon="comment-check" title="Voting" active={isItemActive('voting')} />
+                </NavItem>
+                <NavItem>
+                    <DemoSettings />
                 </NavItem>
             </ul>
         </nav>
