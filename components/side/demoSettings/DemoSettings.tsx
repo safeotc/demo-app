@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import SecondaryButton from '../../forms/buttons/SecondaryButton';
+import Radios from '../../forms/radios/Radios';
 import FlatIcon from '../../icons/FlatIcon';
 import Modal from '../../modal/Modal';
 import ModalTitle from '../../modal/ModalTitle';
@@ -6,6 +8,8 @@ import useDemoSettings from './useDemoSettings';
 
 const DemoSettings = () => {
     const { isOpened, showModal, hideModal } = useDemoSettings();
+
+    const [radVal, setRadVal] = useState<string | null>(null);
 
     return (
         <>
@@ -30,6 +34,17 @@ const DemoSettings = () => {
                     -- todo: make wallet selection, only make it available if the current wallet is not connected, also
                     make disconnect screen for the wallet --
                 </p>
+
+                <Radios
+                    allowNoSelection={true}
+                    name="wallet-selection"
+                    options={[
+                        { label: 'Wallet 1', value: '0x817' },
+                        { label: 'Wallet 2', value: '0x046' },
+                    ]}
+                    value={radVal}
+                    onChange={setRadVal}
+                />
 
                 <h6 className="u-margin-bottom-tiny c-modal-container__sub-title">Voting simulation</h6>
                 <p>-- todo: make voting simulator to handle order governance --</p>
