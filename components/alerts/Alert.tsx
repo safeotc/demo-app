@@ -17,12 +17,11 @@ export interface AlertProps {
 }
 
 const Alert = ({ id, type, content, onClose, icon, disposeTimeout, hideCloseButton }: AlertProps) => {
-    const { closeAlert } = useAlert(id, onClose, disposeTimeout);
-
+    const { timeoutPercentDone, pauseDisposing, resumeDisposing, closeAlert } = useAlert(id, onClose, disposeTimeout);
     const alertClasses = cn('c-alert', `c-alert--${type}`);
 
     return (
-        <div className={alertClasses}>
+        <div className={alertClasses} onMouseEnter={pauseDisposing} onMouseLeave={resumeDisposing}>
             {!!icon && <div className="c-alert__icon">{icon}</div>}
             <div className="c-alert__content">
                 {!hideCloseButton && (
@@ -32,6 +31,7 @@ const Alert = ({ id, type, content, onClose, icon, disposeTimeout, hideCloseButt
                 )}
                 {content}
             </div>
+            {!!disposeTimeout && <div className="c-alert__progress-bar" style={{ width: `${timeoutPercentDone}%` }} />}
         </div>
     );
 };

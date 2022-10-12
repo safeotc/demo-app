@@ -26,7 +26,7 @@ const useAlerts = (): UseAlertsData => {
             type: AlertType,
             content: AlertContent,
             icon?: JSX.Element,
-            disposeTimeout: number = 3000,
+            disposeTimeout: number = 5000,
             hideCloseButton: boolean = false
         ) =>
             setAlerts((alerts) => [

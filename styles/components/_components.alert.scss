@@ -6,6 +6,7 @@
   @include border-radius();
   @include short-shadow();
   border: 0px solid transparent;
+  overflow: hidden;
 }
 
 .c-alert--success {
@@ -59,4 +60,12 @@
   background: transparent;
   border: 0;
   @include focus-outline();
+}
+
+.c-alert__progress-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  background: white;
 }
