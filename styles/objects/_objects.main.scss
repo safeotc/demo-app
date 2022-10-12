@@ -1,4 +1,9 @@
 .o-main {
   width: 100%;
   max-width: 100%;
+  margin-bottom: $content-mobile-spacing;
+
+  @include mq($from: l) {
+    margin-bottom: $content-desktop-spacing;
+  }
 }

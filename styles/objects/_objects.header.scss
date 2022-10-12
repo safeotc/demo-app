@@ -1,6 +1,11 @@
 .o-header {
   display: flex;
   align-items: center;
+  margin-bottom: $content-mobile-spacing;
+
+  @include mq($from: l) {
+    margin-bottom: $content-desktop-spacing;
+  }
 }
 
 .o-header__search {

@@ -2,5 +2,9 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 2em;
+  padding: $content-mobile-spacing;
+
+  @include mq($from: l) {
+    padding: $content-desktop-spacing;
+  }
 }

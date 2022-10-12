@@ -1,6 +1,6 @@
 .o-side {
   position: sticky;
-  padding: 2em 0;
+  padding: $content-mobile-spacing 0;
   top: 0;
   max-height: 100vh;
   overflow: auto;
@@ -8,5 +8,9 @@
   @include mq($from: s) {
     max-height: none;
     overflow: visible;
+  }
+
+  @include mq($from: l) {
+    padding: $content-desktop-spacing 0;
   }
 }

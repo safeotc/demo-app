@@ -4,7 +4,7 @@ import WalletInfo from '../../../components/header/wallet/WalletInfo';
 
 const Header = () => {
     return (
-        <header className="o-header u-margin-bottom-large">
+        <header className="o-header">
             <div className="o-header__search u-1/1 u-1/2@l u-3/5@xl">
                 <SearchInput />
             </div>
