@@ -2,10 +2,10 @@
   position: sticky;
   padding: $content-mobile-spacing 0;
   top: 0;
-  max-height: 100vh;
+  max-height: calc(100vh - #{$mobile-taskbar-height});
   overflow: auto;
 
-  @include mq($from: s) {
+  @include mq($from: m) {
     max-height: none;
     overflow: visible;
   }

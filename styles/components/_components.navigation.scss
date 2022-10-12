@@ -1,9 +1,9 @@
 .c-navigation {
   list-style: none;
-  margin: 4em 1em 0;
+  margin: 4em 1em;
 
   @include mq($from: l) {
-    margin: 4em 3em 0;
+    margin: 4em 3em;
   }
 }
 

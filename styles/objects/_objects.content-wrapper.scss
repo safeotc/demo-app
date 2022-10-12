@@ -44,7 +44,7 @@
   @include short-transition(background-color);
   background: var(--color-secondary);
   flex-grow: 1;
-  padding-bottom: 4.5rem;
+  padding-bottom: $mobile-taskbar-height;
   overflow-x: hidden; // this is important for creating horizontal scrolls inside this container
 
   @include mq($from: m) {

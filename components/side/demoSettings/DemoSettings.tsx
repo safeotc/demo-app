@@ -1,17 +1,15 @@
-import { useState } from 'react';
-import SecondaryButton from '../forms/buttons/SecondaryButton';
-import FlatIcon from '../icons/FlatIcon';
-import Modal from '../modal/Modal';
-import ModalTitle from '../modal/ModalTitle';
+import SecondaryButton from '../../forms/buttons/SecondaryButton';
+import FlatIcon from '../../icons/FlatIcon';
+import Modal from '../../modal/Modal';
+import ModalTitle from '../../modal/ModalTitle';
+import useDemoSettings from './useDemoSettings';
 
 const DemoSettings = () => {
-    const [isOpened, setIsOpened] = useState(false);
-    const showModal = () => setIsOpened(true);
-    const hideModal = () => setIsOpened(false);
+    const { isOpened, showModal, hideModal } = useDemoSettings();
 
     return (
         <>
-            <div className="u-text-center u-margin-top-huge">
+            <div className="u-text-center">
                 <SecondaryButton
                     inlineOnMobile={true}
                     size="s"
