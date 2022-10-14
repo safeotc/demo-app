@@ -1,0 +1,67 @@
+.c-radios {
+  display: flex;
+  flex-direction: column;
+}
+
+.c-radios--inline {
+  flex-direction: row;
+}
+
+.c-radios__option {
+  display: flex;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.c-radios__option--inline {
+  margin-bottom: none;
+  margin-left: $inuit-global-spacing-unit;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.c-radios__label {
+  display: inline-flex;
+  align-items: center;
+}
+
+.c-radios__input {
+  appearance: none;
+  width: 1.1em;
+  height: 1.1em;
+  outline: none;
+  border-radius: 50%;
+  @include short-transition(box-shadow);
+  box-shadow: 0px 0px 0px 1px var(--color-tertiary) inset;
+  position: relative;
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    background: $color-focus;
+    border-radius: 50%;
+    @include short-transition(transform);
+    transform: scale(0);
+  }
+
+  &:checked:before {
+    transform: scale(0.6);
+  }
+
+  &:focus {
+    box-shadow: 0px 0px 0px 2px $color-focus inset;
+  }
+}
+
+.c-radios__label-text {
+  margin-left: $inuit-global-spacing-unit-small;
+}

@@ -12,7 +12,8 @@ const defaultWalletContext: WalletData = {
     network: 'Ethereum',
     address: '',
     otcBalance: '0.000',
-    connect: () => {},
+    connect: (id) => {},
+    disconnect: () => {},
     switchNetworks: () => {},
 };
 

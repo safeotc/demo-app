@@ -8,7 +8,6 @@ import useDemoSettings from './useDemoSettings';
 
 const DemoSettings = () => {
     const { isOpened, showModal, hideModal } = useDemoSettings();
-
     const [radVal, setRadVal] = useState<string | null>(null);
 
     return (
@@ -30,24 +29,33 @@ const DemoSettings = () => {
 
                 <h6 className="u-margin-bottom-tiny c-modal-container__sub-title">Wallet to connect with</h6>
                 <p>The selected wallet will be used for making/matching orders.</p>
-                <p>
-                    -- todo: make wallet selection, only make it available if the current wallet is not connected, also
-                    make disconnect screen for the wallet --
+
+                <div className="u-margin-bottom">
+                    <Radios
+                        allowNoSelection={true}
+                        name="wallet-selection"
+                        options={[
+                            {
+                                label: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+                                value: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+                            },
+                            {
+                                label: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+                                value: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+                            },
+                        ]}
+                        value={radVal}
+                        onChange={setRadVal}
+                        label="Wallet selection"
+                    />
+                </div>
+                <p className="u-margin-bottom-large">
+                    -- todo: only make it available if the current wallet is not connected, also make disconnect screen
+                    for the wallet --
                 </p>
 
-                <Radios
-                    allowNoSelection={true}
-                    name="wallet-selection"
-                    options={[
-                        { label: 'Wallet 1', value: '0x817' },
-                        { label: 'Wallet 2', value: '0x046' },
-                    ]}
-                    value={radVal}
-                    onChange={setRadVal}
-                />
-
                 <h6 className="u-margin-bottom-tiny c-modal-container__sub-title">Voting simulation</h6>
-                <p>-- todo: make voting simulator to handle order governance --</p>
+                <p className="u-margin-bottom-large">-- todo: make voting simulator to handle order governance --</p>
 
                 <h6 className="u-margin-bottom-tiny c-modal-container__sub-title">Demo progress</h6>
                 <ul className="u-margin-bottom-none">
