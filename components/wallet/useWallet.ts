@@ -1,24 +1,17 @@
 import { useCallback } from 'react';
 import useStateWithUpdate from '../../common/hooks/useStateWithUpdate';
-
-interface DemoWallet {
-    address: string;
-    otcBalance: string;
-}
-
-const DEMO_WALLETS: DemoWallet[] = [
-    { address: '0xdAC17F958D2ee523a2206206994597C13D831ec7', otcBalance: '32711.243' },
-    { address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', otcBalance: '23030.3211' },
-];
+import { DemoWallet } from '../demo/useDemo';
 
 export type NetworkId = 'Ethereum' | 'Binance Smart Chain' | 'Polygon';
+
+type Wallet = DemoWallet;
 
 export interface UseWalletData {
     isConnected: boolean;
     network: NetworkId;
     address: string;
     otcBalance: string;
-    connect: (id: number) => void;
+    connect: (wallet: Wallet) => void;
     disconnect: () => void;
     switchNetworks: (network: NetworkId) => void;
 }
@@ -35,12 +28,11 @@ const useWallet = (): UseWalletData => {
     const isConnected = !!address;
 
     const connect = useCallback(
-        (id: number) => {
+        (wallet: Wallet) => {
             if (!!address) {
                 return;
             }
-            const { address: newAddress, otcBalance } = DEMO_WALLETS[id];
-            updateWalletData({ address: newAddress, otcBalance });
+            updateWalletData({ address: wallet.address, otcBalance: wallet.otcBalance });
         },
         [address, updateWalletData]
     );

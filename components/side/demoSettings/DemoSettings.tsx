@@ -32,7 +32,6 @@ const DemoSettings = () => {
 
                 <div className="u-margin-bottom">
                     <Radios
-                        allowNoSelection={true}
                         name="wallet-selection"
                         options={[
                             {

@@ -4,8 +4,10 @@ import { NullableRadioValue, OnRadioChange, RadioValue } from './Radios';
 
 const useRadios = (onChange: OnRadioChange, allowNoSelection?: boolean) => {
     const setValue: ChangeEventHandler<HTMLInputElement> = useCallback((e) => onChange(e.target.value), [onChange]);
+
     const setNullValueIfCheckedAndAllowedOnClick = (value: NullableRadioValue, optionValue: RadioValue) => () =>
         !!allowNoSelection && value === optionValue && onChange(null);
+
     const setNullValueIfCheckedAndAllowedOnKeyUp =
         (value: NullableRadioValue, optionValue: RadioValue): KeyboardEventHandler<HTMLInputElement> =>
         (e) => {

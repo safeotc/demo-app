@@ -1,6 +1,6 @@
 import SearchInput from '../../../components/header/search/SearchInput';
 import ToggleThemeButton from '../../../components/header/ToggleThemeButton';
-import WalletInfo from '../../../components/header/wallet/WalletInfo';
+import WalletInfo from '../../../components/header/wallet/walletInfo/WalletInfo';
 
 const Header = () => {
     return (

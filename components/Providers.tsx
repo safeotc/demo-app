@@ -1,5 +1,6 @@
 import React from 'react';
 import AlertsProvider from './alerts/AlertsProvider';
+import DemoProvider from './demo/DemoProvider';
 import ThemeProvider from './theme/ThemeProvider';
 import WalletProvider from './wallet/WalletProvider';
 
@@ -11,7 +12,9 @@ const Providers = ({ children }: ProvidersProps) => {
     return (
         <ThemeProvider>
             <AlertsProvider>
-                <WalletProvider>{children}</WalletProvider>
+                <WalletProvider>
+                    <DemoProvider>{children}</DemoProvider>
+                </WalletProvider>
             </AlertsProvider>
         </ThemeProvider>
     );
