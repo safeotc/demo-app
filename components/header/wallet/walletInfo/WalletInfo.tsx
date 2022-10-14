@@ -4,15 +4,15 @@ import OtcBalance from '../otcBalance/OtcBalance';
 import useWalletInfo from './useWalletInfo';
 
 const WalletInfo = () => {
-    const { isConnected, address, otcBalance, network, switchNetworks, connectWallet } = useWalletInfo();
+    const { isConnected, address, otcBalance, network, switchNetworks, connect, disconnect } = useWalletInfo();
 
     return isConnected ? (
         <>
-            <OtcBalance address={address} balance={otcBalance} />
+            <OtcBalance address={address} balance={otcBalance} disconnect={disconnect} />
             <Network network={network} switchNetwork={switchNetworks} />
         </>
     ) : (
-        <ConnectButton connect={connectWallet} />
+        <ConnectButton connect={connect} />
     );
 };
 
