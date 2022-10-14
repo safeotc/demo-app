@@ -9,7 +9,7 @@ interface DemoData extends UseDemoData {}
 
 const defaultDemoContext: DemoData = {
     wallet: DEMO_WALLETS[0],
-    changeWallet: (id) => {},
+    changeWallet: () => {},
 };
 
 export const DemoContext = React.createContext<DemoData>(defaultDemoContext);

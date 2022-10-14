@@ -8,7 +8,7 @@ export interface DemoWallet {
 
 export interface UseDemoData {
     wallet: DemoWallet;
-    changeWallet: (id: number) => void;
+    changeWallet: (address: string) => void;
 }
 
 export const DEMO_WALLETS: DemoWallet[] = [
@@ -18,7 +18,13 @@ export const DEMO_WALLETS: DemoWallet[] = [
 
 const useDemo = (): UseDemoData => {
     const [{ wallet }, , updateDemoData] = useStateWithUpdate<Pick<UseDemoData, 'wallet'>>({ wallet: DEMO_WALLETS[0] });
-    const changeWallet = useCallback((id: number) => updateDemoData({ wallet: DEMO_WALLETS[id] }), [updateDemoData]);
+    const changeWallet = useCallback(
+        (address: string) => {
+            const wallet = DEMO_WALLETS.find((dM) => dM.address === address);
+            updateDemoData({ wallet });
+        },
+        [updateDemoData]
+    );
     return { wallet, changeWallet };
 };
 

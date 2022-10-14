@@ -14,17 +14,27 @@ export interface AlertProps {
     icon?: JSX.Element;
     disposeTimeout?: number;
     hideCloseButton?: boolean;
+    className?: string;
 }
 
-const Alert = ({ id, type, content, onClose, icon, disposeTimeout, hideCloseButton }: AlertProps) => {
+const Alert = ({ id, type, content, onClose, icon, disposeTimeout, hideCloseButton, className }: AlertProps) => {
     const { timeoutPercentDone, pauseDisposing, resumeDisposing, closeAlert } = useAlert(id, onClose, disposeTimeout);
-    const alertClasses = cn('c-alert', `c-alert--${type}`);
+    const alertClasses = cn(
+        'c-alert',
+        {
+            'c-alert--success': type === 'success',
+            'c-alert--warning': type === 'warning',
+            'c-alert--danger': type === 'danger',
+            'c-alert--info': type === 'info',
+        },
+        className
+    );
 
     return (
         <div className={alertClasses} onMouseEnter={pauseDisposing} onMouseLeave={resumeDisposing}>
             {!!icon && <div className="c-alert__icon">{icon}</div>}
             <div className="c-alert__content">
-                {!hideCloseButton && (
+                {!hideCloseButton && !!onClose && (
                     <button className="c-alert__close" onClick={closeAlert}>
                         <FlatIcon icon="cross" />
                     </button>

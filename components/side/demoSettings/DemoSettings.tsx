@@ -1,14 +1,21 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import Alert from '../../alerts/Alert';
+import { DemoContext } from '../../demo/DemoProvider';
+import { DEMO_WALLETS } from '../../demo/useDemo';
 import SecondaryButton from '../../forms/buttons/SecondaryButton';
-import Radios from '../../forms/radios/Radios';
+import Radios, { NullableRadioValue, RadioOption } from '../../forms/radios/Radios';
 import FlatIcon from '../../icons/FlatIcon';
 import Modal from '../../modal/Modal';
 import ModalTitle from '../../modal/ModalTitle';
+import { WalletContext } from '../../wallet/WalletProvider';
 import useDemoSettings from './useDemoSettings';
 
 const DemoSettings = () => {
+    const demoWallets = DEMO_WALLETS.map<RadioOption>((dM) => ({ label: dM.address, value: dM.address }));
     const { isOpened, showModal, hideModal } = useDemoSettings();
-    const [radVal, setRadVal] = useState<string | null>(null);
+    const { wallet, changeWallet } = useContext(DemoContext);
+    const changeDemoWallet = (walletAddress: NullableRadioValue) => !!walletAddress && changeWallet(walletAddress);
+    const { isConnected } = useContext(WalletContext);
 
     return (
         <>
@@ -28,30 +35,30 @@ const DemoSettings = () => {
                 <ModalTitle>Demo application settings</ModalTitle>
 
                 <h6 className="u-margin-bottom-tiny c-modal-container__sub-title">Wallet to connect with</h6>
-                <p>The selected wallet will be used for making/matching orders.</p>
+                <p className="u-margin-bottom">
+                    Select the wallet you want to connect to the application. The selected wallet will be used for
+                    making/matching orders.
+                </p>
 
-                <div className="u-margin-bottom">
+                <div className="u-margin-bottom-large">
                     <Radios
                         name="wallet-selection"
-                        options={[
-                            {
-                                label: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-                                value: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-                            },
-                            {
-                                label: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-                                value: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-                            },
-                        ]}
-                        value={radVal}
-                        onChange={setRadVal}
-                        label="Wallet selection"
+                        options={demoWallets}
+                        value={wallet.address}
+                        onChange={changeDemoWallet}
+                        disabled={isConnected}
                     />
+
+                    {isConnected && (
+                        <Alert
+                            className="u-margin-top"
+                            id="wallet-connected-alert"
+                            type="warning"
+                            icon={<FlatIcon icon="exclamation" />}
+                            content="Please disconnect the wallet you are currently using in order to switch to another wallet."
+                        />
+                    )}
                 </div>
-                <p className="u-margin-bottom-large">
-                    -- todo: only make it available if the current wallet is not connected, also make disconnect screen
-                    for the wallet --
-                </p>
 
                 <h6 className="u-margin-bottom-tiny c-modal-container__sub-title">Voting simulation</h6>
                 <p className="u-margin-bottom-large">-- todo: make voting simulator to handle order governance --</p>
