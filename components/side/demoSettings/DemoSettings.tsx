@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import Alert from '../../alerts/Alert';
+import WarningAlert from '../../alerts/types/WarningAlert';
 import { DemoContext } from '../../demo/DemoProvider';
 import { DEMO_WALLETS } from '../../demo/useDemo';
 import SecondaryButton from '../../forms/buttons/SecondaryButton';
@@ -50,11 +50,9 @@ const DemoSettings = () => {
                     />
 
                     {isConnected && (
-                        <Alert
+                        <WarningAlert
                             className="u-margin-top"
                             id="wallet-connected-alert"
-                            type="warning"
-                            icon={<FlatIcon icon="shield-exclamation" />}
                             content="Please disconnect the wallet you are currently using in order to switch to another wallet."
                         />
                     )}
