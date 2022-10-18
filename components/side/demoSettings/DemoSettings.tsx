@@ -54,7 +54,7 @@ const DemoSettings = () => {
                             className="u-margin-top"
                             id="wallet-connected-alert"
                             type="warning"
-                            icon={<FlatIcon icon="exclamation" />}
+                            icon={<FlatIcon icon="shield-exclamation" />}
                             content="Please disconnect the wallet you are currently using in order to switch to another wallet."
                         />
                     )}
