@@ -1,7 +1,8 @@
 import { useCallback, useState } from 'react';
 import { AlertContent, AlertProps, AlertType } from './Alert';
 import { v4 as uuidV4 } from 'uuid';
-import FlatIcon from '../icons/FlatIcon';
+import SuccessIcon from '../icons/alerts/SuccessIcon';
+import DangerIcon from '../icons/alerts/DangerIcon';
 
 type AddAlert = (content: AlertContent, disposeTimeout?: number, hideCloseButton?: boolean) => void;
 
@@ -46,13 +47,13 @@ const useAlerts = (): UseAlertsData => {
 
     const addSuccessAlert = useCallback<AddAlert>(
         (content, disposeTimeout, hideCloseButton) =>
-            addAlert('success', content, <FlatIcon icon="checkbox" />, disposeTimeout, hideCloseButton),
+            addAlert('success', content, <SuccessIcon />, disposeTimeout, hideCloseButton),
         [addAlert]
     );
 
     const addDangerAlert = useCallback<AddAlert>(
         (content, disposeTimeout, hideClosebutton) =>
-            addAlert('danger', content, <FlatIcon icon="exclamation" />, disposeTimeout, hideClosebutton),
+            addAlert('danger', content, <DangerIcon />, disposeTimeout, hideClosebutton),
         [addAlert]
     );
 
