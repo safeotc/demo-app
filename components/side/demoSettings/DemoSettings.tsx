@@ -63,6 +63,7 @@ const DemoSettings = () => {
                         value={wallet.address}
                         onChange={changeDemoWallet}
                         disabled={isConnected}
+                        textOverflow="ellipsis"
                     />
 
                     {isConnected && (

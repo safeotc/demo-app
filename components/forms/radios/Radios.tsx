@@ -1,5 +1,6 @@
 import Label from '../Label';
 import useRadios from './useRadios';
+import cn from 'classnames';
 
 export type RadioValue = string;
 export type NullableRadioValue = RadioValue | null;
@@ -19,21 +20,41 @@ interface RadiosProps {
     disabled?: boolean;
     label?: string;
     errorMessage?: string;
+    textOverflow?: 'ellipsis';
+    inline?: boolean;
 }
 
-const Radios = ({ value, label, errorMessage, disabled, options, name, onChange, allowNoSelection }: RadiosProps) => {
+const Radios = ({
+    value,
+    label,
+    errorMessage,
+    disabled,
+    options,
+    name,
+    onChange,
+    allowNoSelection,
+    textOverflow,
+    inline,
+}: RadiosProps) => {
     const { setValue, setNullValueIfCheckedAndAllowedOnClick, setNullValueIfCheckedAndAllowedOnKeyUp } = useRadios(
         onChange,
         allowNoSelection
     );
+    const radiosClasses = cn('c-radios', {
+        'c-radios--inline': !!inline,
+    });
+    const optionClasses = cn('c-radios__option', { 'c-radios__option--inline': !!inline });
+    const labelTextClasses = cn('c-radios__label-text', {
+        'u-text-ellipsis': textOverflow === 'ellipsis',
+    });
 
     return (
         <>
             {!!label && <Label danger={!!errorMessage} htmlFor={`${name}-1`} content={label} />}
 
-            <div className="c-radios">
+            <div className={radiosClasses}>
                 {options.map((o, idx) => (
-                    <div className="c-radios__option" key={o.value}>
+                    <div className={optionClasses} key={o.value}>
                         <label className="c-radios__label">
                             <input
                                 className="c-radios__input"
@@ -47,7 +68,7 @@ const Radios = ({ value, label, errorMessage, disabled, options, name, onChange,
                                 onKeyUp={setNullValueIfCheckedAndAllowedOnKeyUp(value, o.value)}
                                 disabled={disabled}
                             />
-                            <span className="c-radios__label-text">{o.label}</span>
+                            <span className={labelTextClasses}>{o.label}</span>
                         </label>
                     </div>
                 ))}

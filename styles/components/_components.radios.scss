@@ -5,11 +5,10 @@
 
 .c-radios--inline {
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .c-radios__option {
-  display: flex;
-
   &:last-child {
     margin-bottom: 0;
   }
@@ -17,22 +16,24 @@
 
 .c-radios__option--inline {
   margin-bottom: none;
-  margin-left: $inuit-global-spacing-unit;
+  margin-right: $inuit-global-spacing-unit;
 
-  &:first-child {
-    margin-left: 0;
+  &:last-child {
+    margin-right: 0;
   }
 }
 
 .c-radios__label {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  min-width: 0;
 }
 
 .c-radios__input {
   appearance: none;
   width: 1.1em;
   height: 1.1em;
+  min-width: 1.1em;
   outline: none;
   border-radius: 50%;
   @include short-transition(box-shadow);
