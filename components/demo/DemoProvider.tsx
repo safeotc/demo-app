@@ -1,5 +1,5 @@
 import React from 'react';
-import useDemo, { DEMO_WALLETS, UseDemoData } from './useDemo';
+import useDemo, { UseDemoData } from './useDemo';
 
 interface DemoProviderProps {
     children: React.ReactNode;
@@ -8,8 +8,10 @@ interface DemoProviderProps {
 interface DemoData extends UseDemoData {}
 
 const defaultDemoContext: DemoData = {
-    wallet: DEMO_WALLETS[0],
+    wallet: { address: '', otcBalance: '' },
     changeWallet: () => {},
+    wasWelcomeScreenDisplayed: false,
+    setWasWelcomeScreenDisplayed: () => {},
 };
 
 export const DemoContext = React.createContext<DemoData>(defaultDemoContext);

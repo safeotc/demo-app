@@ -1,5 +1,6 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import useStateWithUpdate from '../../common/hooks/useStateWithUpdate';
+import welcomeRepository from '../../repositories/WelcomeRepository';
 
 export interface DemoWallet {
     address: string;
@@ -9,6 +10,8 @@ export interface DemoWallet {
 export interface UseDemoData {
     wallet: DemoWallet;
     changeWallet: (address: string) => void;
+    wasWelcomeScreenDisplayed: boolean;
+    setWasWelcomeScreenDisplayed: (wasWelcomeScreenDisplayed: boolean) => void;
 }
 
 export const DEMO_WALLETS: DemoWallet[] = [
@@ -17,7 +20,10 @@ export const DEMO_WALLETS: DemoWallet[] = [
 ];
 
 const useDemo = (): UseDemoData => {
-    const [{ wallet }, , updateDemoData] = useStateWithUpdate<Pick<UseDemoData, 'wallet'>>({ wallet: DEMO_WALLETS[0] });
+    const [{ wallet, wasWelcomeScreenDisplayed }, , updateDemoData] = useStateWithUpdate<
+        Pick<UseDemoData, 'wallet' | 'wasWelcomeScreenDisplayed'>
+    >({ wallet: DEMO_WALLETS[0], wasWelcomeScreenDisplayed: welcomeRepository.wasWelcomeDisplayed() });
+
     const changeWallet = useCallback(
         (address: string) => {
             const wallet = DEMO_WALLETS.find((dM) => dM.address === address);
@@ -25,7 +31,19 @@ const useDemo = (): UseDemoData => {
         },
         [updateDemoData]
     );
-    return { wallet, changeWallet };
+
+    const setWasWelcomeScreenDisplayed = useCallback(
+        (wasWelcomeScreenDisplayed: boolean) => {
+            updateDemoData({ wasWelcomeScreenDisplayed });
+        },
+        [updateDemoData]
+    );
+
+    useEffect(() => {
+        welcomeRepository.setWasWelcomeDisplayed(wasWelcomeScreenDisplayed);
+    }, [wasWelcomeScreenDisplayed]);
+
+    return { wallet, wasWelcomeScreenDisplayed, changeWallet, setWasWelcomeScreenDisplayed };
 };
 
 export default useDemo;
