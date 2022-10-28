@@ -1,21 +1,50 @@
+import Image from 'next/image';
 import Modal from '../modal/Modal';
-import ModalTitle from '../modal/ModalTitle';
 import useWelcome from './useWelcome';
+import mobileLocationImage from '../../public/images/demo-button-location-mobile.jpg';
+import desktopLocationImage from '../../public/images/demo-button-location-desktop.jpg';
 
 const Welcome = () => {
     const { isOpened, closeModal } = useWelcome();
 
     return (
-        <Modal isOpened={isOpened} onCloseRequest={closeModal} size="m">
-            <ModalTitle>Demo application info</ModalTitle>
-            Welcome to our demo application.
-            <br />
-            <br />
-            Click on the demo settings button located on the left-hand side of the screen under the main menu to find
-            out more about the demo app functionality.
-            <br />
-            <br />
-            -- TODO: some graphics etc. --
+        <Modal
+            isOpened={isOpened}
+            onCloseRequest={closeModal}
+            size="m"
+            boxProps={{ className: 'c-modal-welcome__background' }}
+        >
+            <h1 className="c-modal-welcome__title">Welcome</h1>
+
+            <p className="u-margin-bottom-large">
+                Click on the demo settings button located on the left-hand side of the screen under the main menu to
+                find out more about demo app functionality and how to use it.
+            </p>
+
+            <div className="c-modal-welcome__locations">
+                <div className="c-modal-welcome__location">
+                    <span className="u-text-bold u-text-center u-text-ellipsis u-margin-bottom-small">Mobile view</span>
+                    <div className="c-modal-welcome__img c-modal-welcome__img--mobile">
+                        <Image
+                            layout="fill"
+                            src={mobileLocationImage}
+                            alt="Location of the demo settings button on mobile devices"
+                        />
+                    </div>
+                </div>
+                <div className="c-modal-welcome__location">
+                    <span className="u-text-bold u-text-center u-text-ellipsis u-margin-bottom-small">
+                        Desktop view
+                    </span>
+                    <div className="c-modal-welcome__img c-modal-welcome__img--desktop">
+                        <Image
+                            layout="fill"
+                            src={desktopLocationImage}
+                            alt="Location of demo settings button on desktop devices"
+                        />
+                    </div>
+                </div>
+            </div>
         </Modal>
     );
 };

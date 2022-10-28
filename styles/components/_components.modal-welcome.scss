@@ -1,0 +1,72 @@
+.c-modal-welcome__background {
+  background: var(--color-primary) url("/images/welcome.png") top center
+    no-repeat;
+  background-size: 100% auto;
+}
+
+.c-modal-welcome__title {
+  color: $color-primary-light;
+  margin: 2em 0;
+  text-transform: uppercase;
+
+  @include mq($from: s) {
+    margin: 4em 0;
+  }
+}
+
+.c-modal-welcome__locations {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.c-modal-welcome__location {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:first-child {
+    margin-right: 1em;
+
+    @include mq($from: s) {
+      margin-right: 2em;
+    }
+  }
+}
+
+.c-modal-welcome__img {
+  position: relative;
+  height: 200px;
+
+  @include mq($from: s) {
+    height: 250px;
+  }
+
+  @include mq($from: m) {
+    height: 300px;
+  }
+}
+
+.c-modal-welcome__img--mobile {
+  width: 44.186046516px;
+
+  @include mq($from: s) {
+    width: 55.23255814px;
+  }
+
+  @include mq($from: m) {
+    width: 66.279069767px;
+  }
+}
+
+.c-modal-welcome__img--desktop {
+  width: 102.832244009px;
+
+  @include mq($from: s) {
+    width: 128.540305011px;
+  }
+
+  @include mq($from: m) {
+    width: 154.248366013px;
+  }
+}
