@@ -28,7 +28,7 @@ const DemoSettings = () => {
                     inlineOnMobile={true}
                     size="s"
                     iconOnlyOn={['base', 's', 'm']}
-                    icon={<FlatIcon icon="settings-sliders" />}
+                    icon={<FlatIcon title="Demo settings" icon="settings-sliders" />}
                     onClick={showModal}
                 >
                     Demo settings
