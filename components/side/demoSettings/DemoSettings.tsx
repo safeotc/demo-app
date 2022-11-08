@@ -1,5 +1,6 @@
 import InfoAlert from '../../alerts/types/InfoAlert';
 import WarningAlert from '../../alerts/types/WarningAlert';
+import CompletedSteps from '../../completedSteps/CompletedSteps';
 import Button from '../../forms/buttons/Button';
 import SecondaryButton from '../../forms/buttons/SecondaryButton';
 import Radios from '../../forms/radios/Radios';
@@ -19,6 +20,7 @@ const DemoSettings = () => {
         demoWallets,
         isResetWelcomeScreenButtonDisabled,
         showWelcomeScreenOnReload,
+        completedSteps,
     } = useDemoSettings();
 
     return (
@@ -40,16 +42,8 @@ const DemoSettings = () => {
 
                 <div className="u-margin-bottom-large">
                     <h6 className="u-margin-bottom-tiny c-modal-container__sub-title">Demo progress</h6>
-                    <ul className="u-margin-bottom-none">
-                        <li>Connect a wallet.</li>
-                        <li>Place a buy / sell order with the connected wallet.</li>
-                        <li>Disconnect the currently used wallet.</li>
-                        <li>
-                            Switch to another wallet and connect it in order to match the order you&apos;ve just
-                            created.
-                        </li>
-                    </ul>
-                    <p className="u-margin-bottom-none">-- todo: progress bar --</p>
+                    <CompletedSteps completedSteps={completedSteps} className="u-margin-bottom-none" />
+                    <p className="u-margin-bottom-none">-- todo: progress bar, MAYBE --</p>
                 </div>
 
                 <div className="u-margin-bottom-large">

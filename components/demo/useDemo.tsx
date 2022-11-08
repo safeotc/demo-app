@@ -7,11 +7,19 @@ export interface DemoWallet {
     otcBalance: string;
 }
 
+export type DemoStep =
+    | 'connect_create_order_wallet'
+    | 'create_order'
+    | 'disconnect_wallet'
+    | 'connect_match_order_wallet'
+    | 'match_order';
+
 export interface UseDemoData {
     wallet: DemoWallet;
     changeWallet: (address: string) => void;
     wasWelcomeScreenDisplayed: boolean;
     setWasWelcomeScreenDisplayed: (wasWelcomeScreenDisplayed: boolean) => void;
+    completedSteps: DemoStep[];
 }
 
 export const DEMO_WALLETS: DemoWallet[] = [
@@ -20,9 +28,13 @@ export const DEMO_WALLETS: DemoWallet[] = [
 ];
 
 const useDemo = (): UseDemoData => {
-    const [{ wallet, wasWelcomeScreenDisplayed }, , updateDemoData] = useStateWithUpdate<
-        Pick<UseDemoData, 'wallet' | 'wasWelcomeScreenDisplayed'>
-    >({ wallet: DEMO_WALLETS[0], wasWelcomeScreenDisplayed: welcomeRepository.wasWelcomeDisplayed() });
+    const [{ wallet, wasWelcomeScreenDisplayed, completedSteps }, , updateDemoData] = useStateWithUpdate<
+        Pick<UseDemoData, 'wallet' | 'wasWelcomeScreenDisplayed' | 'completedSteps'>
+    >({
+        wallet: DEMO_WALLETS[0],
+        wasWelcomeScreenDisplayed: welcomeRepository.wasWelcomeDisplayed(),
+        completedSteps: [],
+    });
 
     const changeWallet = useCallback(
         (address: string) => {
@@ -43,7 +55,7 @@ const useDemo = (): UseDemoData => {
         welcomeRepository.setWasWelcomeDisplayed(wasWelcomeScreenDisplayed);
     }, [wasWelcomeScreenDisplayed]);
 
-    return { wallet, wasWelcomeScreenDisplayed, changeWallet, setWasWelcomeScreenDisplayed };
+    return { wallet, wasWelcomeScreenDisplayed, changeWallet, setWasWelcomeScreenDisplayed, completedSteps };
 };
 
 export default useDemo;

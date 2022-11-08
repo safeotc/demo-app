@@ -12,6 +12,7 @@ const defaultDemoContext: DemoData = {
     changeWallet: () => {},
     wasWelcomeScreenDisplayed: false,
     setWasWelcomeScreenDisplayed: () => {},
+    completedSteps: [],
 };
 
 export const DemoContext = React.createContext<DemoData>(defaultDemoContext);
