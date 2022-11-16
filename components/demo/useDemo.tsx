@@ -11,8 +11,13 @@ export type DemoStep =
     | 'connect_create_order_wallet'
     | 'create_order'
     | 'disconnect_wallet'
-    | 'connect_match_order_wallet'
-    | 'match_order';
+    | 'connect_accept_order_wallet'
+    | 'accept_order'
+    | 'simulate_tge'
+    | 'switch_to_seller_wallet'
+    | 'send_tokens'
+    | 'disconnect_seller_wallet'
+    | 'connect_buyer_wallet';
 
 export interface UseDemoData {
     wallet: DemoWallet;
