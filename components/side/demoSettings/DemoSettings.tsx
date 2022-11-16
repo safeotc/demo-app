@@ -42,7 +42,6 @@ const DemoSettings = () => {
                 <div className="u-margin-bottom-large">
                     <h6 className="u-margin-bottom-tiny c-modal-container__sub-title">Demo progress</h6>
                     <CompletedSteps completedSteps={completedSteps} className="u-margin-bottom-none" />
-                    <p className="u-margin-bottom-none">-- todo: progress bar, MAYBE --</p>
                 </div>
 
                 <div className="u-margin-bottom-large">
