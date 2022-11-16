@@ -44,7 +44,7 @@ const CompletedSteps = ({ completedSteps, ...props }: CompletedSteps) => {
             <Step
                 isCompleted={isStepCompleted('send_tokens')}
                 title="Send tokens"
-                description='Switch to seller demo wallet and send tokens to the buyer. To send tokens you need to open the order page and click on &qout;send tokens" button.'
+                description='Switch to seller demo wallet and send tokens to the buyer. To send tokens you need to open the order page and click on "send tokens" button.'
             />
             <Step
                 isCompleted={isStepCompleted('disconnect_seller_wallet')}

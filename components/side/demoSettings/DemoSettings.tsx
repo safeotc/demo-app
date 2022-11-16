@@ -1,4 +1,3 @@
-import InfoAlert from '../../alerts/types/InfoAlert';
 import WarningAlert from '../../alerts/types/WarningAlert';
 import CompletedSteps from '../../completedSteps/CompletedSteps';
 import Button from '../../forms/buttons/Button';
@@ -50,7 +49,7 @@ const DemoSettings = () => {
                     <h6 className="u-margin-bottom-tiny c-modal-container__sub-title">Wallet to connect with</h6>
                     <p className="u-margin-bottom">
                         Select the wallet you want to connect to the application. The selected wallet will be used for
-                        making/matching orders.
+                        creating/accepting orders.
                     </p>
 
                     <Radios
@@ -72,18 +71,22 @@ const DemoSettings = () => {
                 </div>
 
                 <div className="u-margin-bottom-large">
-                    <h6 className="u-margin-bottom-tiny c-modal-container__sub-title">Voting simulation</h6>
-                    <Button disabled={true}>Simulate order voting</Button>
-                    <InfoAlert
-                        hideCloseButton={true}
-                        id="voting-simulation-alert"
-                        className="u-margin-top"
-                        content="Place an order and match it to enable voting simulation."
-                    />
+                    <h6 className="u-margin-bottom-tiny c-modal-container__sub-title">Token generation event</h6>
+                    <p className="u-margin-bottom">
+                        Once an order is created and accepted, button for TGE will be enabled. This is used to simulate
+                        token generation event and distribution of tokens to the seller, so he can keep up his end of
+                        the deal by sending those tokens to the buyer.
+                    </p>
+                    <Button disabled={true}>Simulate TGE</Button>
                 </div>
 
                 <div>
                     <h6 className="u-margin-bottom-tiny c-modal-container__sub-title">Welcome screen</h6>
+                    <p className="u-margin-bottom">
+                        Welcome screen is displayed only on the first page load. It contains information about where to
+                        start. In case you have missed it, enable it again by clicking on the button below and reload
+                        the page.
+                    </p>
                     <Button disabled={isResetWelcomeScreenButtonDisabled} onClick={showWelcomeScreenOnReload}>
                         Display welcome screen again
                     </Button>
