@@ -11,27 +11,43 @@ interface StepProps {
 }
 
 const Step = ({ status, title, description, number }: StepProps) => {
-    const isCompleted = status === 'completed';
+    const isCompleted = status === 'completed' || true;
     const isLocked = status === 'locked';
     const isWaiting = status === 'waiting';
 
-    const stepClasses = cn('c-step', {
-        'c-step--completed': isCompleted,
-        'c-step--waiting': isWaiting,
-        'c-step--locked': isLocked,
+    const stepIconClasses = cn('c-step__icon', {
+        'c-step__icon--completed': isCompleted,
+        'c-step__icon--waiting': isWaiting,
+        'c-step__icon--locked': isLocked,
     });
 
-    const stepIconClasses = cn('c-step__icon', {
-        'c-step--completed': isCompleted,
-        'c-step--waiting': isWaiting,
-        'c-step--locked': isLocked,
+    const stepContentExpanderClasses = cn('c-step__content-expander', {
+        'c-step__content-expander--completed': isCompleted,
+        'c-step__content-expander--waiting': isWaiting,
+        'c-step__content-expander--locked': isLocked,
+    });
+
+    const stepTitleClasses = cn('c-step__title', {
+        'c-step__title--completed': isCompleted,
+        'c-step__title--waiting': isWaiting,
+        'c-step__title--locked': isLocked,
+    });
+
+    const stepDescriptionClasses = cn('c-step__description', {
+        'c-step__description--completed': isCompleted,
+        'c-step__description--waiting': isWaiting,
+        'c-step__description--locked': isLocked,
     });
 
     return (
-        <li className={stepClasses}>
+        <li className="c-step">
             <div className={stepIconClasses}>{isCompleted ? <FlatIcon icon="check" /> : <span>{number}</span>}</div>
-            <h6 className="c-step__title">{title}</h6>
-            <p className="c-step__description">{description}</p>
+            <div className="c-step__content">
+                <div className={stepContentExpanderClasses}>
+                    <h6 className={stepTitleClasses}>{title}</h6>
+                    <p className={stepDescriptionClasses}>{description}</p>
+                </div>
+            </div>
         </li>
     );
 };

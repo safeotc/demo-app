@@ -1,0 +1,63 @@
+.c-step {
+  list-style: none;
+  margin-bottom: $inuit-global-spacing-unit;
+  display: flex;
+  align-items: center;
+}
+
+.c-step__icon {
+  position: relative;
+  min-width: 2em;
+  border-radius: 50%;
+  background: red;
+  display: block;
+  width: 2em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > span,
+  & > i {
+    display: flex;
+  }
+}
+
+.c-step__icon--completed {
+  background: $color-success;
+  color: $color-primary-light;
+}
+
+.c-step__content {
+  flex-grow: 1;
+}
+
+.c-step__content-expander {
+  @include double-border-radius();
+  border: 2px solid transparent;
+  width: calc(100% + 1em + 1px);
+  margin-left: calc(-1em - 1px);
+  padding: $inuit-global-spacing-unit;
+  padding-left: calc(#{$inuit-global-spacing-unit} + 1em - 1px);
+}
+
+.c-step__content-expander--completed {
+  border-color: $color-success;
+  background: transparentize($color-success, 0.8);
+}
+
+.c-step__title {
+  margin-bottom: $inuit-global-spacing-unit-small;
+}
+
+.c-step__title--completed {
+  color: $color-success;
+}
+
+.c-step__description {
+  margin-bottom: 0;
+}
+
+.c-step__description--completed {
+  color: $color-success;
+}
