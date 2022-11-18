@@ -1,6 +1,8 @@
-import { useCallback, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import useStateWithUpdate from '../../common/hooks/useStateWithUpdate';
 import welcomeRepository from '../../repositories/WelcomeRepository';
+import { AlertContent } from '../alerts/Alert';
+import { AlertsContext } from '../alerts/AlertsProvider';
 
 export interface DemoWallet {
     address: string;
@@ -25,6 +27,7 @@ export interface UseDemoData {
     wasWelcomeScreenDisplayed: boolean;
     setWasWelcomeScreenDisplayed: (wasWelcomeScreenDisplayed: boolean) => void;
     completedSteps: DemoStep[];
+    finishStep: (step: DemoStep, stepNumber: number, alertMessage: AlertContent) => void;
 }
 
 export const DEMO_WALLETS: DemoWallet[] = [
@@ -56,11 +59,34 @@ const useDemo = (): UseDemoData => {
         [updateDemoData]
     );
 
+    const { addSuccessAlert } = useContext(AlertsContext);
+    const finishStep = useCallback(
+        (step: DemoStep, stepNumber: number, alertMessage: AlertContent) => {
+            updateDemoData({ completedSteps: [...completedSteps, step] });
+            const alertContent = (
+                <>
+                    <b>Step {stepNumber}/10 completed</b>
+                    <br />
+                    {alertMessage}
+                </>
+            );
+            addSuccessAlert(alertContent, 10000);
+        },
+        [updateDemoData, completedSteps, addSuccessAlert]
+    );
+
     useEffect(() => {
         welcomeRepository.setWasWelcomeDisplayed(wasWelcomeScreenDisplayed);
     }, [wasWelcomeScreenDisplayed]);
 
-    return { wallet, wasWelcomeScreenDisplayed, changeWallet, setWasWelcomeScreenDisplayed, completedSteps };
+    return {
+        wallet,
+        wasWelcomeScreenDisplayed,
+        changeWallet,
+        setWasWelcomeScreenDisplayed,
+        completedSteps,
+        finishStep,
+    };
 };
 
 export default useDemo;

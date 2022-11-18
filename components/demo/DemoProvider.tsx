@@ -13,6 +13,7 @@ const defaultDemoContext: DemoData = {
     wasWelcomeScreenDisplayed: false,
     setWasWelcomeScreenDisplayed: () => {},
     completedSteps: [],
+    finishStep: () => {},
 };
 
 export const DemoContext = React.createContext<DemoData>(defaultDemoContext);

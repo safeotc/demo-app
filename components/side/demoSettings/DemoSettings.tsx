@@ -40,7 +40,7 @@ const DemoSettings = () => {
                 <ModalTitle>Demo application settings</ModalTitle>
 
                 <div className="u-margin-bottom-large">
-                    <h6 className="c-modal-container__sub-title">Wallet selection</h6>
+                    <h6 className="c-modal-container__sub-title">Demo wallet selection</h6>
                     <p className="u-margin-bottom">
                         Select the wallet you want to connect to the application. The selected wallet will be used for
                         creating/accepting orders.
