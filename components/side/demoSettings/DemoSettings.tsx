@@ -40,15 +40,7 @@ const DemoSettings = () => {
                 <ModalTitle>Demo application settings</ModalTitle>
 
                 <div className="u-margin-bottom-large">
-                    <h6 className="c-modal-container__sub-title">Demo progress</h6>
-                    <CompletedSteps
-                        completedSteps={completedSteps}
-                        className="u-margin-bottom-none u-margin-left-none"
-                    />
-                </div>
-
-                <div className="u-margin-bottom-large">
-                    <h6 className="c-modal-container__sub-title">Wallet to connect with</h6>
+                    <h6 className="c-modal-container__sub-title">Wallet selection</h6>
                     <p className="u-margin-bottom">
                         Select the wallet you want to connect to the application. The selected wallet will be used for
                         creating/accepting orders.
@@ -70,6 +62,14 @@ const DemoSettings = () => {
                             content="Please disconnect the wallet you are currently using in order to switch to another wallet."
                         />
                     )}
+                </div>
+
+                <div className="u-margin-bottom-large">
+                    <h6 className="c-modal-container__sub-title">Demo progress</h6>
+                    <CompletedSteps
+                        completedSteps={completedSteps}
+                        className="u-margin-bottom-none u-margin-left-none"
+                    />
                 </div>
 
                 <div className="u-margin-bottom-large">
