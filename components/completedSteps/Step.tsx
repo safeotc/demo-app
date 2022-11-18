@@ -6,14 +6,18 @@ export type StepStatus = 'completed' | 'locked' | 'waiting';
 interface StepProps {
     status: StepStatus;
     title: string;
-    description: string;
     number: number;
+    children: React.ReactNode;
 }
 
-const Step = ({ status, title, description, number }: StepProps) => {
-    const isCompleted = status === 'completed' || true;
+const Step = ({ status, title, number, children }: StepProps) => {
+    const isCompleted = status === 'completed';
     const isLocked = status === 'locked';
     const isWaiting = status === 'waiting';
+
+    const stepClasses = cn('c-step', {
+        'c-step--locked': isLocked,
+    });
 
     const stepIconClasses = cn('c-step__icon', {
         'c-step__icon--completed': isCompleted,
@@ -33,6 +37,11 @@ const Step = ({ status, title, description, number }: StepProps) => {
         'c-step__title--locked': isLocked,
     });
 
+    const stepTitleIconClasses = cn('s-step__title-icon', {
+        'c-step__title-icon--waiting': isWaiting,
+        'c-step__title-icon--locked': isLocked,
+    });
+
     const stepDescriptionClasses = cn('c-step__description', {
         'c-step__description--completed': isCompleted,
         'c-step__description--waiting': isWaiting,
@@ -40,12 +49,18 @@ const Step = ({ status, title, description, number }: StepProps) => {
     });
 
     return (
-        <li className="c-step">
+        <li className={stepClasses}>
             <div className={stepIconClasses}>{isCompleted ? <FlatIcon icon="check" /> : <span>{number}</span>}</div>
             <div className="c-step__content">
                 <div className={stepContentExpanderClasses}>
-                    <h6 className={stepTitleClasses}>{title}</h6>
-                    <p className={stepDescriptionClasses}>{description}</p>
+                    <h6 className={stepTitleClasses}>
+                        <div className="c-step__title-text">{title}</div>
+                        <div className={stepTitleIconClasses}>
+                            {isWaiting && <FlatIcon icon="hourglass-end" />}
+                            {isLocked && <FlatIcon icon="lock" />}
+                        </div>
+                    </h6>
+                    <p className={stepDescriptionClasses}>{children}</p>
                 </div>
             </div>
         </li>
