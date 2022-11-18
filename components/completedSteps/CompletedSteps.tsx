@@ -47,8 +47,8 @@ const CompletedSteps = ({ completedSteps, ...props }: CompletedSteps) => {
                 selling tokens.
             </Step>
             <Step number={8} status={sendTokensStatus} title="Send tokens">
-                Switch to seller demo wallet and send tokens to the buyer. To send tokens you need to open the order
-                page and click on &quot;send tokens&quot; button.
+                Send tokens to the buyer. To send tokens you need to open the order page and click on &quot;send
+                tokens&quot; button.
             </Step>
             <Step number={9} status={disconnectSellerWalletStatus} title="Disconnect seller wallet">
                 Disconnect the currently connected wallet.
