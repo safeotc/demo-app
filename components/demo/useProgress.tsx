@@ -125,7 +125,7 @@ const useProgress = (wallet: DemoWallet) => {
                 );
             },
         }),
-        [isStepCompleted, finishStep, unfinishStep, order, updateProgressData]
+        [isStepCompleted, finishStep, unfinishStep, order, updateProgressData, wallet]
     );
 
     return { completedSteps, completedStepsUpdater, order };
