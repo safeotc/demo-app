@@ -5,17 +5,28 @@ import { WalletContext } from '../../../wallet/WalletProvider';
 const useWalletInfo = () => {
     const { isConnected, otcBalance, address, network, connect, disconnect, switchNetworks } =
         useContext(WalletContext);
-    const { wallet, finishStep } = useContext(DemoContext);
+
+    const { wallet, completedStepsUpdater } = useContext(DemoContext);
+
     const connectWallet = useCallback(() => {
         connect(wallet);
-        finishStep(
-            'connect_create_order_wallet',
-            1,
-            'You have successfully connected your wallet. Now make an OTC order.'
-        );
-    }, [wallet, connect, finishStep]);
+        completedStepsUpdater.onConnected();
+    }, [connect, wallet, completedStepsUpdater]);
 
-    return { isConnected, address, otcBalance, network, switchNetworks, connect: connectWallet, disconnect };
+    const disconnectWallet = useCallback(() => {
+        disconnect();
+        completedStepsUpdater.onDisconnected();
+    }, [disconnect, completedStepsUpdater]);
+
+    return {
+        isConnected,
+        address,
+        otcBalance,
+        network,
+        switchNetworks,
+        connect: connectWallet,
+        disconnect: disconnectWallet,
+    };
 };
 
 export default useWalletInfo;

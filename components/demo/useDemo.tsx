@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
 import useStateWithUpdate from '../../common/hooks/useStateWithUpdate';
-import { AlertContent } from '../alerts/Alert';
-import useProgress from './useProgress';
+import useProgress, { CompletedStepsUpdater } from './useProgress';
 import useWelcomeScreen from './useWelcomeScreen';
 
 export interface DemoWallet {
@@ -28,7 +27,7 @@ export interface UseDemoData {
     wasWelcomeScreenDisplayed: boolean;
     setWasWelcomeScreenDisplayed: (wasWelcomeScreenDisplayed: boolean) => void;
     completedSteps: DemoStep[];
-    finishStep: (step: DemoStep, stepNumber: number, alertMessage: AlertContent) => void;
+    completedStepsUpdater: CompletedStepsUpdater;
 }
 
 export const DEMO_WALLETS: DemoWallet[] = [
@@ -51,7 +50,7 @@ const useDemo = (): UseDemoData => {
 
     const { wasWelcomeScreenDisplayed, setWasWelcomeScreenDisplayed } = useWelcomeScreen();
 
-    const { completedSteps, finishStep } = useProgress();
+    const { completedSteps, completedStepsUpdater } = useProgress();
 
     return {
         wallet,
@@ -59,7 +58,7 @@ const useDemo = (): UseDemoData => {
         changeWallet,
         setWasWelcomeScreenDisplayed,
         completedSteps,
-        finishStep,
+        completedStepsUpdater,
     };
 };
 

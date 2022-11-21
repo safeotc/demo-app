@@ -11,16 +11,12 @@ const useCreateNewOrderModal = (closeModal: () => void) => {
     const changeTab = useCallback((tab: CreateNewOrderModalTab) => () => setActiveTab(tab), [setActiveTab]);
 
     const { addSuccessAlert, addDangerAlert } = useContext(AlertsContext);
-    const { finishStep } = useContext(DemoContext);
+    const { completedStepsUpdater } = useContext(DemoContext);
     const showResultAndCloseModalOnSuccess: OnProcessed = (success) => {
         if (success) {
             closeModal();
             addSuccessAlert('Order was added successfully.');
-            finishStep(
-                'create_order',
-                2,
-                'Wow! Nice... You have just created an order. Now it is time for you to pretend you are someone else. Switch to another wallet and accept the order you have just created.'
-            );
+            completedStepsUpdater.onOrderCreated();
             return;
         }
         addDangerAlert('There was an error while creating an order.');
