@@ -80,8 +80,12 @@ const useProgress = (wallet: DemoWallet) => {
     | 'connect_buyer_wallet';
     */
 
-    const completedStepsUpdater: CompletedStepsUpdater = useMemo(
-        () => ({
+    const completedStepsUpdater: CompletedStepsUpdater = useMemo(() => {
+        const orderWalletAddress = order?.type === 'buy' ? order.buyer : order?.type === 'sell' ? order.seller : null;
+        const isCreateOrderWalletConnected = wallet.address === orderWalletAddress;
+        const isAcceptOrderWalletConnected = wallet.address !== orderWalletAddress;
+
+        return {
             onConnected: () => {
                 if (!isStepCompleted('connect_create_order_wallet')) {
                     finishStep(
@@ -92,9 +96,7 @@ const useProgress = (wallet: DemoWallet) => {
                     return;
                 }
                 if (!isStepCompleted('connect_accept_order_wallet')) {
-                    const orderWallet =
-                        order?.type === 'buy' ? order.buyer : order?.type === 'sell' ? order.seller : null;
-                    const isAcceptOrderWalletConnected = wallet.address !== orderWallet;
+                    isCreateOrderWalletConnected && unfinishStep('disconnect_wallet');
                     isAcceptOrderWalletConnected &&
                         finishStep(
                             'connect_accept_order_wallet',
@@ -110,11 +112,19 @@ const useProgress = (wallet: DemoWallet) => {
                     return;
                 }
 
-                finishStep(
-                    'disconnect_wallet',
-                    3,
-                    'Wallet was disconnected successfully. Switch to another wallet in order to accept the newly created order.'
-                );
+                if (!isStepCompleted('disconnect_wallet')) {
+                    finishStep(
+                        'disconnect_wallet',
+                        3,
+                        'Wallet was disconnected successfully. Switch to another wallet in order to accept the newly created order.'
+                    );
+                    return;
+                }
+
+                if (!isStepCompleted('accept_order')) {
+                    isAcceptOrderWalletConnected && unfinishStep('connect_accept_order_wallet');
+                    return;
+                }
             },
             onOrderCreated: (order) => {
                 updateProgressData({ order });
@@ -124,9 +134,8 @@ const useProgress = (wallet: DemoWallet) => {
                     'Wow! Nice... You have just created an order. Now it is time for you to pretend you are someone else. Switch to another wallet and accept the order you have just created.'
                 );
             },
-        }),
-        [isStepCompleted, finishStep, unfinishStep, order, updateProgressData, wallet]
-    );
+        };
+    }, [isStepCompleted, finishStep, unfinishStep, order, updateProgressData, wallet]);
 
     return { completedSteps, completedStepsUpdater, order };
 };
