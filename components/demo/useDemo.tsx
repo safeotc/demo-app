@@ -1,7 +1,7 @@
-import React, { useCallback, useContext } from 'react';
+import { useCallback } from 'react';
 import useStateWithUpdate from '../../common/hooks/useStateWithUpdate';
 import { AlertContent } from '../alerts/Alert';
-import { AlertsContext } from '../alerts/AlertsProvider';
+import useProgress from './useProgress';
 import useWelcomeScreen from './useWelcomeScreen';
 
 export interface DemoWallet {
@@ -37,13 +37,8 @@ export const DEMO_WALLETS: DemoWallet[] = [
 ];
 
 const useDemo = (): UseDemoData => {
-    const { wasWelcomeScreenDisplayed, setWasWelcomeScreenDisplayed } = useWelcomeScreen();
-
-    const [{ wallet, completedSteps }, , updateDemoData] = useStateWithUpdate<
-        Pick<UseDemoData, 'wallet' | 'completedSteps'>
-    >({
+    const [{ wallet }, , updateDemoData] = useStateWithUpdate<Pick<UseDemoData, 'wallet'>>({
         wallet: DEMO_WALLETS[0],
-        completedSteps: [],
     });
 
     const changeWallet = useCallback(
@@ -54,21 +49,9 @@ const useDemo = (): UseDemoData => {
         [updateDemoData]
     );
 
-    const { addSuccessAlert } = useContext(AlertsContext);
-    const finishStep = useCallback(
-        (step: DemoStep, stepNumber: number, alertMessage: AlertContent) => {
-            updateDemoData({ completedSteps: [...completedSteps, step] });
-            const alertContent = (
-                <>
-                    <b>Step {stepNumber}/10 completed</b>
-                    <br />
-                    {alertMessage}
-                </>
-            );
-            addSuccessAlert(alertContent, 10000);
-        },
-        [updateDemoData, completedSteps, addSuccessAlert]
-    );
+    const { wasWelcomeScreenDisplayed, setWasWelcomeScreenDisplayed } = useWelcomeScreen();
+
+    const { completedSteps, finishStep } = useProgress();
 
     return {
         wallet,
