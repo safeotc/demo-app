@@ -1,8 +1,8 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useContext } from 'react';
 import useStateWithUpdate from '../../common/hooks/useStateWithUpdate';
-import welcomeRepository from '../../repositories/WelcomeRepository';
 import { AlertContent } from '../alerts/Alert';
 import { AlertsContext } from '../alerts/AlertsProvider';
+import useWelcomeScreen from './useWelcomeScreen';
 
 export interface DemoWallet {
     name: string;
@@ -37,11 +37,12 @@ export const DEMO_WALLETS: DemoWallet[] = [
 ];
 
 const useDemo = (): UseDemoData => {
-    const [{ wallet, wasWelcomeScreenDisplayed, completedSteps }, , updateDemoData] = useStateWithUpdate<
-        Pick<UseDemoData, 'wallet' | 'wasWelcomeScreenDisplayed' | 'completedSteps'>
+    const { wasWelcomeScreenDisplayed, setWasWelcomeScreenDisplayed } = useWelcomeScreen();
+
+    const [{ wallet, completedSteps }, , updateDemoData] = useStateWithUpdate<
+        Pick<UseDemoData, 'wallet' | 'completedSteps'>
     >({
         wallet: DEMO_WALLETS[0],
-        wasWelcomeScreenDisplayed: welcomeRepository.wasWelcomeDisplayed(),
         completedSteps: [],
     });
 
@@ -49,13 +50,6 @@ const useDemo = (): UseDemoData => {
         (address: string) => {
             const wallet = DEMO_WALLETS.find((dM) => dM.address === address);
             updateDemoData({ wallet });
-        },
-        [updateDemoData]
-    );
-
-    const setWasWelcomeScreenDisplayed = useCallback(
-        (wasWelcomeScreenDisplayed: boolean) => {
-            updateDemoData({ wasWelcomeScreenDisplayed });
         },
         [updateDemoData]
     );
@@ -75,10 +69,6 @@ const useDemo = (): UseDemoData => {
         },
         [updateDemoData, completedSteps, addSuccessAlert]
     );
-
-    useEffect(() => {
-        welcomeRepository.setWasWelcomeDisplayed(wasWelcomeScreenDisplayed);
-    }, [wasWelcomeScreenDisplayed]);
 
     return {
         wallet,
