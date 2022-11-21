@@ -10,7 +10,7 @@ const useDemoSettings = () => {
     const showModal = () => setIsOpened(true);
     const hideModal = () => setIsOpened(false);
 
-    const demoWallets = DEMO_WALLETS.map<RadioOption>((dM) => ({ label: dM.address, value: dM.address }));
+    const demoWallets = DEMO_WALLETS.map<RadioOption>((dM) => ({ label: dM.name, value: dM.address }));
     const { wallet, changeWallet, wasWelcomeScreenDisplayed, setWasWelcomeScreenDisplayed, completedSteps } =
         useContext(DemoContext);
     const changeDemoWallet = (walletAddress: NullableRadioValue) => !!walletAddress && changeWallet(walletAddress);

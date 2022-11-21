@@ -8,7 +8,7 @@ interface DemoProviderProps {
 interface DemoData extends UseDemoData {}
 
 const defaultDemoContext: DemoData = {
-    wallet: { address: '', otcBalance: '' },
+    wallet: { name: '', address: '', otcBalance: '' },
     changeWallet: () => {},
     wasWelcomeScreenDisplayed: false,
     setWasWelcomeScreenDisplayed: () => {},

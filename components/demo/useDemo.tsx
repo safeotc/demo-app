@@ -5,6 +5,7 @@ import { AlertContent } from '../alerts/Alert';
 import { AlertsContext } from '../alerts/AlertsProvider';
 
 export interface DemoWallet {
+    name: string;
     address: string;
     otcBalance: string;
 }
@@ -31,8 +32,8 @@ export interface UseDemoData {
 }
 
 export const DEMO_WALLETS: DemoWallet[] = [
-    { address: '0xdAC17F958D2ee523a2206206994597C13D831ec7', otcBalance: '32711.243' },
-    { address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', otcBalance: '23030.3211' },
+    { name: 'Demo wallet 1', address: '0xdAC17F958D2ee523a2206206994597C13D831ec7', otcBalance: '32711.243' },
+    { name: 'Demo wallet 2', address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', otcBalance: '23030.3211' },
 ];
 
 const useDemo = (): UseDemoData => {
