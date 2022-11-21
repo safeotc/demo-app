@@ -1,4 +1,4 @@
-import { OrderType } from '../../../../models/Order';
+import Order, { OrderType } from '../../../../models/Order';
 import Form from '../../../forms/Form';
 import FormSelect from '../../../forms/formSelect/FormSelect';
 import FormInput from '../../../forms/formInput/FormInput';
@@ -7,7 +7,7 @@ import FormSubmitButton from '../../../forms/buttons/FormSubmitButton';
 import FormResetButton from '../../../forms/buttons/FormResetButton';
 import SecurityDepositField from '../securityDepositField/SecurityDepositField';
 
-export type OnProcessed = (success: boolean) => void;
+export type OnProcessed = (success: boolean, order: Order | null) => void;
 
 interface CreateOrderFormProps {
     type: OrderType;

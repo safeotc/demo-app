@@ -73,7 +73,7 @@ const useCreateNewOrderForm = (type: OrderType, onProcessed: OnProcessed) => {
 
         await OrdersRepository.addOrder(order);
         setSubmitting(false);
-        onProcessed(true);
+        onProcessed(true, order);
     };
 
     return {

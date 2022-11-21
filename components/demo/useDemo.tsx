@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import useStateWithUpdate from '../../common/hooks/useStateWithUpdate';
+import Order from '../../models/Order';
 import useProgress, { CompletedStepsUpdater } from './useProgress';
 import useWelcomeScreen from './useWelcomeScreen';
 
@@ -28,6 +29,7 @@ export interface UseDemoData {
     setWasWelcomeScreenDisplayed: (wasWelcomeScreenDisplayed: boolean) => void;
     completedSteps: DemoStep[];
     completedStepsUpdater: CompletedStepsUpdater;
+    order: Order | null;
 }
 
 export const DEMO_WALLETS: DemoWallet[] = [
@@ -50,7 +52,7 @@ const useDemo = (): UseDemoData => {
 
     const { wasWelcomeScreenDisplayed, setWasWelcomeScreenDisplayed } = useWelcomeScreen();
 
-    const { completedSteps, completedStepsUpdater } = useProgress();
+    const { completedSteps, completedStepsUpdater, order } = useProgress(wallet);
 
     return {
         wallet,
@@ -59,6 +61,7 @@ const useDemo = (): UseDemoData => {
         setWasWelcomeScreenDisplayed,
         completedSteps,
         completedStepsUpdater,
+        order,
     };
 };
 

@@ -1,22 +1,25 @@
 import { useCallback, useContext, useMemo } from 'react';
 import useStateWithUpdate from '../../common/hooks/useStateWithUpdate';
+import Order from '../../models/Order';
 import { AlertContent } from '../alerts/Alert';
 import { AlertsContext } from '../alerts/AlertsProvider';
-import { DemoStep } from './useDemo';
+import { DemoStep, DemoWallet } from './useDemo';
 
 interface UseProgressData {
     completedSteps: DemoStep[];
+    order: Order | null;
 }
 
 export interface CompletedStepsUpdater {
     onConnected: () => void;
     onDisconnected: () => void;
-    onOrderCreated: () => void;
+    onOrderCreated: (order: Order) => void;
 }
 
-const useProgress = () => {
-    const [{ completedSteps }, , updateProgressData] = useStateWithUpdate<UseProgressData>({
+const useProgress = (wallet: DemoWallet) => {
+    const [{ completedSteps, order }, , updateProgressData] = useStateWithUpdate<UseProgressData>({
         completedSteps: [],
+        order: null,
     });
 
     const isStepCompleted = useCallback(
@@ -88,6 +91,18 @@ const useProgress = () => {
                     );
                     return;
                 }
+                if (!isStepCompleted('connect_accept_order_wallet')) {
+                    const orderWallet =
+                        order?.type === 'buy' ? order.buyer : order?.type === 'sell' ? order.seller : null;
+                    const isAcceptOrderWalletConnected = wallet.address !== orderWallet;
+                    isAcceptOrderWalletConnected &&
+                        finishStep(
+                            'connect_accept_order_wallet',
+                            4,
+                            'Hello other guy! Head over to open orders and accept the order that was created earlier by someone else.'
+                        );
+                    return;
+                }
             },
             onDisconnected: () => {
                 if (!isStepCompleted('create_order')) {
@@ -101,7 +116,8 @@ const useProgress = () => {
                     'Wallet was disconnected successfully. Switch to another wallet in order to accept the newly created order.'
                 );
             },
-            onOrderCreated: () => {
+            onOrderCreated: (order) => {
+                updateProgressData({ order });
                 finishStep(
                     'create_order',
                     2,
@@ -109,10 +125,10 @@ const useProgress = () => {
                 );
             },
         }),
-        [isStepCompleted, finishStep, unfinishStep]
+        [isStepCompleted, finishStep, unfinishStep, order, updateProgressData]
     );
 
-    return { completedSteps, completedStepsUpdater };
+    return { completedSteps, completedStepsUpdater, order };
 };
 
 export default useProgress;

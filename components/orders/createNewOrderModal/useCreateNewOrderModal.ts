@@ -12,11 +12,11 @@ const useCreateNewOrderModal = (closeModal: () => void) => {
 
     const { addSuccessAlert, addDangerAlert } = useContext(AlertsContext);
     const { completedStepsUpdater } = useContext(DemoContext);
-    const showResultAndCloseModalOnSuccess: OnProcessed = (success) => {
-        if (success) {
+    const showResultAndCloseModalOnSuccess: OnProcessed = (success, order) => {
+        if (success && !!order) {
             closeModal();
             addSuccessAlert('Order was added successfully.');
-            completedStepsUpdater.onOrderCreated();
+            completedStepsUpdater.onOrderCreated(order);
             return;
         }
         addDangerAlert('There was an error while creating an order.');

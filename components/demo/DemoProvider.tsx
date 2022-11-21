@@ -18,6 +18,7 @@ const defaultDemoContext: DemoData = {
         onDisconnected: () => {},
         onOrderCreated: () => {},
     },
+    order: null,
 };
 
 export const DemoContext = React.createContext<DemoData>(defaultDemoContext);
