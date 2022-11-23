@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Order from '../../../models/Order';
 import BuyIcon from '../../icons/orders/BuyIcon';
 import SellIcon from '../../icons/orders/SellIcon';
@@ -23,6 +24,7 @@ const OpenOrdersTable = ({ orders }: OpenOrdersTableProps) => {
             singleLineItems={true}
             headerProps={[
                 { textAlign: 'center', useMinPossibleWidth: true, content: 'Type' },
+                { textAlign: 'center', useMinPossibleWidth: true, content: 'Details' },
                 { textAlign: 'left', content: 'Asset' },
                 { textAlign: 'right', content: 'Price' },
                 { textAlign: 'right', content: 'Quantity' },
@@ -41,6 +43,14 @@ const OpenOrdersTable = ({ orders }: OpenOrdersTableProps) => {
                                 {order.type === 'buy' && <BuyIcon />}
                                 {order.type === 'sell' && <SellIcon />}
                             </>
+                        ),
+                    },
+                    {
+                        textAlign: 'center',
+                        content: (
+                            <Link href={`/orders/${order.id}`}>
+                                <a className="c-link">Details</a>
+                            </Link>
                         ),
                     },
                     {

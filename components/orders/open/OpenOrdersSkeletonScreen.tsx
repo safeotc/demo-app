@@ -8,6 +8,7 @@ const OpenOrdersSkeletonScreen = () => {
             singleLineItems={true}
             headerProps={[
                 { textAlign: 'center', useMinPossibleWidth: true, content: 'Type' },
+                { textAlign: 'center', useMinPossibleWidth: true, content: 'Details' },
                 { textAlign: 'left', content: 'Asset' },
                 { textAlign: 'right', content: 'Price' },
                 { textAlign: 'right', content: 'Quantity' },
@@ -21,6 +22,10 @@ const OpenOrdersSkeletonScreen = () => {
                     {
                         textAlign: 'center',
                         content: <SkeletonShimmer shape="circle" style={{ width: '2.75em', height: '2.75em' }} />,
+                    },
+                    {
+                        textAlign: 'center',
+                        content: <SkeletonShimmer shape="rectangular" style={{ width: '5em', height: '1.5em' }} />,
                     },
                     {
                         textAlign: 'left',

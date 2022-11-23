@@ -18,7 +18,10 @@ const useOpenOrdersList = () => {
 
     useEffect(() => {
         // subscribe to new orders
-        const onOrdersUpdated: OrdersUpdatedCallback = (orders) => updateOrdersState({ orders });
+        const onOrdersUpdated: OrdersUpdatedCallback = (orders) => {
+            console.log(orders);
+            updateOrdersState({ orders });
+        };
         const subscriptionId = ordersRepository.subscribeToOrdersUpdate(onOrdersUpdated);
 
         // initial orders retrieval

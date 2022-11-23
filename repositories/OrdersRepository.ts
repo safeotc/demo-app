@@ -9,7 +9,8 @@ interface IOrdersRepository {
     getOpenOrders: () => Promise<Order[]>;
     getActiveOrders: () => Promise<Order[]>;
     getCompletedOrders: () => Promise<Order[]>;
-    getOrdersBy: (address: string) => Promise<Order[]>;
+    getOrdersByAddress: (address: string) => Promise<Order[]>;
+    getOrderById: (id: string) => Promise<Order | undefined>;
     subscribeToOrdersUpdate: (callback: (orders: Order[]) => void) => string;
     unsubscribeFromOrdersUpdate: (subscriptionId: string) => void;
 }
@@ -214,13 +215,20 @@ class OrdersRepository implements IOrdersRepository {
         return completedOrders;
     }
 
-    async getOrdersBy(address: string) {
+    async getOrdersByAddress(address: string) {
         await delay(2000);
         const addressInLowerCase = address.toLowerCase();
         const addressOrders = this.orders.filter(
             (o) => o.buyer?.toLowerCase() === addressInLowerCase || o.seller?.toLowerCase() === addressInLowerCase
         );
         return addressOrders;
+    }
+
+    async getOrderById(id: string) {
+        await delay(2000);
+        const idInLowerCase = id.toLowerCase();
+        const order = this.orders.find((o) => o.id.toLowerCase() === idInLowerCase);
+        return order;
     }
 }
 
