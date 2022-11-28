@@ -6,14 +6,14 @@
 .c-error__code {
   color: $color-danger;
   font-weight: bold;
-  @include inuit-font-size($inuit-font-size-h1);
+  @include inuit-font-size(3 * $inuit-font-size-h1);
   margin-bottom: $inuit-global-spacing-unit-tiny;
 }
 
 .c-error__detail {
   color: $color-danger;
   font-weight: bold;
-  @include inuit-font-size($inuit-font-size-h4);
+  @include inuit-font-size($inuit-font-size-h3);
   margin-bottom: $inuit-global-spacing-unit-large;
   text-transform: uppercase;
 }
