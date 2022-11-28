@@ -1,0 +1,19 @@
+.c-error {
+  text-align: center;
+  margin: #{$inuit-global-spacing-unit-huge} 0;
+}
+
+.c-error__code {
+  color: $color-danger;
+  font-weight: bold;
+  @include inuit-font-size($inuit-font-size-h1);
+  margin-bottom: $inuit-global-spacing-unit-tiny;
+}
+
+.c-error__detail {
+  color: $color-danger;
+  font-weight: bold;
+  @include inuit-font-size($inuit-font-size-h4);
+  margin-bottom: $inuit-global-spacing-unit-large;
+  text-transform: uppercase;
+}

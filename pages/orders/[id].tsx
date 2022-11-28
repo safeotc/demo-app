@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import useStateWithUpdate from '../../common/hooks/useStateWithUpdate';
+import Error404 from '../../components/errors/404';
 import Order from '../../models/Order';
 import ordersRepository from '../../repositories/OrdersRepository';
 
@@ -45,7 +46,7 @@ const OrderPage: NextPage = () => {
     }
 
     if (!order) {
-        return <div className="o-box">Order with id &quot;{id}&quot; was not found.</div>;
+        return <Error404 text={`Order with id "${id}" does not exist.`} />;
     }
 
     return (
