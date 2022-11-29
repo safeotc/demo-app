@@ -1,0 +1,30 @@
+.c-order-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.c-order-title__left {
+  margin-right: $inuit-global-spacing-unit-small;
+}
+
+.c-order-title__right {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.c-order-title__asset {
+  display: block;
+  max-width: 100%;
+  @extend .u-text-ellipsis;
+  @include inuit-font-size($inuit-font-size-h3);
+  margin-bottom: 0;
+}
+
+.c-order-title__id {
+  display: block;
+  max-width: 100%;
+  @extend .u-text-ellipsis;
+  color: var(--color-tertiary);
+  @include short-transition(color);
+}
