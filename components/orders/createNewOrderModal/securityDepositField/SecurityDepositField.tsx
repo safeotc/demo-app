@@ -16,7 +16,7 @@ const SecurityDepositField = ({ type, info }: SecurityDepositFieldProps) => {
             readOnly={true}
             disabled={true}
             id="cof-security-deposit"
-            label="Security deposit (USD)"
+            label="Security deposit (USDT)"
             placeholder="Security deposit"
             info={
                 <div style={{ maxWidth: '330px' }}>

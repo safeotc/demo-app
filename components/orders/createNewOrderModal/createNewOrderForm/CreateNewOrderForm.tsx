@@ -46,7 +46,7 @@ const CreateNewOrderForm = ({ type, securityDepositInfo, onProcessed }: CreateOr
                 <FormInput
                     id={FIELD_COF_PRICE}
                     name={FIELD_COF_PRICE}
-                    label="Price (USD)"
+                    label="Price (USDT)"
                     min={0}
                     step="any"
                     placeholder="Price"
