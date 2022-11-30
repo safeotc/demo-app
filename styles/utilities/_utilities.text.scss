@@ -27,3 +27,7 @@
 .u-text-bold {
   font-weight: bold !important;
 }
+
+.u-text-brand-gradient {
+  @include brand-gradient-text();
+}
