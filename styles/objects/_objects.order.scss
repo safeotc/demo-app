@@ -1,19 +1,47 @@
 .o-order {
-}
+  display: grid;
+  grid-template-areas:
+    "title"
+    "info"
+    "actions"
+    "history";
 
-.o-order__title {
-  margin-bottom: 1em;
+  @include mq($from: s) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "title title"
+      "info actions"
+      "history history";
+    column-gap: 2em;
+  }
 
   @include mq($from: l) {
-    margin-bottom: 2em;
+    grid-template-areas:
+      "title title"
+      "info history"
+      "actions history";
+    grid-template-rows: auto auto 1fr;
+    column-gap: 3em;
   }
 }
 
+.o-order__title {
+  grid-area: title;
+  min-width: 0;
+}
+
+.o-order__subtitle {
+  display: inline-block;
+}
+
 .o-order__info {
+  grid-area: info;
 }
 
 .o-order__actions {
+  grid-area: actions;
 }
 
 .o-order__history {
+  grid-area: history;
 }

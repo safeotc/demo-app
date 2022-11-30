@@ -1,4 +1,7 @@
 import Order from '../../../models/Order';
+import OrderActions from './OrderActions';
+import OrderHistory from './OrderHistory';
+import OrderInfo from './OrderInfo';
 import OrderNotFound from './OrderNotFound';
 import OrderTitle from './OrderTitle';
 
@@ -19,21 +22,18 @@ const LoadedOrder = ({ id, order }: LoadedOrderProps) => {
             </div>
 
             <div className="o-order__info">
-                DETAILS
-                <br />
-                TODO
+                <h3 className="o-order__subtitle">Info</h3>
+                <OrderInfo />
             </div>
 
             <div className="o-order__actions">
-                ACTIONS
-                <br />
-                TODO
+                <h3 className="o-order__subtitle">Actions</h3>
+                <OrderActions />
             </div>
 
             <div className="o-order__history">
-                HISTORY
-                <br />
-                TODO
+                <h3 className="o-order__subtitle">History</h3>
+                <OrderHistory history={[]} />
             </div>
         </div>
     );

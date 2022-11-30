@@ -9,14 +9,16 @@ interface OrderTitleProps {
 }
 
 const OrderTitle = ({ id, type, asset }: OrderTitleProps) => {
+    const assetText = `${type === 'buy' ? 'Buy' : 'Sell'} ${asset}`;
+
     return (
         <div className="c-order-title">
             <div className="c-order-title__left">{type === 'buy' ? <BuyIcon /> : <SellIcon />}</div>
             <div className="c-order-title__right">
-                <h1 className="c-order-title__asset">
-                    {type === 'buy' ? 'Buy' : 'Sell'} {asset}
+                <h1 className="c-order-title__asset" title={assetText}>
+                    {assetText}
+                    <span className="c-order-title__id">ID: {id}</span>
                 </h1>
-                <span className="c-order-title__id">ID: {id}</span>
             </div>
         </div>
     );
