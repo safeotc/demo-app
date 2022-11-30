@@ -34,7 +34,7 @@ const LoadedOrder = ({ id, order }: LoadedOrderProps) => {
 
             <div className="o-order__history">
                 <OrderSubtitle text="History" />
-                <OrderHistory history={[]} />
+                <OrderHistory />
             </div>
         </div>
     );

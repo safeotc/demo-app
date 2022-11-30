@@ -6,22 +6,17 @@
     "actions"
     "history";
 
-  @include mq($from: s) {
+  @include mq($from: m) {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       "title title"
       "info actions"
       "history history";
-    column-gap: 2em;
+    column-gap: $content-mobile-spacing;
   }
 
   @include mq($from: l) {
-    grid-template-areas:
-      "title title"
-      "info history"
-      "actions history";
-    grid-template-rows: auto auto 1fr;
-    column-gap: 3em;
+    column-gap: $content-desktop-spacing;
   }
 }
 
@@ -37,18 +32,30 @@
 
 .o-order__subtitle {
   display: block;
+  margin-bottom: 1em;
 
-  span {
+  & > h3 {
     display: inline-block;
+    margin-bottom: 0;
   }
 }
 
 .o-order__info {
   grid-area: info;
+  margin-bottom: $content-mobile-spacing;
+
+  @include mq($from: l) {
+    margin-bottom: $content-desktop-spacing;
+  }
 }
 
 .o-order__actions {
   grid-area: actions;
+  margin-bottom: $content-mobile-spacing;
+
+  @include mq($from: l) {
+    margin-bottom: $content-desktop-spacing;
+  }
 }
 
 .o-order__history {

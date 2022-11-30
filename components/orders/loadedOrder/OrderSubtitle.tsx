@@ -4,9 +4,9 @@ interface OrderSubtitleProps {
 
 const OrderSubtitle = ({ text }: OrderSubtitleProps) => {
     return (
-        <h3 className="o-order__subtitle">
-            <span className="u-text-brand-gradient">{text}</span>
-        </h3>
+        <div className="o-order__subtitle">
+            <h3 className="u-text-brand-gradient">{text}</h3>
+        </div>
     );
 };
 
