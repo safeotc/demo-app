@@ -1,0 +1,23 @@
+.c-wallet-actions {
+  @include border-radius();
+  @include short-shadow();
+  border: 0px solid var(--color-secondary);
+  background: var(--color-primary);
+  padding: 1em;
+  text-align: right;
+}
+
+.c-wallet-actions__section-title {
+  font-weight: bold;
+  margin-bottom: 0.25em;
+  @include brand-gradient-text();
+}
+
+.c-wallet-actions__balance {
+  margin-bottom: 1em;
+}
+
+.c-wallet-actions__buttons {
+  display: flex;
+  flex-direction: column;
+}

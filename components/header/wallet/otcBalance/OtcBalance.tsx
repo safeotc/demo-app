@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import Button from '../../../forms/buttons/Button';
+import ButtonText from '../../../forms/buttons/ButtonText';
+import SecondaryButton from '../../../forms/buttons/SecondaryButton';
+import DropdownDownArrowIcon from '../../../icons/DropdownDownArrowIcon';
+import FlatIcon from '../../../icons/FlatIcon';
 import Popover from '../../../popover/Popover';
 import useOtcBalance from './useOtcBalance';
 
@@ -17,8 +21,32 @@ const OtcBalance = ({ address, balance, disconnect }: OtcBalanceProps) => {
     const closeDashboardPopover = () => setIsDashboardPopoverOpened(false);
 
     const popover = (
-        <div>
-            <Button onClick={disconnect}>Disconnect wallet</Button>
+        <div className="c-wallet-actions">
+            <div className="c-wallet-actions__balance">
+                <p className="c-wallet-actions__section-title">Balance</p>
+                <span>{balance} OTC</span>
+            </div>
+            <div className="c-wallet-actions__buttons">
+                <p className="c-wallet-actions__section-title">Actions</p>
+                <div className="u-margin-bottom-tiny">
+                    <Button
+                        className="u-text-white-space-nowrap u-width-full"
+                        onClick={copyAddressToClipBoardAndDisplayAlert}
+                        icon={<FlatIcon icon="copy" />}
+                    >
+                        Copy address
+                    </Button>
+                </div>
+                <div>
+                    <Button
+                        className="u-text-white-space-nowrap u-width-full"
+                        onClick={disconnect}
+                        icon={<FlatIcon icon="link-slash" />}
+                    >
+                        Disconnect wallet
+                    </Button>
+                </div>
+            </div>
         </div>
     );
 
@@ -33,14 +61,11 @@ const OtcBalance = ({ address, balance, disconnect }: OtcBalanceProps) => {
                 ['s', 'topRight'],
             ]}
         >
-            <div className="c-balance u-margin-left-small" onClick={openDashboardPopover}>
-                <div className="c-balance__content">
-                    <span className="c-balance__otc-balance">{balance} OTC</span>
-                    <span className="c-balance__divider">|</span>
-                    <button className="c-balance__address" onClick={copyAddressToClipBoardAndDisplayAlert}>
-                        {addressDisplay}
-                    </button>
-                </div>
+            <div className="u-margin-left-small">
+                <SecondaryButton onClick={openDashboardPopover} altBackground={true}>
+                    <ButtonText>{addressDisplay}</ButtonText>
+                    <DropdownDownArrowIcon />
+                </SecondaryButton>
             </div>
         </Popover>
     );
