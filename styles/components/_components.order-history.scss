@@ -1,0 +1,16 @@
+.c-order-history {
+  margin-bottom: 0.5em;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.c-order-history__datetime {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.c-order-history__description {
+  margin-bottom: 0;
+}

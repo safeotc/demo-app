@@ -1,6 +1,6 @@
 import Order from '../../../models/Order';
 import OrderActions from './OrderActions';
-import OrderHistory from './OrderHistory';
+import OrderHistory from './orderHistory/OrderHistory';
 import OrderInfo from './OrderInfo';
 import OrderNotFound from './OrderNotFound';
 import OrderSubtitle from './OrderSubtitle';
