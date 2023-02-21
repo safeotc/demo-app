@@ -6,7 +6,7 @@ import { v4 as uuidV4 } from 'uuid';
 import OrdersRepository from '../../../../repositories/OrdersRepository';
 import { useContext } from 'react';
 import { WalletContext } from '../../../wallet/WalletProvider';
-import { getSecurityDeposit } from '../securityDepositField/useSecurityDepositField';
+import { getValueDeposit } from '../valueDepositField/useValueDepositField';
 import { Rules } from '../../../../common/helpers/forms';
 
 export const FIELD_COF_TOKEN = 'cof-token';
@@ -56,7 +56,7 @@ const useCreateNewOrderForm = (type: OrderType, onProcessed: OnProcessed) => {
     const onSubmit: OnSubmit<CreateOrderFormFields> = async (values, { setSubmitting }) => {
         const price = Number(values[FIELD_COF_PRICE]);
         const quantity = Number(values[FIELD_COF_QUANTITY]);
-        const securityDeposit = getSecurityDeposit(type, price, quantity);
+        const securityDeposit = getValueDeposit(type, price, quantity);
 
         const order: Order = {
             asset: values[FIELD_COF_TOKEN],

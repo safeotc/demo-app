@@ -9,7 +9,7 @@ const SellTab = ({ onProcessed }: SellTabProps) => {
         <CreateNewOrderForm
             type="sell"
             onProcessed={onProcessed}
-            securityDepositInfo="Security deposit for a sell order is 50% of total value."
+            valueDepositInfo="Security deposit for a sell order is 50% of total order value."
         />
     );
 };

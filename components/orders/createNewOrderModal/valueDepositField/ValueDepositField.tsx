@@ -1,23 +1,23 @@
 import { OrderType } from '../../../../models/Order';
 import Input from '../../../forms/Input';
-import useSecurityDepositField from './useSecurityDepositField';
+import useValueDepositField from './useValueDepositField';
 
-interface SecurityDepositFieldProps {
+interface ValueDepositFieldProps {
     type: OrderType;
     info: string;
 }
 
-const SecurityDepositField = ({ type, info }: SecurityDepositFieldProps) => {
-    const value = useSecurityDepositField(type);
+const SecurityDepositField = ({ type, info }: ValueDepositFieldProps) => {
+    const { label, value } = useValueDepositField(type);
 
     return (
         <Input
             value={value}
             readOnly={true}
             disabled={true}
-            id="cof-security-deposit"
-            label="Security deposit (USDT)"
-            placeholder="Security deposit"
+            id="cof-value-deposit"
+            label={`${label} (USDT)`}
+            placeholder={label}
             info={
                 <div style={{ maxWidth: '330px' }}>
                     {info}

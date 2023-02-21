@@ -9,7 +9,7 @@ const BuyTab = ({ onProcessed }: BuyTabProps) => {
         <CreateNewOrderForm
             type="buy"
             onProcessed={onProcessed}
-            securityDepositInfo="Security deposit for a buy order is 100% of total value."
+            valueDepositInfo="Buyer is required to deposit 100% of total order value."
         />
     );
 };
