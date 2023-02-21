@@ -17,7 +17,7 @@ const OrderTitle = ({ id, type, asset }: OrderTitleProps) => {
             <div className="c-order-title__right">
                 <h1 className="c-order-title__asset" title={assetText}>
                     {assetText}
-                    <span className="c-order-title__id">ID: {id}</span>
+                    <span className="c-order-title__id u-margin-top-tiny">ID: {id}</span>
                 </h1>
             </div>
         </div>

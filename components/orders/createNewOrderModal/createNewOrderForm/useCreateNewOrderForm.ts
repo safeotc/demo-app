@@ -69,6 +69,7 @@ const useCreateNewOrderForm = (type: OrderType, onProcessed: OnProcessed) => {
             quantity,
             securityDeposit,
             status: 'open',
+            history: [[Date.now(), 'Order was successfully created.']],
         };
 
         await OrdersRepository.addOrder(order);

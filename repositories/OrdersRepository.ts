@@ -61,6 +61,7 @@ class OrdersRepository implements IOrdersRepository {
                 buyer: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 seller: null,
                 status: 'open',
+                history: [[1673386470, 'Order was successfully created.']],
             },
             {
                 id: '422df333-affc-4b1e-80cd-e5fac41368be',
@@ -73,6 +74,7 @@ class OrdersRepository implements IOrdersRepository {
                 buyer: null,
                 seller: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 status: 'open',
+                history: [[1673382470, 'Order was successfully created.']],
             },
             {
                 id: 'af235995-991d-4197-8612-21cf72d974dc',
@@ -85,6 +87,7 @@ class OrdersRepository implements IOrdersRepository {
                 buyer: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 seller: null,
                 status: 'open',
+                history: [[1673372941, 'Order was successfully created.']],
             },
             {
                 id: 'e216bb4b-6de1-49a8-a375-b81c04e72933',
@@ -97,6 +100,7 @@ class OrdersRepository implements IOrdersRepository {
                 buyer: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 seller: null,
                 status: 'open',
+                history: [[1673364941, 'Order was successfully created.']],
             },
             {
                 id: 'b73a8355-9a68-433a-aa48-3dceebf854cf',
@@ -109,6 +113,7 @@ class OrdersRepository implements IOrdersRepository {
                 buyer: null,
                 seller: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 status: 'open',
+                history: [[1673362941, 'Order was successfully created.']],
             },
             {
                 id: 'a9b24305-a87d-4c88-9341-9b8264b76b60',
@@ -121,6 +126,7 @@ class OrdersRepository implements IOrdersRepository {
                 buyer: null,
                 seller: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 status: 'open',
+                history: [[1673352941, 'Order was successfully created.']],
             },
             {
                 id: 'f08042fc-fe52-471a-933d-ee8a3e9b56ba',
@@ -133,6 +139,7 @@ class OrdersRepository implements IOrdersRepository {
                 buyer: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 seller: null,
                 status: 'open',
+                history: [[1673351941, 'Order was successfully created.']],
             },
         ];
         return orders;
