@@ -3,6 +3,7 @@
   margin-bottom: $inuit-global-spacing-unit;
   display: flex;
   align-items: center;
+  @include short-transition(opacity);
 }
 
 .c-step--locked {
@@ -20,6 +21,7 @@
   justify-content: center;
   align-items: center;
   font-weight: bold;
+  @include short-transition(border-color color background-color);
 
   & > span,
   & > i {
@@ -51,6 +53,7 @@
 
 .c-step__content-expander {
   @include double-border-radius();
+  @include short-transition(border-color background-color);
   border: 2px solid transparent;
   width: calc(100% + 1em + 1px);
   margin-left: calc(-1em - 1px);
@@ -73,9 +76,14 @@
 }
 
 .c-step__title {
+  @include short-transition(color);
   margin-bottom: $inuit-global-spacing-unit-small;
   display: flex;
   align-items: center;
+}
+
+.c-step__title--completed {
+  color: $color-success;
 }
 
 .c-step__title-text {
@@ -83,6 +91,7 @@
 }
 
 .c-step__title-icon {
+  @include short-transition(color);
   text-align: right;
 
   & > i {
@@ -97,11 +106,8 @@
   }
 }
 
-.c-step__title--completed {
-  color: $color-success;
-}
-
 .c-step__description {
+  @include short-transition(color);
   margin-bottom: 0;
 }
 
