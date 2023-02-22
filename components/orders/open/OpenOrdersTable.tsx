@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getMakerShortForm, getTotalOrderValue } from '../../../common/helpers/orders';
+import { getMakerShortForm } from '../../../common/helpers/orders';
 import Order from '../../../models/Order';
 import BuyIcon from '../../icons/orders/BuyIcon';
 import SellIcon from '../../icons/orders/SellIcon';
@@ -61,7 +61,7 @@ const OpenOrdersTable = ({ orders }: OpenOrdersTableProps) => {
                     },
                     {
                         textAlign: 'right',
-                        content: `${getTotalOrderValue(order)} ${order.currency}`,
+                        content: `${order.totalDeposit} ${order.currency}`,
                     },
                     {
                         textAlign: 'right',

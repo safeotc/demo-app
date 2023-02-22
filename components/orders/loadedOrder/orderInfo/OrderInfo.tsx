@@ -1,4 +1,4 @@
-import { getMakerShortForm, getTotalOrderValue } from '../../../../common/helpers/orders';
+import { getMakerShortForm } from '../../../../common/helpers/orders';
 import Order from '../../../../models/Order';
 import InputTooltip from '../../../forms/inputTooltip/InputTooltip';
 import OrderStatusDisplay from './OrderStatusDisplay';
@@ -51,7 +51,7 @@ const OrderInfo = ({ order }: OrderInfoProps) => {
                     />
                 </span>
                 <p className="c-order-info__value">
-                    {getTotalOrderValue(order)} {order.currency}
+                    {order.totalDeposit} {order.currency}
                 </p>
             </div>
 

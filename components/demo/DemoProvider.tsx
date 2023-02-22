@@ -19,6 +19,7 @@ const defaultDemoContext: DemoData = {
         onOrderCreated: () => {},
     },
     order: null,
+    demoOrderUuids: [],
 };
 
 export const DemoContext = React.createContext<DemoData>(defaultDemoContext);

@@ -29,7 +29,7 @@ const LoadedOrder = ({ id, order }: LoadedOrderProps) => {
 
             <div className="o-order__actions">
                 <OrderSubtitle text="Actions" />
-                <OrderActions />
+                <OrderActions order={order} />
             </div>
 
             <div className="o-order__history">

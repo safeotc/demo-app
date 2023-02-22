@@ -1,13 +1,13 @@
 import { CURRENCIES } from '../../../../common/constants/currencies';
-import Order, { OrderType } from '../../../../models/Order';
+import Order, { OrderHistory, OrderType } from '../../../../models/Order';
 import { OnSubmit, ValidationRules } from '../../../forms/Form';
 import { OnProcessed } from './CreateNewOrderForm';
 import { v4 as uuidV4 } from 'uuid';
 import OrdersRepository from '../../../../repositories/OrdersRepository';
 import { useContext } from 'react';
 import { WalletContext } from '../../../wallet/WalletProvider';
-import { getValueDeposit } from '../valueDepositField/useValueDepositField';
 import { Rules } from '../../../../common/helpers/forms';
+import { getDepositValues, getOrderCreatedText } from '../../../../common/helpers/orders';
 
 export const FIELD_COF_TOKEN = 'cof-token';
 export const FIELD_COF_QUANTITY = 'cof-quantity';
@@ -56,20 +56,25 @@ const useCreateNewOrderForm = (type: OrderType, onProcessed: OnProcessed) => {
     const onSubmit: OnSubmit<CreateOrderFormFields> = async (values, { setSubmitting }) => {
         const price = Number(values[FIELD_COF_PRICE]);
         const quantity = Number(values[FIELD_COF_QUANTITY]);
-        const securityDeposit = getValueDeposit(type, price, quantity);
+        const { buy: buyDepositValue, sell: sellDepositValue } = getDepositValues(price, quantity);
+        const currency = 'USDT';
+        const orderCreatedDateTime = Date.now();
+        const orderCreatedText = getOrderCreatedText(type, price, quantity, currency);
+        const orderHistory: OrderHistory = [orderCreatedDateTime, orderCreatedText];
 
         const order: Order = {
             asset: values[FIELD_COF_TOKEN],
             buyer: type === 'buy' ? makerWalletAddress : null,
             seller: type === 'sell' ? makerWalletAddress : null,
             type,
-            currency: 'USDT',
+            currency,
             id: uuidV4(),
             price,
             quantity,
-            securityDeposit,
+            totalDeposit: buyDepositValue,
+            securityDeposit: sellDepositValue,
             status: 'open',
-            history: [[Date.now(), 'Order was successfully created.']],
+            history: [orderHistory],
         };
 
         await OrdersRepository.addOrder(order);

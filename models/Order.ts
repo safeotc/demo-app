@@ -9,6 +9,7 @@ interface Order {
     price: number;
     quantity: number;
     currency: string;
+    totalDeposit: number;
     securityDeposit: number;
     buyer: string | null;
     seller: string | null;
