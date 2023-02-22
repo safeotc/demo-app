@@ -2,6 +2,7 @@ import React, { TableHTMLAttributes } from 'react';
 import cn from 'classnames';
 import Th, { ThProps } from './Th';
 import TBody, { RowMapper } from './TBody';
+import EmptyTBody from './EmptyTBody';
 
 type TableSize = 'small';
 
@@ -29,6 +30,9 @@ const Table = <TRowData extends {}>({
         'u-text-white-space-nowrap': !!singleLineItems,
     });
 
+    const hasData = data.length > 0;
+    const columnsCount = headerProps.length;
+
     return (
         <table {...props} className={tableClasses}>
             <thead>
@@ -39,7 +43,11 @@ const Table = <TRowData extends {}>({
                 </tr>
             </thead>
 
-            <TBody data={data} rowMapper={rowMapper} useAnimations={highlightNewItems} />
+            {hasData ? (
+                <TBody data={data} rowMapper={rowMapper} useAnimations={highlightNewItems} />
+            ) : (
+                <EmptyTBody colspan={columnsCount} />
+            )}
         </table>
     );
 };
