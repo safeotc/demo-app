@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import useStateWithUpdate from '../../../common/hooks/useStateWithUpdate';
 import Order from '../../../models/Order';
-import ordersRepository, { OrdersUpdatedCallback } from '../../../repositories/OrdersRepository';
+import ordersRepository from '../../../repositories/OrdersRepository';
 
 type OrdersFetchState = 'loading' | 'finished';
 
@@ -12,31 +12,24 @@ interface OrdersState {
 
 const initialOrdersState: OrdersState = { fetchState: 'loading', orders: [] };
 
-const useOpenOrdersList = () => {
+const useActiveOrdersList = () => {
     const [{ fetchState, orders }, , updateOrdersState] = useStateWithUpdate<OrdersState>(initialOrdersState);
     const isLoading = fetchState !== 'finished';
 
     useEffect(() => {
-        // subscribe to new orders
-        const onOrdersUpdated: OrdersUpdatedCallback = (orders) => {
-            updateOrdersState({ orders });
-        };
-        const subscriptionId = ordersRepository.subscribeToOrdersUpdate(onOrdersUpdated);
-
         // initial orders retrieval
         let proceed = true;
         (async () => {
-            const orders = await ordersRepository.getOpenOrders();
+            const orders = await ordersRepository.getActiveOrders();
             proceed && updateOrdersState({ fetchState: 'finished', orders });
         })();
 
         return () => {
             proceed = false;
-            ordersRepository.unsubscribeFromOrdersUpdate(subscriptionId);
         };
     }, [updateOrdersState]);
 
     return { isLoading, orders };
 };
 
-export default useOpenOrdersList;
+export default useActiveOrdersList;

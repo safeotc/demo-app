@@ -1,10 +1,10 @@
 import SkeletonScreenLoader from '../../../components/loading/SkeletonScreenLoader';
 import OrdersTableSkeletonScreen from '../../../components/orders/table/OrdersTableSkeletonScreen';
-import useOpenOrdersList from './useOpenOrdersList';
+import useCompletedOrdersList from './useCompletedOrdersList';
 import OrdersTable from '../../../components/orders/table/OrdersTable';
 
-const OpenOrdersList = () => {
-    const { isLoading, orders } = useOpenOrdersList();
+const CompletedOrdersList = () => {
+    const { isLoading, orders } = useCompletedOrdersList();
 
     return (
         <>
@@ -19,4 +19,4 @@ const OpenOrdersList = () => {
     );
 };
 
-export default OpenOrdersList;
+export default CompletedOrdersList;

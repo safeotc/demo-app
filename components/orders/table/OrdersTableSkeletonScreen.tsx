@@ -1,7 +1,7 @@
 import SkeletonShimmer from '../../loading/SkeletonShimmer';
 import Table from '../../table/Table';
 
-const OpenOrdersSkeletonScreen = () => {
+const OrdersTableSkeletonScreen = () => {
     return (
         <Table
             size="small"
@@ -53,4 +53,4 @@ const OpenOrdersSkeletonScreen = () => {
     );
 };
 
-export default OpenOrdersSkeletonScreen;
+export default OrdersTableSkeletonScreen;

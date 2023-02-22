@@ -5,11 +5,11 @@ import BuyIcon from '../../icons/orders/BuyIcon';
 import SellIcon from '../../icons/orders/SellIcon';
 import Table from '../../table/Table';
 
-interface OpenOrdersTableProps {
+interface OrdersTableProps {
     orders: Order[];
 }
 
-const OpenOrdersTable = ({ orders }: OpenOrdersTableProps) => {
+const OrdersTable = ({ orders }: OrdersTableProps) => {
     return (
         <Table
             highlightNewItems={true}
@@ -81,4 +81,4 @@ const OpenOrdersTable = ({ orders }: OpenOrdersTableProps) => {
     );
 };
 
-export default OpenOrdersTable;
+export default OrdersTable;

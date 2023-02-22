@@ -1,10 +1,10 @@
 import React from 'react';
 import OrdersLayout from '../../layouts/OrdersLayout';
-import ComingSoon from '../../components/ComingSoon';
+import ActiveOrdersList from '../../sections/orders/active/ActiveOrdersList';
 import { NextPageWithLayout } from '../_app';
 
 const Active: NextPageWithLayout = () => {
-    return <ComingSoon />;
+    return <ActiveOrdersList />;
 };
 
 Active.getLayout = OrdersLayout;
