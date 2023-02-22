@@ -12,6 +12,7 @@ type AlertsData = Omit<UseAlertsData, 'alerts'>;
 
 const defaultAlertsContext = {
     addSuccessAlert: () => {},
+    addInfoAlert: () => {},
     addDangerAlert: () => {},
 };
 export const AlertsContext = React.createContext<AlertsData>(defaultAlertsContext);

@@ -3,11 +3,11 @@ import CreateNewOrderModal from '../../../components/orders/createNewOrderModal/
 import useCreateNew from './useCreateNew';
 
 const CreateNew = () => {
-    const { openModal, closeModal, isModalOpened } = useCreateNew();
+    const { tryOpeningModal, closeModal, isModalOpened } = useCreateNew();
 
     return (
         <div className="c-orders-toolbar__create-new-wrapper">
-            <CreateNewOrderButton onClick={openModal} />
+            <CreateNewOrderButton onClick={tryOpeningModal} />
             <CreateNewOrderModal isOpened={isModalOpened} onCloseRequest={closeModal} />
         </div>
     );

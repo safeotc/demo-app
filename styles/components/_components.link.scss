@@ -8,3 +8,8 @@
     text-decoration: underline;
   }
 }
+
+.c-link--info-alert {
+  color: darken($color-info, 30%);
+  font-weight: bold;
+}

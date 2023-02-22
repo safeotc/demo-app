@@ -3,12 +3,14 @@ import { AlertContent, AlertProps, AlertType } from './Alert';
 import { v4 as uuidV4 } from 'uuid';
 import SuccessIcon from '../icons/alerts/SuccessIcon';
 import DangerIcon from '../icons/alerts/DangerIcon';
+import InfoIcon from '../icons/alerts/InfoIcon';
 
 type AddAlert = (content: AlertContent, disposeTimeout?: number, hideCloseButton?: boolean) => void;
 
 export interface UseAlertsData {
     alerts: AlertProps[];
     addSuccessAlert: AddAlert;
+    addInfoAlert: AddAlert;
     addDangerAlert: AddAlert;
 }
 
@@ -51,6 +53,12 @@ const useAlerts = (): UseAlertsData => {
         [addAlert]
     );
 
+    const addInfoAlert = useCallback<AddAlert>(
+        (content, disposeTimeout, hideClosebutton) =>
+            addAlert('info', content, <InfoIcon />, disposeTimeout, hideClosebutton),
+        [addAlert]
+    );
+
     const addDangerAlert = useCallback<AddAlert>(
         (content, disposeTimeout, hideClosebutton) =>
             addAlert('danger', content, <DangerIcon />, disposeTimeout, hideClosebutton),
@@ -60,6 +68,7 @@ const useAlerts = (): UseAlertsData => {
     return {
         alerts,
         addSuccessAlert,
+        addInfoAlert,
         addDangerAlert,
     };
 };
