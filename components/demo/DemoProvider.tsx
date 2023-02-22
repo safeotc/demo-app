@@ -18,9 +18,12 @@ const defaultDemoContext: DemoData = {
         onDisconnected: () => {},
         onOrderCreated: () => {},
         onOrderCanceled: () => {},
+        onOrderAccepted: () => {},
     },
     order: null,
     demoOrderUuids: [],
+    wasTgeSimulated: false,
+    simulateTge: () => {},
 };
 
 export const DemoContext = React.createContext<DemoData>(defaultDemoContext);

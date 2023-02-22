@@ -1,8 +1,11 @@
 import Order from '../../../../models/Order';
+import AcceptOrderButton from './actionElements/acceptOrderButton/AcceptOrderButton';
+import AlreadyAcceptedAlert from './actionElements/AlreadyAcceptedAlert';
 import CancelOrderButton from './actionElements/cancelOrderButton/CancelOrderButton';
 import DemoAlert from './actionElements/DemoAlert';
 import GoBackButton from './actionElements/goBackButton/GoBackButton';
 import NotConnectedAlert from './actionElements/NotConnectedAlert';
+import ClaimTokensButton from './actionElements/claimTokensButton/ClaimTokensButton';
 import useOrderActions from './useOrderActions';
 
 interface OrderActionsProps {
@@ -26,6 +29,22 @@ const OrderActions = ({ order }: OrderActionsProps) => {
         case 'cancelOrder':
             actionElementClass = 'u-margin-bottom-small';
             actionElement = <CancelOrderButton orderId={order.id} />;
+            break;
+        case 'acceptOrder':
+            actionElementClass = 'u-margin-bottom-small';
+            actionElement = <AcceptOrderButton order={order} />;
+            break;
+        case 'alreadyAcceptedAlert':
+            actionElementClass = 'u-margin-bottom-small';
+            actionElement = <AlreadyAcceptedAlert />;
+            break;
+        case 'claimTokens':
+            actionElementClass = 'u-margin-bottom-small';
+            actionElement = <ClaimTokensButton />;
+            break;
+        case 'sendTokens':
+            actionElementClass = 'u-margin-bottom-small';
+            actionElement = <>TODO</>;
             break;
         default:
             throw new Error(`No such order action: ${actionToDisplay}`);

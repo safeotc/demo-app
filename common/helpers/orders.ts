@@ -24,7 +24,14 @@ export const getOrderCreatedText = (type: OrderType, price: number, quantity: nu
     const depositValue = getDepositValues(price, quantity)[type];
     const orderCreatedText = 'Order was successfully created.';
     const makerText = type === 'buy' ? 'Buyer' : 'Seller';
-    const depositTypeText = type === 'buy' ? 'total' : 'security';
-    const depositText = `${makerText} made a ${depositTypeText} deposit of ${depositValue} ${currency}.`;
+    const depositText = `${makerText} made a deposit of ${depositValue} ${currency}.`;
+    return `${orderCreatedText} ${depositText}`;
+};
+
+export const getOrderAcceptedText = (type: OrderType, price: number, quantity: number, currency: string) => {
+    const depositValue = getDepositValues(price, quantity)[type === 'buy' ? 'sell' : 'buy'];
+    const orderCreatedText = 'Order was accepted.';
+    const makerText = type === 'buy' ? 'Seller' : 'Buyer';
+    const depositText = `${makerText} made a deposit of ${depositValue} ${currency}.`;
     return `${orderCreatedText} ${depositText}`;
 };

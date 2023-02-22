@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import useStateWithUpdate from '../../common/hooks/useStateWithUpdate';
 import Order from '../../models/Order';
 import useProgress, { CompletedStepsUpdater } from './useProgress';
+import useTgeSimulation from './useTgeSimulation';
 import useWelcomeScreen from './useWelcomeScreen';
 
 export interface DemoWallet {
@@ -20,7 +21,8 @@ export type DemoStep =
     | 'switch_to_seller_wallet'
     | 'send_tokens'
     | 'disconnect_seller_wallet'
-    | 'connect_buyer_wallet';
+    | 'connect_buyer_wallet'
+    | 'claim_tokens';
 
 export interface UseDemoData {
     wallet: DemoWallet;
@@ -31,6 +33,8 @@ export interface UseDemoData {
     completedStepsUpdater: CompletedStepsUpdater;
     order: Order | null;
     demoOrderUuids: string[];
+    wasTgeSimulated: boolean;
+    simulateTge: () => void;
 }
 
 export const DEMO_WALLETS: DemoWallet[] = [
@@ -65,6 +69,8 @@ const useDemo = (): UseDemoData => {
 
     const { completedSteps, completedStepsUpdater, order } = useProgress(wallet);
 
+    const { wasTgeSimulated, simulateTge } = useTgeSimulation();
+
     return {
         wallet,
         wasWelcomeScreenDisplayed,
@@ -74,6 +80,8 @@ const useDemo = (): UseDemoData => {
         completedStepsUpdater,
         order,
         demoOrderUuids: DEMO_ORDER_UUIDS,
+        wasTgeSimulated,
+        simulateTge,
     };
 };
 

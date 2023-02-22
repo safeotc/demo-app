@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import useStateWithUpdate from '../../../common/hooks/useStateWithUpdate';
 import Order from '../../../models/Order';
-import ordersRepository from '../../../repositories/OrdersRepository';
+import ordersRepository, { OrdersUpdatedCallback } from '../../../repositories/OrdersRepository';
 
 type OrderFetchState = 'loading' | 'finished';
 
@@ -27,6 +27,16 @@ const useOrderDetails = () => {
             return;
         }
 
+        // subscribe to orders updates
+        const onOrdersUpdated: OrdersUpdatedCallback = (orders) => {
+            const order = orders.find((o) => o.id === id);
+            if (!order) {
+                return;
+            }
+            updateOrderState({ order });
+        };
+        const subscriptionId = ordersRepository.subscribeToOrdersUpdate(onOrdersUpdated);
+
         // initial order retrieval
         let proceed = true;
         (async () => {
@@ -36,6 +46,7 @@ const useOrderDetails = () => {
 
         return () => {
             proceed = false;
+            ordersRepository.unsubscribeFromOrdersUpdate(subscriptionId);
         };
     }, [id, updateOrderState]);
 

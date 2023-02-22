@@ -26,11 +26,11 @@ const getOrderAction = (
         return 'notConnectedAlert';
     }
 
-    const isBuyer = order.type === 'buy' && connectedAddress === order.buyer;
-    const isSeller = order.type === 'sell' && connectedAddress === order.seller;
+    const isBuyer = connectedAddress === order.buyer;
+    const isSeller = connectedAddress === order.seller;
 
     if (order.status === 'open') {
-        const isMaker = isBuyer || isSeller;
+        const isMaker = (isBuyer && order.type === 'buy') || (isSeller && order.type === 'sell');
         return isMaker ? 'cancelOrder' : 'acceptOrder';
     }
 

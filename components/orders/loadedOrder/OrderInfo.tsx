@@ -62,7 +62,7 @@ const OrderInfo = ({ order }: OrderInfoProps) => {
 
             <div className="c-order-info">
                 <span className="c-order-info__label">
-                    Total value
+                    Total order value
                     <InputTooltip
                         content={<span className="u-text-normal">Value required to be deposited by a buyer.</span>}
                     />

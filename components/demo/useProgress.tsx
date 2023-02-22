@@ -15,6 +15,7 @@ export interface CompletedStepsUpdater {
     onDisconnected: () => void;
     onOrderCreated: (order: Order) => void;
     onOrderCanceled: (orderId: string) => void;
+    onOrderAccepted: () => void;
 }
 
 const useProgress = (wallet: DemoWallet) => {
@@ -142,6 +143,13 @@ const useProgress = (wallet: DemoWallet) => {
                 }
                 updateProgressData({ order: null });
                 unfinishStep('create_order');
+            },
+            onOrderAccepted: () => {
+                finishStep(
+                    'accept_order',
+                    5,
+                    'Great! You have successfully secured an order. Next thing to do, is to simulate token generation event.'
+                );
             },
         };
     }, [isStepCompleted, finishStep, unfinishStep, order, updateProgressData, wallet]);
