@@ -1,4 +1,5 @@
 import Order from '../../../../models/Order';
+import AddressLink from '../AddressLink';
 import useOrderContractData from './useOrderContractData';
 
 interface OrderContractDataProps {
@@ -6,32 +7,20 @@ interface OrderContractDataProps {
 }
 
 const OrderContractData = ({ order }: OrderContractDataProps) => {
-    const { buyer, seller, buyerDeposited, sellerDeposited, totalDeposited } = useOrderContractData(order);
+    const { buyerDeposited, sellerDeposited, totalDeposited } = useOrderContractData(order);
 
     return (
         <>
             <div className="c-order-contract-data">
                 <span className="c-order-contract-data__label">Buyer</span>
                 <p className="c-order-contract-data__value">
-                    {!!buyer ? (
-                        <a href="#" className="c-link" onClick={(e) => e.preventDefault()}>
-                            {buyer}
-                        </a>
-                    ) : (
-                        'No buyer yet.'
-                    )}
+                    <AddressLink address={order.buyer} noAddressText="No buyer yet." />
                 </p>
             </div>
             <div className="c-order-contract-data">
                 <span className="c-order-contract-data__label">Seller</span>
                 <p className="c-order-contract-data__value">
-                    {!!seller ? (
-                        <a href="#" className="c-link" onClick={(e) => e.preventDefault()}>
-                            {seller}
-                        </a>
-                    ) : (
-                        'No seller yet.'
-                    )}
+                    <AddressLink address={order.seller} noAddressText="No seller yet." />
                 </p>
             </div>
             <div className="c-order-contract-data">

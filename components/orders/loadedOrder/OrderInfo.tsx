@@ -1,7 +1,8 @@
-import { getMakerShortForm } from '../../../common/helpers/orders';
+import { getMaker } from '../../../common/helpers/orders';
 import Order from '../../../models/Order';
 import InputTooltip from '../../forms/inputTooltip/InputTooltip';
 import cn from 'classnames';
+import AddressLink from './AddressLink';
 
 interface OrderInfoProps {
     order: Order;
@@ -26,9 +27,7 @@ const OrderInfo = ({ order }: OrderInfoProps) => {
             <div className="c-order-info">
                 <span className="c-order-info__label">Maker</span>
                 <div className="c-order-info__value">
-                    <a href="#" className="c-link" onClick={(e) => e.preventDefault()}>
-                        {getMakerShortForm(order)}
-                    </a>
+                    <AddressLink address={getMaker(order)} noAddressText="Maker is not defined." />
                 </div>
             </div>
 

@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { ROUTE_ORDERS } from '../../../common/constants/routes';
 import Order from '../../../models/Order';
 import InfoAlert from '../../alerts/types/InfoAlert';
+import WarningAlert from '../../alerts/types/WarningAlert';
 import { DEMO_ORDER_UUIDS } from '../../demo/useDemo';
 import PrimaryButton from '../../forms/buttons/PrimaryButton';
 import SecondaryButton from '../../forms/buttons/SecondaryButton';
@@ -28,7 +29,7 @@ const OrderActions = ({ order }: OrderActionsProps) => {
     if (isDemoOrder) {
         return (
             <>
-                <InfoAlert
+                <WarningAlert
                     className="u-margin-bottom"
                     id="demo-order-alert"
                     content={
