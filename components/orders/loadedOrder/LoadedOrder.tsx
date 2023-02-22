@@ -1,5 +1,5 @@
 import Order from '../../../models/Order';
-import OrderActions from './OrderActions';
+import OrderActions from './orderActions/OrderActions';
 import OrderContractData from './orderContractData/OrderContractData';
 import OrderHistory from './OrderHistory';
 import OrderInfo from './OrderInfo';

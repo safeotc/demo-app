@@ -8,4 +8,6 @@
   --button-colored-hover: #{map-get($theme-map, button-colored-hover)};
   --button-neutral: #{map-get($theme-map, button-neutral)};
   --button-neutral-hover: #{map-get($theme-map, button-neutral-hover)};
+  --button-danger: #{map-get($theme-map, button-danger)};
+  --button-danger-hover: #{map-get($theme-map, button-danger-hover)};
 }

@@ -53,6 +53,17 @@
   font-size: 0.75em;
 }
 
+.c-button--danger {
+  color: var(--button-danger);
+  border: 2px solid var(--button-danger);
+
+  &:not([disabled]):hover {
+    color: $color-primary-light;
+    border-color: var(--button-danger-hover);
+    background-color: var(--button-danger-hover);
+  }
+}
+
 .c-button--primary {
   border: none;
   padding-top: calc(#{$button-tb-padding} + 2px);

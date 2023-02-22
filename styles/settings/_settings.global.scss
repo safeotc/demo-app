@@ -71,6 +71,8 @@ $light-theme: (
   button-colored-hover: $color-background-dark,
   button-neutral: $color-tertiary-light,
   button-neutral-hover: $color-tertiary-dark,
+  button-danger: $color-danger,
+  button-danger-hover: $color-danger,
 );
 
 $dark-theme: (
@@ -83,4 +85,6 @@ $dark-theme: (
   button-colored-hover: $color-background-light,
   button-neutral: $color-tertiary-dark,
   button-neutral-hover: $color-tertiary-light,
+  button-danger: $color-danger,
+  button-danger-hover: $color-danger,
 );
