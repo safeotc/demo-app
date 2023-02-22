@@ -51,18 +51,6 @@ const OrderInfo = ({ order }: OrderInfoProps) => {
 
             <div className="c-order-info">
                 <span className="c-order-info__label">
-                    Total value
-                    <InputTooltip
-                        content={<span className="u-text-normal">Value required to be deposited by a buyer.</span>}
-                    />
-                </span>
-                <p className="c-order-info__value">
-                    {order.totalDeposit} {order.currency}
-                </p>
-            </div>
-
-            <div className="c-order-info">
-                <span className="c-order-info__label">
                     Security deposit
                     <InputTooltip
                         content={<span className="u-text-normal">Value required to be deposited by a seller.</span>}
@@ -70,6 +58,18 @@ const OrderInfo = ({ order }: OrderInfoProps) => {
                 </span>
                 <p className="c-order-info__value">
                     {order.securityDeposit} {order.currency}
+                </p>
+            </div>
+
+            <div className="c-order-info">
+                <span className="c-order-info__label">
+                    Total value
+                    <InputTooltip
+                        content={<span className="u-text-normal">Value required to be deposited by a buyer.</span>}
+                    />
+                </span>
+                <p className="c-order-info__value">
+                    {order.totalDeposit} {order.currency}
                 </p>
             </div>
         </>

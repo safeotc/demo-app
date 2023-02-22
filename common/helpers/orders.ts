@@ -5,11 +5,14 @@ export const getMaker = (order: Order) => {
 };
 
 export const getMakerShortForm = (order: Order) => {
-    let maker = getMaker(order);
-    if (maker.length > 8) {
-        maker = `${maker.substring(0, 6)}...${maker.substring(maker.length - 4, maker.length)}`;
-    }
-    return maker;
+    const maker = getMaker(order);
+    return getAdddressShortForm(maker);
+};
+
+export const getAdddressShortForm = (address: string) => {
+    return address.length > 8
+        ? `${address.substring(0, 6)}...${address.substring(address.length - 4, address.length)}`
+        : address;
 };
 
 export const getDepositValues = (price: number, quantity: number): Record<OrderType, number> => ({

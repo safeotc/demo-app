@@ -1,5 +1,6 @@
 import Order from '../../../models/Order';
 import OrderActions from './OrderActions';
+import OrderContractData from './orderContractData/OrderContractData';
 import OrderHistory from './OrderHistory';
 import OrderInfo from './OrderInfo';
 import OrderNotFound from './OrderNotFound';
@@ -29,7 +30,7 @@ const LoadedOrder = ({ id, order }: LoadedOrderProps) => {
 
             <div className="o-order__contract-state">
                 <OrderSubtitle text="Contract data" />
-                <div>TODO</div>
+                <OrderContractData order={order} />
             </div>
 
             <div className="o-order__actions">

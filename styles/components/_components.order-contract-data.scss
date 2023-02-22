@@ -1,0 +1,16 @@
+.c-order-contract-data {
+  margin-bottom: 0.75em;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.c-order-contract-data__label {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.c-order-contract-data__value {
+  margin-bottom: 0;
+}
