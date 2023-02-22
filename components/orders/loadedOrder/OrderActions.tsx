@@ -19,28 +19,41 @@ const OrderActions = ({ order }: OrderActionsProps) => {
     const router = useRouter();
     const goBack = () => router.push(ROUTE_ORDERS);
 
+    const goBackButton = (
+        <SecondaryButton className="u-width-full" icon={<FlatIcon icon="angle-small-left" />} onClick={goBack}>
+            Go back
+        </SecondaryButton>
+    );
+
     if (isDemoOrder) {
         return (
-            <InfoAlert
-                className="u-margin-top"
-                id="demo-order-alert"
-                content={
-                    <>
-                        Demo orders are meant only for presentational purposes, they cannot be interacted with.
-                        <br />
-                        Please create a new order in order to see additional functionalities.
-                    </>
-                }
-            />
+            <>
+                <InfoAlert
+                    className="u-margin-bottom"
+                    id="demo-order-alert"
+                    content={
+                        <>
+                            Demo orders are meant only for presentational purposes, they cannot be interacted with.
+                            <br />
+                            Please create a new order to see additional functionalities.
+                        </>
+                    }
+                />
+                {goBackButton}
+            </>
         );
     }
 
     if (!isConnected) {
         return (
-            <InfoAlert
-                id="order-actions-connect-wallet-alert"
-                content="Please connect your wallet in order to execute actions."
-            />
+            <>
+                <InfoAlert
+                    className="u-margin-bottom"
+                    id="order-actions-connect-wallet-alert"
+                    content="Please connect your wallet in order to execute actions."
+                />
+                {goBackButton}
+            </>
         );
     }
 
@@ -65,11 +78,7 @@ const OrderActions = ({ order }: OrderActionsProps) => {
                     Accept order
                 </PrimaryButton>
             </div>
-            <div>
-                <SecondaryButton className="u-width-full" icon={<FlatIcon icon="angle-small-left" />} onClick={goBack}>
-                    Go back
-                </SecondaryButton>
-            </div>
+            <div>{goBackButton}</div>
         </>
     );
 };
