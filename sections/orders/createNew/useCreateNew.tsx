@@ -5,10 +5,10 @@ import { DemoContext } from '../../../components/demo/DemoProvider';
 
 const useCreateNew = () => {
     const [isModalOpened, setIsModalOpened] = useState(false);
-    const { completedSteps, order } = useContext(DemoContext);
+    const { order } = useContext(DemoContext);
     const { addInfoAlert } = useContext(AlertsContext);
     const tryOpeningModal = useCallback(() => {
-        const demoOrderExists = completedSteps.includes('create_order') && !!order;
+        const demoOrderExists = !!order;
         if (demoOrderExists) {
             addInfoAlert(
                 <>
@@ -21,7 +21,7 @@ const useCreateNew = () => {
             return;
         }
         setIsModalOpened(true);
-    }, [order, completedSteps, addInfoAlert, setIsModalOpened]);
+    }, [order, addInfoAlert, setIsModalOpened]);
     const closeModal = useCallback(() => setIsModalOpened(false), [setIsModalOpened]);
 
     return { isModalOpened, tryOpeningModal, closeModal };
