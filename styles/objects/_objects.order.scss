@@ -3,13 +3,16 @@
   grid-template-areas:
     "title"
     "info"
+    "contract-state"
     "actions"
     "history";
 
   @include mq($from: m) {
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto 1fr;
     grid-template-areas:
       "title title"
+      "info contract-state"
       "info actions"
       "history history";
     column-gap: $content-mobile-spacing;
@@ -50,6 +53,15 @@
 
 .o-order__info {
   grid-area: info;
+  margin-bottom: $content-mobile-spacing;
+
+  @include mq($from: l) {
+    margin-bottom: $content-desktop-spacing;
+  }
+}
+
+.o-order__contract-state {
+  grid-area: contract-state;
   margin-bottom: $content-mobile-spacing;
 
   @include mq($from: l) {

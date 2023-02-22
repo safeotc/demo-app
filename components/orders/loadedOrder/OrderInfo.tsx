@@ -1,19 +1,25 @@
-import { getMakerShortForm } from '../../../../common/helpers/orders';
-import Order from '../../../../models/Order';
-import InputTooltip from '../../../forms/inputTooltip/InputTooltip';
-import OrderStatusDisplay from './OrderStatusDisplay';
+import { getMakerShortForm } from '../../../common/helpers/orders';
+import Order from '../../../models/Order';
+import InputTooltip from '../../forms/inputTooltip/InputTooltip';
+import cn from 'classnames';
 
 interface OrderInfoProps {
     order: Order;
 }
 
 const OrderInfo = ({ order }: OrderInfoProps) => {
+    const statusClasses = cn('c-order-status', {
+        'c-order-status__open': order.status === 'open',
+        'c-order-status__active': order.status === 'active',
+        'c-order-status__completed': order.status === 'completed',
+    });
+
     return (
         <>
             <div className="c-order-info">
                 <span className="c-order-info__label">Status</span>
                 <p className="c-order-info__value">
-                    <OrderStatusDisplay status={order.status} />
+                    <span className={statusClasses}>{order.status}</span>
                 </p>
             </div>
 

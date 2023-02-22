@@ -1,13 +1,11 @@
-import { OrderHistory } from '../../../../models/Order';
-import useOrderHistory from './useOrderHistory';
+import { getFormattedDateFromTimestamp } from '../../../common/helpers/dates';
+import { OrderHistory } from '../../../models/Order';
 
 interface OrderHistoryProps {
     history: OrderHistory[];
 }
 
 const OrderHistory = ({ history }: OrderHistoryProps) => {
-    const { getFormattedDateFromTimestamp } = useOrderHistory();
-
     return (
         <>
             {history.map(([timestamp, description], i) => (
