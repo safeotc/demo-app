@@ -13,27 +13,27 @@ const OrderContractData = ({ order }: OrderContractDataProps) => {
         <>
             <div className="c-order-contract-data">
                 <span className="c-order-contract-data__label">Buyer</span>
-                <p className="c-order-contract-data__value">
+                <div className="c-order-contract-data__value">
                     <AddressLink address={order.buyer} noAddressText="No buyer yet." />
-                </p>
+                </div>
             </div>
             <div className="c-order-contract-data">
                 <span className="c-order-contract-data__label">Seller</span>
-                <p className="c-order-contract-data__value">
+                <div className="c-order-contract-data__value">
                     <AddressLink address={order.seller} noAddressText="No seller yet." />
-                </p>
+                </div>
             </div>
             <div className="c-order-contract-data">
                 <span className="c-order-contract-data__label">Deposited buy amount</span>
-                <p className="c-order-contract-data__value">{buyerDeposited}</p>
+                <div className="c-order-contract-data__value">{buyerDeposited}</div>
             </div>
             <div className="c-order-contract-data">
                 <span className="c-order-contract-data__label">Deposited sell amount</span>
-                <p className="c-order-contract-data__value">{sellerDeposited}</p>
+                <div className="c-order-contract-data__value">{sellerDeposited}</div>
             </div>
             <div className="c-order-contract-data">
                 <span className="c-order-contract-data__label">Total deposited amount</span>
-                <p className="c-order-contract-data__value">{totalDeposited}</p>
+                <div className="c-order-contract-data__value">{totalDeposited}</div>
             </div>
         </>
     );

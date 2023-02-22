@@ -1,5 +1,5 @@
 import Order from '../../../../models/Order';
-import CancelOrderButton from './actionElements/CancelOrderButton';
+import CancelOrderButton from './actionElements/cancelOrderButton/CancelOrderButton';
 import DemoAlert from './actionElements/DemoAlert';
 import GoBackButton from './actionElements/goBackButton/GoBackButton';
 import NotConnectedAlert from './actionElements/NotConnectedAlert';
@@ -25,7 +25,7 @@ const OrderActions = ({ order }: OrderActionsProps) => {
             break;
         case 'cancelOrder':
             actionElementClass = 'u-margin-bottom-small';
-            actionElement = <CancelOrderButton />;
+            actionElement = <CancelOrderButton orderId={order.id} />;
             break;
         default:
             throw new Error(`No such order action: ${actionToDisplay}`);

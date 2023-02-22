@@ -8,6 +8,7 @@ export type OrdersUpdatedCallback = (orders: Order[]) => void;
 
 interface IOrdersRepository {
     addOrder: (order: Order) => Promise<void>;
+    removeOrder: (orderId: string) => Promise<void>;
     getOpenOrders: () => Promise<Order[]>;
     getActiveOrders: () => Promise<Order[]>;
     getCompletedOrders: () => Promise<Order[]>;
@@ -29,6 +30,12 @@ class OrdersRepository implements IOrdersRepository {
     async addOrder(order: Order) {
         await delay(2000);
         this.orders.unshift(order);
+        this.triggerSubscriptions();
+    }
+
+    async removeOrder(orderId: string) {
+        await delay(2000);
+        this.orders = this.orders.filter((o) => o.id !== orderId);
         this.triggerSubscriptions();
     }
 

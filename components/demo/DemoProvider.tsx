@@ -17,6 +17,7 @@ const defaultDemoContext: DemoData = {
         onConnected: () => {},
         onDisconnected: () => {},
         onOrderCreated: () => {},
+        onOrderCanceled: () => {},
     },
     order: null,
     demoOrderUuids: [],

@@ -14,6 +14,7 @@ export interface CompletedStepsUpdater {
     onConnected: () => void;
     onDisconnected: () => void;
     onOrderCreated: (order: Order) => void;
+    onOrderCanceled: (orderId: string) => void;
 }
 
 const useProgress = (wallet: DemoWallet) => {
@@ -133,6 +134,14 @@ const useProgress = (wallet: DemoWallet) => {
                     2,
                     'Wow! Nice... You have just created an order. Now it is time for you to pretend you are someone else. Switch to another wallet and accept the order you have just created.'
                 );
+            },
+            onOrderCanceled: (orderId) => {
+                const wasProgressOrderCanceled = order?.id === orderId;
+                if (!wasProgressOrderCanceled) {
+                    return;
+                }
+                updateProgressData({ order: null });
+                unfinishStep('create_order');
             },
         };
     }, [isStepCompleted, finishStep, unfinishStep, order, updateProgressData, wallet]);
