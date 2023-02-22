@@ -1,4 +1,6 @@
+import { useRouter } from 'next/router';
 import { useCallback, useContext, useState } from 'react';
+import { ROUTE_ORDERS, ROUTE_ORDERS_OPEN } from '../../../common/constants/routes';
 import { AlertsContext } from '../../alerts/AlertsProvider';
 import { DemoContext } from '../../demo/DemoProvider';
 import { OnProcessed } from './createNewOrderForm/CreateNewOrderForm';
@@ -12,10 +14,15 @@ const useCreateNewOrderModal = (closeModal: () => void) => {
 
     const { addSuccessAlert, addDangerAlert } = useContext(AlertsContext);
     const { completedStepsUpdater } = useContext(DemoContext);
+    const { route, push } = useRouter();
     const showResultAndCloseModalOnSuccess: OnProcessed = (success, order) => {
         if (success && !!order) {
             closeModal();
             addSuccessAlert('Order was added successfully.');
+            const shouldRedirectToOpenOrdersPage = ![ROUTE_ORDERS, ROUTE_ORDERS_OPEN].includes(route);
+            if (shouldRedirectToOpenOrdersPage) {
+                push(ROUTE_ORDERS_OPEN);
+            }
             completedStepsUpdater.onOrderCreated(order);
             return;
         }
