@@ -19,6 +19,7 @@ const defaultDemoContext: DemoData = {
         onOrderCreated: () => {},
         onOrderCanceled: () => {},
         onOrderAccepted: () => {},
+        onSimulateTge: () => {},
     },
     order: null,
     demoOrderUuids: [],

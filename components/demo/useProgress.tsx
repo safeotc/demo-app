@@ -16,6 +16,7 @@ export interface CompletedStepsUpdater {
     onOrderCreated: (order: Order) => void;
     onOrderCanceled: (orderId: string) => void;
     onOrderAccepted: () => void;
+    onSimulateTge: () => void;
 }
 
 const useProgress = (wallet: DemoWallet) => {
@@ -127,6 +128,11 @@ const useProgress = (wallet: DemoWallet) => {
                     isAcceptOrderWalletConnected && unfinishStep('connect_accept_order_wallet');
                     return;
                 }
+
+                if (isStepCompleted('switch_to_seller_wallet') && !isStepCompleted('send_tokens')) {
+                    unfinishStep('switch_to_seller_wallet');
+                    return;
+                }
             },
             onOrderCreated: (order) => {
                 updateProgressData({ order });
@@ -149,6 +155,13 @@ const useProgress = (wallet: DemoWallet) => {
                     'accept_order',
                     5,
                     'Great! You have successfully secured an order. Next thing to do, is to simulate token generation event.'
+                );
+            },
+            onSimulateTge: () => {
+                finishStep(
+                    'simulate_tge',
+                    6,
+                    'Things are looking good! Tokens were just distributed to the seller. Now connect the wallet you used for selling tokens and send those tokens to the smart contract.'
                 );
             },
         };

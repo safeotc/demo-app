@@ -72,16 +72,6 @@ const DemoSettings = () => {
                     />
                 </div>
 
-                <div className="u-margin-bottom-large">
-                    <h6 className="c-modal-container__sub-title">Token generation event</h6>
-                    <p className="u-margin-bottom">
-                        Once an order is created and accepted, button for TGE will be enabled. This is used to simulate
-                        token generation event and distribution of tokens to the seller, so he can keep up his end of
-                        the deal by sending those tokens to the buyer.
-                    </p>
-                    <Button disabled={true}>Simulate TGE</Button>
-                </div>
-
                 <div>
                     <h6 className="c-modal-container__sub-title">Welcome screen</h6>
                     <p className="u-margin-bottom">

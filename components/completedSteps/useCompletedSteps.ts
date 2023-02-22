@@ -1,3 +1,5 @@
+import { useCallback, useContext } from 'react';
+import { DemoContext } from '../demo/DemoProvider';
 import { DemoStep } from '../demo/useDemo';
 import { StepStatus } from './Step';
 
@@ -17,11 +19,15 @@ const useCompletedSteps = (completedSteps: DemoStep[]) => {
     const disconnectWalletStatus = getStepStatus('disconnect_wallet', createOrderStatus);
     const connectAcceptOrderWalletStatus = getStepStatus('connect_accept_order_wallet', disconnectWalletStatus);
     const acceptOrderStatus = getStepStatus('accept_order', connectAcceptOrderWalletStatus);
-    const simulateTGEStatus = getStepStatus('simulate_tge', acceptOrderStatus);
-    const switchToSellerWalletStatus = getStepStatus('switch_to_seller_wallet', simulateTGEStatus);
+    const simulateTgeStatus = getStepStatus('simulate_tge', acceptOrderStatus);
+    const switchToSellerWalletStatus = getStepStatus('switch_to_seller_wallet', simulateTgeStatus);
     const sendTokensStatus = getStepStatus('send_tokens', switchToSellerWalletStatus);
     const disconnectSellerWalletStatus = getStepStatus('disconnect_seller_wallet', sendTokensStatus);
     const connectBuyerWalletStatus = getStepStatus('connect_buyer_wallet', disconnectSellerWalletStatus);
+
+    const isSimuateTgeButtonDisabled = simulateTgeStatus !== 'waiting';
+    const { completedStepsUpdater } = useContext(DemoContext);
+    const simulateTge = useCallback(() => completedStepsUpdater.onSimulateTge(), [completedStepsUpdater]);
 
     return {
         connectCreateOrderWalletStatus,
@@ -29,11 +35,13 @@ const useCompletedSteps = (completedSteps: DemoStep[]) => {
         disconnectWalletStatus,
         connectAcceptOrderWalletStatus,
         acceptOrderStatus,
-        simulateTGEStatus,
+        simulateTgeStatus,
         switchToSellerWalletStatus,
         sendTokensStatus,
         disconnectSellerWalletStatus,
         connectBuyerWalletStatus,
+        isSimuateTgeButtonDisabled,
+        simulateTge,
     };
 };
 

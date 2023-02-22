@@ -1,5 +1,7 @@
 import { HTMLAttributes } from 'react';
 import { DemoStep } from '../demo/useDemo';
+import Button from '../forms/buttons/Button';
+import PrimaryButton from '../forms/buttons/PrimaryButton';
 import Step from './Step';
 import useCompletedSteps from './useCompletedSteps';
 
@@ -14,11 +16,13 @@ const CompletedSteps = ({ completedSteps, ...props }: CompletedSteps) => {
         disconnectWalletStatus,
         connectAcceptOrderWalletStatus,
         acceptOrderStatus,
-        simulateTGEStatus,
+        simulateTgeStatus,
         switchToSellerWalletStatus,
         sendTokensStatus,
         disconnectSellerWalletStatus,
         connectBuyerWalletStatus,
+        isSimuateTgeButtonDisabled,
+        simulateTge,
     } = useCompletedSteps(completedSteps);
 
     return (
@@ -39,8 +43,20 @@ const CompletedSteps = ({ completedSteps, ...props }: CompletedSteps) => {
                 Select the created order from the orders table. Click on it to open the order details page. Once there
                 accept that order to start an OTC trade between two parties.
             </Step>
-            <Step number={6} status={simulateTGEStatus} title="Simulate TGE & distribution">
-                Simulate token generation event & distribute created tokens to the seller.
+            <Step number={6} status={simulateTgeStatus} title="Simulate TGE & distribution">
+                Simulate token generation event & distribute created tokens to the seller, so he can keep up his end of
+                the deal by sending those tokens to the buyer.
+                <span className="u-display-block">
+                    {isSimuateTgeButtonDisabled ? (
+                        <Button className="u-margin-top-small" disabled={isSimuateTgeButtonDisabled}>
+                            Simulate TGE
+                        </Button>
+                    ) : (
+                        <PrimaryButton className="u-margin-top-small" onClick={simulateTge}>
+                            Simulate TGE
+                        </PrimaryButton>
+                    )}
+                </span>
             </Step>
             <Step number={7} status={switchToSellerWalletStatus} title="Switch to seller wallet">
                 In case you are connected to the buyer wallet, disconnect from it and connect to the wallet used for
