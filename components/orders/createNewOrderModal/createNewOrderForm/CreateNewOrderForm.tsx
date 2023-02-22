@@ -5,7 +5,7 @@ import FormInput from '../../../forms/formInput/FormInput';
 import useCreateNewOrderForm, { FIELD_COF_PRICE, FIELD_COF_QUANTITY, FIELD_COF_TOKEN } from './useCreateNewOrderForm';
 import FormSubmitButton from '../../../forms/buttons/FormSubmitButton';
 import FormResetButton from '../../../forms/buttons/FormResetButton';
-import SecurityDepositField from '../valueDepositField/ValueDepositField';
+import ValueDepositField from '../valueDepositField/ValueDepositField';
 
 export type OnProcessed = (success: boolean, order: Order | null) => void;
 
@@ -55,7 +55,7 @@ const CreateNewOrderForm = ({ type, valueDepositInfo, onProcessed }: CreateOrder
             </div>
 
             <div className="u-margin-bottom">
-                <SecurityDepositField type={type} info={valueDepositInfo} />
+                <ValueDepositField type={type} info={valueDepositInfo} />
             </div>
 
             <div className="u-margin-bottom-large"></div>

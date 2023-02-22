@@ -18,6 +18,14 @@
   @include mq($from: l) {
     column-gap: $content-desktop-spacing;
   }
+
+  @include mq($from: xl) {
+    grid-template-columns: 3fr 2fr;
+  }
+
+  @include mq($from: xxl) {
+    grid-template-columns: 2fr 1fr;
+  }
 }
 
 .o-order__title {

@@ -1,0 +1,19 @@
+.c-order-status {
+  display: inline-block;
+  color: $color-primary-light;
+  padding: 0.25em 0.5em;
+  @include border-radius();
+}
+
+.c-order-status__open {
+  background: $color-info;
+}
+
+.c-order-status__active {
+  background: $color-warning;
+  color: $color-primary-dark;
+}
+
+.c-order-status__completed {
+  background: $color-success;
+}

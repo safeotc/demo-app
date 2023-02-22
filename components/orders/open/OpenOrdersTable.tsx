@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { getMakerShortForm, getTotalOrderValue } from '../../../common/helpers/orders';
 import Order from '../../../models/Order';
 import BuyIcon from '../../icons/orders/BuyIcon';
 import SellIcon from '../../icons/orders/SellIcon';
@@ -9,14 +10,6 @@ interface OpenOrdersTableProps {
 }
 
 const OpenOrdersTable = ({ orders }: OpenOrdersTableProps) => {
-    const getMaker = (order: Order) => {
-        let maker = (order.type === 'buy' ? order.buyer : order.seller) || '';
-        if (maker.length > 8) {
-            maker = `${maker.substring(0, 6)}...${maker.substring(maker.length - 4, maker.length)}`;
-        }
-        return maker;
-    };
-
     return (
         <Table
             highlightNewItems={true}
@@ -68,7 +61,7 @@ const OpenOrdersTable = ({ orders }: OpenOrdersTableProps) => {
                     },
                     {
                         textAlign: 'right',
-                        content: `${order.price * order.quantity} ${order.currency}`,
+                        content: `${getTotalOrderValue(order)} ${order.currency}`,
                     },
                     {
                         textAlign: 'right',
@@ -77,8 +70,8 @@ const OpenOrdersTable = ({ orders }: OpenOrdersTableProps) => {
                     {
                         textAlign: 'center',
                         content: (
-                            <a href="#" className="c-link">
-                                {getMaker(order)}
+                            <a href="#" className="c-link" onClick={(e) => e.preventDefault()}>
+                                {getMakerShortForm(order)}
                             </a>
                         ),
                     },

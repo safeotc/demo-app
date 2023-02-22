@@ -1,5 +1,5 @@
 export type OrderType = 'buy' | 'sell';
-type OrderStatus = 'open' | 'active' | 'completed';
+export type OrderStatus = 'open' | 'active' | 'completed';
 export type OrderHistory = [number, string];
 
 interface Order {

@@ -7,7 +7,7 @@ interface ValueDepositFieldProps {
     info: string;
 }
 
-const SecurityDepositField = ({ type, info }: ValueDepositFieldProps) => {
+const ValueDepositField = ({ type, info }: ValueDepositFieldProps) => {
     const { label, value } = useValueDepositField(type);
 
     return (
@@ -29,4 +29,4 @@ const SecurityDepositField = ({ type, info }: ValueDepositFieldProps) => {
     );
 };
 
-export default SecurityDepositField;
+export default ValueDepositField;

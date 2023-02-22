@@ -1,4 +1,4 @@
-.c-order-history {
+.c-order-info {
   margin-bottom: 0.75em;
 
   &:last-child {
@@ -6,11 +6,11 @@
   }
 }
 
-.c-order-history__datetime {
+.c-order-info__label {
   font-size: 0.9em;
   font-weight: bold;
 }
 
-.c-order-history__description {
+.c-order-info__value {
   margin-bottom: 0;
 }
