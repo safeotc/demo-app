@@ -21,6 +21,7 @@ const defaultDemoContext: DemoData = {
         onOrderAccepted: () => {},
         onSimulateTge: () => {},
         onTokensSent: () => {},
+        onTokensClaimed: () => {},
     },
     order: null,
     demoOrderUuids: [],

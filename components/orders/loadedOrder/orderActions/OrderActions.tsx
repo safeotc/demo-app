@@ -8,6 +8,7 @@ import NotConnectedAlert from './actionElements/NotConnectedAlert';
 import ClaimTokensButton from './actionElements/claimTokensButton/ClaimTokensButton';
 import useOrderActions from './useOrderActions';
 import SendTokensButton from './actionElements/sendTokensButton/SendTokensButton';
+import CompletedAlert from './actionElements/CompletedAlert';
 
 interface OrderActionsProps {
     order: Order;
@@ -45,7 +46,11 @@ const OrderActions = ({ order }: OrderActionsProps) => {
             break;
         case 'claimTokens':
             actionElementClass = 'u-margin-bottom-small';
-            actionElement = <ClaimTokensButton />;
+            actionElement = <ClaimTokensButton order={order} />;
+            break;
+        case 'completedAlert':
+            actionElementClass = 'u-margin-bottom';
+            actionElement = <CompletedAlert />;
             break;
         default:
             throw new Error(`No such order action: ${actionToDisplay}`);

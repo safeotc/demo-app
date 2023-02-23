@@ -41,3 +41,7 @@ export const getTokensSentText = (quantity: number, price: number, asset: string
     const totalValue = depositValue.buy + depositValue.sell;
     return `Seller sent ${quantity} ${asset} tokens to the smart contract and received ${totalValue} ${currency} in return.`;
 };
+
+export const getTokensClaimedText = (quantity: number, asset: string) => {
+    return `Buyer claimed ${quantity} ${asset} from the smart contract.`;
+};

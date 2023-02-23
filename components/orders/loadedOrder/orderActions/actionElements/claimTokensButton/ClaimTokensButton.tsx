@@ -1,11 +1,22 @@
+import Order from '../../../../../../models/Order';
 import InfoAlert from '../../../../../alerts/types/InfoAlert';
 import PrimaryButton from '../../../../../forms/buttons/PrimaryButton';
 import FlatIcon from '../../../../../icons/FlatIcon';
 import useClaimTokensButton from './useClaimTokensButton';
 
-const ClaimTokensButton = () => {
-    const { showTokensNeedToBeDistributedAlert, showTokensNeedToBeSentAlert, isClaimButtonDisabled } =
-        useClaimTokensButton();
+interface ClaimTokensButtonProps {
+    order: Order;
+}
+
+const ClaimTokensButton = ({ order }: ClaimTokensButtonProps) => {
+    const {
+        showClaimTokensButton,
+        showTokensNeedToBeDistributedAlert,
+        showTokensNeedToBeSentAlert,
+        isClaimButtonDisabled,
+        isLoading,
+        claimTokens,
+    } = useClaimTokensButton(order);
 
     return (
         <>
@@ -23,9 +34,17 @@ const ClaimTokensButton = () => {
                     content="Tokens claim will be enabled once the seller send tokens to the smart contract."
                 />
             )}
-            <PrimaryButton className="u-width-full" disabled={isClaimButtonDisabled} icon={<FlatIcon icon="coins" />}>
-                Claim tokens
-            </PrimaryButton>
+            {showClaimTokensButton && (
+                <PrimaryButton
+                    className="u-width-full"
+                    disabled={isClaimButtonDisabled}
+                    icon={<FlatIcon icon="coins" />}
+                    loading={isLoading}
+                    onClick={claimTokens}
+                >
+                    Claim tokens
+                </PrimaryButton>
+            )}
         </>
     );
 };

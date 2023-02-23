@@ -19,6 +19,7 @@ export interface CompletedStepsUpdater {
     onOrderAccepted: (order: Order) => void;
     onSimulateTge: () => void;
     onTokensSent: (order: Order) => void;
+    onTokensClaimed: (order: Order) => void;
 }
 
 const useProgress = (wallet: DemoWallet) => {
@@ -225,6 +226,14 @@ const useProgress = (wallet: DemoWallet) => {
                     'send_tokens',
                     8,
                     'Congratulations! You kept your part of the deal in return you get to claim all the money deposited in the smart contract! Now connect as a buyer and claim the tokens!'
+                );
+                updateProgressData({ order });
+            },
+            onTokensClaimed: (order) => {
+                finishStep(
+                    'claim_tokens',
+                    11,
+                    "Congratulations! You did it! You just made an OTC deal and got your tokens! That was easy wasn't it? :)"
                 );
                 updateProgressData({ order });
             },

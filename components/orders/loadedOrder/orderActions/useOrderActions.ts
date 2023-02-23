@@ -23,7 +23,7 @@ const getOrderAction = (
     }
 
     if (!isConnected) {
-        return 'notConnectedAlert';
+        return order.status === 'completed' ? 'completedAlert' : 'notConnectedAlert';
     }
 
     const isBuyer = connectedAddress === order.buyer;
