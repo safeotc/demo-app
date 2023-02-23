@@ -1,0 +1,15 @@
+.c-modal-congratulations__background {
+  background: var(--color-primary) url("/images/congratulations.png") no-repeat;
+  background-position: right top;
+  background-size: 70% auto;
+}
+
+.c-modal-congratulations__title {
+  color: $color-primary-light;
+  margin: 2em 0 1em;
+  text-transform: uppercase;
+
+  @include mq($from: s) {
+    margin: 3em 0 1.5em;
+  }
+}

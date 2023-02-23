@@ -9,6 +9,7 @@ import Providers from '../components/Providers';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Welcome from '../components/welcome/Welcome';
+import Congratulations from '../components/congratulations/Congratulations';
 
 export type LayoutGetter = (page: React.ReactElement) => React.ReactNode;
 
@@ -35,6 +36,7 @@ const SafeOTCApp = ({ Component, pageProps }: AppPropsWithLayout) => {
 
             <Providers>
                 <Welcome />
+                <Congratulations />
                 <AppLayout
                     sideContent={<Side />}
                     mainContent={<Content>{getLayout(<Component {...pageProps} />)}</Content>}
