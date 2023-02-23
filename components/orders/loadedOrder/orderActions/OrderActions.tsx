@@ -7,6 +7,7 @@ import GoBackButton from './actionElements/goBackButton/GoBackButton';
 import NotConnectedAlert from './actionElements/NotConnectedAlert';
 import ClaimTokensButton from './actionElements/claimTokensButton/ClaimTokensButton';
 import useOrderActions from './useOrderActions';
+import SendTokensButton from './actionElements/sendTokensButton/SendTokensButton';
 
 interface OrderActionsProps {
     order: Order;
@@ -44,7 +45,7 @@ const OrderActions = ({ order }: OrderActionsProps) => {
             break;
         case 'sendTokens':
             actionElementClass = 'u-margin-bottom-small';
-            actionElement = <>TODO</>;
+            actionElement = <SendTokensButton />;
             break;
         default:
             throw new Error(`No such order action: ${actionToDisplay}`);
