@@ -23,9 +23,11 @@ const ModalContainer = ({ children, boxProps, size, skipSettingFocusables, onClo
             <span tabIndex={0} onFocus={focusLastFocusable} />
 
             <div {...boxProps} className={containerBoxClasses} ref={focusRef}>
-                <button className="c-modal-container__close" onClick={onCloseRequest}>
-                    <FlatIcon icon="cross" className="c-modal-container__close-icon" />
-                </button>
+                {!!onCloseRequest && (
+                    <button className="c-modal-container__close" onClick={onCloseRequest}>
+                        <FlatIcon icon="cross" className="c-modal-container__close-icon" />
+                    </button>
+                )}
 
                 {renderChildren()}
             </div>

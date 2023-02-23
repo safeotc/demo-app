@@ -9,7 +9,7 @@ export type ModalChildren = React.ReactNode | ((updateFocusables: () => void) =>
 
 export interface ModalProps {
     isOpened: boolean;
-    onCloseRequest: () => void;
+    onCloseRequest?: () => void;
     size: ModalSize;
     boxProps?: React.HTMLAttributes<HTMLDivElement>;
     children: ModalChildren;

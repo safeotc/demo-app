@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-const useModalWrapper = (onCloseRequest: () => void) => {
+const useModalWrapper = (onCloseRequest?: () => void) => {
     const wrapperRef = useRef<HTMLDivElement>(null);
 
     let activeMouseElement: EventTarget | null;
@@ -12,7 +12,7 @@ const useModalWrapper = (onCloseRequest: () => void) => {
     const closeModalIfMouseDownMouseClickElementsMatch = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         const mouseDownIsWrapper = activeMouseElement === wrapperRef.current;
         const mouseUpIsWrapper = e.target === wrapperRef.current;
-        mouseDownIsWrapper && mouseUpIsWrapper && onCloseRequest();
+        mouseDownIsWrapper && mouseUpIsWrapper && !!onCloseRequest && onCloseRequest();
     };
 
     return {

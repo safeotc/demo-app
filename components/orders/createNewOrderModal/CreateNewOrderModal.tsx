@@ -7,7 +7,9 @@ import BuyTab from './BuyTab';
 import SellTab from './SellTab';
 import useCreateNewOrderModal from './useCreateNewOrderModal';
 
-interface CreateNewOrderModalProps extends Pick<ModalProps, 'isOpened' | 'onCloseRequest'> {}
+interface CreateNewOrderModalProps extends Pick<ModalProps, 'isOpened'> {
+    onCloseRequest: () => void;
+}
 
 const CreateNewOrderModal = (props: CreateNewOrderModalProps) => {
     const { onCloseRequest } = props;

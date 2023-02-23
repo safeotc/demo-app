@@ -8,13 +8,12 @@ const Congratulations = () => {
         <>
             <Modal
                 isOpened={showCongratulations}
-                onCloseRequest={() => {}}
                 size="m"
                 boxProps={{ className: 'c-modal-congratulations__background' }}
             >
-                <h1 className="c-modal-congratulations__title">Congratulations!</h1>
+                <h1 className="c-modal-congratulations__title u-text-ellipsis">Congratulations!</h1>
 
-                <p className="u-margin-bottom-none">
+                <p className="c-modal-congratulations__text u-margin-bottom-large">
                     You&apos;ve made it to the end of our demo application! You successfully simulated an OTC deal
                     between two parties without an escrow!
                 </p>
