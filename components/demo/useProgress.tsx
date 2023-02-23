@@ -93,6 +93,7 @@ const useProgress = (wallet: DemoWallet) => {
         const isCreateOrderWalletSelected = wallet.address === orderWalletAddress;
         const isAcceptOrderWalletSelected = wallet.address !== orderWalletAddress;
         const isSellerWalletSelected = !!order && order.seller === wallet.address;
+        const isBuyerWalletSelected = !!order && order.buyer === wallet.address;
         const isSellerWalletConnected = isConnected && isSellerWalletSelected;
 
         return {
@@ -105,6 +106,7 @@ const useProgress = (wallet: DemoWallet) => {
                     );
                     return;
                 }
+
                 if (!isStepCompleted('connect_accept_order_wallet')) {
                     isCreateOrderWalletSelected && unfinishStep('disconnect_wallet');
                     isAcceptOrderWalletSelected &&
@@ -115,16 +117,29 @@ const useProgress = (wallet: DemoWallet) => {
                         );
                     return;
                 }
-                if (
+
+                if (!isStepCompleted('switch_to_seller_wallet')) {
                     isSellerWalletSelected &&
-                    isStepCompleted('simulate_tge') &&
-                    !isStepCompleted('switch_to_seller_wallet')
-                ) {
-                    finishStep(
-                        'switch_to_seller_wallet',
-                        7,
-                        'Hello seller! It is time for you to keep your end of the deal and send your tokens to the smart contract.'
-                    );
+                        isStepCompleted('simulate_tge') &&
+                        finishStep(
+                            'switch_to_seller_wallet',
+                            7,
+                            'Hello seller! It is time for you to keep your end of the deal and send your tokens to the smart contract.'
+                        );
+                    return;
+                }
+
+                if (!isStepCompleted('connect_buyer_wallet')) {
+                    if (!isStepCompleted('disconnect_seller_wallet')) {
+                        return;
+                    }
+                    isSellerWalletSelected && unfinishStep('disconnect_seller_wallet');
+                    isBuyerWalletSelected &&
+                        finishStep(
+                            'connect_buyer_wallet',
+                            10,
+                            'Great! Hello buyer! Only thing left for you to do, is to claim your tokens!'
+                        );
                     return;
                 }
             },
@@ -148,8 +163,23 @@ const useProgress = (wallet: DemoWallet) => {
                     return;
                 }
 
-                if (isStepCompleted('switch_to_seller_wallet') && !isStepCompleted('send_tokens')) {
-                    unfinishStep('switch_to_seller_wallet');
+                if (!isStepCompleted('send_tokens')) {
+                    isStepCompleted('switch_to_seller_wallet') && unfinishStep('switch_to_seller_wallet');
+                    return;
+                }
+
+                if (!isStepCompleted('disconnect_seller_wallet')) {
+                    isSellerWalletSelected &&
+                        finishStep(
+                            'disconnect_seller_wallet',
+                            9,
+                            'Great! Seller kept his part of the deal, got rewarded and is now done with the process. Now connect as a buyer and claim your tokens!'
+                        );
+                    return;
+                }
+
+                if (!isStepCompleted('claim_tokens')) {
+                    unfinishStep('connect_buyer_wallet');
                     return;
                 }
             },
