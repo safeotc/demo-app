@@ -14,6 +14,7 @@ interface Order {
     buyer: string | null;
     seller: string | null;
     status: OrderStatus;
+    tokensSent: boolean;
     history: OrderHistory[];
 }
 

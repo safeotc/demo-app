@@ -35,3 +35,9 @@ export const getOrderAcceptedText = (type: OrderType, price: number, quantity: n
     const depositText = `${makerText} made a deposit of ${depositValue} ${currency}.`;
     return `${orderCreatedText} ${depositText}`;
 };
+
+export const getTokensSentText = (quantity: number, price: number, asset: string, currency: string) => {
+    const depositValue = getDepositValues(price, quantity);
+    const totalValue = depositValue.buy + depositValue.sell;
+    return `Seller sent ${quantity} ${asset} tokens to the smart contract and received ${totalValue} ${currency} in return.`;
+};

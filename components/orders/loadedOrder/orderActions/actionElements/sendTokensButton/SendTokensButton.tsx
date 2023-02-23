@@ -1,10 +1,23 @@
+import Order from '../../../../../../models/Order';
 import InfoAlert from '../../../../../alerts/types/InfoAlert';
+import SuccessAlert from '../../../../../alerts/types/SuccessAlert';
 import PrimaryButton from '../../../../../forms/buttons/PrimaryButton';
 import FlatIcon from '../../../../../icons/FlatIcon';
 import useSendTokensButton from './useSendTokensButton';
 
-const SendTokensButton = () => {
-    const { showTokensNeedToBeDistributedAlert, isSendButtonDisabled } = useSendTokensButton();
+interface SendTokensButtonProps {
+    order: Order;
+}
+
+const SendTokensButton = ({ order }: SendTokensButtonProps) => {
+    const {
+        showSuccessAlert,
+        showSendTokensButton,
+        showTokensNeedToBeDistributedAlert,
+        isSendButtonDisabled,
+        isLoading,
+        sendTokens,
+    } = useSendTokensButton(order);
 
     return (
         <>
@@ -15,9 +28,23 @@ const SendTokensButton = () => {
                     content="Tokens are not available yet. You will be able to send them to the smart contract once you receive the tokens."
                 />
             )}
-            <PrimaryButton className="u-width-full" disabled={isSendButtonDisabled} icon={<FlatIcon icon="coins" />}>
-                Send tokens
-            </PrimaryButton>
+            {showSuccessAlert && (
+                <SuccessAlert
+                    id="tokens-sent-alert"
+                    content="You have successfully sent tokens and claimed money from the smart contract."
+                />
+            )}
+            {showSendTokensButton && (
+                <PrimaryButton
+                    className="u-width-full"
+                    loading={isLoading}
+                    disabled={isSendButtonDisabled}
+                    icon={<FlatIcon icon="coins" />}
+                    onClick={sendTokens}
+                >
+                    Send tokens
+                </PrimaryButton>
+            )}
         </>
     );
 };

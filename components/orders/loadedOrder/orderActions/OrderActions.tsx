@@ -39,13 +39,13 @@ const OrderActions = ({ order }: OrderActionsProps) => {
             actionElementClass = 'u-margin-bottom-small';
             actionElement = <AlreadyAcceptedAlert />;
             break;
+        case 'sendTokens':
+            actionElementClass = 'u-margin-bottom-small';
+            actionElement = <SendTokensButton order={order} />;
+            break;
         case 'claimTokens':
             actionElementClass = 'u-margin-bottom-small';
             actionElement = <ClaimTokensButton />;
-            break;
-        case 'sendTokens':
-            actionElementClass = 'u-margin-bottom-small';
-            actionElement = <SendTokensButton />;
             break;
         default:
             throw new Error(`No such order action: ${actionToDisplay}`);

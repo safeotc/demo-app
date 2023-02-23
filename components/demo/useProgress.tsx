@@ -18,6 +18,7 @@ export interface CompletedStepsUpdater {
     onOrderCanceled: (orderId: string) => void;
     onOrderAccepted: (order: Order) => void;
     onSimulateTge: () => void;
+    onTokensSent: (order: Order) => void;
 }
 
 const useProgress = (wallet: DemoWallet) => {
@@ -188,6 +189,14 @@ const useProgress = (wallet: DemoWallet) => {
                         'Tokens were just sent to your address. Head over to the order page and distribute the tokens to the smart contract and claim your money!';
                 }
                 finishStep(completedSteps, completedStepsCount, completedStepText);
+            },
+            onTokensSent: (order) => {
+                finishStep(
+                    'send_tokens',
+                    8,
+                    'Congratulations! You kept your part of the deal in return you get to claim all the money deposited in the smart contract! Now connect as a buyer and claim the tokens!'
+                );
+                updateProgressData({ order });
             },
         };
     }, [isStepCompleted, finishStep, unfinishStep, order, updateProgressData, wallet, isConnected]);

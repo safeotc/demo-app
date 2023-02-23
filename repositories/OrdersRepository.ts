@@ -82,6 +82,7 @@ class OrdersRepository implements IOrdersRepository {
                 buyer: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 seller: null,
                 status: 'open',
+                tokensSent: false,
                 history: [[1673386480000, getOrderCreatedText('buy', 66.32, 1000, 'USDT')]],
             },
             {
@@ -96,6 +97,7 @@ class OrdersRepository implements IOrdersRepository {
                 buyer: null,
                 seller: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 status: 'open',
+                tokensSent: false,
                 history: [[1673382470000, getOrderCreatedText('sell', 1.543, 500, 'USDT')]],
             },
             {
@@ -110,6 +112,7 @@ class OrdersRepository implements IOrdersRepository {
                 buyer: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 seller: null,
                 status: 'open',
+                tokensSent: false,
                 history: [[1673372977000, getOrderCreatedText('buy', 123.2344, 300, 'USDT')]],
             },
             {
@@ -124,6 +127,7 @@ class OrdersRepository implements IOrdersRepository {
                 buyer: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 seller: null,
                 status: 'open',
+                tokensSent: false,
                 history: [[1673364965000, getOrderCreatedText('buy', 66.32, 1000, 'USDT')]],
             },
             {
@@ -138,6 +142,7 @@ class OrdersRepository implements IOrdersRepository {
                 buyer: null,
                 seller: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 status: 'open',
+                tokensSent: false,
                 history: [[1673362940000, getOrderCreatedText('sell', 1.543, 500, 'USDT')]],
             },
             {
@@ -152,6 +157,7 @@ class OrdersRepository implements IOrdersRepository {
                 buyer: null,
                 seller: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 status: 'open',
+                tokensSent: false,
                 history: [[1673352935000, getOrderCreatedText('sell', 1.543, 500, 'USDT')]],
             },
             {
@@ -166,6 +172,7 @@ class OrdersRepository implements IOrdersRepository {
                 buyer: '0x14d893f1d607832bba2d39e85e729df741514e06',
                 seller: null,
                 status: 'open',
+                tokensSent: false,
                 history: [[1673351941000, getOrderCreatedText('buy', 123.2344, 300, 'USDT')]],
             },
         ];

@@ -74,6 +74,7 @@ const useCreateNewOrderForm = (type: OrderType, onProcessed: OnProcessed) => {
             totalDeposit: buyDepositValue,
             securityDeposit: sellDepositValue,
             status: 'open',
+            tokensSent: false,
             history: [orderHistory],
         };
 
