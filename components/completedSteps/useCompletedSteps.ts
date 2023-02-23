@@ -24,6 +24,7 @@ const useCompletedSteps = (completedSteps: DemoStep[]) => {
     const sendTokensStatus = getStepStatus('send_tokens', switchToSellerWalletStatus);
     const disconnectSellerWalletStatus = getStepStatus('disconnect_seller_wallet', sendTokensStatus);
     const connectBuyerWalletStatus = getStepStatus('connect_buyer_wallet', disconnectSellerWalletStatus);
+    const claimTokensStatus = getStepStatus('claim_tokens', connectBuyerWalletStatus);
 
     const isSimuateTgeButtonDisabled = simulateTgeStatus !== 'waiting';
     const { completedStepsUpdater } = useContext(DemoContext);
@@ -40,6 +41,7 @@ const useCompletedSteps = (completedSteps: DemoStep[]) => {
         sendTokensStatus,
         disconnectSellerWalletStatus,
         connectBuyerWalletStatus,
+        claimTokensStatus,
         isSimuateTgeButtonDisabled,
         simulateTge,
     };

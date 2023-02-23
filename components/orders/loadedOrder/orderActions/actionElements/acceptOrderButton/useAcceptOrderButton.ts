@@ -25,7 +25,7 @@ const useAcceptOrderButton = (order: Order) => {
         updatedOrder.history.unshift(orderHistory);
 
         await ordersRepository.updateOrder(updatedOrder);
-        completedStepsUpdater.onOrderAccepted();
+        completedStepsUpdater.onOrderAccepted(updatedOrder);
     }, [setIsLoading, order, address, completedStepsUpdater]);
 
     return { isLoading, additionalButtonText, acceptOrder };

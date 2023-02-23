@@ -10,7 +10,16 @@ const useDemoSettings = () => {
     const showModal = () => setIsOpened(true);
     const hideModal = () => setIsOpened(false);
 
-    const demoWallets = DEMO_WALLETS.map<RadioOption>((dM) => ({ label: dM.name, value: dM.address }));
+    const { order } = useContext(DemoContext);
+    const buyerAddress = order?.buyer;
+    const sellerAddress = order?.seller;
+
+    const demoWallets = DEMO_WALLETS.map<RadioOption>((dM) => {
+        const isBuyerAddress = buyerAddress === dM.address || (!!sellerAddress && sellerAddress !== dM.address);
+        const isSellerAddress = sellerAddress === dM.address || (!!buyerAddress && buyerAddress !== dM.address);
+        const label = isBuyerAddress ? 'Buyer wallet' : isSellerAddress ? 'Seller wallet' : dM.name;
+        return { label, value: dM.address };
+    });
     const { wallet, changeWallet, wasWelcomeScreenDisplayed, setWasWelcomeScreenDisplayed, completedSteps } =
         useContext(DemoContext);
     const changeDemoWallet = (walletAddress: NullableRadioValue) => !!walletAddress && changeWallet(walletAddress);

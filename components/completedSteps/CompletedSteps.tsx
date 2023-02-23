@@ -21,6 +21,7 @@ const CompletedSteps = ({ completedSteps, ...props }: CompletedSteps) => {
         sendTokensStatus,
         disconnectSellerWalletStatus,
         connectBuyerWalletStatus,
+        claimTokensStatus,
         isSimuateTgeButtonDisabled,
         simulateTge,
     } = useCompletedSteps(completedSteps);
@@ -63,14 +64,17 @@ const CompletedSteps = ({ completedSteps, ...props }: CompletedSteps) => {
                 selling tokens.
             </Step>
             <Step number={8} status={sendTokensStatus} title="Send tokens">
-                Send tokens to the buyer. To send tokens you need to open the order page and click on &quot;send
-                tokens&quot; button.
+                Send tokens to the smart contract. To send tokens you need to open the order page and click on
+                &quot;send tokens&quot; button.
             </Step>
             <Step number={9} status={disconnectSellerWalletStatus} title="Disconnect seller wallet">
                 Disconnect the currently connected wallet.
             </Step>
             <Step number={10} status={connectBuyerWalletStatus} title="Connect buyer wallet">
-                Connect the buyer wallet to receive the notification about the successful order execution.
+                Connect the buyer wallet in order to claim your tokens from the smart contract.
+            </Step>
+            <Step number={11} status={claimTokensStatus} title="Claim tokens">
+                Go to the order page and claim your tokens.
             </Step>
         </ul>
     );
