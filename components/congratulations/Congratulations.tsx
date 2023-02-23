@@ -1,11 +1,16 @@
 import Modal from '../modal/Modal';
 import useCongratulations from './useCongratulations';
+import Confetti from 'react-confetti';
 
 const Congratulations = () => {
-    const showCongratulations = useCongratulations();
+    const { width, height, showCongratulations } = useCongratulations();
 
     return (
         <>
+            {showCongratulations && (
+                <Confetti className="c-confetti" numberOfPieces={100} width={width} height={height} gravity={0.05} />
+            )}
+
             <Modal
                 isOpened={showCongratulations}
                 size="m"
