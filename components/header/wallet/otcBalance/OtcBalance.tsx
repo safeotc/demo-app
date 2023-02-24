@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Button from '../../../forms/buttons/Button';
 import ButtonText from '../../../forms/buttons/ButtonText';
 import SecondaryButton from '../../../forms/buttons/SecondaryButton';
@@ -14,11 +13,13 @@ interface OtcBalanceProps {
 }
 
 const OtcBalance = ({ address, balance, disconnect }: OtcBalanceProps) => {
-    const { addressDisplay, copyAddressToClipBoardAndDisplayAlert } = useOtcBalance(address);
-
-    const [isDashboardPopoverOpened, setIsDashboardPopoverOpened] = useState(false);
-    const openDashboardPopover = () => setIsDashboardPopoverOpened(true);
-    const closeDashboardPopover = () => setIsDashboardPopoverOpened(false);
+    const {
+        addressDisplay,
+        copyAddressToClipBoardAndDisplayAlert,
+        isDashboardPopoverOpened,
+        openDashboardPopover,
+        closeDashboardPopover,
+    } = useOtcBalance(address);
 
     const popover = (
         <div className="c-wallet-actions">

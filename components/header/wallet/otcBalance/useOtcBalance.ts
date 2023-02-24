@@ -1,7 +1,11 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AlertsContext } from '../../../alerts/AlertsProvider';
 
 const useOtcBalance = (address: string) => {
+    const [isDashboardPopoverOpened, setIsDashboardPopoverOpened] = useState(false);
+    const openDashboardPopover = () => setIsDashboardPopoverOpened(true);
+    const closeDashboardPopover = () => setIsDashboardPopoverOpened(false);
+
     const { addSuccessAlert, addDangerAlert } = useContext(AlertsContext);
 
     const addressDisplay =
@@ -17,7 +21,13 @@ const useOtcBalance = (address: string) => {
         addSuccessAlert('Wallet address was copied to clipboard.');
     };
 
-    return { addressDisplay, copyAddressToClipBoardAndDisplayAlert };
+    return {
+        addressDisplay,
+        copyAddressToClipBoardAndDisplayAlert,
+        isDashboardPopoverOpened,
+        openDashboardPopover,
+        closeDashboardPopover,
+    };
 };
 
 export default useOtcBalance;
