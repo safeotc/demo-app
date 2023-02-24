@@ -2,6 +2,7 @@ import { preventDefaultOnEnterOrSpace } from '../../../common/helpers/keyboard';
 import ButtonText from '../../forms/buttons/ButtonText';
 import PrimaryButton from '../../forms/buttons/PrimaryButton';
 import DropdownDownArrowIcon from '../../icons/DropdownDownArrowIcon';
+import FlatIcon from '../../icons/FlatIcon';
 import WalletIcon from '../../icons/WalletIcon';
 import Popover from '../../popover/Popover';
 import { Wallet } from '../../wallet/useWallet';
@@ -26,7 +27,8 @@ const ConnectButton = ({ connect }: ConnectButtonProps) => {
                     onKeyDown={preventDefaultOnEnterOrSpace}
                     onKeyUp={(e) => connectSelectedWalletOnEnterOrSpace(e, wLI.address)}
                 >
-                    {wLI.label}
+                    <span className="c-wallet-list__item-name">{wLI.label}</span>
+                    <FlatIcon icon={wLI.flatIcon} className={`c-wallet-list__item-icon ${wLI.iconClass}`} />
                 </li>
             ))}
         </ul>

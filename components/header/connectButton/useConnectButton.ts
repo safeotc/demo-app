@@ -17,7 +17,13 @@ const useConnectButton = (connect: (wallet: Wallet) => void) => {
         const isBuyerAddress = buyerAddress === dM.address || (!!sellerAddress && sellerAddress !== dM.address);
         const isSellerAddress = sellerAddress === dM.address || (!!buyerAddress && buyerAddress !== dM.address);
         const label = isBuyerAddress ? 'Buyer wallet' : isSellerAddress ? 'Seller wallet' : `Demo wallet ${i + 1}`;
-        return { label, address: dM.address, onClick: () => connect(dM) };
+        const flatIcon = isBuyerAddress ? 'download' : isSellerAddress ? 'upload' : 'wallet';
+        const iconClass = isBuyerAddress
+            ? 'c-wallet-list__item-icon--buy'
+            : isSellerAddress
+            ? 'c-wallet-list__item-icon--sell'
+            : '';
+        return { label, flatIcon, iconClass, address: dM.address, onClick: () => connect(dM) };
     });
 
     const connectSelectedWalletOnEnterOrSpace = useCallback(

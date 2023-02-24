@@ -1,0 +1,50 @@
+.c-wallet-list {
+  @include border-radius();
+  @include short-shadow();
+  border: 0px solid var(--color-secondary);
+  background: var(--color-primary);
+  list-style: none;
+  margin: 0;
+}
+
+.c-wallet-list__item {
+  display: flex;
+  margin-bottom: 1px;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  @include short-transition(background-color outline);
+  @include focus-outline();
+
+  &:first-child {
+    @include top-border-radius();
+  }
+
+  &:last-child {
+    @include bottom-border-radius();
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    background: var(--color-secondary);
+  }
+}
+
+.c-wallet-list__item-name {
+  margin-right: auto;
+  white-space: nowrap;
+}
+
+.c-wallet-list__item-icon {
+  display: flex;
+  margin-left: 1em;
+}
+
+.c-wallet-list__item-icon--buy {
+  color: $color-success;
+}
+
+.c-wallet-list__item-icon--sell {
+  color: $color-danger;
+}
