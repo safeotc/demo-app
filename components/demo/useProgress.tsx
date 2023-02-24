@@ -4,7 +4,7 @@ import Order from '../../models/Order';
 import { AlertContent } from '../alerts/Alert';
 import { AlertsContext } from '../alerts/AlertsProvider';
 import { WalletContext } from '../wallet/WalletProvider';
-import { DemoStep, DemoWallet } from './useDemo';
+import { DemoStep } from './useDemo';
 
 interface UseProgressData {
     completedSteps: DemoStep[];
@@ -12,8 +12,8 @@ interface UseProgressData {
 }
 
 export interface CompletedStepsUpdater {
-    onConnected: () => void;
-    onDisconnected: () => void;
+    onConnected: (address: string) => void;
+    onDisconnected: (address: string) => void;
     onOrderCreated: (order: Order) => void;
     onOrderCanceled: (orderId: string) => void;
     onOrderAccepted: (order: Order) => void;
@@ -22,13 +22,13 @@ export interface CompletedStepsUpdater {
     onTokensClaimed: (order: Order) => void;
 }
 
-const useProgress = (wallet: DemoWallet) => {
+const useProgress = () => {
     const [{ completedSteps, order }, , updateProgressData] = useStateWithUpdate<UseProgressData>({
         completedSteps: [],
         order: null,
     });
 
-    const { isConnected } = useContext(WalletContext);
+    const { isConnected, address: connectedAddress } = useContext(WalletContext);
 
     const isStepCompleted = useCallback(
         (step: DemoStep) => !!completedSteps.find((cS) => cS === step),
@@ -47,7 +47,7 @@ const useProgress = (wallet: DemoWallet) => {
                     {alertMessage}
                 </>
             );
-            addSuccessAlert(alertContent, 10000);
+            addSuccessAlert(alertContent, 5000);
         },
         [updateProgressData, completedSteps, addSuccessAlert]
     );
@@ -69,7 +69,7 @@ const useProgress = (wallet: DemoWallet) => {
                     <br />
                     Check &quot;demo settings&quot; to find out what your next move should be.
                 </>,
-                10000
+                5000
             );
         },
         [updateProgressData, completedSteps, addDangerAlert]
@@ -90,15 +90,12 @@ const useProgress = (wallet: DemoWallet) => {
     */
 
     const completedStepsUpdater: CompletedStepsUpdater = useMemo(() => {
-        const orderWalletAddress = order?.type === 'buy' ? order.buyer : order?.type === 'sell' ? order.seller : null;
-        const isCreateOrderWalletSelected = wallet.address === orderWalletAddress;
-        const isAcceptOrderWalletSelected = wallet.address !== orderWalletAddress;
-        const isSellerWalletSelected = !!order && order.seller === wallet.address;
-        const isBuyerWalletSelected = !!order && order.buyer === wallet.address;
-        const isSellerWalletConnected = isConnected && isSellerWalletSelected;
+        const orderMakerAddress = order?.type === 'buy' ? order.buyer : order?.type === 'sell' ? order.seller : null;
+        const isCreateOrderWallet = (address: string) => address === orderMakerAddress;
+        const isSellerWallet = (address: string) => order?.seller === address;
 
         return {
-            onConnected: () => {
+            onConnected: (address: string) => {
                 if (!isStepCompleted('connect_create_order_wallet')) {
                     finishStep(
                         'connect_create_order_wallet',
@@ -109,18 +106,20 @@ const useProgress = (wallet: DemoWallet) => {
                 }
 
                 if (!isStepCompleted('connect_accept_order_wallet')) {
-                    isCreateOrderWalletSelected && unfinishStep('disconnect_wallet');
-                    isAcceptOrderWalletSelected &&
-                        finishStep(
-                            'connect_accept_order_wallet',
-                            4,
-                            'Hello other guy! Head over to open orders and accept the order that was created earlier by someone else.'
-                        );
+                    if (isCreateOrderWallet(address)) {
+                        unfinishStep('disconnect_wallet');
+                        return;
+                    }
+                    finishStep(
+                        'connect_accept_order_wallet',
+                        4,
+                        'Hello other guy! Head over to open orders and accept the order that was created earlier by someone else.'
+                    );
                     return;
                 }
 
                 if (!isStepCompleted('switch_to_seller_wallet')) {
-                    isSellerWalletSelected &&
+                    isSellerWallet(address) &&
                         isStepCompleted('simulate_tge') &&
                         finishStep(
                             'switch_to_seller_wallet',
@@ -134,17 +133,19 @@ const useProgress = (wallet: DemoWallet) => {
                     if (!isStepCompleted('disconnect_seller_wallet')) {
                         return;
                     }
-                    isSellerWalletSelected && unfinishStep('disconnect_seller_wallet');
-                    isBuyerWalletSelected &&
-                        finishStep(
-                            'connect_buyer_wallet',
-                            10,
-                            'Great! Hello buyer! Only thing left for you to do, is to claim your tokens!'
-                        );
+                    if (isSellerWallet(address)) {
+                        unfinishStep('disconnect_seller_wallet');
+                        return;
+                    }
+                    finishStep(
+                        'connect_buyer_wallet',
+                        10,
+                        'Great! Hello buyer! Only thing left for you to do, is to claim your tokens!'
+                    );
                     return;
                 }
             },
-            onDisconnected: () => {
+            onDisconnected: (address) => {
                 if (!isStepCompleted('create_order')) {
                     unfinishStep('connect_create_order_wallet');
                     return;
@@ -160,7 +161,8 @@ const useProgress = (wallet: DemoWallet) => {
                 }
 
                 if (!isStepCompleted('accept_order')) {
-                    isAcceptOrderWalletSelected && unfinishStep('connect_accept_order_wallet');
+                    const isAcceptOrderWallet = !isCreateOrderWallet(address);
+                    isAcceptOrderWallet && unfinishStep('connect_accept_order_wallet');
                     return;
                 }
 
@@ -170,7 +172,7 @@ const useProgress = (wallet: DemoWallet) => {
                 }
 
                 if (!isStepCompleted('disconnect_seller_wallet')) {
-                    isSellerWalletSelected &&
+                    isSellerWallet(address) &&
                         finishStep(
                             'disconnect_seller_wallet',
                             9,
@@ -213,7 +215,7 @@ const useProgress = (wallet: DemoWallet) => {
                 let completedStepsCount = 6;
                 let completedStepText =
                     'Things are looking good! Tokens were just distributed to the seller. Now connect the wallet you used for selling tokens and send those tokens to the smart contract.';
-                if (isSellerWalletConnected) {
+                if (isConnected && isSellerWallet(connectedAddress)) {
                     completedStepsCount = 7;
                     completedSteps.push('switch_to_seller_wallet');
                     completedStepText =
@@ -238,7 +240,7 @@ const useProgress = (wallet: DemoWallet) => {
                 updateProgressData({ order });
             },
         };
-    }, [isStepCompleted, finishStep, unfinishStep, order, updateProgressData, wallet, isConnected]);
+    }, [isStepCompleted, finishStep, unfinishStep, order, updateProgressData, isConnected, connectedAddress]);
 
     return { completedSteps, completedStepsUpdater, order };
 };

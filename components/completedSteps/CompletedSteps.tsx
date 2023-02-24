@@ -29,10 +29,10 @@ const CompletedSteps = ({ completedSteps, ...props }: CompletedSteps) => {
     return (
         <ul {...props}>
             <Step number={1} status={connectCreateOrderWalletStatus} title="Connect wallet">
-                Choose one of the two demo wallets to create an order with and connect it.
+                Choose one of the two demo wallets and connect to it.
             </Step>
             <Step number={2} status={createOrderStatus} title="Create order">
-                Start an OTC trade process by placing a sell or buy order.
+                Create a sell or buy order to start an OTC trade process.
             </Step>
             <Step number={3} status={disconnectWalletStatus} title="Disconnect wallet">
                 Disconnect the currently connected wallet.

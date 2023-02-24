@@ -1,8 +1,6 @@
-import WarningAlert from '../../alerts/types/WarningAlert';
 import CompletedSteps from '../../completedSteps/CompletedSteps';
 import Button from '../../forms/buttons/Button';
 import SecondaryButton from '../../forms/buttons/SecondaryButton';
-import Radios from '../../forms/radios/Radios';
 import FlatIcon from '../../icons/FlatIcon';
 import Modal from '../../modal/Modal';
 import ModalTitle from '../../modal/ModalTitle';
@@ -13,10 +11,6 @@ const DemoSettings = () => {
         isOpened,
         showModal,
         hideModal,
-        connectedWalletAddress,
-        changeDemoWallet,
-        isConnected,
-        demoWallets,
         isResetWelcomeScreenButtonDisabled,
         showWelcomeScreenOnReload,
         completedSteps,
@@ -38,31 +32,6 @@ const DemoSettings = () => {
 
             <Modal size="m" isOpened={isOpened} onCloseRequest={hideModal}>
                 <ModalTitle>Demo application settings</ModalTitle>
-
-                <div className="u-margin-bottom-large">
-                    <h6 className="c-modal-container__sub-title">Demo wallet selection</h6>
-                    <p className="u-margin-bottom">
-                        Select the wallet you want to connect to the application. The selected wallet will be used for
-                        creating/accepting orders.
-                    </p>
-
-                    <Radios
-                        name="wallet-selection"
-                        options={demoWallets}
-                        value={connectedWalletAddress}
-                        onChange={changeDemoWallet}
-                        disabled={isConnected}
-                        textOverflow="ellipsis"
-                    />
-
-                    {isConnected && (
-                        <WarningAlert
-                            className="u-margin-top"
-                            id="wallet-connected-alert"
-                            content="Please disconnect the wallet you are currently using in order to switch to another wallet."
-                        />
-                    )}
-                </div>
 
                 <div className="u-margin-bottom-large">
                     <h6 className="c-modal-container__sub-title">Demo progress</h6>

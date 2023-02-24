@@ -1,10 +1,12 @@
 import { useCallback } from 'react';
 import useStateWithUpdate from '../../common/hooks/useStateWithUpdate';
-import { DemoWallet } from '../demo/useDemo';
 
 export type NetworkId = 'Ethereum' | 'Binance Smart Chain' | 'Polygon';
 
-type Wallet = DemoWallet;
+export interface Wallet {
+    address: string;
+    otcBalance: string;
+}
 
 export interface UseWalletData {
     isConnected: boolean;

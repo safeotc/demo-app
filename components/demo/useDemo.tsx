@@ -1,15 +1,8 @@
-import { useCallback } from 'react';
-import useStateWithUpdate from '../../common/hooks/useStateWithUpdate';
 import Order from '../../models/Order';
+import { Wallet } from '../wallet/useWallet';
 import useProgress, { CompletedStepsUpdater } from './useProgress';
 import useTgeSimulation from './useTgeSimulation';
 import useWelcomeScreen from './useWelcomeScreen';
-
-export interface DemoWallet {
-    name: string;
-    address: string;
-    otcBalance: string;
-}
 
 export type DemoStep =
     | 'connect_create_order_wallet'
@@ -25,8 +18,6 @@ export type DemoStep =
     | 'claim_tokens';
 
 export interface UseDemoData {
-    wallet: DemoWallet;
-    changeWallet: (address: string) => void;
     wasWelcomeScreenDisplayed: boolean;
     setWasWelcomeScreenDisplayed: (wasWelcomeScreenDisplayed: boolean) => void;
     completedSteps: DemoStep[];
@@ -37,9 +28,9 @@ export interface UseDemoData {
     simulateTge: () => void;
 }
 
-export const DEMO_WALLETS: DemoWallet[] = [
-    { name: 'Demo wallet 1', address: '0xdAC17F958D2ee523a2206206994597C13D831ec7', otcBalance: '32711.243' },
-    { name: 'Demo wallet 2', address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', otcBalance: '23030.3211' },
+export const DEMO_WALLETS: Wallet[] = [
+    { address: '0xdAC17F958D2ee523a2206206994597C13D831ec7', otcBalance: '32711.243' },
+    { address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', otcBalance: '23030.3211' },
 ];
 
 export const DEMO_ORDER_UUIDS = [
@@ -53,28 +44,12 @@ export const DEMO_ORDER_UUIDS = [
 ];
 
 const useDemo = (): UseDemoData => {
-    const [{ wallet }, , updateDemoData] = useStateWithUpdate<Pick<UseDemoData, 'wallet'>>({
-        wallet: DEMO_WALLETS[0],
-    });
-
-    const changeWallet = useCallback(
-        (address: string) => {
-            const wallet = DEMO_WALLETS.find((dM) => dM.address === address);
-            updateDemoData({ wallet });
-        },
-        [updateDemoData]
-    );
-
     const { wasWelcomeScreenDisplayed, setWasWelcomeScreenDisplayed } = useWelcomeScreen();
-
-    const { completedSteps, completedStepsUpdater, order } = useProgress(wallet);
-
+    const { completedSteps, completedStepsUpdater, order } = useProgress();
     const { wasTgeSimulated, simulateTge } = useTgeSimulation();
 
     return {
-        wallet,
         wasWelcomeScreenDisplayed,
-        changeWallet,
         setWasWelcomeScreenDisplayed,
         completedSteps,
         completedStepsUpdater,
