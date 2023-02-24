@@ -17,7 +17,7 @@ const Welcome = () => {
             <h1 className="c-modal-welcome__title">Welcome</h1>
 
             <p className="u-margin-bottom-large">
-                Click on the demo settings button located on the left-hand side of the screen under the main menu to
+                Click on the demo progress button located on the left-hand side of the screen under the main menu to
                 find out more about demo app functionality and how to use it.
             </p>
 
@@ -28,7 +28,7 @@ const Welcome = () => {
                         <Image
                             layout="fill"
                             src={mobileLocationImage}
-                            alt="Location of the demo settings button on mobile devices"
+                            alt="Location of the demo progress button on mobile devices"
                         />
                     </div>
                 </div>
@@ -40,7 +40,7 @@ const Welcome = () => {
                         <Image
                             layout="fill"
                             src={desktopLocationImage}
-                            alt="Location of demo settings button on desktop devices"
+                            alt="Location of demo progress button on desktop devices"
                         />
                     </div>
                 </div>

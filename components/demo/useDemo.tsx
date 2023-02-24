@@ -2,7 +2,6 @@ import Order from '../../models/Order';
 import { Wallet } from '../wallet/useWallet';
 import useProgress, { CompletedStepsUpdater } from './useProgress';
 import useTgeSimulation from './useTgeSimulation';
-import useWelcomeScreen from './useWelcomeScreen';
 
 export type DemoStep =
     | 'connect_create_order_wallet'
@@ -18,8 +17,6 @@ export type DemoStep =
     | 'claim_tokens';
 
 export interface UseDemoData {
-    wasWelcomeScreenDisplayed: boolean;
-    setWasWelcomeScreenDisplayed: (wasWelcomeScreenDisplayed: boolean) => void;
     completedSteps: DemoStep[];
     completedStepsUpdater: CompletedStepsUpdater;
     order: Order | null;
@@ -44,13 +41,10 @@ export const DEMO_ORDER_UUIDS = [
 ];
 
 const useDemo = (): UseDemoData => {
-    const { wasWelcomeScreenDisplayed, setWasWelcomeScreenDisplayed } = useWelcomeScreen();
     const { completedSteps, completedStepsUpdater, order } = useProgress();
     const { wasTgeSimulated, simulateTge } = useTgeSimulation();
 
     return {
-        wasWelcomeScreenDisplayed,
-        setWasWelcomeScreenDisplayed,
         completedSteps,
         completedStepsUpdater,
         order,

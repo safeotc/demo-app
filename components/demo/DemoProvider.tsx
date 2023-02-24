@@ -8,8 +8,6 @@ interface DemoProviderProps {
 interface DemoData extends UseDemoData {}
 
 const defaultDemoContext: DemoData = {
-    wasWelcomeScreenDisplayed: false,
-    setWasWelcomeScreenDisplayed: () => {},
     completedSteps: [],
     completedStepsUpdater: {
         onConnected: () => {},

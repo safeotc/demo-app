@@ -1,28 +1,16 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react';
-import { DemoContext } from '../demo/DemoProvider';
+import { useCallback, useEffect, useState } from 'react';
 
 const useWelcome = () => {
-    const { wasWelcomeScreenDisplayed, setWasWelcomeScreenDisplayed } = useContext(DemoContext);
-    const wasWelcomeScreenDisplayedRef = useRef(wasWelcomeScreenDisplayed);
-
     const [isOpened, setIsOpened] = useState(false);
     const openModal = useCallback(() => setIsOpened(true), [setIsOpened]);
-    const closeModal = useCallback(() => {
-        setWasWelcomeScreenDisplayed(true);
-        setIsOpened(false);
-    }, [setWasWelcomeScreenDisplayed, setIsOpened]);
+    const closeModal = useCallback(() => setIsOpened(false), [setIsOpened]);
 
     useEffect(() => {
-        if (wasWelcomeScreenDisplayedRef.current) {
-            return;
-        }
-
-        const openModalTimeoutId = setTimeout(openModal, 1000);
-
+        const openModalTimeoutId = setTimeout(openModal, 500);
         return () => {
             clearTimeout(openModalTimeoutId);
         };
-    }, [wasWelcomeScreenDisplayedRef, openModal]);
+    }, [openModal]);
 
     return { isOpened, closeModal };
 };

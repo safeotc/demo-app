@@ -4,6 +4,10 @@
   display: flex;
   align-items: center;
   @include short-transition(opacity);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .c-step--locked {

@@ -1,4 +1,4 @@
-import DemoSettings from '../../components/side/demoSettings/DemoSettings';
+import DemoProgress from '../../components/side/demoProgress/DemoProgress';
 import Logo from '../../components/side/Logo';
 import Nav from '../../components/side/nav/Nav';
 
@@ -7,7 +7,7 @@ const Side = () => {
         <div className="o-side">
             <Logo />
             <Nav />
-            <DemoSettings />
+            <DemoProgress />
         </div>
     );
 };

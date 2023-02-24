@@ -67,7 +67,7 @@ const useProgress = () => {
                 <>
                     Oh no! You moved back :(
                     <br />
-                    Check &quot;demo settings&quot; to find out what your next move should be.
+                    Check &quot;demo progress&quot; to find out what your next move should be.
                 </>,
                 5000
             );
