@@ -37,3 +37,6 @@ next-env.d.ts
 
 # docker environment configuration
 .docker-compose.env
+
+# deployment
+/bin/deploy
