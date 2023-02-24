@@ -1,8 +1,8 @@
 import { useCallback, useContext, useMemo, useState } from 'react';
-import { NETWORKS } from '../../../../common/constants/networks';
-import { wasEnterOrSpace } from '../../../../common/helpers/keyboard';
-import { AlertsContext } from '../../../alerts/AlertsProvider';
-import { NetworkId } from '../../../wallet/useWallet';
+import { NETWORKS } from '../../../common/constants/networks';
+import { wasEnterOrSpace } from '../../../common/helpers/keyboard';
+import { AlertsContext } from '../../alerts/AlertsProvider';
+import { NetworkId } from '../../wallet/useWallet';
 
 const useNetwork = (currentNetwork: NetworkId, switchNetwork: (network: NetworkId) => void) => {
     const { addSuccessAlert } = useContext(AlertsContext);

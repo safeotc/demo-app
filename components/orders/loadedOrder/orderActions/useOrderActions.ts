@@ -1,6 +1,6 @@
 import Order from '../../../../models/Order';
 import { DEMO_ORDER_UUIDS } from '../../../demo/useDemo';
-import useWalletInfo from '../../../header/wallet/walletInfo/useWalletInfo';
+import useWalletInfo from '../../../header/walletInfo/useWalletInfo';
 
 type OrderAction =
     | 'demoAlert'

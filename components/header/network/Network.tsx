@@ -1,11 +1,11 @@
-import { NETWORKS } from '../../../../common/constants/networks';
-import { preventDefaultOnEnterOrSpace } from '../../../../common/helpers/keyboard';
-import Button from '../../../forms/buttons/Button';
-import ButtonText from '../../../forms/buttons/ButtonText';
-import DropdownDownArrowIcon from '../../../icons/DropdownDownArrowIcon';
-import FlatIcon from '../../../icons/FlatIcon';
-import Popover from '../../../popover/Popover';
-import { NetworkId } from '../../../wallet/useWallet';
+import { NETWORKS } from '../../../common/constants/networks';
+import { preventDefaultOnEnterOrSpace } from '../../../common/helpers/keyboard';
+import Button from '../../forms/buttons/Button';
+import ButtonText from '../../forms/buttons/ButtonText';
+import DropdownDownArrowIcon from '../../icons/DropdownDownArrowIcon';
+import FlatIcon from '../../icons/FlatIcon';
+import Popover from '../../popover/Popover';
+import { NetworkId } from '../../wallet/useWallet';
 import useNetwork from './useNetwork';
 
 interface NetworkProps {

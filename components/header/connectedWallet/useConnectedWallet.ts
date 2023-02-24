@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
-import { AlertsContext } from '../../../alerts/AlertsProvider';
+import { AlertsContext } from '../../alerts/AlertsProvider';
 
-const useOtcBalance = (address: string) => {
+const useConnectedWallet = (address: string) => {
     const [isDashboardPopoverOpened, setIsDashboardPopoverOpened] = useState(false);
     const openDashboardPopover = () => setIsDashboardPopoverOpened(true);
     const closeDashboardPopover = () => setIsDashboardPopoverOpened(false);
@@ -30,4 +30,4 @@ const useOtcBalance = (address: string) => {
     };
 };
 
-export default useOtcBalance;
+export default useConnectedWallet;

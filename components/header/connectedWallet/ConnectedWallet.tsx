@@ -1,25 +1,25 @@
-import Button from '../../../forms/buttons/Button';
-import ButtonText from '../../../forms/buttons/ButtonText';
-import SecondaryButton from '../../../forms/buttons/SecondaryButton';
-import DropdownDownArrowIcon from '../../../icons/DropdownDownArrowIcon';
-import FlatIcon from '../../../icons/FlatIcon';
-import Popover from '../../../popover/Popover';
-import useOtcBalance from './useOtcBalance';
+import Button from '../../forms/buttons/Button';
+import ButtonText from '../../forms/buttons/ButtonText';
+import SecondaryButton from '../../forms/buttons/SecondaryButton';
+import DropdownDownArrowIcon from '../../icons/DropdownDownArrowIcon';
+import FlatIcon from '../../icons/FlatIcon';
+import Popover from '../../popover/Popover';
+import useConnectedWallet from './useConnectedWallet';
 
-interface OtcBalanceProps {
+interface ConnectedWalletProps {
     address: string;
     balance: string;
     disconnect: () => void;
 }
 
-const OtcBalance = ({ address, balance, disconnect }: OtcBalanceProps) => {
+const ConnectedWallet = ({ address, balance, disconnect }: ConnectedWalletProps) => {
     const {
         addressDisplay,
         copyAddressToClipBoardAndDisplayAlert,
         isDashboardPopoverOpened,
         openDashboardPopover,
         closeDashboardPopover,
-    } = useOtcBalance(address);
+    } = useConnectedWallet(address);
 
     const popover = (
         <div className="c-wallet-actions">
@@ -72,4 +72,4 @@ const OtcBalance = ({ address, balance, disconnect }: OtcBalanceProps) => {
     );
 };
 
-export default OtcBalance;
+export default ConnectedWallet;

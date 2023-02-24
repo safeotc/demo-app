@@ -1,6 +1,6 @@
-import ConnectButton from '../ConnectButton';
+import ConnectButton from '../connectButton/ConnectButton';
 import Network from '../network/Network';
-import OtcBalance from '../otcBalance/OtcBalance';
+import ConnectedWallet from '../connectedWallet/ConnectedWallet';
 import useWalletInfo from './useWalletInfo';
 
 const WalletInfo = () => {
@@ -8,7 +8,7 @@ const WalletInfo = () => {
 
     return isConnected ? (
         <>
-            <OtcBalance address={address} balance={otcBalance} disconnect={disconnect} />
+            <ConnectedWallet address={address} balance={otcBalance} disconnect={disconnect} />
             <Network network={network} switchNetwork={switchNetworks} />
         </>
     ) : (

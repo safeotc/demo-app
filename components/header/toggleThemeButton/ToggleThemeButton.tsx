@@ -1,11 +1,9 @@
-import { useContext } from 'react';
-import Button from '../forms/buttons/Button';
-import FlatIcon from '../icons/FlatIcon';
-import { ThemeContext } from '../theme/ThemeProvider';
+import Button from '../../forms/buttons/Button';
+import FlatIcon from '../../icons/FlatIcon';
+import useToggleThemeButton from './useToggleThemeButton';
 
 const ToggleThemeButton = () => {
-    const { theme, toggleTheme } = useContext(ThemeContext);
-    const themeIcon = theme === 'light' ? 'moon' : 'sun';
+    const { themeIcon, toggleTheme } = useToggleThemeButton();
 
     return (
         <Button
