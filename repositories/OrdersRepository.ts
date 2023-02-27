@@ -181,7 +181,8 @@ class OrdersRepository implements IOrdersRepository {
 
     async getOpenOrders() {
         await delay(2000);
-        return this.orders;
+        const openOrders = this.orders.filter((o) => o.status === 'open');
+        return openOrders;
     }
 
     async getActiveOrders() {
