@@ -45,10 +45,10 @@ export const DEMO_ORDER_UUIDS = [
 ];
 
 const useDemo = (): UseDemoData => {
-    const { completedSteps, completedStepsUpdater, order } = useProgress();
-    const { wasTgeSimulated, simulateTge } = useTgeSimulation();
     const { isDemoProgressButtonHighlighted, highlightDemoProgressButton, unhighlightDemoProgressButton } =
         useButtonHightlighter();
+    const { completedSteps, completedStepsUpdater, order } = useProgress(highlightDemoProgressButton);
+    const { wasTgeSimulated, simulateTge } = useTgeSimulation();
 
     return {
         completedSteps,

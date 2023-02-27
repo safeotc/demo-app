@@ -22,7 +22,7 @@ export interface CompletedStepsUpdater {
     onTokensClaimed: (order: Order) => void;
 }
 
-const useProgress = () => {
+const useProgress = (highlightDemoProgressButton: () => void) => {
     const [{ completedSteps, order }, , updateProgressData] = useStateWithUpdate<UseProgressData>({
         completedSteps: [],
         order: null,
@@ -38,7 +38,7 @@ const useProgress = () => {
     const { addSuccessAlert, addDangerAlert } = useContext(AlertsContext);
 
     const finishStep = useCallback(
-        (steps: DemoStep | DemoStep[], stepNumber: number, alertMessage: AlertContent) => {
+        (steps: DemoStep | DemoStep[], stepNumber: number, alertMessage: AlertContent, skipHighlighting?: boolean) => {
             updateProgressData({ completedSteps: [...completedSteps, ...(Array.isArray(steps) ? steps : [steps])] });
             const alertContent = (
                 <>
@@ -48,8 +48,9 @@ const useProgress = () => {
                 </>
             );
             addSuccessAlert(alertContent, 5000);
+            !skipHighlighting && highlightDemoProgressButton();
         },
-        [updateProgressData, completedSteps, addSuccessAlert]
+        [updateProgressData, completedSteps, addSuccessAlert, highlightDemoProgressButton]
     );
 
     const unfinishStep = useCallback(
@@ -71,8 +72,9 @@ const useProgress = () => {
                 </>,
                 5000
             );
+            highlightDemoProgressButton();
         },
-        [updateProgressData, completedSteps, addDangerAlert]
+        [updateProgressData, completedSteps, addDangerAlert, highlightDemoProgressButton]
     );
 
     /*
@@ -221,7 +223,7 @@ const useProgress = () => {
                     completedStepText =
                         'Tokens were just sent to your address. Head over to the order page and distribute the tokens to the smart contract and claim your money!';
                 }
-                finishStep(completedSteps, completedStepsCount, completedStepText);
+                finishStep(completedSteps, completedStepsCount, completedStepText, true);
             },
             onTokensSent: (order) => {
                 finishStep(
@@ -235,7 +237,8 @@ const useProgress = () => {
                 finishStep(
                     'claim_tokens',
                     11,
-                    "Congratulations! You did it! You just made an OTC deal and got your tokens! That was easy wasn't it? :)"
+                    "Congratulations! You did it! You just made an OTC deal and got your tokens! That was easy wasn't it? :)",
+                    true
                 );
                 updateProgressData({ order });
             },
