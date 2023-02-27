@@ -1,4 +1,5 @@
 import PrimaryButton from '../forms/buttons/PrimaryButton';
+import FlatIcon from '../icons/FlatIcon';
 import Modal from '../modal/Modal';
 import useWelcome from './useWelcome';
 
@@ -30,7 +31,13 @@ const Welcome = () => {
             </p>
 
             <div className="u-text-center">
-                <PrimaryButton onClick={closeModalAndHighlightDemoProgressButton}>Start DEMO</PrimaryButton>
+                <PrimaryButton
+                    size="l"
+                    icon={<FlatIcon icon="running" />}
+                    onClick={closeModalAndHighlightDemoProgressButton}
+                >
+                    Start DEMO
+                </PrimaryButton>
             </div>
         </Modal>
     );
