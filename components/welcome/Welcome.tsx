@@ -1,8 +1,6 @@
-import Image from 'next/image';
+import PrimaryButton from '../forms/buttons/PrimaryButton';
 import Modal from '../modal/Modal';
 import useWelcome from './useWelcome';
-import mobileLocationImage from '../../public/images/demo-button-location-mobile.jpg';
-import desktopLocationImage from '../../public/images/demo-button-location-desktop.jpg';
 
 const Welcome = () => {
     const { isOpened, closeModal } = useWelcome();
@@ -14,36 +12,25 @@ const Welcome = () => {
             size="m"
             boxProps={{ className: 'c-modal-welcome__background' }}
         >
-            <h1 className="c-modal-welcome__title">Welcome</h1>
+            <h1 className="c-modal-welcome__title">
+                Welcome <span className="to">to</span>
+                <br className="new-line" />
+                <span className="safeotc">SafeOTC</span>
+            </h1>
 
-            <p className="u-margin-bottom-large">
-                Click on the demo progress button located on the left-hand side of the screen under the main menu to
+            <p className="u-margin-bottom-large u-text-bold">
+                Let’s start with the DEMO application for the first Decentralized OTC (Over-The-Counter) trading
+                platform where you can make an OTC deal in a secure, fast and easy way without the use of an escrow or a
+                3rd party.
+            </p>
+
+            <p className="u-margin-bottom-large u-text-bold">
+                Click on the DEMO PROGRESS button located on the left-hand side of the screen under the main menu to
                 find out more about demo app functionality and how to use it.
             </p>
 
-            <div className="c-modal-welcome__locations">
-                <div className="c-modal-welcome__location">
-                    <span className="u-text-bold u-text-center u-text-ellipsis u-margin-bottom-small">Mobile view</span>
-                    <div className="c-modal-welcome__img c-modal-welcome__img--mobile">
-                        <Image
-                            layout="fill"
-                            src={mobileLocationImage}
-                            alt="Location of the demo progress button on mobile devices"
-                        />
-                    </div>
-                </div>
-                <div className="c-modal-welcome__location">
-                    <span className="u-text-bold u-text-center u-text-ellipsis u-margin-bottom-small">
-                        Desktop view
-                    </span>
-                    <div className="c-modal-welcome__img c-modal-welcome__img--desktop">
-                        <Image
-                            layout="fill"
-                            src={desktopLocationImage}
-                            alt="Location of demo progress button on desktop devices"
-                        />
-                    </div>
-                </div>
+            <div className="u-text-center">
+                <PrimaryButton onClick={closeModal}>Start DEMO</PrimaryButton>
             </div>
         </Modal>
     );
