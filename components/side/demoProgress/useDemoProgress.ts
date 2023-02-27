@@ -1,17 +1,21 @@
-import { useContext, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { DemoContext } from '../../demo/DemoProvider';
 
 const useDemoProgress = () => {
+    const { completedSteps, isDemoProgressButtonHighlighted, unhighlightDemoProgressButton } = useContext(DemoContext);
     const [isOpened, setIsOpened] = useState(false);
-    const showModal = () => setIsOpened(true);
-    const hideModal = () => setIsOpened(false);
-    const { completedSteps } = useContext(DemoContext);
+    const showModalAndUnhighlightButton = useCallback(() => {
+        unhighlightDemoProgressButton();
+        setIsOpened(true);
+    }, [unhighlightDemoProgressButton, setIsOpened]);
+    const hideModal = useCallback(() => setIsOpened(false), [setIsOpened]);
 
     return {
         isOpened,
-        showModal,
+        showModalAndUnhighlightButton,
         hideModal,
         completedSteps,
+        isDemoProgressButtonHighlighted,
     };
 };
 

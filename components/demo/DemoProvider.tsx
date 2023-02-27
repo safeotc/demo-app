@@ -23,6 +23,9 @@ const defaultDemoContext: DemoData = {
     demoOrderUuids: [],
     wasTgeSimulated: false,
     simulateTge: () => {},
+    isDemoProgressButtonHighlighted: false,
+    highlightDemoProgressButton: () => {},
+    unhighlightDemoProgressButton: () => {},
 };
 
 export const DemoContext = React.createContext<DemoData>(defaultDemoContext);

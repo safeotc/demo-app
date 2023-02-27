@@ -1,5 +1,6 @@
 import Order from '../../models/Order';
 import { Wallet } from '../wallet/useWallet';
+import useButtonHightlighter from './useButtonHighlighter';
 import useProgress, { CompletedStepsUpdater } from './useProgress';
 import useTgeSimulation from './useTgeSimulation';
 
@@ -23,6 +24,9 @@ export interface UseDemoData {
     demoOrderUuids: string[];
     wasTgeSimulated: boolean;
     simulateTge: () => void;
+    isDemoProgressButtonHighlighted: boolean;
+    highlightDemoProgressButton: () => void;
+    unhighlightDemoProgressButton: () => void;
 }
 
 export const DEMO_WALLETS: Wallet[] = [
@@ -43,6 +47,8 @@ export const DEMO_ORDER_UUIDS = [
 const useDemo = (): UseDemoData => {
     const { completedSteps, completedStepsUpdater, order } = useProgress();
     const { wasTgeSimulated, simulateTge } = useTgeSimulation();
+    const { isDemoProgressButtonHighlighted, highlightDemoProgressButton, unhighlightDemoProgressButton } =
+        useButtonHightlighter();
 
     return {
         completedSteps,
@@ -51,6 +57,9 @@ const useDemo = (): UseDemoData => {
         demoOrderUuids: DEMO_ORDER_UUIDS,
         wasTgeSimulated,
         simulateTge,
+        isDemoProgressButtonHighlighted,
+        highlightDemoProgressButton,
+        unhighlightDemoProgressButton,
     };
 };
 

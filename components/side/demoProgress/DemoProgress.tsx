@@ -4,19 +4,24 @@ import FlatIcon from '../../icons/FlatIcon';
 import Modal from '../../modal/Modal';
 import ModalTitle from '../../modal/ModalTitle';
 import useDemoProgress from './useDemoProgress';
+import cn from 'classnames';
 
 const DemoProgress = () => {
-    const { isOpened, showModal, hideModal, completedSteps } = useDemoProgress();
+    const { isOpened, showModalAndUnhighlightButton, hideModal, completedSteps, isDemoProgressButtonHighlighted } =
+        useDemoProgress();
+    const buttonWrapperClasses = cn('c-demo-progress', 'u-text-center', {
+        'c-demo-progress--highlight': isDemoProgressButtonHighlighted,
+    });
 
     return (
         <>
-            <div className="u-text-center">
+            <div className={buttonWrapperClasses}>
                 <SecondaryButton
                     inlineOnMobile={true}
                     size="s"
                     iconOnlyOn={['base', 's', 'm']}
                     icon={<FlatIcon title="Demo progress" icon="signal-alt-1" />}
-                    onClick={showModal}
+                    onClick={showModalAndUnhighlightButton}
                 >
                     Demo progress
                 </SecondaryButton>

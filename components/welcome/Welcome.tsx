@@ -3,12 +3,12 @@ import Modal from '../modal/Modal';
 import useWelcome from './useWelcome';
 
 const Welcome = () => {
-    const { isOpened, closeModal } = useWelcome();
+    const { isOpened, closeModalAndHighlightDemoProgressButton } = useWelcome();
 
     return (
         <Modal
             isOpened={isOpened}
-            onCloseRequest={closeModal}
+            onCloseRequest={closeModalAndHighlightDemoProgressButton}
             size="m"
             boxProps={{ className: 'c-modal-welcome__background' }}
         >
@@ -30,7 +30,7 @@ const Welcome = () => {
             </p>
 
             <div className="u-text-center">
-                <PrimaryButton onClick={closeModal}>Start DEMO</PrimaryButton>
+                <PrimaryButton onClick={closeModalAndHighlightDemoProgressButton}>Start DEMO</PrimaryButton>
             </div>
         </Modal>
     );
