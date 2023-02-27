@@ -26,6 +26,7 @@ const defaultDemoContext: DemoData = {
     isDemoProgressButtonHighlighted: false,
     highlightDemoProgressButton: () => {},
     unhighlightDemoProgressButton: () => {},
+    resetDemoState: () => {},
 };
 
 export const DemoContext = React.createContext<DemoData>(defaultDemoContext);

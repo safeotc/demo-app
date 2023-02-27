@@ -245,7 +245,12 @@ const useProgress = (highlightDemoProgressButton: () => void) => {
         };
     }, [isStepCompleted, finishStep, unfinishStep, order, updateProgressData, isConnected, connectedAddress]);
 
-    return { completedSteps, completedStepsUpdater, order };
+    const resetProgress = useCallback(
+        () => updateProgressData({ completedSteps: [], order: null }),
+        [updateProgressData]
+    );
+
+    return { completedSteps, completedStepsUpdater, order, resetProgress };
 };
 
 export default useProgress;

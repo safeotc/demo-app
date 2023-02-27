@@ -1,9 +1,11 @@
 import Modal from '../modal/Modal';
 import useCongratulations from './useCongratulations';
 import Confetti from 'react-confetti';
+import SecondaryButton from '../forms/buttons/SecondaryButton';
+import FlatIcon from '../icons/FlatIcon';
 
 const Congratulations = () => {
-    const { width, height, showCongratulations } = useCongratulations();
+    const { width, height, showCongratulations, restartDemoApp } = useCongratulations();
 
     return (
         <>
@@ -22,6 +24,12 @@ const Congratulations = () => {
                     You&apos;ve made it to the end of our demo application! You successfully simulated an OTC deal
                     between two parties without an escrow!
                 </p>
+
+                <div className="u-text-center">
+                    <SecondaryButton size="l" icon={<FlatIcon icon="refresh" />} onClick={restartDemoApp}>
+                        Start over
+                    </SecondaryButton>
+                </div>
             </Modal>
         </>
     );

@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import Order from '../../models/Order';
 import { Wallet } from '../wallet/useWallet';
 import useButtonHightlighter from './useButtonHighlighter';
@@ -27,6 +28,7 @@ export interface UseDemoData {
     isDemoProgressButtonHighlighted: boolean;
     highlightDemoProgressButton: () => void;
     unhighlightDemoProgressButton: () => void;
+    resetDemoState: () => void;
 }
 
 export const DEMO_WALLETS: Wallet[] = [
@@ -47,8 +49,14 @@ export const DEMO_ORDER_UUIDS = [
 const useDemo = (): UseDemoData => {
     const { isDemoProgressButtonHighlighted, highlightDemoProgressButton, unhighlightDemoProgressButton } =
         useButtonHightlighter();
-    const { completedSteps, completedStepsUpdater, order } = useProgress(highlightDemoProgressButton);
-    const { wasTgeSimulated, simulateTge } = useTgeSimulation();
+    const { completedSteps, completedStepsUpdater, order, resetProgress } = useProgress(highlightDemoProgressButton);
+    const { wasTgeSimulated, simulateTge, resetTgeSimulation } = useTgeSimulation();
+
+    const resetDemoState = useCallback(() => {
+        unhighlightDemoProgressButton();
+        resetProgress();
+        resetTgeSimulation;
+    }, [unhighlightDemoProgressButton, resetProgress, resetTgeSimulation]);
 
     return {
         completedSteps,
@@ -60,6 +68,7 @@ const useDemo = (): UseDemoData => {
         isDemoProgressButtonHighlighted,
         highlightDemoProgressButton,
         unhighlightDemoProgressButton,
+        resetDemoState,
     };
 };
 
