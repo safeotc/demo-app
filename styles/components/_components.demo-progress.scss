@@ -10,28 +10,28 @@
     z-index: 1;
     left: 50%;
     top: 50%;
-    margin-top: -37.5px;
-    margin-left: -37.5px;
+    margin-top: -2.25em;
+    margin-left: -2.25em;
     pointer-events: none;
-    width: 75px;
-    height: 75px;
+    width: 4.5em;
+    height: 4.5em;
     border-radius: 50%;
     background: $color-brand-secondary;
-    animation: highlight-scale 3000ms ease-out infinite;
+    animation: highlight-scale 2000ms ease-out infinite;
     transform-origin: center;
 
     @include mq($from: m) {
-      width: 150px;
-      height: 150px;
-      margin-top: -75px;
-      margin-left: -75px;
+      width: 8em;
+      height: 8em;
+      margin-top: -4em;
+      margin-left: -4em;
     }
 
     @include mq($from: l) {
-      width: 200px;
-      height: 200px;
-      margin-top: -100px;
-      margin-left: -100px;
+      width: 11em;
+      height: 11em;
+      margin-top: -5.5em;
+      margin-left: -5.5em;
     }
 
     @keyframes highlight-scale {
@@ -39,7 +39,7 @@
         transform: scale(0);
         opacity: 0.7;
       }
-      30% {
+      20% {
         transform: scale(0);
         opacity: 0.7;
       }
