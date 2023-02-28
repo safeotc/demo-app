@@ -1,5 +1,44 @@
 import Order, { OrderType } from '../../models/Order';
 
+type OrderAction =
+    | 'demoAlert'
+    | 'notConnectedAlert'
+    | 'cancelOrder'
+    | 'acceptOrder'
+    | 'sendTokens'
+    | 'claimTokens'
+    | 'alreadyAcceptedAlert'
+    | 'completedAlert';
+
+export const getOrderAction = (
+    isDemoOrder: boolean,
+    isConnected: boolean,
+    connectedAddress: string,
+    order: Order
+): OrderAction => {
+    if (isDemoOrder) {
+        return 'demoAlert';
+    }
+
+    if (!isConnected) {
+        return order.status === 'completed' ? 'completedAlert' : 'notConnectedAlert';
+    }
+
+    const isBuyer = connectedAddress === order.buyer;
+    const isSeller = connectedAddress === order.seller;
+
+    if (order.status === 'open') {
+        const isMaker = (isBuyer && order.type === 'buy') || (isSeller && order.type === 'sell');
+        return isMaker ? 'cancelOrder' : 'acceptOrder';
+    }
+
+    if (order.status === 'active') {
+        return isBuyer ? 'claimTokens' : isSeller ? 'sendTokens' : 'alreadyAcceptedAlert';
+    }
+
+    return 'completedAlert';
+};
+
 export const getMaker = (order: Order) => {
     return (order.type === 'buy' ? order.buyer : order.seller) || '';
 };
