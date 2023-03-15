@@ -1,5 +1,6 @@
 import Input, { InputProps } from '../../forms/Input';
 import FlatIcon from '../../icons/FlatIcon';
+import Popover from '../../popover/Popover';
 import useSearchInput from './useSearchInput';
 
 const SearchInput = (props: InputProps) => {
@@ -11,6 +12,9 @@ const SearchInput = (props: InputProps) => {
         clearSearchAndFocusInput,
         preventDefaultOnEnterOrSpace,
         clearSearchAndFocusInputOnEnterOrSpace,
+        isPopoverOpened,
+        openPopover,
+        closePopover,
     } = useSearchInput();
 
     const clearTextIcon = shouldDisplayCloseIcon ? (
@@ -25,16 +29,22 @@ const SearchInput = (props: InputProps) => {
         />
     ) : undefined;
 
+    const popover = <div className="c-search-input-results">Coming soon.</div>;
+
     return (
-        <Input
-            {...props}
-            value={value}
-            onChange={updateValue}
-            placeholder="Search through offers"
-            leftIcon={<FlatIcon icon="search" />}
-            rightIcon={clearTextIcon}
-            ref={inputRef}
-        />
+        <Popover isOpened={isPopoverOpened} popover={popover} onCloseRequest={closePopover} position="bottomCenter">
+            <Input
+                {...props}
+                value={value}
+                onChange={updateValue}
+                onFocus={openPopover}
+                onBlur={closePopover}
+                placeholder="Search through offers"
+                leftIcon={<FlatIcon icon="search" />}
+                rightIcon={clearTextIcon}
+                ref={inputRef}
+            />
+        </Popover>
     );
 };
 

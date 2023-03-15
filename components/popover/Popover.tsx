@@ -5,7 +5,7 @@ import { ScreenSize } from '../../common/types/screen';
 import { getResponsiveClassnames } from '../../common/helpers/classnames';
 import usePopover from './usePopover';
 
-export type PopoverPosition = 'topRight' | 'bottomRight';
+export type PopoverPosition = 'topRight' | 'bottomRight' | 'bottomCenter';
 export type PopoverPositionOn = [ScreenSize, PopoverPosition];
 
 interface PopoverProps {
@@ -42,6 +42,7 @@ const Popover = ({
         {
             'c-popover__content--bottom-right': position === 'bottomRight',
             'c-popover__content--top-right': position === 'topRight',
+            'c-popover__content--bottom-center': position === 'bottomCenter',
         }
     );
 

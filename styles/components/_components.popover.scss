@@ -4,6 +4,7 @@
 
 .c-popover__content {
   position: absolute;
+  z-index: 1;
   display: none;
 
   &--enter,
@@ -43,12 +44,23 @@
   right: 0;
 }
 
+@mixin c-popover__content--bottom-center {
+  top: calc(100% + 0.5em);
+  bottom: auto;
+  left: 0;
+  right: 0;
+}
+
 .c-popover__content--bottom-right {
   @include c-popover__content--bottom-right();
 }
 
 .c-popover__content--top-right {
   @include c-popover__content--top-right();
+}
+
+.c-popover__content--bottom-center {
+  @include c-popover__content--bottom-center();
 }
 
 @include screen-rule("c-popover__content--bottom-right", "-", false) {

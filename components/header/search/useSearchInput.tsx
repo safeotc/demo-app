@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { useState } from 'react';
 import { preventDefaultOnEnterOrSpace, wasEnterOrSpace } from '../../../common/helpers/keyboard';
 
@@ -17,6 +17,10 @@ const useSearchInput = () => {
     const clearSearchAndFocusInputOnEnterOrSpace = (e: React.KeyboardEvent<HTMLElement>) =>
         wasEnterOrSpace(e) && clearSearchAndFocusInput();
 
+    const [isPopoverOpened, setIsPopoverOpened] = useState(false);
+    const openPopover = useCallback(() => setIsPopoverOpened(true), [setIsPopoverOpened]);
+    const closePopover = useCallback(() => setIsPopoverOpened(false), [setIsPopoverOpened]);
+
     return {
         value,
         updateValue,
@@ -25,6 +29,9 @@ const useSearchInput = () => {
         clearSearchAndFocusInput,
         preventDefaultOnEnterOrSpace,
         clearSearchAndFocusInputOnEnterOrSpace,
+        isPopoverOpened,
+        openPopover,
+        closePopover,
     };
 };
 

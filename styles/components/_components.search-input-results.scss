@@ -1,0 +1,8 @@
+.c-search-input-results {
+  @include border-radius();
+  @include short-shadow();
+  border: 0px solid var(--color-secondary);
+  background: var(--color-primary);
+  padding: $inuit-global-spacing-unit-small;
+  text-align: center;
+}
