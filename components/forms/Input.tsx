@@ -2,7 +2,7 @@ import React, { InputHTMLAttributes } from 'react';
 import cn from 'classnames';
 import Label, { LabelContent } from './Label';
 import ErrorMessage from './ErrorMessage';
-import InputTooltip from './inputTooltip/InputTooltip';
+import InputTooltip from './InputTooltip';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     leftIcon?: JSX.Element;

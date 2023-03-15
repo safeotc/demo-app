@@ -10,17 +10,16 @@ interface TooltipRenderProps {
 interface TooltipProps {
     children: (renderProps: TooltipRenderProps) => JSX.Element;
     content: JSX.Element | string;
-    id: string;
 }
 
-const Tooltip = ({ children, content, id }: TooltipProps) => {
-    const { tooltip, showTooltip, hideTooltip } = useTooltip();
+const Tooltip = ({ children, content }: TooltipProps) => {
+    const { tooltip, tooltipId, showTooltip, hideTooltip } = useTooltip();
 
     return (
         <>
-            {children({ showTooltip, hideTooltip, tooltipId: id })}
+            {children({ showTooltip, hideTooltip, tooltipId })}
             {tooltip && (
-                <ReactTooltip id={id} effect="solid">
+                <ReactTooltip id={tooltipId} effect="solid">
                     {content}
                 </ReactTooltip>
             )}

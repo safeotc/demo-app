@@ -1,5 +1,3 @@
-import { useRef } from 'react';
-import { v4 as uuidV4 } from 'uuid';
 import { getAdddressShortForm } from '../../../common/helpers/orders';
 import Tooltip from '../../forms/tooltip/Tooltip';
 
@@ -9,14 +7,12 @@ interface AddressLinkProps {
 }
 
 const AddressLink = ({ address, noAddressText }: AddressLinkProps) => {
-    const tooltipUuid = useRef(uuidV4());
-
     if (!address) {
         return <>{noAddressText}</>;
     }
 
     return (
-        <Tooltip id={`address-link-${tooltipUuid.current}`} content={address}>
+        <Tooltip content={address}>
             {({ showTooltip, hideTooltip, tooltipId }) => (
                 <a
                     href="#"

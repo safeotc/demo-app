@@ -3,7 +3,7 @@ import ReactSelect from 'react-select';
 import { FocusEventHandler } from 'react';
 import ErrorMessage from './ErrorMessage';
 import cn from 'classnames';
-import InputTooltip from './inputTooltip/InputTooltip';
+import InputTooltip from './InputTooltip';
 
 export type SelectValue = string;
 export type NullableSelectValue = SelectValue | null;

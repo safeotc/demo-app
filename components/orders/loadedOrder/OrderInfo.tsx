@@ -1,6 +1,6 @@
 import { getMaker } from '../../../common/helpers/orders';
 import Order from '../../../models/Order';
-import InputTooltip from '../../forms/inputTooltip/InputTooltip';
+import InputTooltip from '../../forms/InputTooltip';
 import cn from 'classnames';
 import AddressLink from './AddressLink';
 

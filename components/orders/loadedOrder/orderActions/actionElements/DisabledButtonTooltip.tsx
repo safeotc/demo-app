@@ -1,6 +1,4 @@
 import Tooltip from '../../../../forms/tooltip/Tooltip';
-import { v4 as uuidV4 } from 'uuid';
-import { useRef } from 'react';
 
 interface DisabledButtonTooltipProps {
     tooltipText: string;
@@ -8,10 +6,8 @@ interface DisabledButtonTooltipProps {
 }
 
 const DisabledButtonTooltip = ({ tooltipText, children }: DisabledButtonTooltipProps) => {
-    const uuid = useRef(uuidV4());
-
     return (
-        <Tooltip content={tooltipText} id={uuid.current}>
+        <Tooltip content={tooltipText}>
             {({ tooltipId, showTooltip, hideTooltip }) => (
                 <div className="c-disabled-button-tooltip">
                     <div

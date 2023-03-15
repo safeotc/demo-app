@@ -1,20 +1,13 @@
-import FlatIcon from '../../icons/FlatIcon';
-import Tooltip from '../tooltip/Tooltip';
-import useInputTooltip from './useInputTooltip';
+import FlatIcon from '../icons/FlatIcon';
+import Tooltip from './tooltip/Tooltip';
 
 interface InputTooltipProps {
     content: JSX.Element | string;
 }
 
 const InputTooltip = ({ content }: InputTooltipProps) => {
-    const id = useInputTooltip();
-
-    if (!id) {
-        return null;
-    }
-
     return (
-        <Tooltip content={content} id={id}>
+        <Tooltip content={content}>
             {({ showTooltip, hideTooltip, tooltipId }) => (
                 <FlatIcon
                     data-for={tooltipId}
