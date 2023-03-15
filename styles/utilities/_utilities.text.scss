@@ -35,3 +35,7 @@
 .u-text-brand-gradient {
   @include brand-gradient-text();
 }
+
+.u-text-small {
+  font-size: 0.75em;
+}

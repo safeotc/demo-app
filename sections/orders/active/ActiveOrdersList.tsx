@@ -10,8 +10,8 @@ const ActiveOrdersList = () => {
         <>
             <div className="o-box">
                 <div className="u-overflow-x-auto">
-                    <SkeletonScreenLoader show={isLoading} skeleton={<OrdersTableSkeletonScreen />}>
-                        <OrdersTable orders={orders} />
+                    <SkeletonScreenLoader show={isLoading} skeleton={<OrdersTableSkeletonScreen withActions={true} />}>
+                        <OrdersTable orders={orders} withActions={true} />
                     </SkeletonScreenLoader>
                 </div>
             </div>

@@ -15,7 +15,7 @@ const useCreateNew = () => {
                     <Link href={`/orders/${order.id}`}>
                         <a className="c-link c-link--info-alert">Demo order</a>
                     </Link>{' '}
-                    was already created. To make a progress try accepting the created order.
+                    was already created. Check &quot;demo progress&quot; for further steps.
                 </>
             );
             return;

@@ -1,4 +1,4 @@
-import WarningAlert from '../../../../alerts/types/WarningAlert';
+import WarningAlert from '../../../../../alerts/types/WarningAlert';
 
 const DemoAlert = () => {
     return (

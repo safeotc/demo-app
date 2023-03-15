@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import useStateWithUpdate from '../../../common/hooks/useStateWithUpdate';
 import Order from '../../../models/Order';
-import ordersRepository from '../../../repositories/OrdersRepository';
+import ordersRepository, { OrdersUpdatedCallback } from '../../../repositories/OrdersRepository';
 
 type OrdersFetchState = 'loading' | 'finished';
 
@@ -17,6 +17,13 @@ const useActiveOrdersList = () => {
     const isLoading = fetchState !== 'finished';
 
     useEffect(() => {
+        // subscribe to new orders and order updates
+        const onOrdersUpdated: OrdersUpdatedCallback = (orders) => {
+            updateOrdersState({ orders: orders.filter((o) => o.status === 'active') });
+        };
+
+        const subscriptionId = ordersRepository.subscribeToOrdersUpdate(onOrdersUpdated);
+
         // initial orders retrieval
         let proceed = true;
         (async () => {
@@ -26,6 +33,7 @@ const useActiveOrdersList = () => {
 
         return () => {
             proceed = false;
+            ordersRepository.unsubscribeFromOrdersUpdate(subscriptionId);
         };
     }, [updateOrdersState]);
 

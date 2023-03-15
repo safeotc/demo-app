@@ -1,0 +1,13 @@
+.c-disabled-button-tooltip {
+  position: relative;
+}
+
+.c-disabled-button-tooltip__hoverer {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  cursor: not-allowed;
+}

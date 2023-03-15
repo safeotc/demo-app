@@ -14,6 +14,7 @@ const defaultAlertsContext = {
     addSuccessAlert: () => {},
     addInfoAlert: () => {},
     addDangerAlert: () => {},
+    addWarningAlert: () => {},
 };
 export const AlertsContext = React.createContext<AlertsData>(defaultAlertsContext);
 

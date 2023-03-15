@@ -17,9 +17,9 @@ const useOpenOrdersList = () => {
     const isLoading = fetchState !== 'finished';
 
     useEffect(() => {
-        // subscribe to new orders
+        // subscribe to new orders and order updates
         const onOrdersUpdated: OrdersUpdatedCallback = (orders) => {
-            updateOrdersState({ orders });
+            updateOrdersState({ orders: orders.filter((o) => o.status === 'open') });
         };
         const subscriptionId = ordersRepository.subscribeToOrdersUpdate(onOrdersUpdated);
 

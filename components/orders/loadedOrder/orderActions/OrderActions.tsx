@@ -2,7 +2,7 @@ import Order from '../../../../models/Order';
 import AcceptOrderButton from './actionElements/acceptOrderButton/AcceptOrderButton';
 import AlreadyAcceptedAlert from './actionElements/AlreadyAcceptedAlert';
 import CancelOrderButton from './actionElements/cancelOrderButton/CancelOrderButton';
-import DemoAlert from './actionElements/DemoAlert';
+import DemoAlert from './actionElements/demoAlert/DemoAlert';
 import GoBackButton from './actionElements/goBackButton/GoBackButton';
 import NotConnectedAlert from './actionElements/NotConnectedAlert';
 import ClaimTokensButton from './actionElements/claimTokensButton/ClaimTokensButton';
@@ -20,13 +20,13 @@ const OrderActions = ({ order }: OrderActionsProps) => {
     let actionElementClass: string;
     let actionElement: JSX.Element;
     switch (actionToDisplay) {
-        case 'demoAlert':
-            actionElementClass = 'u-margin-bottom';
-            actionElement = <DemoAlert />;
-            break;
         case 'notConnectedAlert':
             actionElementClass = 'u-margin-bottom';
             actionElement = <NotConnectedAlert />;
+            break;
+        case 'demoAlert':
+            actionElementClass = 'u-margin-bottom';
+            actionElement = <DemoAlert />;
             break;
         case 'cancelOrder':
             actionElementClass = 'u-margin-bottom-small';

@@ -16,12 +16,12 @@ export const getOrderAction = (
     connectedAddress: string,
     order: Order
 ): OrderAction => {
-    if (isDemoOrder) {
-        return 'demoAlert';
-    }
-
     if (!isConnected) {
         return order.status === 'completed' ? 'completedAlert' : 'notConnectedAlert';
+    }
+
+    if (isDemoOrder) {
+        return 'demoAlert';
     }
 
     const isBuyer = connectedAddress === order.buyer;

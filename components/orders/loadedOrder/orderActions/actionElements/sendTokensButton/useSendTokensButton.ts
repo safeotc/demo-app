@@ -26,6 +26,8 @@ const useSendTokensButton = (order: Order) => {
 
         await ordersRepository.updateOrder(updatedOrder);
         completedStepsUpdater.onTokensSent(updatedOrder);
+
+        setIsLoading(false);
     }, [setIsLoading, order, completedStepsUpdater]);
 
     return {

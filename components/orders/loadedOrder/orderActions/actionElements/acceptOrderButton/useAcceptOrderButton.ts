@@ -2,17 +2,26 @@ import { useCallback, useContext, useState } from 'react';
 import { getOrderAcceptedText } from '../../../../../../common/helpers/orders';
 import Order, { OrderHistory } from '../../../../../../models/Order';
 import ordersRepository from '../../../../../../repositories/OrdersRepository';
+import { AlertsContext } from '../../../../../alerts/AlertsProvider';
 import { DemoContext } from '../../../../../demo/DemoProvider';
 import { WalletContext } from '../../../../../wallet/WalletProvider';
 
 const useAcceptOrderButton = (order: Order) => {
     const { address } = useContext(WalletContext);
     const [isLoading, setIsLoading] = useState(false);
-    const { completedStepsUpdater } = useContext(DemoContext);
+    const { completedStepsUpdater, demoOrderUuids } = useContext(DemoContext);
+    const { addWarningAlert } = useContext(AlertsContext);
 
+    const isDemoOrder = demoOrderUuids.includes(order.id);
     const additionalButtonText = order.type === 'buy' ? 'Sell' : 'Buy';
+    const buttonFlatIcon = order.type === 'buy' ? 'upload' : 'download';
 
     const acceptOrder = useCallback(async () => {
+        if (isDemoOrder) {
+            addWarningAlert('Demo orders are meant only for presentational purposes, they cannot be interacted with.');
+            return;
+        }
+
         setIsLoading(true);
 
         const updatedOrder = { ...order };
@@ -26,9 +35,9 @@ const useAcceptOrderButton = (order: Order) => {
 
         await ordersRepository.updateOrder(updatedOrder);
         completedStepsUpdater.onOrderAccepted(updatedOrder);
-    }, [setIsLoading, order, address, completedStepsUpdater]);
+    }, [setIsLoading, addWarningAlert, isDemoOrder, order, address, completedStepsUpdater]);
 
-    return { isLoading, additionalButtonText, acceptOrder };
+    return { isLoading, additionalButtonText, buttonFlatIcon, acceptOrder };
 };
 
 export default useAcceptOrderButton;

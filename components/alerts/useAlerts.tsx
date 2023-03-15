@@ -4,6 +4,7 @@ import { v4 as uuidV4 } from 'uuid';
 import SuccessIcon from '../icons/alerts/SuccessIcon';
 import DangerIcon from '../icons/alerts/DangerIcon';
 import InfoIcon from '../icons/alerts/InfoIcon';
+import WarningIcon from '../icons/alerts/WarningIcon';
 
 type AddAlert = (content: AlertContent, disposeTimeout?: number, hideCloseButton?: boolean) => void;
 
@@ -12,6 +13,7 @@ export interface UseAlertsData {
     addSuccessAlert: AddAlert;
     addInfoAlert: AddAlert;
     addDangerAlert: AddAlert;
+    addWarningAlert: AddAlert;
 }
 
 const useAlerts = (): UseAlertsData => {
@@ -65,11 +67,18 @@ const useAlerts = (): UseAlertsData => {
         [addAlert]
     );
 
+    const addWarningAlert = useCallback<AddAlert>(
+        (content, disposeTimeout, hideClosebutton) =>
+            addAlert('warning', content, <WarningIcon />, disposeTimeout, hideClosebutton),
+        [addAlert]
+    );
+
     return {
         alerts,
         addSuccessAlert,
         addInfoAlert,
         addDangerAlert,
+        addWarningAlert,
     };
 };
 
