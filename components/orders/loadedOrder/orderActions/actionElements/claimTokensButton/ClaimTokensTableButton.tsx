@@ -2,9 +2,8 @@ import Order from '../../../../../../models/Order';
 import PrimaryButton from '../../../../../forms/buttons/PrimaryButton';
 import FlatIcon from '../../../../../icons/FlatIcon';
 import useClaimTokensButton from './useClaimTokensButton';
-import Tooltip from '../../../../../forms/tooltip/Tooltip';
-import { ButtonProps } from '../../../../../forms/buttons/Button';
 import NoActionTableElement from '../NoActionTableElement';
+import DisabledButtonTooltip from '../DisabledButtonTooltip';
 
 interface ClaimTokensTableButtonProps {
     order: Order;
@@ -31,30 +30,22 @@ const ClaimTokensTableButton = ({ order }: ClaimTokensTableButtonProps) => {
         : null;
     const wrapWithTooltip = !!tooltipText;
 
-    const baseClaimButtonProps: ButtonProps = {
-        className: 'u-full-width',
-        disabled: isClaimButtonDisabled,
-        icon: <FlatIcon icon="coins" />,
-        loading: isLoading,
-        onClick: claimTokens,
-    };
+    const claimButton = (
+        <PrimaryButton
+            className="u-full-width"
+            disabled={isClaimButtonDisabled}
+            icon={<FlatIcon icon="coins" />}
+            loading={isLoading}
+            onClick={claimTokens}
+        >
+            Claim
+        </PrimaryButton>
+    );
 
     return wrapWithTooltip ? (
-        <Tooltip id={`claim-tokens-table-button-${order.id}`} content={tooltipText}>
-            {({ showTooltip, hideTooltip, tooltipId }) => (
-                <PrimaryButton
-                    {...baseClaimButtonProps}
-                    onMouseEnter={showTooltip}
-                    onMouseLeave={hideTooltip}
-                    data-for={tooltipId}
-                    data-tip
-                >
-                    Claim tokens
-                </PrimaryButton>
-            )}
-        </Tooltip>
+        <DisabledButtonTooltip tooltipText={tooltipText}>{claimButton}</DisabledButtonTooltip>
     ) : (
-        <PrimaryButton {...baseClaimButtonProps}>Claim tokens</PrimaryButton>
+        claimButton
     );
 };
 

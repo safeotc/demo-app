@@ -1,8 +1,7 @@
 import Order from '../../../../../../models/Order';
-import { ButtonProps } from '../../../../../forms/buttons/Button';
 import PrimaryButton from '../../../../../forms/buttons/PrimaryButton';
-import Tooltip from '../../../../../forms/tooltip/Tooltip';
 import FlatIcon from '../../../../../icons/FlatIcon';
+import DisabledButtonTooltip from '../DisabledButtonTooltip';
 import NoActionTableElement from '../NoActionTableElement';
 import useSendTokensButton from './useSendTokensButton';
 
@@ -18,30 +17,22 @@ const SendTokensTableButton = ({ order }: SendTokensTableButtonProps) => {
         return <NoActionTableElement />;
     }
 
-    const baseSendButtonProps: ButtonProps = {
-        className: 'u-width-full',
-        loading: isLoading,
-        disabled: isSendButtonDisabled,
-        icon: <FlatIcon icon="coins" />,
-        onClick: sendTokens,
-    };
+    const sendButton = (
+        <PrimaryButton
+            className="u-width-full"
+            loading={isLoading}
+            disabled={isSendButtonDisabled}
+            icon={<FlatIcon icon="coins" />}
+            onClick={sendTokens}
+        >
+            Send
+        </PrimaryButton>
+    );
 
     return showTokensNeedToBeDistributedAlert ? (
-        <Tooltip id={`send-tokens-table-button-${order.id}`} content="Tokens are not available yet.">
-            {({ showTooltip, hideTooltip, tooltipId }) => (
-                <PrimaryButton
-                    {...baseSendButtonProps}
-                    onMouseEnter={showTooltip}
-                    onMouseLeave={hideTooltip}
-                    data-for={tooltipId}
-                    data-tip
-                >
-                    Send
-                </PrimaryButton>
-            )}
-        </Tooltip>
+        <DisabledButtonTooltip tooltipText="Tokens are not available yet.">{sendButton}</DisabledButtonTooltip>
     ) : (
-        <PrimaryButton {...baseSendButtonProps}>Send</PrimaryButton>
+        sendButton
     );
 };
 
