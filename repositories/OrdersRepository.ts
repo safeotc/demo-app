@@ -103,7 +103,7 @@ class OrdersRepository implements IOrdersRepository {
             {
                 id: DEMO_ORDER_UUIDS[2],
                 type: 'buy',
-                asset: 'SUI',
+                asset: 'SUI NETWORK',
                 currency: 'USDT',
                 price: 123.2344,
                 quantity: 300,
