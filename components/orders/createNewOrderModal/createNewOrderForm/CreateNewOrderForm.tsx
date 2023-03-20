@@ -6,6 +6,7 @@ import useCreateNewOrderForm, { FIELD_COF_PRICE, FIELD_COF_QUANTITY, FIELD_COF_T
 import FormSubmitButton from '../../../forms/buttons/FormSubmitButton';
 import FormResetButton from '../../../forms/buttons/FormResetButton';
 import ValueDepositField from '../valueDepositField/ValueDepositField';
+import VestingField from '../VestingField';
 
 export type OnProcessed = (success: boolean, order: Order | null) => void;
 
@@ -28,6 +29,10 @@ const CreateNewOrderForm = ({ type, valueDepositInfo, onProcessed }: CreateOrder
                     placeholder="Select a token"
                     options={options}
                 />
+            </div>
+
+            <div className="u-margin-bottom">
+                <VestingField />
             </div>
 
             <div className="u-margin-bottom">
