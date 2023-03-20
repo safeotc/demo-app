@@ -16,14 +16,9 @@ const CreateNewOrderModal = (props: CreateNewOrderModalProps) => {
     const { isTabActive, changeTab, showResultAndCloseModalOnSuccess } = useCreateNewOrderModal(onCloseRequest);
 
     return (
-        <Modal
-            {...props}
-            skipSettingFocusables={true}
-            size="m"
-            boxProps={{ className: 'c-modal-create-new-order__background' }}
-        >
+        <Modal {...props} skipSettingFocusables={true} size="m">
             {(updateFocusables) => (
-                <div className="c-modal-create-new-order__foreground">
+                <>
                     <div className="u-margin-bottom-large">
                         <Tabs align="center">
                             <TabItem isActive={isTabActive('buy')}>
@@ -57,7 +52,7 @@ const CreateNewOrderModal = (props: CreateNewOrderModalProps) => {
                             <SellTab onProcessed={showResultAndCloseModalOnSuccess} />
                         </TabContent>
                     </div>
-                </div>
+                </>
             )}
         </Modal>
     );
