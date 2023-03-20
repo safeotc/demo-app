@@ -37,6 +37,11 @@ const OrderInfo = ({ order }: OrderInfoProps) => {
             </div>
 
             <div className="c-order-info">
+                <span className="c-order-info__label">Vesting</span>
+                <p className="c-order-info__value">{order.vesting}% on TGE</p>
+            </div>
+
+            <div className="c-order-info">
                 <span className="c-order-info__label">Quantity</span>
                 <p className="c-order-info__value">{order.quantity}</p>
             </div>
