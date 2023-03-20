@@ -221,7 +221,7 @@ const useProgress = (highlightDemoProgressButton: () => void) => {
                     completedStepsCount = 7;
                     completedSteps.push('switch_to_seller_wallet');
                     completedStepText =
-                        'Tokens were just sent to your address. Head over to the order page and distribute the tokens to the smart contract and claim your money!';
+                        'Tokens were just sent to your address. Head over to the active order tab and distribute the tokens to the smart contract and claim your money!';
                 }
                 finishStep(completedSteps, completedStepsCount, completedStepText, true);
             },
