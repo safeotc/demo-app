@@ -16,7 +16,7 @@ const useConnectButton = (connect: (wallet: Wallet) => void) => {
     const walletListItems = DEMO_WALLETS.map((dM, i) => {
         const isBuyerAddress = buyerAddress === dM.address || (!!sellerAddress && sellerAddress !== dM.address);
         const isSellerAddress = sellerAddress === dM.address || (!!buyerAddress && buyerAddress !== dM.address);
-        const label = isBuyerAddress ? 'Buyer wallet' : isSellerAddress ? 'Seller wallet' : `Demo wallet ${i + 1}`;
+        const label = `Demo wallet ${i + 1}${isBuyerAddress ? ' (buyer)' : isSellerAddress ? ' (seller)' : ''}`;
         const flatIcon = isBuyerAddress ? 'download' : isSellerAddress ? 'upload' : 'wallet';
         const iconClass = isBuyerAddress
             ? 'c-wallet-list__item-icon--buy'
