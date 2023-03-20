@@ -6,6 +6,7 @@ interface Order {
     id: string;
     type: OrderType;
     asset: string;
+    vesting: number;
     price: number;
     quantity: number;
     currency: string;

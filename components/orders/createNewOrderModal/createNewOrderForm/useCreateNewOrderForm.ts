@@ -57,6 +57,7 @@ const useCreateNewOrderForm = (type: OrderType, onProcessed: OnProcessed) => {
         const asset =
             CURRENCIES.find((c) => c.symbol === values[FIELD_COF_TOKEN])?.name?.toUpperCase() ||
             values[FIELD_COF_TOKEN];
+        const vesting = 100;
         const price = Number(values[FIELD_COF_PRICE]);
         const quantity = Number(values[FIELD_COF_QUANTITY]);
         const { buy: buyDepositValue, sell: sellDepositValue } = getDepositValues(price, quantity);
@@ -72,6 +73,7 @@ const useCreateNewOrderForm = (type: OrderType, onProcessed: OnProcessed) => {
             type,
             currency,
             id: uuidV4(),
+            vesting,
             price,
             quantity,
             totalDeposit: buyDepositValue,
