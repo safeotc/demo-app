@@ -42,8 +42,8 @@ const CompletedSteps = ({ completedSteps, ...props }: CompletedSteps) => {
                 Choose the other demo wallet to represent another person.
             </Step>
             <Step number={5} status={acceptOrderStatus} title="Accept order">
-                Find the created order in the open orders table and click on the &quot;details&quot; link to open it.
-                Once inside, accept the order to start an OTC trade between two parties.
+                Find the created order in the open orders tab and accept the order (buy or sell) to start an OTC trade
+                between two parties.
             </Step>
             <Step number={6} status={simulateTgeStatus} title="Simulate TGE & distribution">
                 Simulate token generation event and distribute created tokens to the seller, so he can keep his end of
@@ -64,8 +64,8 @@ const CompletedSteps = ({ completedSteps, ...props }: CompletedSteps) => {
                 In case you are connected to the buyer wallet, disconnect from it and connect to the seller wallet.
             </Step>
             <Step number={8} status={sendTokensStatus} title="Send tokens">
-                To send tokens to the smart contract you need to open the order page and click on &quot;send
-                tokens&quot; button.
+                To send tokens to the smart contract you need to open the active orders tab and click on the
+                &quot;send&quot; button.
             </Step>
             <Step number={9} status={disconnectSellerWalletStatus} title="Disconnect seller wallet">
                 Disconnect the currently connected wallet.
@@ -74,7 +74,7 @@ const CompletedSteps = ({ completedSteps, ...props }: CompletedSteps) => {
                 Connect the buyer wallet in order to claim your tokens from the smart contract.
             </Step>
             <Step number={11} status={claimTokensStatus} title="Claim tokens">
-                Once again go to the order page and claim your tokens.
+                To claim tokens you need to open the active orders tab and click on the &quot;claim&quot; button.
             </Step>
         </ul>
     );
