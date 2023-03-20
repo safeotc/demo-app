@@ -25,6 +25,15 @@ const Congratulations = () => {
                     between two parties without an escrow!
                 </p>
 
+                <p className="c-modal-congratulations__text u-margin-bottom-large">
+                    We hope you enjoyed using our platform! We would love to hear about your experience. Please leave
+                    your feedback in{' '}
+                    <a href="https://forms.gle/icirM9W1hn9symYu7" rel="noreferrer" className="c-link" target="_blank">
+                        this form
+                    </a>
+                    .
+                </p>
+
                 <div className="u-text-center">
                     <SecondaryButton size="l" icon={<FlatIcon icon="refresh" />} onClick={restartDemoApp}>
                         Start over
