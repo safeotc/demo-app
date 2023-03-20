@@ -1,7 +1,7 @@
 import CurrencyIcon from './CurrencyIcon';
 
-const SuiIcon = () => {
+const SuiNetworkIcon = () => {
     return <CurrencyIcon name="Sui Network" img="sui-network.png" />;
 };
 
-export default SuiIcon;
+export default SuiNetworkIcon;
